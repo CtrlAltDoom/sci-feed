@@ -12,7 +12,7 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - ✅ Dédoublonnage des articles sans identifiant et au titre court (l'adresse sert de clé)
 - ✅ Alertes de santé sur ntfy : source en panne plusieurs jours, IA muette, collecte vide, tâche quotidienne arrêtée ou en échec (puis « ✅ » quand c'est réparé)
 - ✅ Modèles IA de secours trouvés automatiquement si le modèle gratuit configuré disparaît
-- 🔜 Alléger `data.json` (environ 4 Mo et en hausse) : articles récents d'abord, le reste à la demande
+- ✅ `data.json` allégé (4,3 Mo → 1,4 Mo) : articles des 30 derniers jours sans abstracts, archive chargée juste après, abstracts à l'ouverture de « Détails » ou pour une recherche
 - 🔜 Tests de la partie site (filtres, étiquettes, personnalisation), pas seulement de la collecte
 - 🔜 Vérifier au bout d'un mois que GitHub ne désactive pas les tâches planifiées (dépôt « inactif » 60 jours)
 

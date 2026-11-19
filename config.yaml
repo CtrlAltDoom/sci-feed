@@ -247,6 +247,16 @@ interet:
   jours_par_point: 2       # vitesse à laquelle l'ancienneté fait reculer un article
 
 # ------------------------------------------------------------
+#  SITE : fichiers allégés pour une ouverture rapide sur téléphone
+#  À l'ouverture, l'appli ne télécharge que les articles récents, sans leurs abstracts.
+#  Les articles plus anciens arrivent juste après ; un abstract se charge en ouvrant « Détails »
+#  (ou pour une recherche). Rien ne change à l'affichage.
+# ------------------------------------------------------------
+site:
+  jours_recents: 30        # articles ajoutés depuis N jours : chargés tout de suite
+  details_par_fichier: 100 # abstracts regroupés par paquets de N (par jour d'ajout)
+
+# ------------------------------------------------------------
 #  NOTIFICATIONS DU MATIN (appli gratuite ntfy, Android / iOS)
 #  Le nom du canal n'est PAS ici (dépôt public) : il est dans le secret GitHub NTFY_TOPIC.
 #  Dans l'appli ntfy : « + » puis ce nom de canal.

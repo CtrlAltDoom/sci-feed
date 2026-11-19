@@ -202,8 +202,16 @@ class TestVeille(unittest.TestCase):
         self.assertNotIn("etiquettes", pipeline.charger().articles[0])
         # revue : rattachée via OpenAlex, notoriété calculée
         hyp = next(x for t, x in par_titre.items() if t.startswith("Gut-directed"))
-        self.assertEqual(hyp["revue_info"]["niveau"], 3)
-        self.assertEqual(hyp["revue_info"]["domaine"], "Gastro-entérologie")
+        info = donnees["meta"]["revues"][hyp["rv"]]     # rangée une fois par revue, pas dans chaque article
+        self.assertEqual(info["niveau"], 3)
+        self.assertEqual(info["domaine"], "Gastro-entérologie")
+        # data.json allégé : pas d'abstract complet ni de champ vide ; l'abstract est dans details/
+        self.assertNotIn("resume", hyp)
+        self.assertNotIn("revue_info", hyp)
+        self.assertFalse(any(v in (None, False, "", [], {}) for x in donnees["articles"] for v in x.values()))
+        paquet = json.loads((sortie / "details" / f"{hyp['d']}.json").read_text(encoding="utf-8"))
+        self.assertIn("METHODS", paquet[hyp["id"]]["resume"])
+        self.assertEqual(paquet[hyp["id"]]["auteurs"], ["Martin A"])
         # intérêt : SII + hypnose (2 + 2 + étiquettes) devant l'étude animale
         self.assertGreater(hyp["interet"], par_titre["Murine model of IBS"]["interet"])
         self.assertIn("jours_par_point", donnees["meta"])
@@ -237,6 +245,44 @@ class TestVeille(unittest.TestCase):
             self.assertIn("Option crédible", " ".join(m["message"] for m in envois))
             # deuxième passage : rien de nouveau, rien n'est renvoyé
             self.assertEqual(notifications.notifier(self.cfg, forcer=True, client=FauxCourt()), 0)
+
+    def test_site_allege(self):
+        """Articles récents dans data.json, anciens dans archive.json, abstracts par paquets."""
+        vieux = (core.aujourd_hui() - dt.timedelta(days=45)).isoformat()
+        articles = []
+        for i in range(5):
+            a = core.nouvel_article(titre=f"Article {i}", themes=["sii"], resume="Abstract " * 80,
+                                    auteurs=["A B"], url=f"https://exemple.org/{i}")
+            a["id"], a["ajoute_le"] = f"test:{i}", AUJ if i < 3 else vieux
+            articles.append(a)
+        articles[0]["fiche"] = {"verdict": "Fiche déjà rédigée"}
+        cfg = dict(self.cfg, site={"jours_recents": 30, "details_par_fichier": 2})
+        site.construire(cfg, articles=articles)
+        sortie = self.tmp / "site"
+        recents = json.loads((sortie / "data.json").read_text(encoding="utf-8"))
+        archive = json.loads((sortie / "archive.json").read_text(encoding="utf-8"))
+        self.assertEqual(sorted(a["id"] for a in recents["articles"]), ["test:0", "test:1", "test:2"])
+        self.assertEqual(sorted(a["id"] for a in archive["articles"]), ["test:3", "test:4"])
+        self.assertEqual(recents["meta"]["archive"], {"fichier": "archive.json", "articles": 2})
+        par_id = {a["id"]: a for a in recents["articles"] + archive["articles"]}
+        self.assertNotIn("extrait", par_id["test:0"])                    # fiche IA : pas besoin d'extrait
+        self.assertTrue(par_id["test:1"]["extrait"].endswith("…"))       # sans fiche : extrait pour la liste
+        self.assertLessEqual(len(par_id["test:1"]["extrait"]), site.LONGUEUR_EXTRAIT + 1)
+        # paquets de 2 au plus, par jour d'ajout ; chaque article sait où est son abstract
+        fichiers = sorted(p.stem for p in (sortie / "details").glob("*.json"))
+        self.assertEqual(fichiers, sorted([f"{AUJ}-0", f"{AUJ}-1", f"{vieux}-0"]))
+        for a in par_id.values():
+            paquet = json.loads((sortie / "details" / f"{a['d']}.json").read_text(encoding="utf-8"))
+            self.assertTrue(paquet[a["id"]]["resume"].startswith("Abstract"))
+        # sans articles anciens : pas d'archive
+        site.construire(cfg, articles=articles[:3])
+        self.assertFalse((sortie / "archive.json").exists())
+        self.assertNotIn("archive", json.loads((sortie / "data.json").read_text(encoding="utf-8"))["meta"])
+        # aperçu autonome (une seule page) : tout reste dedans, abstracts compris
+        site.construire(cfg, inline=True, articles=articles)
+        page = (sortie / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Abstract Abstract", page)
+        self.assertFalse((sortie / "data.json").exists())
 
     def test_deja_vus_dans_l_appli(self):
         synchro = {"lus": {"a1": 1}, "favoris": {"a2": 1}, "masques": {"a3": 1, "a4": 0}, "horo": {}}

@@ -8,12 +8,63 @@ import json
 import shutil
 
 from . import revues
-from .core import RACINE, bonus_serieux, contient, interet, log, themes_correspondants
+from .core import RACINE, aujourd_hui, bonus_serieux, contient, interet, log, themes_correspondants
 from .pipeline import ETAT, charger
 
 WEB = RACINE / "web"
 SORTIE = RACINE / "site"
 MAX_RSS = 200
+
+# ---------------------------------------------------------------- fichiers du site, allégés
+# data.json : ce qu'il faut pour afficher la liste des articles récents (chargé à l'ouverture).
+# archive.json : les articles plus anciens, même format (chargés juste après l'affichage).
+# details/*.json : abstracts complets et auteurs, chargés à l'ouverture de « Détails » ou pour une recherche.
+DETAILS_A_PART = ("resume", "auteurs")
+INUTILES = ("sources", "pmcid", "revue_oa", "revue_info")   # non affichés (revue_info : rangé une fois par revue)
+LONGUEUR_EXTRAIT = 260                                       # extrait affiché tant qu'il n'y a pas de fiche IA
+
+
+def _vide(v) -> bool:
+    return v is None or v is False or v == "" or v == [] or v == {}
+
+
+def leger(a: dict, avec_details: bool = False) -> dict:
+    """Version d'un article pour le site : sans champs vides ni inutiles, abstract à part."""
+    sortie = {k: v for k, v in a.items() if k not in INUTILES and not _vide(v)
+              and (avec_details or k not in DETAILS_A_PART)}
+    if a.get("revue_oa") and a.get("revue_info"):
+        sortie["rv"] = a["revue_oa"]
+    resume = a.get("resume") or ""
+    if not avec_details and resume and not a.get("fiche"):
+        sortie["extrait"] = resume[:LONGUEUR_EXTRAIT] + ("…" if len(resume) > LONGUEUR_EXTRAIT else "")
+    return sortie
+
+
+def decouper(articles: list[dict], cfg: dict) -> tuple[list[dict], list[dict], dict[str, dict]]:
+    """Sépare récents / anciens et range les abstracts par paquets (jour d'ajout, N articles au plus)."""
+    reglages = cfg.get("site") or {}
+    limite = (aujourd_hui() - dt.timedelta(days=int(reglages.get("jours_recents", 30)))).isoformat()
+    taille = max(1, int(reglages.get("details_par_fichier", 100)))
+    paquets: dict[str, dict] = {}
+    par_jour: dict[str, list[dict]] = {}
+    for a in articles:
+        if any(a.get(k) for k in DETAILS_A_PART):
+            par_jour.setdefault(a.get("ajoute_le") or "sans-date", []).append(a)
+    nom_paquet = {}
+    for jour, liste in par_jour.items():
+        liste.sort(key=lambda a: a["id"])           # stable d'un jour à l'autre : le cache du téléphone sert
+        for i in range(0, len(liste), taille):
+            nom = f"{jour}-{i // taille}"
+            paquets[nom] = {a["id"]: {k: a[k] for k in DETAILS_A_PART if a.get(k)} for a in liste[i:i + taille]}
+            for a in liste[i:i + taille]:
+                nom_paquet[a["id"]] = nom
+    recents, anciens = [], []
+    for a in articles:
+        l = leger(a)
+        if a["id"] in nom_paquet:
+            l["d"] = nom_paquet[a["id"]]
+        (recents if (a.get("ajoute_le") or "") >= limite else anciens).append(l)
+    return recents, anciens, paquets
 
 
 # ---------------------------------------------------------------- type d'étude
@@ -126,6 +177,8 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
                        for t in etiquettes],
         "familles": cfg.get("familles", {}),
         "jours_par_point": (cfg.get("interet") or {}).get("jours_par_point", 2),
+        # informations sur les revues, une seule fois par revue (et non recopiées dans chaque article)
+        "revues": {a["revue_oa"]: a["revue_info"] for a in articles if a.get("revue_oa") and a.get("revue_info")},
     }
     if any(a.get("libre") for a in articles):
         ids = {t["id"] for t in meta["themes"]}
@@ -137,8 +190,9 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
     if SORTIE.exists():
         shutil.rmtree(SORTIE)
     shutil.copytree(WEB, SORTIE)
-    donnees = {"meta": meta, "articles": articles}
+    ecrire = lambda chemin, d: chemin.write_text(json.dumps(d, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     if inline:
+        donnees = {"meta": meta, "articles": [leger(a, avec_details=True) for a in articles]}
         page = (SORTIE / "index.html").read_text(encoding="utf-8")
         script = "<script>window.VEILLE_DATA=" + json.dumps(donnees, ensure_ascii=False).replace(
             "</", "<\\/") + ";</script>"
@@ -149,7 +203,16 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
                             "<script>" + (SORTIE / "app.js").read_text(encoding="utf-8") + "</script>")
         (SORTIE / "index.html").write_text(page, encoding="utf-8")
     else:
-        (SORTIE / "data.json").write_text(json.dumps(donnees, ensure_ascii=False), encoding="utf-8")
+        recents, anciens, paquets = decouper(articles, cfg)
+        if anciens:
+            meta["archive"] = {"fichier": "archive.json", "articles": len(anciens)}
+            ecrire(SORTIE / "archive.json", {"articles": anciens})
+        ecrire(SORTIE / "data.json", {"meta": meta, "articles": recents})
+        (SORTIE / "details").mkdir()
+        for nom, contenu in paquets.items():
+            ecrire(SORTIE / "details" / f"{nom}.json", contenu)
+        log.info("data.json : %d articles récents (%d Ko), archive : %d, abstracts : %d fichiers",
+                 len(recents), (SORTIE / "data.json").stat().st_size // 1024, len(anciens), len(paquets))
     _rss(articles, meta["titre"], "./", SORTIE / "feed.xml")
     for t in meta["themes"]:
         _rss([a for a in articles if t["id"] in a.get("themes", [])],

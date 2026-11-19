@@ -116,11 +116,13 @@ veille/
   core.py              ← mots-clés, dédoublonnage (DOI / PMID / titre), modèle d'article
   pipeline.py          ← collecte, fusion, enrichissement des abstracts manquants
   resume_ia.py         ← fiches de lecture IA (API compatible OpenAI, plusieurs modèles de secours)
-  site.py              ← page web + flux RSS
+  site.py              ← page web + flux RSS (data.json léger, archive.json, details/ : voir ci-dessous)
 web/                   ← interface (HTML/CSS/JS, sans dépendance)
 data/articles.json     ← la base, versionnée par GitHub (historique gratuit)
 .github/workflows/     ← l'automatisation quotidienne
 ```
+
+**Fichiers du site** (pour une ouverture rapide sur téléphone) : `data.json` ne contient que les articles des 30 derniers jours, sans abstracts ni champs vides. `archive.json` (les plus anciens) se charge juste après l'affichage. Les abstracts et les auteurs sont rangés par paquets dans `details/` et se chargent à l'ouverture de « Détails », pour une recherche ou pour l'export Zotero. Réglages dans la section `site` de `config.yaml`.
 
 Pour ajouter une source, créez `veille/sources/ma_source.py` avec une fonction `collecter(cfg, http, theme, depuis, jusqu_a)` qui renvoie des articles, puis déclarez-la dans `SOURCES_API` (fichier `pipeline.py`).
 

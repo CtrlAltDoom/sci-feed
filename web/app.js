@@ -110,6 +110,46 @@
   })();
 
   let DATA = { meta: { themes: [], etiquettes: [] }, articles: [] };
+
+  // ---------- chargement en plusieurs temps ----------
+  // data.json : articles récents, sans abstracts (ouverture rapide) ; archive.json : les plus anciens,
+  // juste après l'affichage ; details/<paquet>.json : abstracts et auteurs, à l'ouverture de « Détails »
+  // ou pour une recherche. Le service worker garde ce qui a été chargé pour le hors connexion.
+  const PAR_ID = new Map();
+  const paquets = {};
+  function preparer(liste) {
+    const revues = DATA.meta.revues || {};
+    liste.forEach((a) => { if (a.rv && !a.revue_info) a.revue_info = revues[a.rv]; PAR_ID.set(a.id, a); });
+    return liste;
+  }
+  const sansDetails = (a) => !!a.d && !a.detailsOk;
+  function chargerPaquet(nom) {
+    if (!paquets[nom]) {
+      paquets[nom] = fetch(`details/${encodeURIComponent(nom)}.json`, { cache: "no-cache" })
+        .then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then((p) => Object.keys(p).forEach((id) => { const a = PAR_ID.get(id); if (a) Object.assign(a, p[id], { detailsOk: true }); }))
+        .catch((e) => { delete paquets[nom]; throw e; });     // nouvel essai possible plus tard (retour du réseau)
+    }
+    return paquets[nom];
+  }
+  const chargerDetails = (liste) => Promise.all([...new Set(liste.filter(sansDetails).map((a) => a.d))].map(chargerPaquet));
+  function chargerArchive() {
+    const arch = DATA.meta.archive;
+    if (!arch || DATA.archiveOk) return;
+    fetch(arch.fichier, { cache: "no-cache" }).then((r) => r.json()).then((d) => {
+      DATA.archiveOk = true;
+      DATA.articles = DATA.articles.concat(preparer(d.articles || []));
+      rafraichir(true);
+    }).catch(() => { /* hors connexion : les articles récents restent consultables */ });
+  }
+  // recherche : on cherche tout de suite dans ce qui est chargé, puis dans les abstracts une fois arrivés
+  let rechercheAbstracts = null;
+  function chercherDansAbstracts() {
+    if (rechercheAbstracts || !DATA.articles.some(sansDetails)) return;
+    rechercheAbstracts = chargerDetails(DATA.articles).then(
+      () => { rechercheAbstracts = null; if ($("recherche").value.trim()) rafraichir(true); },
+      () => { rechercheAbstracts = null; });
+  }
   let nomsThemes = {}, famThemes = {}, nomsEtiq = {}, famEtiq = {};
   // nom affiché : raccourci personnel > nom court du site > nom complet
   const libelle = (genre, t) => (etat.alias[genre + ":" + t.id] || "").trim() || t.court || t.nom;
@@ -185,6 +225,7 @@
     const mots = q ? q.split(/\s+/) : [];
     const niv = parseInt(etat.niveau, 10) || 0;
     const nivRevue = parseInt(etat.revue, 10) || 0;
+    if (mots.length) chercherDansAbstracts();
     let liste = DATA.articles.filter((a) => {
       const masque = !!etat.masques[a.id];
       if (etat.vue === "masques") { if (!masque) return false; } else if (masque) return false;
@@ -204,7 +245,7 @@
       if (nivRevue && !((a.revue_info && a.revue_info.niveau) >= nivRevue)) return false;
       if (mots.length) {
         const f = a.fiche || {};
-        const texte = [a.titre, a.resume, a.revue, (a.auteurs || []).join(" "), f.verdict,
+        const texte = [a.titre, a.resume || a.extrait, (a.mots_cles || []).join(" "), a.revue, (a.auteurs || []).join(" "), f.verdict,
           (f.resultats_cles || []).join(" "), (f.mots_cles_fr || []).join(" ")].join(" ").toLowerCase();
         if (!mots.every((m) => texte.includes(m))) return false;
       }
@@ -264,22 +305,10 @@
         (indic.length ? `<div class="indic">${indic.join("")}</div>` : "") +
         ((f.resultats_cles || []).length ? `<ul class="cles">${f.resultats_cles.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "");
     } else {
-      corps = (a.resume ? `<p class="extrait">${esc(a.resume.slice(0, 260))}${a.resume.length > 260 ? "…" : ""}</p>` : "") +
-        `<p class="attente">${a.resume ? "Fiche IA en attente (prochaine mise à jour)" : "Pas d'abstract disponible"}</p>`;
+      const apercu = a.resume ? a.resume.slice(0, 260) + (a.resume.length > 260 ? "…" : "") : a.extrait || "";
+      corps = (apercu ? `<p class="extrait">${esc(apercu)}</p>` : "") +
+        `<p class="attente">${apercu ? "Fiche IA en attente (prochaine mise à jour)" : "Pas d'abstract disponible"}</p>`;
     }
-
-    const det = [];
-    if (f) {
-      if (f.intervention) det.push(`<p><b>Intervention / comparaison :</b> ${esc(f.intervention)}</p>`);
-      if (f.conclusion) det.push(`<p><b>Conclusion des auteurs :</b> ${esc(f.conclusion)}</p>`);
-      if ((f.limites || []).length) det.push(`<p><b>Limites :</b> ${f.limites.map(esc).join(" · ")}</p>`);
-      if (f.pertinence_raison) det.push(`<p><b>Pourquoi pour moi :</b> ${esc(f.pertinence_raison)}</p>`);
-    }
-    if (a.resume) det.push(`<p class="abstract"><b>Abstract original :</b>\n${esc(a.resume)}</p>`);
-    if ((a.auteurs || []).length) det.push(`<p><b>Auteurs :</b> ${esc(a.auteurs.slice(0, 8).join(", "))}${a.auteurs.length > 8 ? " et al." : ""}</p>`);
-    const ids = [a.doi && `DOI ${esc(a.doi)}`, a.pmid && `PMID ${esc(a.pmid)}`, a.nct && esc(a.nct)].filter(Boolean);
-    if (ids.length) det.push(`<p>${ids.join(" · ")}</p>`);
-    if (f && f.modele) det.push(`<p class="attente">Fiche : ${esc(f.modele)}, ${esc(f.date || "")}</p>`);
 
     const tags = (a.themes || []).map((t) => `<span class="tag f-${esc(famThemes[t] || "")}">${esc(nomsThemes[t] || t)}</span>`)
       .concat((a.etiquettes || []).filter((t) => t !== "animal" && nomsEtiq[t])
@@ -289,7 +318,7 @@
       <h2><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.titre)}</a></h2>
       ${ligneRevue(a)}
       ${corps}
-      <details><summary>Détails & abstract</summary>${det.join("")}</details>
+      <details><summary>Détails & abstract</summary>${contenuDetails(a)}</details>
       <div class="tags">${tags}</div>
       <div class="actions">
         <button data-act="fav" class="${fav ? "actif" : ""}">${fav ? "★ Favori" : "☆ Favori"}</button>
@@ -301,10 +330,32 @@
       </div></article>`;
   }
 
+  // contenu de « Détails & abstract » (l'abstract et les auteurs arrivent à l'ouverture, s'ils manquent)
+  function contenuDetails(a, erreur) {
+    const f = a.fiche;
+    const det = [];
+    if (f) {
+      if (f.intervention) det.push(`<p><b>Intervention / comparaison :</b> ${esc(f.intervention)}</p>`);
+      if (f.conclusion) det.push(`<p><b>Conclusion des auteurs :</b> ${esc(f.conclusion)}</p>`);
+      if ((f.limites || []).length) det.push(`<p><b>Limites :</b> ${f.limites.map(esc).join(" · ")}</p>`);
+      if (f.pertinence_raison) det.push(`<p><b>Pourquoi pour moi :</b> ${esc(f.pertinence_raison)}</p>`);
+    }
+    if (sansDetails(a)) det.push(`<p class="attente charge-details">${erreur
+      ? "Abstract indisponible pour l'instant (pas de connexion ?). Refermez puis rouvrez pour réessayer."
+      : "Chargement de l'abstract…"}</p>`);
+    if (a.resume) det.push(`<p class="abstract"><b>Abstract original :</b>\n${esc(a.resume)}</p>`);
+    if ((a.auteurs || []).length) det.push(`<p><b>Auteurs :</b> ${esc(a.auteurs.slice(0, 8).join(", "))}${a.auteurs.length > 8 ? " et al." : ""}</p>`);
+    const ids = [a.doi && `DOI ${esc(a.doi)}`, a.pmid && `PMID ${esc(a.pmid)}`, a.nct && esc(a.nct)].filter(Boolean);
+    if (ids.length) det.push(`<p>${ids.join(" · ")}</p>`);
+    if (f && f.modele) det.push(`<p class="attente">Fiche : ${esc(f.modele)}, ${esc(f.date || "")}</p>`);
+    return det.join("");
+  }
+
   function afficher() {
     const liste = filtrer();
     const nonLus = liste.filter((a) => !etat.lus[a.id]).length;
-    $("compteur").textContent = `${liste.length} article${liste.length > 1 ? "s" : ""} · ${nonLus} non lu${nonLus > 1 ? "s" : ""}`;
+    $("compteur").textContent = `${liste.length} article${liste.length > 1 ? "s" : ""} · ${nonLus} non lu${nonLus > 1 ? "s" : ""}` +
+      (rechercheAbstracts ? " · recherche dans les abstracts…" : "");
     if (!liste.length) {
       $("liste").innerHTML = `<p class="vide">${etat.vue === "favoris"
         ? (DATA.articles.some((a) => etat.favoris[a.id]) ? "Aucun favori pour ces thèmes ou étiquettes." : "Pas encore de favori : touchez « ☆ Favori » sous un article.")
@@ -380,6 +431,10 @@
   function exporterRIS() {
     const favs = DATA.articles.filter((a) => etat.favoris[a.id]);
     if (!favs.length) { alerteDouce("Aucun favori à exporter."); return; }
+    // abstracts et auteurs complets d'abord (hors connexion : export sans ce qui manque)
+    chargerDetails(favs).catch(() => { }).then(() => ecrireRIS(favs));
+  }
+  function ecrireRIS(favs) {
     const lignes = [];
     favs.forEach((a) => {
       lignes.push("TY  - JOUR", `TI  - ${a.titre}`);
@@ -605,18 +660,28 @@
       if (b.dataset.act === "masquer") bascule("masques");
       enregistrer(); rafraichir(true);
     });
-    $("liste").addEventListener("toggle", (e) => {   // ouvrir les détails = marquer comme lu
+    $("liste").addEventListener("toggle", (e) => {   // ouvrir les détails = marquer comme lu (+ charger l'abstract)
       const c = e.target.closest && e.target.closest(".carte");
-      if (e.target.open && c && !etat.lus[c.dataset.id]) {
+      if (!e.target.open || !c) return;
+      if (!etat.lus[c.dataset.id]) {
         poser("lus", c.dataset.id, 1); enregistrer(); c.classList.add("lu");
         const b = c.querySelector('button[data-act="lu"]'); if (b) b.textContent = "↺ Non lu";
       }
+      const a = PAR_ID.get(c.dataset.id), det = e.target;
+      if (!a || !sansDetails(a)) return;
+      const remplir = (erreur) => {
+        det.querySelectorAll(":scope > :not(summary)").forEach((n) => n.remove());
+        det.insertAdjacentHTML("beforeend", contenuDetails(a, erreur));
+      };
+      remplir(false);
+      chargerDetails([a]).then(() => remplir(false), () => remplir(true));
     }, true);
     $("plus").addEventListener("click", () => { affiches += PAR_PAGE; afficher(); });
     $("tout-lu").addEventListener("click", () => { filtrer().forEach((a) => { if (!etat.lus[a.id]) poser("lus", a.id, 1); }); enregistrer(); rafraichir(); });
     $("export").addEventListener("click", exporterRIS);
     rafraichir();
     sync.demarrer();
+    setTimeout(chargerArchive, 300);      // après le premier affichage
   }
 
   // appli installable (Android / iPhone / PC) et consultable hors connexion
@@ -624,9 +689,9 @@
     navigator.serviceWorker.register("sw.js").catch(() => { /* facultatif */ });
   }
 
-  if (window.VEILLE_DATA) { DATA = window.VEILLE_DATA; brancher(); }
+  if (window.VEILLE_DATA) { DATA = window.VEILLE_DATA; preparer(DATA.articles); brancher(); }
   else {
-    fetch("data.json", { cache: "no-cache" }).then((r) => r.json()).then((d) => { DATA = d; brancher(); })
+    fetch("data.json", { cache: "no-cache" }).then((r) => r.json()).then((d) => { DATA = d; preparer(DATA.articles); brancher(); })
       .catch(() => { $("liste").innerHTML = `<p class="vide">Impossible de charger les données.</p>`; });
   }
 })();
