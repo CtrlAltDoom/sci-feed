@@ -139,7 +139,15 @@ details p { margin: 6px 0; }
 .perso-nom { font-size: .82rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .perso-ligne input[type="text"] { width: 100%; padding: 5px 8px; border-radius: 8px; border: 1px solid var(--ligne);
   background: var(--fond); font-size: .82rem; }
-.perso-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.perso-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.perso-actions input[type="password"] { flex: 1; min-width: 12rem; padding: 7px 10px; border-radius: 10px;
+  border: 1px solid var(--ligne); background: var(--fond); }
+.perso-acces { display: grid; gap: 8px; }
+.perso-acces label { display: flex; flex-direction: column; gap: 3px; font-size: .75rem; color: var(--doux); }
+.perso-acces input { padding: 7px 10px; border-radius: 10px; border: 1px solid var(--ligne); background: var(--fond); font-size: .85rem; }
+.perso-etapes { font-size: .82rem; padding-left: 20px; margin: 4px 0; }
+.perso-etapes li { margin-bottom: 4px; }
+.perso code { font-size: .8em; background: var(--fond); padding: 0 4px; border-radius: 4px; }
 .perso-actions .icone { display: inline-block; }
 
 /* liste des flux */

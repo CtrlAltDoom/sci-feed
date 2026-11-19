@@ -70,6 +70,36 @@
   <p class="perso-aide">Raccourci : le texte affiché sur la puce et les fiches (ex. « Anx »). Laisser vide = nom par défaut. Décocher = puce masquée.</p>
   <div id="perso-puces"></div>
   <p><button class="lien" id="perso-reinit" type="button">Remettre les noms et puces par défaut</button></p>
+  <h3>Accès à mon établissement</h3>
+  <p class="perso-aide">Ajoute sur chaque fiche un lien qui ouvre l'article via votre établissement (OpenAthens, proxy de bibliothèque). Vous vous identifiez vous-même, comme d'habitude : rien n'est automatisé ni publié.</p>
+  <div class="perso-acces">
+    <label>Nom du lien <input type="text" id="acces-nom" placeholder="ex. AP-HP" maxlength="25"></label>
+    <label>OpenAthens : domaine de l'établissement <input type="text" id="acces-domaine" placeholder="ex. aphp.fr" spellcheck="false"></label>
+    <label>ou adresse complète d'un proxy <input type="text" id="acces-prefixe" placeholder="https://proxy.exemple.fr/login?url=" spellcheck="false"></label>
+  </div>
+  <p class="perso-aide" id="acces-test"></p>
+
+  <h3>Synchronisation entre appareils</h3>
+  <p class="perso-aide">Retrouvez vos lus, favoris, masqués et raccourcis sur le téléphone et le PC. Gratuit : les données sont gardées dans un « gist » secret de <b>votre</b> compte GitHub.</p>
+  <div id="sync-off">
+    <ol class="perso-etapes">
+      <li><a id="sync-lien" href="https://github.com/settings/tokens/new?scopes=gist&amp;description=Veille%20scientifique%20-%20synchronisation" target="_blank" rel="noopener">Créer une clé sur GitHub ↗</a> : la case « gist » est déjà cochée, et elle seule. Choisissez une durée (« No expiration » pour ne plus y penser), puis « Generate token » en bas de page.</li>
+      <li>Copiez la clé (elle commence par <code>ghp_</code>) et collez-la ici :</li>
+    </ol>
+    <p class="perso-actions">
+      <input type="password" id="sync-jeton" placeholder="ghp_…" autocomplete="off" spellcheck="false">
+      <button class="icone" id="sync-connecter" type="button">Connecter</button>
+    </p>
+    <p class="perso-aide">Refaire l'étape 2 sur chaque appareil (la même clé convient). Elle reste dans ce navigateur, ne donne accès qu'aux gists, et n'est jamais exportée.</p>
+  </div>
+  <div id="sync-on" hidden>
+    <p class="perso-actions">
+      <button class="icone" id="sync-maintenant" type="button">Synchroniser maintenant</button>
+      <button class="lien" id="sync-deconnecter" type="button">Déconnecter cet appareil</button>
+    </p>
+  </div>
+  <p class="perso-aide">État : <b id="sync-statut"></b></p>
+
   <h3>Sauvegarde et transfert</h3>
   <p class="perso-aide">Lus, favoris, masqués et réglages. Le fichier se réimporte sur un autre appareil : il est <b>fusionné</b> avec ce qui s'y trouve déjà (rien n'est effacé).</p>
   <p class="perso-actions">

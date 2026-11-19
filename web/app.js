@@ -10,9 +10,95 @@
   const CLE = "veille-etat-v1";
   // alias : raccourcis personnels des puces ("t:sii" / "e:anx_dep" -> "Anx") ; cachees : puces masquées
   let etat = { lus: {}, favoris: {}, masques: {}, themes: [], etiquettes: [], chipsOuverts: false,
-    alias: {}, cachees: {}, vue: "tous", type: "", niveau: "0", tri: "recent" };
+    alias: {}, cachees: {}, reglages: {}, horo: {}, vue: "tous", type: "", niveau: "0", tri: "recent" };
   try { Object.assign(etat, JSON.parse(localStorage.getItem(CLE) || "{}")); } catch (e) { /* stockage indisponible */ }
-  const enregistrer = () => { try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) { } };
+  const enregistrer = (sansSync) => {
+    try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) { }
+    if (!sansSync) sync.planifier();
+  };
+  // modifie un élément partagé entre appareils et date le changement
+  const poser = (cat, cle, valeur) => {
+    if (valeur) etat[cat][cle] = valeur; else delete etat[cat][cle];
+    etat.horo[cat + "|" + cle] = Date.now();
+  };
+
+  // ---------- synchronisation entre appareils (gist GitHub secret) ----------
+  // Le jeton (droit « gist » uniquement) reste dans CE navigateur, jamais exporté ni publié.
+  const sync = (() => {
+    const CLE_SYNC = "veille-sync-v1", FICHIER = "veille-synchro.json", API = "https://api.github.com";
+    let cfg = {}; try { cfg = JSON.parse(localStorage.getItem(CLE_SYNC) || "{}"); } catch (e) { }
+    const garder = () => { try { localStorage.setItem(CLE_SYNC, JSON.stringify(cfg)); } catch (e) { } };
+    let minuterie = null, enCours = null, dernierMessage = "";
+    const statut = (m) => { dernierMessage = m; const el = document.getElementById("sync-statut"); if (el) el.textContent = m; };
+    const appel = (chemin, options = {}) => fetch(API + chemin, Object.assign({}, options, {
+      headers: { Authorization: "Bearer " + cfg.jeton, Accept: "application/vnd.github+json", "Content-Type": "application/json" },
+    })).then((r) => {
+      if (r.status === 401) throw new Error("jeton refusé (expiré ou mal copié)");
+      if (r.status === 403 || r.status === 404) throw new Error("le jeton n'a pas le droit « gist »");
+      if (!r.ok) throw new Error("GitHub a répondu " + r.status);
+      return r.status === 204 ? null : r.json();
+    });
+
+    // retrouve le gist de synchronisation sur le compte, ou le crée (secret)
+    async function trouverGist() {
+      if (cfg.gist) return cfg.gist;
+      for (let page = 1; page <= 10; page++) {
+        const liste = await appel(`/gists?per_page=100&page=${page}`);
+        const g = liste.find((x) => x.files && x.files[FICHIER]);
+        if (g) { cfg.gist = g.id; garder(); return g.id; }
+        if (liste.length < 100) break;
+      }
+      const cree = await appel("/gists", { method: "POST", body: JSON.stringify({
+        description: "Veille scientifique : synchronisation des lus, favoris et réglages (créé par l'appli)",
+        public: false, files: { [FICHIER]: { content: JSON.stringify(etatPartage()) } } }) });
+      cfg.gist = cree.id; garder(); return cree.id;
+    }
+
+    async function lire(id) {
+      const g = await appel(`/gists/${id}`);
+      const f = g.files[FICHIER];
+      if (!f) return null;
+      const texte = f.truncated ? await fetch(f.raw_url).then((r) => r.text()) : f.content;
+      return JSON.parse(texte || "{}");
+    }
+
+    async function synchroniser() {
+      if (!cfg.jeton) return;
+      if (enCours) return enCours;
+      enCours = (async () => {
+        try {
+          statut("Synchronisation…");
+          let id = await trouverGist(), distant;
+          try { distant = await lire(id); }
+          catch (e) { if (/404|gist/.test(e.message)) { cfg.gist = ""; id = await trouverGist(); distant = null; } else throw e; }
+          if (distant && fusionner(distant)) { enregistrer(true); calculerNoms(); rafraichir(true); }
+          await appel(`/gists/${id}`, { method: "PATCH", body: JSON.stringify({ files: { [FICHIER]: { content: JSON.stringify(etatPartage()) } } }) });
+          cfg.derniere = new Date().toISOString(); garder();
+          statut("Synchronisé à " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }));
+        } catch (e) {
+          statut(navigator.onLine === false ? "Hors connexion : synchronisation au retour du réseau" : "Échec : " + e.message);
+        } finally { enCours = null; }
+      })();
+      return enCours;
+    }
+
+    return {
+      actif: () => !!cfg.jeton,
+      message: () => dernierMessage || (cfg.jeton ? "Connecté" : "Non configurée"),
+      planifier() { if (!cfg.jeton) return; clearTimeout(minuterie); minuterie = setTimeout(synchroniser, 4000); },
+      maintenant: synchroniser,
+      connecter(jeton) { cfg = { jeton: jeton.trim() }; garder(); return synchroniser(); },
+      deconnecter() { cfg = {}; garder(); statut("Non configurée (le gist reste sur GitHub)"); },
+      demarrer() {
+        synchroniser();
+        // retour sur l'appli : on récupère ; départ (appli fermée, écran éteint) : on envoie tout de suite
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "visible" || minuterie) { clearTimeout(minuterie); minuterie = null; synchroniser(); }
+        });
+        window.addEventListener("online", synchroniser);
+      },
+    };
+  })();
 
   let DATA = { meta: { themes: [], etiquettes: [] }, articles: [] };
   let nomsThemes = {}, famThemes = {}, nomsEtiq = {}, famEtiq = {};
@@ -89,6 +175,19 @@
     return liste;
   }
 
+  // ---------- accès institutionnel (OpenAthens, EZproxy…) ----------
+  // Préfixe propre à chaque lecteur : l'article s'ouvre via son établissement, où il s'identifie lui-même.
+  function adresseInstitution(prefixe, url) {
+    if (!prefixe || !url) return "";
+    return prefixe.includes("{url}") ? prefixe.replace("{url}", encodeURIComponent(url)) : prefixe + encodeURIComponent(url);
+  }
+  function lienInstitution(a) {
+    const r = etat.reglages || {};
+    const cible = a.doi ? `https://doi.org/${a.doi}` : (a.essai_registre || a.preprint ? "" : a.url);
+    const href = adresseInstitution(r.prefixe_acces, cible);
+    return href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(r.nom_acces || "Via mon établissement")} ↗</a>` : "";
+  }
+
   // ---------- rendu ----------
   function carte(a) {
     const f = a.fiche;
@@ -145,6 +244,7 @@
         <button data-act="lu">${lu ? "↺ Non lu" : "✓ Lu"}</button>
         <button data-act="masquer">${masque ? "Réafficher" : "Pas intéressé"}</button>
         ${a.url_libre ? `<a href="${esc(a.url_libre)}" target="_blank" rel="noopener">Texte libre ↗</a>` : ""}
+        ${lienInstitution(a)}
         ${a.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${esc(a.pmid)}/" target="_blank" rel="noopener">PubMed ↗</a>` : ""}
       </div></article>`;
   }
@@ -275,16 +375,40 @@
     enregistrer(); rafraichir(true);
   }
 
-  // fusion : rien n'est perdu (union des lus / favoris / masqués ; réglages importés prioritaires)
-  function fusionner(donnees) {
-    ["lus", "favoris", "masques"].forEach((k) => Object.assign(etat[k], donnees[k] || {}));
-    Object.assign(etat.alias, donnees.alias || {});
-    Object.assign(etat.cachees, donnees.cachees || {});
+  // ---------- état partageable entre appareils ----------
+  // Chaque changement (lu, favori, masqué, raccourci, puce masquée) est daté dans etat.horo["categorie|cle"].
+  // À la fusion, pour chaque élément, la version la plus récente gagne : retirer un favori sur le
+  // téléphone le retire aussi sur le PC. Sans date des deux côtés (anciennes données) : union.
+  const PARTAGES = ["lus", "favoris", "masques", "alias", "cachees", "reglages"];
+
+  function fusionner(autre) {
+    const horoA = autre.horo || {};
+    let change = false;
+    PARTAGES.forEach((cat) => {
+      const ici = etat[cat], la = autre[cat] || {};
+      const cles = new Set([...Object.keys(ici), ...Object.keys(la)]);
+      Object.keys(horoA).concat(Object.keys(etat.horo)).forEach((h) => { if (h.startsWith(cat + "|")) cles.add(h.slice(cat.length + 1)); });
+      cles.forEach((cle) => {
+        const h = cat + "|" + cle, ti = etat.horo[h] || 0, ta = horoA[h] || 0;
+        let valeur;
+        if (ta > ti) { valeur = la[cle]; etat.horo[h] = ta; }
+        else if (ti > ta) return;                       // la version locale est plus récente
+        else valeur = ici[cle] || la[cle];               // pas de date : union
+        if (valeur) { if (ici[cle] !== valeur) { ici[cle] = valeur; change = true; } }
+        else if (cle in ici) { delete ici[cle]; change = true; }
+      });
+    });
+    return change;
+  }
+
+  function etatPartage() {
+    const d = { format: "veille-etat", version: 2, exporte_le: new Date().toISOString(), horo: etat.horo };
+    PARTAGES.forEach((cat) => { d[cat] = etat[cat]; });
+    return d;
   }
 
   function exporterEtat() {
-    const sauvegarde = { format: "veille-etat", version: 1, exporte_le: new Date().toISOString(),
-      lus: etat.lus, favoris: etat.favoris, masques: etat.masques, alias: etat.alias, cachees: etat.cachees };
+    const sauvegarde = etatPartage();
     const blob = new Blob([JSON.stringify(sauvegarde)], { type: "application/json" });
     const lien = document.createElement("a");
     lien.href = URL.createObjectURL(blob);
@@ -293,19 +417,56 @@
   }
 
   function brancherPerso() {
-    $("perso-ouvrir").addEventListener("click", () => { afficherPerso(); $("perso-message").textContent = ""; $("perso").showModal(); });
+    const majSync = () => {
+      $("sync-off").hidden = sync.actif(); $("sync-on").hidden = !sync.actif();
+      $("sync-statut").textContent = sync.message();
+    };
+    // accès institutionnel
+    const OA = "https://go.openathens.net/redirector/";
+    const majAcces = () => {
+      const r = etat.reglages, p = r.prefixe_acces || "";
+      $("acces-nom").value = r.nom_acces || "";
+      $("acces-domaine").value = p.startsWith(OA) ? p.slice(OA.length).split("?")[0] : "";
+      $("acces-prefixe").value = p.startsWith(OA) ? "" : p;
+      const exemple = DATA.articles.find((a) => (a.doi || "").startsWith("10.1016/"));   // un article Elsevier de la base
+      const essai = exemple && adresseInstitution(p, `https://doi.org/${exemple.doi}`);
+      $("acces-test").innerHTML = essai ? `Lien actif. <a href="${esc(essai)}" target="_blank" rel="noopener">Tester sur un article Elsevier ↗</a>` : "";
+    };
+    const changerAcces = (prefixe) => { poser("reglages", "prefixe_acces", prefixe); enregistrer(); rafraichir(true); majAcces(); };
+    $("acces-nom").addEventListener("change", (e) => { poser("reglages", "nom_acces", e.target.value.trim()); enregistrer(); rafraichir(true); });
+    $("acces-domaine").addEventListener("change", (e) => {
+      const d = e.target.value.trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+      changerAcces(d ? `${OA}${d}?url={url}` : "");
+    });
+    $("acces-prefixe").addEventListener("change", (e) => {
+      const p = e.target.value.trim();
+      changerAcces(/^https:\/\//.test(p) ? p : "");
+    });
+    $("perso-ouvrir").addEventListener("click", () => { afficherPerso(); majSync(); majAcces(); $("perso-message").textContent = ""; $("perso").showModal(); });
+    $("sync-connecter").addEventListener("click", () => {
+      const j = $("sync-jeton").value.trim();
+      if (!/^(ghp_|github_pat_)\w{20,}/.test(j)) { $("sync-statut").textContent = "Ce n'est pas une clé GitHub (elle commence par ghp_ ou github_pat_)."; return; }
+      $("sync-jeton").value = "";
+      sync.connecter(j).then(majSync);
+      majSync();
+    });
+    $("sync-maintenant").addEventListener("click", () => sync.maintenant().then(majSync));
+    $("sync-deconnecter").addEventListener("click", () => { sync.deconnecter(); majSync(); });
     $("perso-puces").addEventListener("change", (e) => {
       const cle = e.target.dataset.cle;
-      if (cle) { if (e.target.checked) delete etat.cachees[cle]; else etat.cachees[cle] = 1; majApresPerso(); }
+      if (cle) { poser("cachees", cle, e.target.checked ? 0 : 1); majApresPerso(); }
     });
     $("perso-puces").addEventListener("input", (e) => {
       const cle = e.target.dataset.alias;
       if (!cle) return;
-      const v = e.target.value.trim();
-      if (v) etat.alias[cle] = v; else delete etat.alias[cle];
+      poser("alias", cle, e.target.value.trim());
       majApresPerso();
     });
-    $("perso-reinit").addEventListener("click", () => { etat.alias = {}; etat.cachees = {}; majApresPerso(); afficherPerso(); });
+    $("perso-reinit").addEventListener("click", () => {
+      Object.keys(etat.alias).forEach((c) => poser("alias", c, ""));
+      Object.keys(etat.cachees).forEach((c) => poser("cachees", c, 0));
+      majApresPerso(); afficherPerso();
+    });
     $("perso-export").addEventListener("click", exporterEtat);
     $("perso-import").addEventListener("change", (e) => {
       const f = e.target.files[0]; if (!f) return;
@@ -359,26 +520,28 @@
         etat[cle] = etat[cle].includes(id) ? etat[cle].filter((x) => x !== id) : [...etat[cle], id];
       }
       enregistrer(); rafraichir();
-    });    $("liste").addEventListener("click", (e) => {
+    });
+    $("liste").addEventListener("click", (e) => {
       const b = e.target.closest("button[data-act]"); if (!b) return;
       const id = b.closest(".carte").dataset.id;
-      const bascule = (dico) => { if (dico[id]) delete dico[id]; else dico[id] = 1; };
-      if (b.dataset.act === "fav") bascule(etat.favoris);
-      if (b.dataset.act === "lu") bascule(etat.lus);
-      if (b.dataset.act === "masquer") bascule(etat.masques);
+      const bascule = (cat) => poser(cat, id, etat[cat][id] ? 0 : 1);
+      if (b.dataset.act === "fav") bascule("favoris");
+      if (b.dataset.act === "lu") bascule("lus");
+      if (b.dataset.act === "masquer") bascule("masques");
       enregistrer(); rafraichir(true);
     });
     $("liste").addEventListener("toggle", (e) => {   // ouvrir les détails = marquer comme lu
       const c = e.target.closest && e.target.closest(".carte");
       if (e.target.open && c && !etat.lus[c.dataset.id]) {
-        etat.lus[c.dataset.id] = 1; enregistrer(); c.classList.add("lu");
+        poser("lus", c.dataset.id, 1); enregistrer(); c.classList.add("lu");
         const b = c.querySelector('button[data-act="lu"]'); if (b) b.textContent = "↺ Non lu";
       }
     }, true);
     $("plus").addEventListener("click", () => { affiches += PAR_PAGE; afficher(); });
-    $("tout-lu").addEventListener("click", () => { filtrer().forEach((a) => { etat.lus[a.id] = 1; }); enregistrer(); rafraichir(); });
+    $("tout-lu").addEventListener("click", () => { filtrer().forEach((a) => { if (!etat.lus[a.id]) poser("lus", a.id, 1); }); enregistrer(); rafraichir(); });
     $("export").addEventListener("click", exporterRIS);
     rafraichir();
+    sync.demarrer();
   }
 
   // appli installable (Android / iPhone / PC) et consultable hors connexion
