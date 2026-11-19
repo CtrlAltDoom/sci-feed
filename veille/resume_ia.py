@@ -37,7 +37,9 @@ Réponds par un SEUL objet JSON valide, sans texte autour, de la forme :
 "population": "effectif + qui, ou null", "intervention": "intervention/exposition et comparateur, ou null",
 "resultats_cles": ["2 à 3 puces courtes"], "conclusion": "conclusion des auteurs en 1 phrase",
 "limites": ["0 à 2 limites visibles"], "niveau_preuve": 1, "qualite_methodo": "...",
-"pertinence": 1, "pertinence_raison": "max 15 mots", "mots_cles_fr": ["2 à 4 mots-clés"]}}]}}
+"pertinence": 1, "pertinence_raison": "max 15 mots", "mots_cles_fr": ["2 à 4 mots-clés"],
+"titre_court": "titre en français, 50 caractères max, sujet et population, sans jargon",
+"conclusion_simple": "UNE phrase de 140 caractères max : ce qu'on peut en conclure en pratique au vu des résultats et des limites, sans chiffre, nuancée si l'étude est préliminaire"}}]}}
 Une fiche par article, avec le même "id"."""
 
 
@@ -79,6 +81,8 @@ def valider(f: dict, modele: str) -> dict:
         "pertinence": _entier(f.get("pertinence")),
         "pertinence_raison": str(f.get("pertinence_raison") or "").strip(),
         "mots_cles_fr": _liste(f.get("mots_cles_fr"), 4),
+        "titre_court": str(f.get("titre_court") or "").strip()[:70] or None,
+        "conclusion_simple": str(f.get("conclusion_simple") or "").strip()[:200] or None,
         "modele": modele, "date": aujourd_hui().isoformat(),
     }
 

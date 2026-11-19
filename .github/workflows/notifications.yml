@@ -1,0 +1,58 @@
+name: Notifications du matin
+
+on:
+  schedule:
+    # Deux créneaux pour couvrir l'heure d'hiver (5 h 40 UTC = 6 h 40 à Paris) et d'été
+    # (4 h 40 UTC = 6 h 40 à Paris). Le script n'envoie qu'une fois par jour, entre
+    # heure_min et heure_max (config.yaml) ; l'autre créneau ne fait rien.
+    - cron: "40 4 * * *"
+    - cron: "40 5 * * *"
+  workflow_dispatch:
+    inputs:
+      forcer:
+        description: "Envoyer maintenant, même hors de la plage horaire (test)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: veille            # attend la fin de la collecte du matin si elle tourne encore
+  cancel-in-progress: false
+
+jobs:
+  notifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Envoyer les notifications
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+        run: |
+          if [ "${{ inputs.forcer }}" = "true" ]; then
+            python -m veille notifier --forcer
+          else
+            python -m veille notifier
+          fi
+
+      - name: Retenir ce qui a été envoyé
+        run: |
+          git config user.name "veille-bot"
+          git config user.email "veille-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet && exit 0
+          git commit -m "Notifications du $(date -u +%Y-%m-%d)"
+          git pull --rebase
+          git push

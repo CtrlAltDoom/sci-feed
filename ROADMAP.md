@@ -38,6 +38,8 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - 💡 Ordre des puces au choix ; vue de démarrage au choix
 
 ## 5. Lecture et usage
+- ✅ Notifications du matin via ntfy : les 5 articles les plus pertinents, titre court et conclusion simple rédigés par l'IA
+- 💡 Notifications de l'appli elle-même (Web Push), sans appli tierce, en tenant compte des articles déjà lus
 - ✅ Appli installable (Android, iPhone, PC) avec icône, consultable hors connexion
 - 🔜 Repère « nouveaux depuis ma dernière visite »
 - 💡 Notes personnelles sur un article, reprises dans l'export Zotero

@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from veille import core, pipeline, resume_ia, site
+from veille import core, notifications, pipeline, resume_ia, site
 from veille.sources import clinicaltrials, europepmc, openalex, pubmed, rss
 
 AUJ = core.aujourd_hui().isoformat()
@@ -76,6 +76,9 @@ class Reponse:
 
     def json(self):
         return self._data
+
+    def raise_for_status(self):
+        pass
 
 
 def faux_get(self, url, params=None, **kw):
@@ -207,6 +210,27 @@ class TestVeille(unittest.TestCase):
         self.assertIn("<rss", (sortie / "feed-sii.xml").read_text(encoding="utf-8"))
         site.construire(self.cfg, inline=True)
         self.assertIn("window.VEILLE_DATA", (sortie / "index.html").read_text(encoding="utf-8"))
+
+        # notifications ntfy : sélection, textes courts IA, envoi, mémoire des envois
+        class FauxCourt:
+            cle, url = "test", "http://test"
+            def completer(self, systeme, utilisateur):
+                ids = [l.split(":", 1)[1].strip() for l in utilisateur.splitlines() if l.startswith("### id:")]
+                return json.dumps({"items": [{"id": i, "titre_court": "Hypnose digestive en groupe : efficace",
+                                              "conclusion_simple": "Option crédible en soins courants, à confirmer."}
+                                             for i in ids]}), "faux"
+        envois = []
+        with mock.patch.dict("os.environ", {"NTFY_TOPIC": "canal-test", "GITHUB_REPOSITORY": "moi/sci-feed"}), \
+             mock.patch.object(notifications.requests, "post", lambda url, json=None, **kw: envois.append(json) or Reponse({})):
+            n = notifications.notifier(self.cfg, forcer=True, client=FauxCourt())
+            self.assertGreaterEqual(n, 2)
+            self.assertTrue(all(m["topic"] == "canal-test" for m in envois))
+            self.assertNotIn("Murine", " ".join(m["title"] for m in envois))         # études animales exclues
+            dernier = envois[-1]                                                        # le plus pertinent, en haut
+            self.assertEqual(dernier["actions"][0]["url"], "https://moi.github.io/sci-feed/")
+            self.assertIn("Option crédible", " ".join(m["message"] for m in envois))
+            # deuxième passage : rien de nouveau, rien n'est renvoyé
+            self.assertEqual(notifications.notifier(self.cfg, forcer=True, client=FauxCourt()), 0)
 
 
 if __name__ == "__main__":

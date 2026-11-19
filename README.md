@@ -63,6 +63,17 @@ Tout se règle dans **`config.yaml`**. Sur GitHub, ouvrez le fichier, cliquez su
 
 Une modification de `config.yaml` régénère la page tout de suite. Les nouveaux thèmes sont collectés au passage suivant, ou immédiatement si vous relancez à la main avec **Run workflow**.
 
+## Notifications du matin (facultatif)
+
+Chaque matin, les articles récents les plus pertinents pour vous arrivent sur le téléphone, avec un titre court et une conclusion en une phrase rédigés par l'IA. Gratuit, via l'appli **ntfy** (Android, iOS).
+
+1. Choisissez un nom de canal difficile à deviner, par exemple `scifeed-` suivi d'une quinzaine de lettres et chiffres au hasard.
+2. Ajoutez-le en secret GitHub sous le nom `NTFY_TOPIC`. Il reste ainsi hors du dépôt public.
+3. Dans l'appli ntfy, appuyez sur **+** et abonnez-vous à ce même nom.
+4. Pour tester tout de suite : **Actions → Notifications du matin → Run workflow**, en cochant « Envoyer maintenant ».
+
+Réglages dans la section `notifications` de `config.yaml` : nombre, format (une notification par article ou un seul résumé), plage horaire, thèmes inclus ou exclus, niveau minimal de revue ou de preuve.
+
 ## Changer de fournisseur IA
 
 Le code accepte n'importe quelle API « compatible OpenAI ». Il suffit de modifier `ia.base_url` et `ia.modeles`, puis de mettre la clé correspondante dans le secret `LLM_API_KEY`.

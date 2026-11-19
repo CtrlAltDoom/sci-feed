@@ -247,6 +247,27 @@ interet:
   jours_par_point: 2       # vitesse à laquelle l'ancienneté fait reculer un article
 
 # ------------------------------------------------------------
+#  NOTIFICATIONS DU MATIN (appli gratuite ntfy, Android / iOS)
+#  Le nom du canal n'est PAS ici (dépôt public) : il est dans le secret GitHub NTFY_TOPIC.
+#  Dans l'appli ntfy : « + » puis ce nom de canal.
+#  Envoi par .github/workflows/notifications.yml, entre heure_min et heure_max (heure de Paris,
+#  été comme hiver ; GitHub part souvent avec 10 à 30 min de retard).
+# ------------------------------------------------------------
+notifications:
+  actif: true
+  nombre: 5                # articles par matin
+  format: par_article      # par_article (une notification chacun) ou resume (une seule, avec la liste)
+  fenetre_jours: 2         # articles ajoutés depuis N jours (jamais deux fois le même)
+  heure_min: "06:30"
+  heure_max: "10:00"
+  fuseau: "Europe/Paris"
+  exclure: ["animal"]      # thèmes ou étiquettes jamais notifiés
+  inclure: []              # si rempli : seulement ces thèmes / étiquettes
+  revue_min: 0             # 0 = toutes ; 2 = revues établies ; 3 = de référence
+  preuve_min: 0            # niveau de preuve minimal de la fiche IA (0 = tous)
+  serveur: "https://ntfy.sh"
+
+# ------------------------------------------------------------
 #  SOURCES (toutes gratuites, sans inscription obligatoire)
 # ------------------------------------------------------------
 sources:
