@@ -98,7 +98,12 @@ def collecter(cfg: dict) -> int:
         nouveaux += base.ajouter(a)
 
     enrichir(http, base)
-    limite = (jour - dt.timedelta(days=c.get("conserver_jours", 180))).isoformat()
+    from . import revues          # import local : revues dépend de pipeline
+    try:
+        revues.completer(cfg, http, base)
+    except Exception as ex:       # facultatif : ne bloque jamais la veille
+        log.warning("Infos revues en échec : %s", ex)
+    limite =(jour - dt.timedelta(days=c.get("conserver_jours", 180))).isoformat()
     base = Base([a for a in base.articles if a.get("ajoute_le", "") >= limite])
     etat["derniere_collecte"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
     sauvegarder(base, etat)

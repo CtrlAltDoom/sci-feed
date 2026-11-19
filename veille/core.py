@@ -136,6 +136,36 @@ def themes_correspondants(article: dict, themes: list[dict]) -> list[str]:
     return ids
 
 
+def interet(article: dict, cfg: dict, etiquettes: list[str] | None = None) -> float:
+    """Intérêt d'un article pour le lecteur, d'après SES mots-clés (section `interet` de config.yaml) :
+    points par thème prioritaire, par étiquette, malus pour les études animales."""
+    reg = cfg.get("interet") or {}
+    poids = reg.get("themes")
+    if poids is None:   # ancien réglage
+        poids = {t: 2 for t in (cfg.get("ia") or {}).get("themes_prioritaires", [])}
+    if etiquettes is None:
+        etiquettes = themes_correspondants(article, cfg.get("etiquettes", []))
+    score = sum(poids.get(t, 0) for t in article.get("themes", []))
+    # plafond : un texte bavard qui coche toutes les étiquettes ne doit pas tout écraser
+    n_etiq = min(len([e for e in etiquettes if e != "animal"]), reg.get("etiquettes_max", 3))
+    score += reg.get("etiquette", 1) * n_etiq
+    if "animal" in etiquettes:
+        score += reg.get("animal", -3)
+    return score
+
+
+def bonus_serieux(article: dict, info_revue: dict | None, cfg: dict) -> float:
+    """Sérieux de la source : notoriété de la revue (niveau 1 à 3), malus preprint / source inconnue."""
+    reg = (cfg.get("interet") or {}).get("serieux") or {}
+    if article.get("preprint"):
+        return reg.get("preprint", -1)
+    if article.get("essai_registre"):
+        return 0
+    niv = (info_revue or {}).get("niveau") or 0
+    return {3: reg.get("revue_reference", 1), 2: reg.get("revue_etablie", 0.5),
+            1: reg.get("revue_peu_citee", 0)}.get(niv, reg.get("inconnue", -0.5))
+
+
 def est_exclu(article: dict, exclure: list[str]) -> bool:
     titre = (article.get("titre") or "").lower()
     return any(contient(titre, t) for t in exclure or [])
@@ -180,7 +210,7 @@ def cles(a: dict) -> list[str]:
 
 def fusionner(dest: dict, src: dict) -> dict:
     """Complète `dest` avec les informations de `src` sans rien perdre."""
-    for champ in ("doi", "pmid", "pmcid", "nct", "revue", "date", "url_libre"):
+    for champ in ("doi", "pmid", "pmcid", "nct", "revue", "date", "url_libre", "revue_oa"):
         if not dest.get(champ) and src.get(champ):
             dest[champ] = src[champ]
     if len(src.get("resume", "")) > len(dest.get("resume", "")) + 40:

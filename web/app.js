@@ -10,8 +10,12 @@
   const CLE = "veille-etat-v1";
   // alias : raccourcis personnels des puces ("t:sii" / "e:anx_dep" -> "Anx") ; cachees : puces masquées
   let etat = { lus: {}, favoris: {}, masques: {}, themes: [], etiquettes: [], chipsOuverts: false,
-    alias: {}, cachees: {}, reglages: {}, horo: {}, vue: "tous", type: "", niveau: "0", tri: "recent" };
-  try { Object.assign(etat, JSON.parse(localStorage.getItem(CLE) || "{}")); } catch (e) { /* stockage indisponible */ }
+    alias: {}, cachees: {}, reglages: {}, horo: {}, vue: "tous", type: "", niveau: "0", revue: "0", tri: "pourmoi", triV: 2 };
+  try {
+    const garde = JSON.parse(localStorage.getItem(CLE) || "{}");
+    if (!garde.triV) delete garde.tri;      // nouveau tri par défaut « Pour moi » (une seule fois)
+    Object.assign(etat, garde, { triV: 2 });
+  } catch (e) { /* stockage indisponible */ }
   const enregistrer = (sansSync) => {
     try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) { }
     if (!sansSync) sync.planifier();
@@ -28,8 +32,12 @@
     const CLE_SYNC = "veille-sync-v1", FICHIER = "veille-synchro.json", API = "https://api.github.com";
     let cfg = {}; try { cfg = JSON.parse(localStorage.getItem(CLE_SYNC) || "{}"); } catch (e) { }
     const garder = () => { try { localStorage.setItem(CLE_SYNC, JSON.stringify(cfg)); } catch (e) { } };
-    let minuterie = null, enCours = null, dernierMessage = "";
-    const statut = (m) => { dernierMessage = m; const el = document.getElementById("sync-statut"); if (el) el.textContent = m; };
+    let minuterie = null, enCours = null, dernierMessage = "", dernierOk = false;
+    const statut = (m, ok = false) => {
+      dernierMessage = m; dernierOk = ok;
+      const el = document.getElementById("sync-statut");
+      if (el) { el.textContent = (ok ? "✓ " : "") + m; el.className = ok ? "ok" : ""; }
+    };
     const appel = (chemin, options = {}) => fetch(API + chemin, Object.assign({}, options, {
       headers: { Authorization: "Bearer " + cfg.jeton, Accept: "application/vnd.github+json", "Content-Type": "application/json" },
     })).then((r) => {
@@ -74,7 +82,7 @@
           if (distant && fusionner(distant)) { enregistrer(true); calculerNoms(); rafraichir(true); }
           await appel(`/gists/${id}`, { method: "PATCH", body: JSON.stringify({ files: { [FICHIER]: { content: JSON.stringify(etatPartage()) } } }) });
           cfg.derniere = new Date().toISOString(); garder();
-          statut("Synchronisé à " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }));
+          statut("Clé enregistrée · synchronisé à " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }), true);
         } catch (e) {
           statut(navigator.onLine === false ? "Hors connexion : synchronisation au retour du réseau" : "Échec : " + e.message);
         } finally { enCours = null; }
@@ -85,6 +93,7 @@
     return {
       actif: () => !!cfg.jeton,
       message: () => dernierMessage || (cfg.jeton ? "Connecté" : "Non configurée"),
+      ok: () => dernierOk,
       planifier() { if (!cfg.jeton) return; clearTimeout(minuterie); minuterie = setTimeout(synchroniser, 4000); },
       maintenant: synchroniser,
       connecter(jeton) { cfg = { jeton: jeton.trim() }; garder(); return synchroniser(); },
@@ -135,11 +144,47 @@
   const estECR = (a) => /essai randomisé/.test(typeEtude(a)) ||
     (a.types || []).some((t) => /randomized controlled trial/i.test(t));
 
+  // ---------- tri « Pour moi » : récence ET intérêt dans un même score ----------
+  // intérêt (mots-clés : thèmes + étiquettes, calculé par le site) + pertinence de la fiche IA (centrée sur 3)
+  // moins 1 point tous les `jours_par_point` jours. Date de référence : date de publication, ramenée
+  // dans les 30 jours précédant l'ajout (les dates futures ou très anciennes ne faussent pas le tri).
+  const JOUR = 864e5;
+  function scorePourMoi(a) {
+    const ajout = Date.parse((a.ajoute_le || "") + "T12:00:00") || Date.now();
+    let ref = Date.parse((a.date || "") + "T12:00:00");
+    if (isNaN(ref) || ref > ajout) ref = ajout;
+    ref = Math.max(ref, ajout - 30 * JOUR);
+    const age = Math.max(0, (Date.now() - ref) / JOUR);
+    const pert = a.fiche && a.fiche.pertinence ? a.fiche.pertinence - 3 : 0;
+    return (a.interet || 0) + pert - age / (DATA.meta.jours_par_point || 2);
+  }
+
+  // ---------- revue : type, domaine, notoriété (données OpenAlex, pas d'IA) ----------
+  const NIV_REVUE = { 1: "revue peu citée", 2: "revue établie", 3: "revue de référence" };
+  function ligneRevue(a) {
+    const r = a.revue_info;
+    if (!r) return "";
+    const libelleR = r.type === "repository" ? "dépôt d'archives (non relu)" :
+      r.type === "conference" ? "actes de congrès" : NIV_REVUE[r.niveau] || "";
+    const morceaux = [];
+    if (r.domaine) morceaux.push(esc(r.domaine));
+    if (r.gros_volume) morceaux.push("méga-revue (gros volume)");
+    if (r.doaj) morceaux.push("accès libre (DOAJ)");
+    if (!libelleR && !morceaux.length) return "";
+    const pts = r.niveau ? `<span class="points">${[1, 2, 3].map((i) => `<span class="${i <= r.niveau ? "on" : "off"}">●</span>`).join("")}</span>` : "";
+    const detail = `Notoriété estimée d'après les citations (OpenAlex) : ${r.citations_2ans == null ? "?" : r.citations_2ans} citations par article sur 2 ans, ` +
+      `h-index ${r.h_index == null ? "?" : r.h_index}${r.articles_par_an ? ", environ " + r.articles_par_an + " articles par an" : ""}` +
+      `${r.editeur ? ", éditeur " + r.editeur : ""}. Repère sur la revue, pas sur la qualité de l'article.`;
+    return `<div class="revue-info" title="${esc(detail)}">` +
+      (libelleR ? `<span>${pts} ${esc(libelleR)}</span>` : "") + morceaux.map((m) => `<span>${m}</span>`).join("") + `</div>`;
+  }
+
   // ---------- filtrage / tri ----------
   function filtrer() {
     const q = $("recherche").value.trim().toLowerCase();
     const mots = q ? q.split(/\s+/) : [];
     const niv = parseInt(etat.niveau, 10) || 0;
+    const nivRevue = parseInt(etat.revue, 10) || 0;
     let liste = DATA.articles.filter((a) => {
       const masque = !!etat.masques[a.id];
       if (etat.vue === "masques") { if (!masque) return false; } else if (masque) return false;
@@ -156,6 +201,7 @@
         case "registre": if (!a.essai_registre) return false; break;
       }
       if (niv && !((a.fiche && a.fiche.niveau_preuve) >= niv)) return false;
+      if (nivRevue && !((a.revue_info && a.revue_info.niveau) >= nivRevue)) return false;
       if (mots.length) {
         const f = a.fiche || {};
         const texte = [a.titre, a.resume, a.revue, (a.auteurs || []).join(" "), f.verdict,
@@ -165,7 +211,10 @@
       return true;
     });
     const recent = (a) => (a.ajoute_le || "") + (a.date || "");
-    if (etat.tri === "pertinence") {
+    if (etat.tri === "pourmoi") {
+      const s = new Map(liste.map((a) => [a.id, scorePourMoi(a)]));
+      liste.sort((x, y) => s.get(y.id) - s.get(x.id) || recent(y).localeCompare(recent(x)));
+    } else if (etat.tri === "pertinence") {
       liste.sort((x, y) => ((y.fiche && y.fiche.pertinence) || 0) - ((x.fiche && x.fiche.pertinence) || 0) || recent(y).localeCompare(recent(x)));
     } else if (etat.tri === "preuve") {
       liste.sort((x, y) => ((y.fiche && y.fiche.niveau_preuve) || 0) - ((x.fiche && x.fiche.niveau_preuve) || 0) || recent(y).localeCompare(recent(x)));
@@ -236,6 +285,7 @@
     const fav = !!etat.favoris[a.id], lu = !!etat.lus[a.id], masque = !!etat.masques[a.id];
     return `<article class="carte${lu ? " lu" : ""}" data-id="${esc(a.id)}">${meta}
       <h2><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.titre)}</a></h2>
+      ${ligneRevue(a)}
       ${corps}
       <details><summary>Détails & abstract</summary>${det.join("")}</details>
       <div class="tags">${tags}</div>
@@ -419,7 +469,8 @@
   function brancherPerso() {
     const majSync = () => {
       $("sync-off").hidden = sync.actif(); $("sync-on").hidden = !sync.actif();
-      $("sync-statut").textContent = sync.message();
+      $("sync-statut").textContent = (sync.ok() ? "✓ " : "") + sync.message();
+      $("sync-statut").className = sync.ok() ? "ok" : "";
     };
     // accès institutionnel
     const OA = "https://go.openathens.net/redirector/";
@@ -500,7 +551,7 @@
     brancherPerso();
     etat.themes = (etat.themes || []).filter((t) => nomsThemes[t]);
     etat.etiquettes = (etat.etiquettes || []).filter((t) => nomsEtiq[t]);
-    ["vue", "type", "niveau", "tri"].forEach((k) => {
+    ["vue", "type", "niveau", "revue", "tri"].forEach((k) => {
       const el = $("f-" + k); el.value = etat[k];
       el.addEventListener("change", () => { etat[k] = el.value; enregistrer(); rafraichir(); });
     });

@@ -71,5 +71,6 @@ def analyser(resultats: list[dict]) -> list[dict]:
             types=[typ] if typ in ("review", "preprint", "letter", "editorial") else [],
             preprint=typ == "preprint", retracte=bool(w.get("is_retracted")),
             sources=["openalex"],
+            revue_oa=(src.get("id") or "").rsplit("/", 1)[-1] or None,
         ))
     return sortie

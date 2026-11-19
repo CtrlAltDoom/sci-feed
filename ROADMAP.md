@@ -20,6 +20,9 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - 💡 Laisser l'IA proposer des étiquettes, en complément des mots-clés
 
 ## 3. Étiquettes et tri
+- ✅ Tri « Pour moi » par défaut : récence et intérêt dans un même score (mots-clés plafonnés, pertinence IA, sérieux de la revue)
+- ✅ Type, domaine et notoriété des revues (OpenAlex), filtre « Revue établie / de référence », repérage des méga-revues
+- 💡 Signaler l'indexation MEDLINE (PubMed) comme repère de sérieux supplémentaire
 - ✅ 11 étiquettes colorées, tirées du dictionnaire de requêtes « Veille SII & psychologie »
 - ✅ Études animales gardées et signalées en rouge, avec des règles pour éviter les fausses alertes (revues)
 - ✅ Puces sur 2 lignes défilantes, panneau « Tout afficher » rangé par famille, noms courts

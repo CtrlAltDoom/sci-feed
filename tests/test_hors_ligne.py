@@ -29,7 +29,7 @@ OPENALEX = {"results": [{
     "id": "W1", "doi": "https://doi.org/10.1111/NMO.99999",
     "display_name": "Gut-directed hypnotherapy versus education in irritable bowel syndrome: a randomized trial",
     "publication_date": "2026-11-10", "abstract_inverted_index": {"Short": [0], "abstract": [1]},
-    "authorships": [], "primary_location": {"source": {"display_name": "Neurogastroenterology & Motility"}},
+    "authorships": [], "primary_location": {"source": {"id": "https://openalex.org/S1", "display_name": "Neurogastroenterology & Motility"}},
     "open_access": {"oa_url": "https://example.org/pdf"}, "type": "article",
     "ids": {"pmid": "https://pubmed.ncbi.nlm.nih.gov/40000001"}, "is_retracted": False},
     {"id": "W2", "doi": None, "display_name": "Alexithymia and interoception in adults with functional dyspepsia",
@@ -37,6 +37,11 @@ OPENALEX = {"results": [{
      "authorships": [{"author": {"display_name": "B. Durand"}}], "primary_location": {"source": None},
      "open_access": {}, "type": "preprint", "ids": {}, "is_retracted": False}],
     "meta": {"next_cursor": None}}
+
+SOURCES = {"results": [{"id": "https://openalex.org/S1", "display_name": "Neurogastroenterology & Motility",
+                        "type": "journal", "is_in_doaj": False, "host_organization_name": "Wiley",
+                        "summary_stats": {"2yr_mean_citedness": 3.4, "h_index": 130},
+                        "topics": [{"subfield": {"display_name": "Gastroenterology"}}]}]}
 
 EUROPEPMC = {"resultList": {"result": [{
     "id": "PPR1", "source": "PPR", "doi": "10.31234/osf.io/abcd",
@@ -78,6 +83,8 @@ def faux_get(self, url, params=None, **kw):
         return Reponse({"esearchresult": {"idlist": ["40000001"]}})
     if "efetch" in url:
         return Reponse(PUBMED_XML)
+    if "openalex.org/sources" in url:
+        return Reponse(SOURCES)
     if "openalex" in url:
         return Reponse(OPENALEX)
     if "europepmc" in url:
@@ -184,6 +191,13 @@ class TestVeille(unittest.TestCase):
         self.assertTrue(any(e["id"] == "animal" and e["famille"] == "animal" for e in donnees["meta"]["etiquettes"]))
         # les étiquettes ne sont pas écrites dans la base
         self.assertNotIn("etiquettes", pipeline.charger().articles[0])
+        # revue : rattachée via OpenAlex, notoriété calculée
+        hyp = next(x for t, x in par_titre.items() if t.startswith("Gut-directed"))
+        self.assertEqual(hyp["revue_info"]["niveau"], 3)
+        self.assertEqual(hyp["revue_info"]["domaine"], "Gastro-entérologie")
+        # intérêt : SII + hypnose (2 + 2 + étiquettes) devant l'étude animale
+        self.assertGreater(hyp["interet"], par_titre["Murine model of IBS"]["interet"])
+        self.assertIn("jours_par_point", donnees["meta"])
         self.assertIn("<rss", (sortie / "feed-sii.xml").read_text(encoding="utf-8"))
         site.construire(self.cfg, inline=True)
         self.assertIn("window.VEILLE_DATA", (sortie / "index.html").read_text(encoding="utf-8"))

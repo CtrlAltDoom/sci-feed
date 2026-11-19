@@ -220,6 +220,33 @@ etiquettes:
          "compassion-focused", "compassion focused", "third-wave", "dialectical behavio*"]
 
 # ------------------------------------------------------------
+#  INTÉRÊT : ce qui compte le plus pour vous
+#  Sert à classer la liste (tri « Pour moi ») et à choisir quels articles
+#  reçoivent une fiche IA en premier.
+#    score = points des thèmes + points par étiquette (+ pertinence de la fiche IA)
+#    puis -1 point tous les `jours_par_point` jours d'ancienneté.
+#  Ex. avec 2 : un article d'aujourd'hui à 4 points passe devant un article
+#  d'il y a 6 jours à 6 points.
+# ------------------------------------------------------------
+interet:
+  themes:                  # points par thème (les thèmes absents valent 0)
+    sii: 2
+    hypnose: 2
+    alexithymie: 2
+    psychogastro: 2
+    psy_digestif: 1
+  etiquette: 1             # points par étiquette (hors « Étude animale »)
+  etiquettes_max: 3        # plafond (évite qu'un texte bavard qui coche tout passe devant)
+  animal: -3               # études animales
+  serieux:                 # sérieux de la source (notoriété de la revue, d'après OpenAlex)
+    revue_reference: 1
+    revue_etablie: 0.5
+    revue_peu_citee: 0
+    inconnue: -0.5         # pas de revue identifiée (page web, livre, archive…)
+    preprint: -1           # non relu par des pairs
+  jours_par_point: 2       # vitesse à laquelle l'ancienneté fait reculer un article
+
+# ------------------------------------------------------------
 #  SOURCES (toutes gratuites, sans inscription obligatoire)
 # ------------------------------------------------------------
 sources:
@@ -276,10 +303,8 @@ ia:
   pause_secondes: 4              # limite gratuite : 20 requêtes/minute
   duree_max_minutes: 25          # les modèles gratuits mettent 20 s à 4 min par lot : on s'arrête à temps
   effort_raisonnement: "low"     # réflexion courte = réponses plus rapides (ignoré par les modèles qui ne réfléchissent pas)
-  # Ordre de passage : articles des N derniers jours d'abord, puis les plus pertinents
-  # (thèmes prioritaires, nombre d'étiquettes ; études animales en dernier).
+  # Ordre de passage : articles des N derniers jours d'abord, puis par intérêt (section `interet`).
   priorite_jours_recents: 3
-  themes_prioritaires: ["sii", "hypnose", "alexithymie", "psychogastro"]
   temperature: 0.1
   profil_lecteur: >
     Psychologue clinicien et hypnothérapeute exerçant en psychogastroentérologie

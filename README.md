@@ -52,7 +52,8 @@ Tout se règle dans **`config.yaml`**. Sur GitHub, ouvrez le fichier, cliquez su
   - `titre_seulement: true` : ne cherche que dans le titre (pour les mots présents dans presque tous les abstracts, comme anxiété) ;
   - `titre: [[...]]` : mots qui suffisent s'ils sont dans le titre ; `sauf: [...]` : mots qui annulent l'étiquette (voir l'exemple « Étude animale ») ;
   - `famille` : la couleur (`sujet` bleu, `approche` vert, `mecanisme` violet, `animal` rouge) ; `court` : le nom affiché sur la puce.
-- **Ordre des fiches IA** : `ia.themes_prioritaires` et `ia.priorite_jours_recents`. Les articles du jour passent d'abord, puis les plus pertinents, les études animales en dernier.
+- **Intérêt** (`interet`) : vos priorités (points par thème, par étiquette, malus études animales, sérieux de la revue). Sert au tri « Pour moi » de la liste, qui combine récence et intérêt (`jours_par_point`), et à l'ordre de passage des fiches IA (articles du jour d'abord).
+- **Revues** : type, domaine et notoriété de chaque revue viennent d'OpenAlex (citations sur 2 ans, h-index, volume annuel, DOAJ), gardés dans `data/revues.json`. C'est un repère sur la revue, pas un jugement sur l'article, et aucune IA n'intervient.
 - **E-mail de contact** (demandé poliment par PubMed et OpenAlex) : mettez-le dans le secret `CONTACT_EMAIL` plutôt que dans `config.yaml`, pour qu'il ne soit pas public.
 
 **Dans l'appli elle-même** (Filtres → Personnaliser), chaque lecteur peut, pour lui seul : donner un raccourci à chaque puce (« Anx »), masquer les puces qu'il n'utilise pas, et exporter/importer ses lus, favoris et réglages pour passer d'un appareil à l'autre.
