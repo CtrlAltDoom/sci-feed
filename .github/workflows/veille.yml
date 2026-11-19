@@ -6,7 +6,7 @@ on:
   workflow_dispatch:          # bouton "Run workflow" pour lancer à la main
   push:
     branches: [main]
-    paths: ["config.yaml", "web/**", "veille/**"]
+    paths: ["config.yaml", "web/**", "veille/**", ".github/workflows/veille.yml"]
 
 permissions:
   contents: write
@@ -53,6 +53,7 @@ jobs:
           git config user.email "veille-bot@users.noreply.github.com"
           git add data/
           git diff --cached --quiet || git commit -m "Veille du $(date -u +%Y-%m-%d)"
+          git pull --rebase           # quelqu'un (ou les notifications) a pu pousser entre-temps
           git push
 
       - uses: actions/configure-pages@v6
