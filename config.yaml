@@ -265,6 +265,7 @@ notifications:
   inclure: []              # si rempli : seulement ces thèmes / étiquettes
   revue_min: 0             # 0 = toutes ; 2 = revues établies ; 3 = de référence
   preuve_min: 0            # niveau de preuve minimal de la fiche IA (0 = tous)
+  priorite: 4              # 1 à 5 ; 4 = haute (bandeau sur Android), 3 = normale
   serveur: "https://ntfy.sh"
 
 # ------------------------------------------------------------

@@ -161,8 +161,9 @@ def envoyer(cfg: dict, messages: list[dict]):
     serveur = n.get("serveur", "https://ntfy.sh").rstrip("/")
     canal = os.environ.get("NTFY_TOPIC", "")
     en_tetes = {"Authorization": f"Bearer {os.environ['NTFY_TOKEN']}"} if os.environ.get("NTFY_TOKEN") else {}
+    priorite = int(n.get("priorite", 3))
     for m in messages:
-        r = requests.post(serveur, json=dict(m, topic=canal), headers=en_tetes, timeout=30)
+        r = requests.post(serveur, json=dict(m, topic=canal, priority=priorite), headers=en_tetes, timeout=30)
         r.raise_for_status()
         time.sleep(1)
 
