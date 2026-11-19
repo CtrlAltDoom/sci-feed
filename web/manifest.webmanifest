@@ -1,6 +1,6 @@
 {
-  "name": "Veille scientifique",
-  "short_name": "Veille",
+  "name": "SciFeed",
+  "short_name": "SciFeed",
   "description": "Veille scientifique quotidienne avec fiches de lecture",
   "lang": "fr",
   "start_url": "./",

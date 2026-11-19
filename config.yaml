@@ -3,7 +3,7 @@
 #  C'est le SEUL fichier à modifier pour adapter l'outil.
 # ============================================================
 
-titre: "Veille psychogastro"
+titre: "SciFeed"
 contact_email: ""   # demandé par PubMed / OpenAlex ; laissé vide ici, fourni par le secret CONTACT_EMAIL
 
 collecte:
