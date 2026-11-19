@@ -1,7 +1,7 @@
-/* Service worker : l'appli s'ouvre même hors connexion (dernière version consultée).
-   Données : réseau d'abord (toujours la veille du jour si possible), cache sinon.
-   Interface : cache d'abord, rafraîchi en arrière-plan. */
-const CACHE = "veille-v8";
+/* Service worker : l'appli s'ouvre même hors connexion.
+   Tout passe par le réseau d'abord (toujours la dernière version : page, style et données
+   cohérents entre eux) ; le cache ne sert que si le réseau ne répond pas. */
+const CACHE = "veille-v9";
 const COQUILLE = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "logo.png", "icone-192.png"];
 
 self.addEventListener("install", (e) => {
@@ -16,13 +16,12 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;   // GitHub, PubMed… : pas touchés
-  const enCache = (rep) => { const copie = rep.clone(); caches.open(CACHE).then((c) => c.put(e.request, copie)); return rep; };
-  if (url.pathname.endsWith("data.json")) {
-    e.respondWith(fetch(e.request).then(enCache).catch(() => caches.match(e.request)));
-    return;
-  }
-  e.respondWith(caches.match(e.request).then((cache) => {
-    const reseau = fetch(e.request).then(enCache).catch(() => cache);
-    return cache || reseau;
-  }));
+  e.respondWith(
+    fetch(e.request, { cache: "no-cache" })
+      .then((rep) => {
+        if (rep.ok) { const copie = rep.clone(); caches.open(CACHE).then((c) => c.put(e.request, copie)); }
+        return rep;
+      })
+      .catch(() => caches.match(e.request, { ignoreSearch: true }))
+  );
 });
