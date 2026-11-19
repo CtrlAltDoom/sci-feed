@@ -6,7 +6,7 @@ on:
   workflow_dispatch:          # bouton "Run workflow" pour lancer à la main
   push:
     branches: [main]
-    paths: ["config.yaml", "web/**", "veille/**", ".github/workflows/veille.yml"]
+    paths: ["config.yaml", "requirements.txt", "web/**", "veille/**", "tests/**", ".github/workflows/veille.yml"]
 
 permissions:
   contents: write
@@ -34,6 +34,16 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      # Changement de code (push) : tests de la collecte et du site dans un vrai navigateur.
+      # S'ils échouent, rien n'est publié et une alerte part. Pas lancés pour la veille du matin,
+      # où le code ne change pas : un composant de moins qui pourrait la bloquer.
+      - name: Tests (changement de code seulement)
+        if: github.event_name == 'push'
+        run: |
+          pip install "playwright>=1.49,<2"
+          python -m playwright install --with-deps chromium
+          python -m unittest discover tests
+
       - name: Collecte, fiches IA et site
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
@@ -42,6 +52,8 @@ jobs:
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}          # alertes de santé (source en panne, IA muette…)
           NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+          SYNC_GIST_ID: ${{ secrets.SYNC_GIST_ID }}      # favoris de l'appli : jamais effacés de la base
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
             python -m veille site          # simple changement de config/apparence : pas de collecte

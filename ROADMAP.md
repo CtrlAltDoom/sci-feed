@@ -2,7 +2,21 @@
 
 Principe directeur : **le code est commun, le profil est personnel.** Tout ce qui est propre à une personne vit dans `config.yaml` (ce que la veille collecte et comment elle le range) ou dans le navigateur du lecteur (raccourcis, puces masquées, lus, favoris), jamais dans le code. C'est ce qui permet d'adapter l'outil à d'autres usages sans changer ce qu'il est.
 
-Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
+Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer · ❌ écarté
+
+Deuxième principe : **résilient avant d'être riche.** Une fonction ne s'ajoute que si elle est gratuite, ne demande pas d'entretien, et qu'une panne de sa part ne bloque rien d'autre (repli silencieux, alerte de santé si besoin).
+
+---
+
+## Prochaines priorités (mises à jour le 19 novembre 2026)
+
+Dans l'ordre, du plus utile au moins urgent :
+1. ✅ **Ne jamais perdre un favori** : la purge des articles de plus de 180 jours garde les favoris (lus dans le gist). Si le gist est illisible ce jour-là, la purge attend le lendemain.
+2. ✅ **Versions des bibliothèques Python bornées** : jamais de nouvelle version majeure installée d'elle-même.
+3. ✅ **Tests du site dans un vrai navigateur** à chaque changement de code, avant publication (pas pour la veille du matin, où le code ne change pas).
+4. **Repère « nouveaux depuis ma dernière visite »**, pour ne lire que ce qui a changé.
+5. **Rattrapage des fiches IA** du stock initial (voir la section 2) : décision à prendre entre patienter et 10 $ une fois.
+6. **Apprendre des « Pas intéressé »** (voir la section 3).
 
 ---
 
@@ -13,8 +27,11 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - ✅ Alertes de santé sur ntfy : source en panne plusieurs jours, IA muette, collecte vide, tâche quotidienne arrêtée ou en échec (puis « ✅ » quand c'est réparé)
 - ✅ Modèles IA de secours trouvés automatiquement si le modèle gratuit configuré disparaît
 - ✅ `data.json` allégé (4,3 Mo → 1,4 Mo) : articles des 30 derniers jours sans abstracts, archive chargée juste après, abstracts à l'ouverture de « Détails » ou pour une recherche
-- 🔜 Tests de la partie site (filtres, étiquettes, personnalisation), pas seulement de la collecte
-- 🔜 Vérifier au bout d'un mois que GitHub ne désactive pas les tâches planifiées (dépôt « inactif » 60 jours)
+- ✅ Tests de la partie site dans un vrai navigateur (liste, détails, recherche dans les abstracts, filtres, favoris, hors connexion), lancés à chaque changement de code ; s'ils échouent, rien n'est publié et une alerte part
+- ✅ Tâches planifiées protégées de la mise en veille de GitHub (dépôt « inactif » 60 jours) : la collecte enregistre la base chaque jour, et une alerte part si elle ne tourne plus depuis 36 h
+- ✅ Un article mis en favori n'est jamais effacé de la base (lecture du gist ; purge reportée si le gist est illisible)
+- ✅ Bornes de versions dans `requirements.txt` (une mise à jour majeure d'une bibliothèque ne peut plus casser la collecte d'elle-même)
+- 💡 Surveiller la taille du dépôt : `data/articles.json` (environ 4 Mo) est réenregistré chaque jour. Git compresse bien les petites différences ; si l'historique dépasse quelques centaines de Mo, découper la base par mois
 
 ## 2. Fiches IA
 - ✅ Ordre de passage : articles du jour d'abord, puis les plus pertinents (thèmes prioritaires, étiquettes), études animales en dernier
@@ -48,6 +65,7 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - 🔜 Repère « nouveaux depuis ma dernière visite »
 - 💡 Notes personnelles sur un article, reprises dans l'export Zotero
 - ✅ Lien vers le texte intégral gratuit plus souvent trouvé (Unpaywall, revérifié tous les 30 jours)
+- 🔜 Lien « Chercher une version » vers Google Scholar (recherche par titre) : aucun appel automatique, rien à entretenir, et il trouve souvent un PDF déposé par les auteurs
 - 💡 Lier un preprint à sa version publiée
 - 💡 Alerte si un favori est rétracté
 
@@ -56,6 +74,12 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - ✅ README : étiquettes, priorité IA, personnalisation, installation de l'appli
 - 🔜 Guide « créer sa propre veille en 15 minutes » pour un collègue (copie du dépôt, `config.yaml`, secrets)
 - 💡 Modèle de `config.yaml` vierge et commenté, à côté de celui-ci
+
+## 6 bis. Appli Android
+
+- ✅ L'appli s'installe déjà depuis le navigateur (Android, iPhone, PC), avec icône et hors connexion.
+- 💡 Fichier APK (via PWABuilder ou Bubblewrap, gratuits) : surtout utile pour la publier sur un magasin d'applis ou la donner à quelqu'un sans passer par le navigateur. Pour un usage personnel, la version installée depuis le navigateur fait déjà la même chose ; à ne faire que si ce besoin apparaît.
+- 💡 Notifications de l'appli elle-même (Web Push) à la place de ntfy : à évaluer seulement si ntfy pose problème.
 
 ---
 
@@ -96,7 +120,7 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 **Pistes gratuites et conformes :**
 - ✅ **Lien « Texte intégral via mon établissement ».** Un réglage par appareil, dans Personnaliser : on y colle le préfixe du proxy de sa bibliothèque (du type `https://proxy.exemple.fr/login?url=`). Chaque fiche affiche alors un lien qui ouvre l'article à travers ce proxy. On s'identifie soi-même, dans son navigateur, comme d'habitude. Rien ne passe par GitHub, rien n'est publié, et chaque utilisateur met le préfixe de son propre établissement. Travail estimé : environ une heure.
 - 💡 **Alertes PsycINFO (ou Embase) en flux RSS.** Si l'AP-HP donne accès à PsycINFO via une plateforme comme Ovid, EBSCO ou APA PsycNet, on peut y enregistrer une recherche et demander une alerte RSS. L'adresse de ce flux s'ajoute dans `config.yaml` comme une revue, sans aucun code. Point à vérifier avant : le site étant public, il faut peut-être n'en garder que les titres et les liens, sans les abstracts (licence).
-- 💡 **Plus de textes intégraux gratuits et légaux** via Unpaywall (voir la section 5), qui réduit le besoin d'abonnement.
+- ✅ **Plus de textes intégraux gratuits et légaux** via Unpaywall (voir la section 5), qui réduit le besoin d'abonnement.
 
 **Ce que l'on sait de l'AP-HP (novembre 2026) :** accès distant par **OpenAthens** ; portail **EBSCO Discovery Service** (EDS) ; bases annoncées : Cochrane Library, Embase, ProQuest, Drugdex, Thériaque ; environ 10 000 revues (Elsevier Freedom Collection, Springer-Nature, Wiley, Ovid…). Abonnements PsycINFO, PsycArticles ou Cairn non confirmés.
 - 🔜 Renseigner le bon domaine OpenAthens AP-HP dans Personnaliser (`aphp.fr` est une supposition à vérifier avec le lien « Tester »).
@@ -106,3 +130,26 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - l'adresse de son proxy, s'il y en a un (accès distant aux ressources électroniques) ;
 - les plateformes par lesquelles elle donne accès aux bases (Ovid, EBSCO, ScienceDirect…) ;
 - si ces plateformes proposent des alertes RSS.
+
+---
+
+## 9. Textes intégraux : quelles sources ?
+
+**Déjà en place (gratuit, légal, stable) :** OpenAlex (meilleure version en accès libre), PubMed Central, Europe PMC, Unpaywall. Ensemble, ils couvrent l'essentiel de ce qui est légalement disponible : archives ouvertes, versions auteur, revues en accès libre.
+
+| Piste | Coût | Risque de casse | Verdict |
+|---|---|---|---|
+| Lien « Chercher une version » vers Google Scholar | 0 € | Nul (simple lien, rien d'automatique) | 🔜 À faire |
+| Semantic Scholar (`openAccessPdf`) | 0 € (sans clé, quota limité) | Faible, avec repli silencieux | 💡 Gain probablement faible : il s'appuie en grande partie sur les mêmes sources qu'Unpaywall. À mesurer sur 50 articles sans lien avant de l'ajouter |
+| CORE (archives ouvertes du monde entier) | 0 € (clé gratuite) | Faible, mais une clé de plus à gérer | 💡 Même remarque : à mesurer d'abord |
+| Version preprint d'un article publié (PsyArXiv, medRxiv) | 0 € | Faible | 💡 Déjà prévu (« lier un preprint à sa version publiée ») |
+| **Sci-Hub** | 0 € | **Élevé** | ❌ **Écarté** |
+
+**Pourquoi pas Sci-Hub :**
+- **Juridique :** le site diffuse des articles sans l'accord des éditeurs. Il est bloqué en France par décision de justice. Un lien automatique dans un dépôt public pourrait entraîner une demande de retrait du dépôt par GitHub, et donc l'arrêt de toute la veille.
+- **Stabilité :** les adresses changent souvent, des miroirs disparaissent ou deviennent douteux (publicités, faux sites). Il faudrait les surveiller en permanence, l'inverse de ce qu'on cherche.
+- **Utilité :** Sci-Hub n'ajoute presque plus d'articles depuis 2021 ; pour une veille sur les nouveautés, il manquerait justement les articles récents.
+- **Partage de l'outil :** un collègue qui copie le dépôt hériterait de ce lien sans l'avoir choisi.
+
+Pour un article introuvable légalement : le lien institutionnel (section 8), puis l'e-mail à l'auteur correspondant, qui envoie presque toujours son PDF.
+

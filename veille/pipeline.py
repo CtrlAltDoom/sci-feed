@@ -19,6 +19,28 @@ SOURCES_API = {"pubmed": pubmed, "europepmc": europepmc, "openalex": openalex,
 FILTRE_LOCAL = {"openalex", "clinicaltrials"}
 
 
+def purger(base: Base, limite: str) -> Base:
+    """Efface les articles ajoutés avant `limite`, sauf les favoris de l'appli (lus dans le gist).
+
+    Si le gist est configuré mais illisible ce jour-là, on n'efface rien : la purge attend le
+    lendemain, plutôt que de risquer d'effacer un favori."""
+    if not any(a.get("ajoute_le", "") < limite for a in base.articles):
+        return base
+    from . import notifications   # import local : notifications dépend de pipeline
+    favoris: set[str] = set()
+    if notifications.gist_configure():
+        etat = notifications.etat_appli()
+        if etat is None:
+            log.warning("Purge des anciens articles reportée : favoris de l'appli illisibles")
+            return base
+        favoris = {k for k, v in (etat.get("favoris") or {}).items() if v}
+    gardes = [a for a in base.articles if a.get("ajoute_le", "") >= limite or a["id"] in favoris]
+    anciens_favoris = sum(1 for a in gardes if a.get("ajoute_le", "") < limite)
+    log.info("Purge : %d anciens articles effacés, %d anciens favoris gardés",
+             len(base.articles) - len(gardes), anciens_favoris)
+    return Base(gardes)
+
+
 def charger() -> Base:
     if FICHIER.exists():
         return Base(json.loads(FICHIER.read_text(encoding="utf-8")))
@@ -111,8 +133,7 @@ def collecter(cfg: dict) -> int:
     except Exception as ex:
         log.warning("Textes intégraux libres (Unpaywall) en échec : %s", ex)
     sante.noter(nouveaux=nouveaux)
-    limite =(jour - dt.timedelta(days=c.get("conserver_jours", 180))).isoformat()
-    base = Base([a for a in base.articles if a.get("ajoute_le", "") >= limite])
+    base = purger(base, (jour - dt.timedelta(days=c.get("conserver_jours", 180))).isoformat())
     etat["derniere_collecte"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
     sauvegarder(base, etat)
     log.info("Collecte terminée : %d nouveaux, %d au total", nouveaux, len(base.articles))

@@ -124,6 +124,8 @@ data/articles.json     ← la base, versionnée par GitHub (historique gratuit)
 
 **Fichiers du site** (pour une ouverture rapide sur téléphone) : `data.json` ne contient que les articles des 30 derniers jours, sans abstracts ni champs vides. `archive.json` (les plus anciens) se charge juste après l'affichage. Les abstracts et les auteurs sont rangés par paquets dans `details/` et se chargent à l'ouverture de « Détails », pour une recherche ou pour l'export Zotero. Réglages dans la section `site` de `config.yaml`.
 
+**Tests** : `python -m unittest discover tests`. Les tests du site (`tests/test_site.py`) ouvrent l'appli dans un vrai navigateur ; ils sont sautés si Playwright n'est pas installé (`pip install playwright` puis `python -m playwright install chromium`). GitHub les lance à chaque changement de code et ne publie rien s'ils échouent.
+
 Pour ajouter une source, créez `veille/sources/ma_source.py` avec une fonction `collecter(cfg, http, theme, depuis, jusqu_a)` qui renvoie des articles, puis déclarez-la dans `SOURCES_API` (fichier `pipeline.py`).
 
 ## Bon à savoir

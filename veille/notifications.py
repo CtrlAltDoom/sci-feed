@@ -36,15 +36,18 @@ def _sauver_etat(etat: dict):
 
 
 # ---------------------------------------------------------------- déjà vus dans l'appli
-def deja_vus_dans_l_appli() -> set[str]:
-    """Articles lus, favoris ou masqués dans l'appli, d'après le gist de synchronisation.
+def gist_configure() -> bool:
+    return bool(os.environ.get("SYNC_GIST_ID", "").strip())
+
+
+def etat_appli() -> dict | None:
+    """Lus, favoris, masqués… de l'appli, d'après le gist de synchronisation (None si illisible).
 
     Le gist est secret (non listé) mais lisible sans jeton par qui connaît son identifiant :
-    l'identifiant est donc dans le secret GitHub SYNC_GIST_ID, jamais dans le dépôt public.
-    Sans ce secret, ou si GitHub ne répond pas, rien n'est exclu (on ne bloque jamais l'envoi)."""
+    l'identifiant est donc dans le secret GitHub SYNC_GIST_ID, jamais dans le dépôt public."""
     gist = os.environ.get("SYNC_GIST_ID", "").strip().rsplit("/", 1)[-1]
     if not gist:
-        return set()
+        return None
     en_tetes = {"Accept": "application/vnd.github+json"}
     jeton = os.environ.get("GITHUB_TOKEN")     # quota d'appels plus large que l'accès anonyme
     try:
@@ -57,9 +60,20 @@ def deja_vus_dans_l_appli() -> set[str]:
         contenu = fichier.get("content", "")
         if fichier.get("truncated") and fichier.get("raw_url"):
             contenu = requests.get(fichier["raw_url"], timeout=30).text
-        etat = json.loads(contenu or "{}")
+        return json.loads(contenu or "{}")
     except Exception as ex:
-        log.warning("Notifications : état de l'appli illisible (%s), rien n'est exclu", ex)
+        log.warning("État de l'appli (gist) illisible : %s", ex)
+        return None
+
+
+def deja_vus_dans_l_appli() -> set[str]:
+    """Articles lus, favoris ou masqués dans l'appli. Sans le secret SYNC_GIST_ID, ou si GitHub
+    ne répond pas, rien n'est exclu (on ne bloque jamais l'envoi)."""
+    if not gist_configure():
+        return set()
+    etat = etat_appli()
+    if etat is None:
+        log.warning("Notifications : état de l'appli illisible, rien n'est exclu")
         return set()
     vus = {k for cat in ("lus", "favoris", "masques") for k, v in (etat.get(cat) or {}).items() if v}
     log.info("Notifications : %d articles déjà vus dans l'appli (lus, favoris ou masqués)", len(vus))

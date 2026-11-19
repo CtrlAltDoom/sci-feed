@@ -303,6 +303,26 @@ class TestVeille(unittest.TestCase):
         with mock.patch.dict("os.environ", {"SYNC_GIST_ID": "abc"}), mock.patch.object(notifications.requests, "get", panne):
             self.assertEqual(notifications.deja_vus_dans_l_appli(), set())
 
+    def test_purge_garde_les_favoris(self):
+        vieux, limite = "2026-01-01", "2026-06-01"
+        base = core.Base([dict(core.nouvel_article(titre=f"Article {i}", url=f"https://exemple.org/{i}"),
+                               id=f"a{i}", ajoute_le=vieux if i < 3 else AUJ) for i in range(4)])
+        synchro = {"favoris": {"a1": 1, "a2": 0}, "lus": {"a0": 1}}
+        gist = {"files": {"veille-synchro.json": {"content": json.dumps(synchro)}}}
+        ids = lambda b: sorted(a["id"] for a in b.articles)
+        # sans synchronisation : purge comme avant
+        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": ""}):
+            self.assertEqual(ids(pipeline.purger(base, limite)), ["a3"])
+        # avec : l'ancien favori est gardé (un favori retiré, ou un simple « lu », ne l'est pas)
+        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": "abc"}), \
+             mock.patch.object(notifications.requests, "get", lambda *a, **k: Reponse(gist)):
+            self.assertEqual(ids(pipeline.purger(base, limite)), ["a1", "a3"])
+        # gist illisible ce jour-là : on n'efface rien
+        def panne(*a, **k):
+            raise core.requests.ConnectionError("hors ligne")
+        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": "abc"}), mock.patch.object(notifications.requests, "get", panne):
+            self.assertEqual(ids(pipeline.purger(base, limite)), ["a0", "a1", "a2", "a3"])
+
     def test_texte_libre_unpaywall(self):
         cfg = dict(self.cfg, contact_email="test@example.org")
         a1 = core.nouvel_article(titre="Un article fermé assez long pour le test", doi="10.1/ferme")
