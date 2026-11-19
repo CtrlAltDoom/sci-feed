@@ -8,12 +8,15 @@
 
   // ---------- état local (lus, favoris, masqués, filtres) ----------
   const CLE = "veille-etat-v1";
-  let etat = { lus: {}, favoris: {}, masques: {}, themes: [], vue: "tous", type: "", niveau: "0", tri: "recent" };
+  let etat = { lus: {}, favoris: {}, masques: {}, themes: [], etiquettes: [], chipsOuverts: false,
+    vue: "tous", type: "", niveau: "0", tri: "recent" };
   try { Object.assign(etat, JSON.parse(localStorage.getItem(CLE) || "{}")); } catch (e) { /* stockage indisponible */ }
   const enregistrer = () => { try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) { } };
 
-  let DATA = { meta: { themes: [] }, articles: [] };
-  let nomsThemes = {};
+  let DATA = { meta: { themes: [], etiquettes: [] }, articles: [] };
+  let nomsThemes = {}, famThemes = {}, nomsEtiq = {}, famEtiq = {};
+  const ORDRE_FAMILLES = ["sujet", "mecanisme", "approche", "animal", ""];
+  const NOM_FAMILLE = { sujet: "Sujets psy", mecanisme: "Corps & mécanismes", approche: "Approches", animal: "Signalement", "": "Autres" };
   let affiches = PAR_PAGE;
 
   // ---------- utilitaires ----------
@@ -49,7 +52,9 @@
       if (etat.vue === "masques") { if (!masque) return false; } else if (masque) return false;
       if (etat.vue === "nonlus" && etat.lus[a.id]) return false;
       if (etat.vue === "favoris" && !etat.favoris[a.id]) return false;
+      // OU à l'intérieur des thèmes, OU à l'intérieur des étiquettes, ET entre les deux
       if (etat.themes.length && !(a.themes || []).some((t) => etat.themes.includes(t))) return false;
+      if (etat.etiquettes.length && !(a.etiquettes || []).some((t) => etat.etiquettes.includes(t))) return false;
       switch (etat.type) {
         case "synthese": if (!estSynthese(a)) return false; break;
         case "ecr": if (!estECR(a)) return false; break;
@@ -86,6 +91,7 @@
     if (a.essai_registre) badges.push(`<span class="badge reg">essai enregistré</span>`);
     if (a.preprint) badges.push(`<span class="badge pp">preprint · non relu</span>`);
     if (a.retracte) badges.push(`<span class="badge ret">RÉTRACTÉ</span>`);
+    if ((a.etiquettes || []).includes("animal")) badges.push(`<span class="badge animal">Étude animale</span>`);
     const meta = `<div class="meta">${badges.join("")}<span>${esc(fmtJour(a.date))}</span>` +
       (a.revue ? `<span>· ${esc(a.revue)}</span>` : "") + `</div>`;
 
@@ -118,7 +124,9 @@
     if (ids.length) det.push(`<p>${ids.join(" · ")}</p>`);
     if (f && f.modele) det.push(`<p class="attente">Fiche : ${esc(f.modele)}, ${esc(f.date || "")}</p>`);
 
-    const tags = (a.themes || []).map((t) => `<span class="tag">${esc(nomsThemes[t] || t)}</span>`).join("");
+    const tags = (a.themes || []).map((t) => `<span class="tag f-${esc(famThemes[t] || "")}">${esc(nomsThemes[t] || t)}</span>`)
+      .concat((a.etiquettes || []).filter((t) => t !== "animal" && nomsEtiq[t])
+        .map((t) => `<span class="tag f-${esc(famEtiq[t] || "")}">${esc(nomsEtiq[t])}</span>`)).join("");
     const fav = !!etat.favoris[a.id], lu = !!etat.lus[a.id], masque = !!etat.masques[a.id];
     return `<article class="carte${lu ? " lu" : ""}" data-id="${esc(a.id)}">${meta}
       <h2><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.titre)}</a></h2>
@@ -155,14 +163,43 @@
     $("plus").hidden = liste.length <= affiches;
   }
 
+  // ---------- puces de thèmes / étiquettes ----------
+  // Repliées : 2 lignes (filtres actifs en premier) + bouton « +N ».
+  // Dépliées : toutes, rangées par famille de couleur.
   function afficherThemes() {
-    const compte = {};
-    DATA.articles.forEach((a) => { if (!etat.masques[a.id] && !etat.lus[a.id]) (a.themes || []).forEach((t) => { compte[t] = (compte[t] || 0) + 1; }); });
-    const chips = [`<button class="chip" data-theme="" aria-pressed="${etat.themes.length === 0}">Tous</button>`];
-    DATA.meta.themes.forEach((t) => chips.push(
-      `<button class="chip" data-theme="${esc(t.id)}" aria-pressed="${etat.themes.includes(t.id)}">${esc(t.nom)}` +
-      (compte[t.id] ? `<span class="n">${compte[t.id]}</span>` : "") + `</button>`));
-    $("themes").innerHTML = chips.join("");
+    const cT = {}, cE = {};
+    DATA.articles.forEach((a) => {
+      if (etat.masques[a.id] || etat.lus[a.id]) return;
+      (a.themes || []).forEach((t) => { cT[t] = (cT[t] || 0) + 1; });
+      (a.etiquettes || []).forEach((t) => { cE[t] = (cE[t] || 0) + 1; });
+    });
+    const puce = (genre, t, n) => {
+      const actif = (genre === "t" ? etat.themes : etat.etiquettes).includes(t.id);
+      return { actif, html: `<button class="chip f-${esc(t.famille || "")}" data-genre="${genre}" data-id="${esc(t.id)}" ` +
+        `title="${esc(t.nom)}" aria-pressed="${actif}">${esc(t.court || t.nom)}${n ? `<span class="n">${n}</span>` : ""}</button>` };
+    };
+    const themes = DATA.meta.themes.map((t) => puce("t", t, cT[t.id]));
+    const etiqs = (DATA.meta.etiquettes || []).map((t) => Object.assign(puce("e", t, cE[t.id]), { famille: t.famille || "" }));
+    const aucun = !etat.themes.length && !etat.etiquettes.length;
+    const tous = `<button class="chip" data-genre="" aria-pressed="${aucun}">Tous</button>`;
+    const bascule = `<button class="bascule" id="chips-bascule" aria-expanded="${etat.chipsOuverts}"></button>`;
+    let html;
+    if (etat.chipsOuverts) {
+      const groupe = (titre, liste, fam) => liste.length ? `<div class="groupe"><span class="groupe-titre${fam != null ? " f-" + fam : ""}">${esc(titre)}</span>` +
+        liste.map((p) => p.html).join("") + `</div>` : "";
+      html = `<div class="groupe">${tous}</div>` + groupe("Thèmes de collecte", themes) +
+        ORDRE_FAMILLES.map((f) => groupe(NOM_FAMILLE[f], etiqs.filter((p) => p.famille === f), f)).join("") +
+        `<div class="groupe">${bascule}</div>`;
+    } else {
+      // 2 lignes qui défilent horizontalement ; « Tous » et le bouton restent en 1re colonne,
+      // les filtres actifs viennent juste après
+      const toutes = themes.concat(etiqs.sort((x, y) => ORDRE_FAMILLES.indexOf(x.famille) - ORDRE_FAMILLES.indexOf(y.famille)));
+      html = tous + bascule + toutes.filter((p) => p.actif).concat(toutes.filter((p) => !p.actif)).map((p) => p.html).join("");
+    }
+    const nav = $("themes");
+    nav.classList.toggle("ouvert", etat.chipsOuverts);
+    nav.innerHTML = html;
+    $("chips-bascule").textContent = etat.chipsOuverts ? "Réduire ▴" : "Tout afficher ▾";
   }
 
   const rafraichir = (garderPage) => { if (!garderPage) affiches = PAR_PAGE; afficherThemes(); afficher(); };
@@ -200,8 +237,15 @@
       $("maj").textContent = "Mis à jour " + (isNaN(d) ? DATA.meta.mise_a_jour :
         d.toLocaleString("fr-FR", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }));
     }
-    nomsThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, t.nom]));
-    etat.themes = etat.themes.filter((t) => nomsThemes[t]);
+    DATA.meta.etiquettes = DATA.meta.etiquettes || [];
+    Object.assign(NOM_FAMILLE, DATA.meta.familles || {});
+    // noms courts sur les cartes aussi (le nom complet est dans l'infobulle des puces)
+    nomsThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, t.court || t.nom]));
+    famThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, t.famille || ""]));
+    nomsEtiq = Object.fromEntries(DATA.meta.etiquettes.map((t) => [t.id, t.court || t.nom]));
+    famEtiq = Object.fromEntries(DATA.meta.etiquettes.map((t) => [t.id, t.famille || ""]));
+    etat.themes = (etat.themes || []).filter((t) => nomsThemes[t]);
+    etat.etiquettes = (etat.etiquettes || []).filter((t) => nomsEtiq[t]);
     ["vue", "type", "niveau", "tri"].forEach((k) => {
       const el = $("f-" + k); el.value = etat[k];
       el.addEventListener("change", () => { etat[k] = el.value; enregistrer(); rafraichir(); });
@@ -213,13 +257,16 @@
     let minuterie;
     $("recherche").addEventListener("input", () => { clearTimeout(minuterie); minuterie = setTimeout(() => rafraichir(), 200); });
     $("themes").addEventListener("click", (e) => {
+      if (e.target.closest(".bascule")) { etat.chipsOuverts = !etat.chipsOuverts; enregistrer(); afficherThemes(); return; }
       const b = e.target.closest(".chip"); if (!b) return;
-      const t = b.dataset.theme;
-      if (!t) etat.themes = [];
-      else etat.themes = etat.themes.includes(t) ? etat.themes.filter((x) => x !== t) : [...etat.themes, t];
+      const genre = b.dataset.genre, id = b.dataset.id;
+      if (!genre) { etat.themes = []; etat.etiquettes = []; }
+      else {
+        const cle = genre === "t" ? "themes" : "etiquettes";
+        etat[cle] = etat[cle].includes(id) ? etat[cle].filter((x) => x !== id) : [...etat[cle], id];
+      }
       enregistrer(); rafraichir();
-    });
-    $("liste").addEventListener("click", (e) => {
+    });    $("liste").addEventListener("click", (e) => {
       const b = e.target.closest("button[data-act]"); if (!b) return;
       const id = b.closest(".carte").dataset.id;
       const bascule = (dico) => { if (dico[id]) delete dico[id]; else dico[id] = 1; };

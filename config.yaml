@@ -12,11 +12,7 @@ collecte:
   conserver_jours: 180      # au-delà, les articles sont supprimés de la base (les favoris restent dans votre navigateur)
   max_par_requete: 150      # sécurité : nombre max de résultats par thème et par source
   exclure:                  # articles écartés si ces mots apparaissent dans le titre (laisser vide = rien d'exclu)
-    - "mice"
-    - "murine"
-    - "rats"
-    - "in vitro"
-    - "zebrafish"
+    - "in vitro"            # les études animales sont gardées et signalées par l'étiquette rouge « Étude animale »
 
 # ------------------------------------------------------------
 #  THÈMES
@@ -30,6 +26,8 @@ collecte:
 themes:
   - id: sii
     nom: "SII & troubles digestifs fonctionnels"
+    court: "SII"
+    famille: sujet
     groupes:
       - ["irritable bowel syndrome", "irritable bowel", "IBS", "functional dyspepsia",
          "functional gastrointestinal disorder", "functional gastrointestinal disorders",
@@ -39,6 +37,8 @@ themes:
 
   - id: psychogastro
     nom: "Axe intestin-cerveau & psychogastroentérologie"
+    court: "Axe intestin-cerveau"
+    famille: mecanisme
     groupes:
       - ["gut-brain axis", "brain-gut axis", "microbiota-gut-brain", "psychogastroenterology",
          "visceral hypersensitivity", "visceral sensitivity", "visceral anxiety",
@@ -47,6 +47,8 @@ themes:
 
   - id: psy_digestif
     nom: "Psychologie & maladies digestives"
+    court: "Psy & digestif"
+    famille: sujet
     groupes:
       - ["anxiety", "depression", "depressive", "psychological distress", "catastrophizing",
          "catastrophising", "hypervigilance", "avoidance", "cognitive behavioral therapy",
@@ -58,16 +60,22 @@ themes:
 
   - id: alexithymie
     nom: "Alexithymie & intéroception"
+    court: "Alexithymie"
+    famille: sujet
     groupes:
       - ["alexithymia", "alexithymic", "interoception", "interoceptive"]
 
   - id: hypnose
     nom: "Hypnose clinique"
+    court: "Hypnose"
+    famille: approche
     groupes:
       - ["hypnosis", "hypnotherapy", "hypnotic suggestion", "hypnotizability", "hypnotisability"]
 
   - id: psychotherapies
     nom: "Psychothérapies de l'anxiété et de la dépression"
+    court: "Psychothérapies"
+    famille: approche
     designs_forts_seulement: true
     groupes:
       - ["anxiety", "depression", "depressive", "panic", "health anxiety",
@@ -78,9 +86,138 @@ themes:
 
   - id: arfid_toc
     nom: "ARFID & TOC"
+    court: "ARFID & TOC"
+    famille: sujet
     groupes:
       - ["ARFID", "avoidant restrictive food intake", "avoidant/restrictive food intake",
          "obsessive-compulsive disorder", "OCD"]
+
+# ------------------------------------------------------------
+#  ÉTIQUETTES (filtres de tri)
+#  Contrairement aux thèmes, elles ne lancent AUCUNE recherche : elles servent
+#  seulement à trier les articles déjà collectés (gratuit, sans quota).
+#  Même syntaxe que les thèmes, plus :
+#    "mot*"               => troncature (alexithymi* = alexithymia, alexithymic…)
+#    titre_seulement: true => cherche seulement dans le titre (pour les termes
+#                            présents dans presque tous les abstracts)
+#  famille = couleur : sujet (bleu), approche (vert), mecanisme (violet), animal (rouge)
+#  Source des termes : dictionnaire de requêtes « Veille SII & psychologie ».
+# ------------------------------------------------------------
+familles:
+  sujet: "Sujets psy"
+  approche: "Approches"
+  mecanisme: "Corps & mécanismes"
+  animal: "Signalement"
+
+etiquettes:
+  - id: animal
+    nom: "Étude animale"
+    court: "Animal"
+    famille: animal
+    # dans le titre : toujours signalé
+    titre:
+      - ["rat", "rats", "mice", "mouse", "murine", "rodent*", "animal model*", "animal study",
+         "preclinical", "zebrafish", "canine", "dogs", "piglet*", "primate*"]
+    # dans l'abstract seulement : signalé, sauf pour les revues (qui citent souvent des travaux animaux)
+    groupes:
+      - ["rats", "mice", "murine", "rodent*", "zebrafish", "piglet*", "water avoidance stress",
+         "restraint stress", "maternal separation", "knockout mice", "wild-type mice"]
+    sauf: ["review", "meta-analysis", "meta-analyses", "umbrella review", "scoping review"]
+
+  - id: anx_dep
+    nom: "Anxiété & dépression"
+    court: "Anxiété · dépression"
+    famille: sujet
+    titre_seulement: true     # présents dans presque tous les abstracts SII : on ne regarde que le titre
+    groupes:
+      - ["anxi*", "depress*", "panic", "agoraphobi*", "anhedonia", "dysthymi*", "psychological distress"]
+
+  - id: emotions
+    nom: "Alexithymie & émotions"
+    court: "Émotions"
+    famille: sujet
+    groupes:
+      - ["alexithymi*", "emotional awareness", "emotional clarity", "difficulty identifying feelings",
+         "externally oriented thinking", "emotion regulation", "emotional regulation",
+         "emotion dysregulation", "emotional dysregulation", "emotional suppression",
+         "expressive suppression", "cognitive reappraisal", "mentaliz*", "mentalis*"]
+
+  - id: processus
+    nom: "Catastrophisation, hypervigilance & évitement"
+    court: "Hypervigilance & évitement"
+    famille: sujet
+    groupes:
+      - ["catastrophi*", "hypervigilan*", "symptom monitoring", "symptom checking", "somatic vigilance",
+         "visceral sensitivity", "visceral anxiety", "GI-specific anxiety", "gastrointestinal-specific anxiety",
+         "gut-specific anxiety", "symptom-specific anxiety", "anxiety sensitivity", "fear of symptoms",
+         "attentional bias*", "attention bias*", "interpretation bias*", "interpretive bias*", "cognitive bias*",
+         "fear-avoidance", "avoidance behavio*", "experiential avoidance", "safety behavio*",
+         "food avoidance", "activity avoidance", "kinesiophobia", "rumination", "ruminative",
+         "repetitive negative thinking", "intolerance of uncertainty", "illness perception*",
+         "illness representation*", "illness belief*", "health anxiety", "illness anxiety",
+         "psychological flexibility"]
+
+  - id: trauma
+    nom: "Trauma & adversité précoce"
+    court: "Trauma"
+    famille: sujet
+    groupes:
+      - ["PTSD", "posttraumatic", "post-traumatic", "adverse childhood experience*", "childhood trauma",
+         "early life adversity", "early-life adversity", "early adverse", "maltreatment", "childhood abuse",
+         "sexual abuse", "psychological trauma"]
+
+  - id: alimentation
+    nom: "Alimentation & TCA"
+    court: "Alimentation & TCA"
+    famille: sujet
+    groupes:
+      - ["ARFID", "avoidant restrictive food intake", "avoidant/restrictive food intake", "eating disorder*",
+         "disordered eating", "anorexia nervosa", "bulimi*", "binge eating", "orthorexi*",
+         "food restriction", "restrictive eating", "food-related quality of life"]
+
+  - id: stigma
+    nom: "Stigmatisation, honte & secret"
+    court: "Stigma & secret"
+    famille: sujet
+    groupes:
+      - ["stigma*", "shame", "secrecy", "concealment", "self-disclosure", "illness disclosure",
+         "embarrassment", "fear of incontinence", "toilet anxiety", "toilet access", "bathroom access",
+         "illegitimacy", "epistemic injustice", "invalidation"]
+
+  - id: cognition
+    nom: "Cognition & brain fog"
+    court: "Brain fog"
+    famille: sujet
+    groupes:
+      - ["cognitive impairment", "cognitive dysfunction", "cognitive function*", "cognitive performance",
+         "brain fog", "executive function*", "working memory", "neuropsycholog*", "processing speed",
+         "sustained attention", "cognitive complaints", "subjective cognitive"]
+
+  - id: corps
+    nom: "Intéroception, corps & douleur"
+    court: "Intéroception & douleur"
+    famille: mecanisme
+    groupes:
+      - ["interocepti*", "body awareness", "bodily awareness", "body vigilance", "body image",
+         "visceral hypersensitivity", "visceral pain", "central sensiti*", "pain sensitivity",
+         "pain processing", "descending pain"]
+
+  - id: tcc
+    nom: "TCC & thérapies cerveau-intestin"
+    court: "TCC"
+    famille: approche
+    groupes:
+      - ["cognitive behavioral therap*", "cognitive behavioural therap*", "cognitive-behavioral",
+         "cognitive-behavioural", "CBT", "brain-gut behavio*", "interoceptive exposure",
+         "exposure therapy", "exposure-based"]
+
+  - id: troisieme_vague
+    nom: "Pleine conscience, ACT & autocompassion"
+    court: "Mindfulness · ACT · compassion"
+    famille: approche
+    groupes:
+      - ["mindfulness", "mindfulness-based", "acceptance and commitment", "self-compassion",
+         "compassion-focused", "compassion focused", "third-wave", "dialectical behavio*"]
 
 # ------------------------------------------------------------
 #  SOURCES (toutes gratuites, sans inscription obligatoire)

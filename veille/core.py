@@ -31,11 +31,12 @@ def charger_config(chemin: str | Path | None = None) -> dict:
     cfg.setdefault("collecte", {})
     cfg.setdefault("sources", {})
     cfg.setdefault("ia", {})
-    for th in cfg.get("themes", []):
+    for th in cfg.get("themes", []) + cfg.setdefault("etiquettes", []):
         groupes = [list(g) for g in th.get("groupes", []) if g]
         if th.get("designs_forts_seulement"):
             groupes.append(DESIGNS_FORTS)
         th["_groupes"] = groupes
+        th["_groupes_titre"] = [list(g) for g in th.get("titre", []) if g]
     return cfg
 
 
@@ -95,9 +96,13 @@ def doi_propre(doi: str | None) -> str:
 # ---------------------------------------------------------------- filtrage par mots-clés
 def _motif(terme: str) -> re.Pattern:
     # espaces et tirets interchangeables : "gut-brain" = "gut brain" = "gut–brain"
-    morceaux = [re.escape(m) for m in re.split(r"[\s\-‐–]+", terme.lower().strip()) if m]
+    # astérisque final = troncature : "alexithymi*" = alexithymia, alexithymic…
+    terme = terme.lower().strip()
+    tronque = terme.endswith("*")
+    morceaux = [re.escape(m) for m in re.split(r"[\s\-‐–]+", terme.rstrip("*")) if m]
     t = r"[\s\-‐–]*".join(morceaux)
-    return re.compile(rf"(?<![a-z0-9]){t}(?![a-z0-9])")
+    fin = "" if tronque else r"(?![a-z0-9])"
+    return re.compile(rf"(?<![a-z0-9]){t}{fin}")
 
 
 _cache_motifs: dict[str, re.Pattern] = {}
@@ -110,11 +115,23 @@ def contient(texte: str, terme: str) -> bool:
 
 
 def themes_correspondants(article: dict, themes: list[dict]) -> list[str]:
-    texte = (f"{article.get('titre', '')} {article.get('resume', '')} "
+    """Thèmes (ou étiquettes) dont chaque groupe a au moins un terme dans l'article.
+    Options (étiquettes) :
+      titre_seulement: true => `groupes` cherchés uniquement dans le titre
+      sauf: [termes]        => annule la correspondance de `groupes` si l'un est présent
+      titre: [[...]]        => groupes cherchés dans le titre, qui suffisent seuls (et ignorent `sauf`)"""
+    titre = (article.get("titre") or "").lower()
+    texte = (f"{titre} {article.get('resume', '')} "
              f"{' '.join(article.get('mots_cles') or [])}").lower()
+    tous = lambda groupes, cible: bool(groupes) and all(any(contient(cible, t) for t in g) for g in groupes)
     ids = []
     for th in themes:
-        if all(any(contient(texte, t) for t in g) for g in th["_groupes"]):
+        ok = tous(th["_groupes"], titre if th.get("titre_seulement") else texte)
+        if ok and th.get("sauf") and any(contient(texte, t) for t in th["sauf"]):
+            ok = False
+        if not ok and th.get("_groupes_titre"):
+            ok = tous(th["_groupes_titre"], titre)
+        if ok:
             ids.append(th["id"])
     return ids
 
@@ -156,6 +173,8 @@ def cles(a: dict) -> list[str]:
     tn = titre_normalise(a.get("titre", ""))
     if len(tn) > 25:
         k.append("t:" + tn)
+    if not k and a.get("url"):          # dernier recours (titre court, sans identifiant) : l'adresse
+        k.append("u:" + a["url"])
     return k
 
 

@@ -7,7 +7,7 @@ import html
 import json
 import shutil
 
-from .core import RACINE, log
+from .core import RACINE, log, themes_correspondants
 from .pipeline import ETAT, charger
 
 WEB = RACINE / "web"
@@ -64,10 +64,17 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
         articles = charger().articles
     articles = sorted(articles, key=lambda a: (a.get("ajoute_le", ""), a.get("date", "")), reverse=True)
     etat = json.loads(ETAT.read_text(encoding="utf-8")) if ETAT.exists() else {}
+    # étiquettes : calculées à chaque génération sur toute la base (rien de plus à collecter)
+    etiquettes = cfg.get("etiquettes", [])
+    articles = [dict(a, etiquettes=themes_correspondants(a, etiquettes)) for a in articles]
     meta = {
         "titre": cfg.get("titre", "Veille scientifique"),
         "mise_a_jour": etat.get("derniere_collecte", ""),
-        "themes": [{"id": t["id"], "nom": t["nom"]} for t in cfg.get("themes", [])],
+        "themes": [{"id": t["id"], "nom": t["nom"], "court": t.get("court", ""), "famille": t.get("famille", "")}
+                   for t in cfg.get("themes", [])],
+        "etiquettes": [{"id": t["id"], "nom": t["nom"], "court": t.get("court", ""), "famille": t.get("famille", "")}
+                       for t in etiquettes],
+        "familles": cfg.get("familles", {}),
     }
     if any(a.get("libre") for a in articles):
         ids = {t["id"] for t in meta["themes"]}

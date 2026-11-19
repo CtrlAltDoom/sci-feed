@@ -134,6 +134,13 @@ class TestVeille(unittest.TestCase):
         self.assertEqual(core.themes_correspondants({"titre": "Anxiety in teachers", "resume": ""}, th), [])
         self.assertFalse(core.contient("this", "IBS".lower()))
         self.assertTrue(core.contient("gut brain axis", "gut-brain axis"))
+        # troncature
+        self.assertTrue(core.contient("alexithymic patients", "alexithymi*"))
+        self.assertFalse(core.contient("alexithymia", "alexithymic"))
+        # étiquette limitée au titre
+        etq = [e for e in self.cfg["etiquettes"] if e["id"] == "anx_dep"]
+        self.assertEqual(core.themes_correspondants({"titre": "Depression in IBS", "resume": ""}, etq), ["anx_dep"])
+        self.assertEqual(core.themes_correspondants({"titre": "Gut microbiota in IBS", "resume": "anxiety"}, etq), [])
 
     def test_chaine_complete(self):
         self.cfg["sources"]["rss"]["flux"] = self.cfg["sources"]["rss"]["flux"][:1]
@@ -151,7 +158,7 @@ class TestVeille(unittest.TestCase):
         self.assertFalse(a["preprint"])
         titres = " ".join(x["titre"] for x in base.articles)
         self.assertNotIn("Liver", titres)          # hors thème
-        self.assertNotIn("Murine", titres)         # exclu
+        self.assertIn("Murine", titres)            # étude animale gardée (signalée par étiquette)
         self.assertIn("Hypnosis for IBS", titres)  # RSS retenu
         pp = [x for x in base.articles if x.get("doi") == "10.31234/osf.io/abcd"][0]
         self.assertTrue(pp["preprint"])
@@ -170,6 +177,13 @@ class TestVeille(unittest.TestCase):
         site.construire(self.cfg)
         sortie = self.tmp / "site"
         self.assertTrue((sortie / "data.json").exists())
+        donnees = json.loads((sortie / "data.json").read_text(encoding="utf-8"))
+        par_titre = {x["titre"]: x for x in donnees["articles"]}
+        self.assertIn("animal", par_titre["Murine model of IBS"]["etiquettes"])
+        self.assertNotIn("animal", next(x for t, x in par_titre.items() if t.startswith("Gut-directed"))["etiquettes"])
+        self.assertTrue(any(e["id"] == "animal" and e["famille"] == "animal" for e in donnees["meta"]["etiquettes"]))
+        # les étiquettes ne sont pas écrites dans la base
+        self.assertNotIn("etiquettes", pipeline.charger().articles[0])
         self.assertIn("<rss", (sortie / "feed-sii.xml").read_text(encoding="utf-8"))
         site.construire(self.cfg, inline=True)
         self.assertIn("window.VEILLE_DATA", (sortie / "index.html").read_text(encoding="utf-8"))
