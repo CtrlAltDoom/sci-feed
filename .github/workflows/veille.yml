@@ -1,0 +1,63 @@
+name: Veille quotidienne
+
+on:
+  schedule:
+    - cron: "23 4 * * *"     # chaque jour vers 5 h 23 (heure de Paris en hiver)
+  workflow_dispatch:          # bouton "Run workflow" pour lancer à la main
+  push:
+    branches: [main]
+    paths: ["config.yaml", "web/**", "veille/**"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: veille
+  cancel-in-progress: false
+
+jobs:
+  veille:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Collecte, fiches IA et site
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            python -m veille site          # simple changement de config/apparence : pas de collecte
+          else
+            python -m veille tout
+          fi
+
+      - name: Sauvegarder la base d'articles
+        run: |
+          git config user.name "veille-bot"
+          git config user.email "veille-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "Veille du $(date -u +%Y-%m-%d)"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploiement
+        uses: actions/deploy-pages@v4

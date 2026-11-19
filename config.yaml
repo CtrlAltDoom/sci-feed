@@ -1,0 +1,148 @@
+# ============================================================
+#  Veille scientifique — fichier de configuration principal
+#  C'est le SEUL fichier à modifier pour adapter l'outil.
+# ============================================================
+
+titre: "Veille psychogastro"
+contact_email: ""   # demandé par PubMed / OpenAlex ; laissé vide ici, fourni par le secret CONTACT_EMAIL
+
+collecte:
+  jours_initiaux: 21        # 1er lancement : combien de jours en arrière
+  jours_glissants: 4        # lancements suivants : fenêtre qui se chevauche (les doublons sont fusionnés)
+  conserver_jours: 180      # au-delà, les articles sont supprimés de la base (les favoris restent dans votre navigateur)
+  max_par_requete: 150      # sécurité : nombre max de résultats par thème et par source
+  exclure:                  # articles écartés si ces mots apparaissent dans le titre (laisser vide = rien d'exclu)
+    - "mice"
+    - "murine"
+    - "rats"
+    - "in vitro"
+    - "zebrafish"
+
+# ------------------------------------------------------------
+#  THÈMES
+#  Chaque thème = une liste de "groupes". Un article est retenu s'il
+#  contient AU MOINS UN terme de CHAQUE groupe (dans le titre ou l'abstract).
+#    groupes: [[A, B], [C, D]]  =>  (A OU B) ET (C OU D)
+#  designs_forts_seulement: true => ne garde que essais randomisés,
+#  méta-analyses et revues systématiques (utile pour les sujets très larges).
+#  Termes en anglais : c'est la langue de quasiment toutes les publications.
+# ------------------------------------------------------------
+themes:
+  - id: sii
+    nom: "SII & troubles digestifs fonctionnels"
+    groupes:
+      - ["irritable bowel syndrome", "irritable bowel", "IBS", "functional dyspepsia",
+         "functional gastrointestinal disorder", "functional gastrointestinal disorders",
+         "disorders of gut-brain interaction", "disorder of gut-brain interaction", "DGBI",
+         "functional abdominal pain", "functional bloating", "functional constipation",
+         "centrally mediated abdominal pain"]
+
+  - id: psychogastro
+    nom: "Axe intestin-cerveau & psychogastroentérologie"
+    groupes:
+      - ["gut-brain axis", "brain-gut axis", "microbiota-gut-brain", "psychogastroenterology",
+         "visceral hypersensitivity", "visceral sensitivity", "visceral anxiety",
+         "gut-directed hypnotherapy", "gut-directed hypnosis", "brain-gut behavior therapy",
+         "brain-gut behavioral therapy"]
+
+  - id: psy_digestif
+    nom: "Psychologie & maladies digestives"
+    groupes:
+      - ["anxiety", "depression", "depressive", "psychological distress", "catastrophizing",
+         "catastrophising", "hypervigilance", "avoidance", "cognitive behavioral therapy",
+         "cognitive behavioural therapy", "hypnotherapy", "hypnosis", "psychotherapy",
+         "mindfulness", "acceptance and commitment therapy", "self-compassion", "quality of life"]
+      - ["gastrointestinal", "digestive", "bowel", "gut", "abdominal pain", "dyspepsia",
+         "inflammatory bowel disease", "Crohn", "ulcerative colitis", "celiac", "coeliac",
+         "gastroparesis", "fecal incontinence", "faecal incontinence"]
+
+  - id: alexithymie
+    nom: "Alexithymie & intéroception"
+    groupes:
+      - ["alexithymia", "alexithymic", "interoception", "interoceptive"]
+
+  - id: hypnose
+    nom: "Hypnose clinique"
+    groupes:
+      - ["hypnosis", "hypnotherapy", "hypnotic suggestion", "hypnotizability", "hypnotisability"]
+
+  - id: psychotherapies
+    nom: "Psychothérapies de l'anxiété et de la dépression"
+    designs_forts_seulement: true
+    groupes:
+      - ["anxiety", "depression", "depressive", "panic", "health anxiety",
+         "somatic symptom disorder", "somatic symptoms"]
+      - ["cognitive behavioral", "cognitive behavioural", "CBT", "acceptance and commitment",
+         "mindfulness", "self-compassion", "compassion-focused", "hypnosis", "psychotherapy",
+         "psychological intervention", "exposure therapy"]
+
+  - id: arfid_toc
+    nom: "ARFID & TOC"
+    groupes:
+      - ["ARFID", "avoidant restrictive food intake", "avoidant/restrictive food intake",
+         "obsessive-compulsive disorder", "OCD"]
+
+# ------------------------------------------------------------
+#  SOURCES (toutes gratuites, sans inscription obligatoire)
+# ------------------------------------------------------------
+sources:
+  pubmed:
+    actif: true             # MEDLINE + PubMed (référence en biomédical)
+  europepmc:
+    actif: true             # PubMed + PMC + preprints (medRxiv, bioRxiv, PsyArXiv, Research Square…)
+    preprints: true
+  openalex:
+    actif: true             # index ouvert, toutes disciplines (bon pour la psychologie hors PubMed)
+  clinicaltrials:
+    actif: true             # nouveaux essais enregistrés (ClinicalTrials.gov)
+  rss:
+    actif: true
+    # Flux de revues : chaque article est filtré avec vos thèmes.
+    # Pour ajouter une revue : copier une ligne, changer nom + url. Un flux en panne est simplement ignoré.
+    flux:
+      - nom: "Neurogastroenterology & Motility"
+        url: "https://onlinelibrary.wiley.com/feed/13652982/most-recent"
+      - nom: "Alimentary Pharmacology & Therapeutics"
+        url: "https://onlinelibrary.wiley.com/feed/13652036/most-recent"
+      - nom: "Gastroenterology"
+        url: "https://rss.sciencedirect.com/publication/science/00165085"
+      - nom: "Journal of Psychosomatic Research"
+        url: "https://rss.sciencedirect.com/publication/science/00223999"
+      - nom: "Int. Journal of Clinical and Experimental Hypnosis"
+        url: "https://www.tandfonline.com/feed/rss/nhyp20"
+      - nom: "medRxiv — Gastroentérologie"
+        url: "https://connect.medrxiv.org/medrxiv_xml.php?subject=Gastroenterology"
+      - nom: "medRxiv — Psychiatrie & psychologie clinique"
+        url: "https://connect.medrxiv.org/medrxiv_xml.php?subject=Psychiatry_and_Clinical_Psychology"
+    # Flux NON filtrés (blogs, actualités…) : tout est gardé. Exemple :
+    # flux_libres:
+    #   - nom: "Blog Monash FODMAP"
+    #     url: "https://www.monashfodmap.com/blog/rss/"
+    #     theme: "sii"
+    flux_libres: []
+
+# ------------------------------------------------------------
+#  IA : fiches de lecture automatiques
+#  Fonctionne avec n'importe quel service "compatible OpenAI" :
+#  OpenRouter (défaut), Google Gemini, Groq, Mistral, Ollama local…
+#  La clé n'est JAMAIS écrite ici : elle est dans un "secret" GitHub (LLM_API_KEY).
+# ------------------------------------------------------------
+ia:
+  actif: true
+  base_url: "https://openrouter.ai/api/v1"
+  # Essayés dans l'ordre : si le premier est saturé, on passe au suivant.
+  # "openrouter/free" = routeur qui choisit automatiquement un modèle gratuit disponible.
+  modeles:
+    - "openrouter/free"
+  articles_par_requete: 5        # plusieurs abstracts par appel => économise le quota gratuit
+  max_requetes_par_execution: 40 # OpenRouter gratuit : 50 requêtes/jour (1000 si 10 $ de crédits achetés un jour)
+  pause_secondes: 4              # limite gratuite : 20 requêtes/minute
+  duree_max_minutes: 25          # les modèles gratuits mettent 20 s à 4 min par lot : on s'arrête à temps
+  effort_raisonnement: "low"     # réflexion courte = réponses plus rapides (ignoré par les modèles qui ne réfléchissent pas)
+  temperature: 0.1
+  profil_lecteur: >
+    Psychologue clinicien et hypnothérapeute exerçant en psychogastroentérologie
+    (syndrome de l'intestin irritable, troubles digestifs fonctionnels), à l'hôpital et en libéral.
+    Approches TCC, hypnose digestive (y compris en groupe), autocompassion. Intérêt pour
+    l'hypervigilance, la catastrophisation, l'évitement, l'alexithymie, l'intéroception,
+    l'anxiété et la dépression, l'ARFID et les TOC.
