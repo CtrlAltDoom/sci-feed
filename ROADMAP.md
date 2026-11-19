@@ -73,3 +73,23 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - **Volume :** quelques dizaines de Ko, très loin des limites de GitHub.
 - **Ce qui reste sur l'appareil :** le jeton (stocké dans le navigateur de l'appareil, jamais publié). Le contenu du gist ne contient que des identifiants d'articles et des réglages d'affichage, rien de personnel.
 - **Travail estimé :** environ une demi-journée, essentiellement l'écran de réglage et la fusion par dates.
+
+---
+
+## 8. Accès institutionnels (AP-HP, Elsevier, PsycINFO…)
+
+**Deux besoins à distinguer :**
+- **Trouver les articles.** C'est déjà largement couvert : PubMed, Europe PMC et OpenAlex indexent aussi les revues Elsevier, Wiley, etc. (titres, abstracts). Les bases payantes ajouteraient surtout **PsycINFO** (psychologie, beaucoup de revues absentes de PubMed) et, dans une moindre mesure, Embase ou Scopus.
+- **Lire le texte intégral.** C'est là que l'abonnement de l'AP-HP sert vraiment.
+
+**À écarter : mettre ses identifiants AP-HP dans GitHub pour que le robot aille chercher les articles.** Les licences des éditeurs interdisent le téléchargement automatisé et le partage d'identifiants. On risque la suspension de l'accès, voire de celui de l'établissement. Et le site étant public, les contenus sous licence s'y retrouveraient.
+
+**Pistes gratuites et conformes :**
+- 🔜 **Lien « Texte intégral via mon établissement ».** Un réglage par appareil, dans Personnaliser : on y colle le préfixe du proxy de sa bibliothèque (du type `https://proxy.exemple.fr/login?url=`). Chaque fiche affiche alors un lien qui ouvre l'article à travers ce proxy. On s'identifie soi-même, dans son navigateur, comme d'habitude. Rien ne passe par GitHub, rien n'est publié, et chaque utilisateur met le préfixe de son propre établissement. Travail estimé : environ une heure.
+- 💡 **Alertes PsycINFO (ou Embase) en flux RSS.** Si l'AP-HP donne accès à PsycINFO via une plateforme comme Ovid, EBSCO ou APA PsycNet, on peut y enregistrer une recherche et demander une alerte RSS. L'adresse de ce flux s'ajoute dans `config.yaml` comme une revue, sans aucun code. Point à vérifier avant : le site étant public, il faut peut-être n'en garder que les titres et les liens, sans les abstracts (licence).
+- 💡 **Plus de textes intégraux gratuits et légaux** via Unpaywall (voir la section 5), qui réduit le besoin d'abonnement.
+
+**À vérifier auprès de la bibliothèque AP-HP :**
+- l'adresse de son proxy, s'il y en a un (accès distant aux ressources électroniques) ;
+- les plateformes par lesquelles elle donne accès aux bases (Ovid, EBSCO, ScienceDirect…) ;
+- si ces plateformes proposent des alertes RSS.
