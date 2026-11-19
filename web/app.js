@@ -8,13 +8,20 @@
 
   // ---------- état local (lus, favoris, masqués, filtres) ----------
   const CLE = "veille-etat-v1";
+  // alias : raccourcis personnels des puces ("t:sii" / "e:anx_dep" -> "Anx") ; cachees : puces masquées
   let etat = { lus: {}, favoris: {}, masques: {}, themes: [], etiquettes: [], chipsOuverts: false,
-    vue: "tous", type: "", niveau: "0", tri: "recent" };
+    alias: {}, cachees: {}, vue: "tous", type: "", niveau: "0", tri: "recent" };
   try { Object.assign(etat, JSON.parse(localStorage.getItem(CLE) || "{}")); } catch (e) { /* stockage indisponible */ }
   const enregistrer = () => { try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) { } };
 
   let DATA = { meta: { themes: [], etiquettes: [] }, articles: [] };
   let nomsThemes = {}, famThemes = {}, nomsEtiq = {}, famEtiq = {};
+  // nom affiché : raccourci personnel > nom court du site > nom complet
+  const libelle = (genre, t) => (etat.alias[genre + ":" + t.id] || "").trim() || t.court || t.nom;
+  const calculerNoms = () => {
+    nomsThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, libelle("t", t)]));
+    nomsEtiq = Object.fromEntries(DATA.meta.etiquettes.map((t) => [t.id, libelle("e", t)]));
+  };
   const ORDRE_FAMILLES = ["sujet", "mecanisme", "approche", "animal", ""];
   const NOM_FAMILLE = { sujet: "Sujets psy", mecanisme: "Corps & mécanismes", approche: "Approches", animal: "Signalement", "": "Autres" };
   let affiches = PAR_PAGE;
@@ -176,10 +183,11 @@
     const puce = (genre, t, n) => {
       const actif = (genre === "t" ? etat.themes : etat.etiquettes).includes(t.id);
       return { actif, html: `<button class="chip f-${esc(t.famille || "")}" data-genre="${genre}" data-id="${esc(t.id)}" ` +
-        `title="${esc(t.nom)}" aria-pressed="${actif}">${esc(t.court || t.nom)}${n ? `<span class="n">${n}</span>` : ""}</button>` };
+        `title="${esc(t.nom)}" aria-pressed="${actif}">${esc(libelle(genre, t))}${n ? `<span class="n">${n}</span>` : ""}</button>` };
     };
-    const themes = DATA.meta.themes.map((t) => puce("t", t, cT[t.id]));
-    const etiqs = (DATA.meta.etiquettes || []).map((t) => Object.assign(puce("e", t, cE[t.id]), { famille: t.famille || "" }));
+    const visible = (genre) => (t) => !etat.cachees[genre + ":" + t.id];
+    const themes = DATA.meta.themes.filter(visible("t")).map((t) => puce("t", t, cT[t.id]));
+    const etiqs = DATA.meta.etiquettes.filter(visible("e")).map((t) => Object.assign(puce("e", t, cE[t.id]), { famille: t.famille || "" }));
     const aucun = !etat.themes.length && !etat.etiquettes.length;
     const tous = `<button class="chip" data-genre="" aria-pressed="${aucun}">Tous</button>`;
     const bascule = `<button class="bascule" id="chips-bascule" aria-expanded="${etat.chipsOuverts}"></button>`;
@@ -228,6 +236,89 @@
   }
   function alerteDouce(msg) { $("compteur").textContent = msg; setTimeout(afficher, 2500); }
 
+  // ---------- veille arrêtée ? ----------
+  function alerteVeille() {
+    const d = new Date(DATA.meta.mise_a_jour || "");
+    if (isNaN(d)) return;
+    const heures = (Date.now() - d) / 36e5;
+    if (heures < 48) return;
+    $("alerte-veille").hidden = false;
+    $("alerte-veille").textContent = `La veille n'a pas été mise à jour depuis ${Math.floor(heures / 24)} jours. ` +
+      "La collecte automatique est peut-être en panne (voir l'onglet Actions du dépôt GitHub).";
+  }
+
+  // ---------- flux RSS ----------
+  function listeFlux() {
+    const li = (href, nom) => `<li><a href="${esc(href)}">${esc(nom)}</a></li>`;
+    $("liste-flux").innerHTML = DATA.meta.themes.map((t) => li(`feed-${t.id}.xml`, t.nom))
+      .concat(DATA.meta.etiquettes.map((t) => li(`feed-etiquette-${t.id}.xml`, "Étiquette : " + t.nom))).join("");
+  }
+
+  // ---------- personnalisation (propre à cet appareil) ----------
+  function afficherPerso() {
+    const ligne = (genre, t) => {
+      const cle = genre + ":" + t.id;
+      return `<div class="perso-ligne f-${esc(t.famille || "")}">
+        <input type="checkbox" data-cle="${esc(cle)}" ${etat.cachees[cle] ? "" : "checked"} aria-label="Afficher ${esc(t.nom)}">
+        <span class="perso-nom" title="${esc(t.nom)}">${esc(t.nom)}</span>
+        <input type="text" data-alias="${esc(cle)}" value="${esc(etat.alias[cle] || "")}" placeholder="${esc(t.court || t.nom)}" maxlength="30">
+      </div>`;
+    };
+    $("perso-puces").innerHTML = `<p class="perso-groupe">Thèmes de collecte</p>` + DATA.meta.themes.map((t) => ligne("t", t)).join("") +
+      `<p class="perso-groupe">Étiquettes</p>` + DATA.meta.etiquettes.map((t) => ligne("e", t)).join("");
+  }
+
+  function majApresPerso() {
+    calculerNoms();
+    etat.themes = etat.themes.filter((t) => !etat.cachees["t:" + t]);
+    etat.etiquettes = etat.etiquettes.filter((t) => !etat.cachees["e:" + t]);
+    enregistrer(); rafraichir(true);
+  }
+
+  // fusion : rien n'est perdu (union des lus / favoris / masqués ; réglages importés prioritaires)
+  function fusionner(donnees) {
+    ["lus", "favoris", "masques"].forEach((k) => Object.assign(etat[k], donnees[k] || {}));
+    Object.assign(etat.alias, donnees.alias || {});
+    Object.assign(etat.cachees, donnees.cachees || {});
+  }
+
+  function exporterEtat() {
+    const sauvegarde = { format: "veille-etat", version: 1, exporte_le: new Date().toISOString(),
+      lus: etat.lus, favoris: etat.favoris, masques: etat.masques, alias: etat.alias, cachees: etat.cachees };
+    const blob = new Blob([JSON.stringify(sauvegarde)], { type: "application/json" });
+    const lien = document.createElement("a");
+    lien.href = URL.createObjectURL(blob);
+    lien.download = `veille-sauvegarde-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(lien); lien.click(); lien.remove();
+  }
+
+  function brancherPerso() {
+    $("perso-ouvrir").addEventListener("click", () => { afficherPerso(); $("perso-message").textContent = ""; $("perso").showModal(); });
+    $("perso-puces").addEventListener("change", (e) => {
+      const cle = e.target.dataset.cle;
+      if (cle) { if (e.target.checked) delete etat.cachees[cle]; else etat.cachees[cle] = 1; majApresPerso(); }
+    });
+    $("perso-puces").addEventListener("input", (e) => {
+      const cle = e.target.dataset.alias;
+      if (!cle) return;
+      const v = e.target.value.trim();
+      if (v) etat.alias[cle] = v; else delete etat.alias[cle];
+      majApresPerso();
+    });
+    $("perso-reinit").addEventListener("click", () => { etat.alias = {}; etat.cachees = {}; majApresPerso(); afficherPerso(); });
+    $("perso-export").addEventListener("click", exporterEtat);
+    $("perso-import").addEventListener("change", (e) => {
+      const f = e.target.files[0]; if (!f) return;
+      f.text().then((txt) => {
+        const d = JSON.parse(txt);
+        if (d.format !== "veille-etat") throw new Error("format");
+        fusionner(d); majApresPerso(); afficherPerso();
+        $("perso-message").textContent = `Importé : ${Object.keys(d.lus || {}).length} lus, ${Object.keys(d.favoris || {}).length} favoris.`;
+      }).catch(() => { $("perso-message").textContent = "Fichier non reconnu (il doit venir de « Exporter »)."; });
+      e.target.value = "";
+    });
+  }
+
   // ---------- événements ----------
   function brancher() {
     $("titre").textContent = DATA.meta.titre || "Veille scientifique";
@@ -239,11 +330,13 @@
     }
     DATA.meta.etiquettes = DATA.meta.etiquettes || [];
     Object.assign(NOM_FAMILLE, DATA.meta.familles || {});
-    // noms courts sur les cartes aussi (le nom complet est dans l'infobulle des puces)
-    nomsThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, t.court || t.nom]));
+    // noms courts (ou raccourcis personnels) sur les cartes aussi ; le nom complet est dans l'infobulle des puces
+    calculerNoms();
     famThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, t.famille || ""]));
-    nomsEtiq = Object.fromEntries(DATA.meta.etiquettes.map((t) => [t.id, t.court || t.nom]));
     famEtiq = Object.fromEntries(DATA.meta.etiquettes.map((t) => [t.id, t.famille || ""]));
+    alerteVeille();
+    listeFlux();
+    brancherPerso();
     etat.themes = (etat.themes || []).filter((t) => nomsThemes[t]);
     etat.etiquettes = (etat.etiquettes || []).filter((t) => nomsEtiq[t]);
     ["vue", "type", "niveau", "tri"].forEach((k) => {
@@ -286,6 +379,11 @@
     $("tout-lu").addEventListener("click", () => { filtrer().forEach((a) => { etat.lus[a.id] = 1; }); enregistrer(); rafraichir(); });
     $("export").addEventListener("click", exporterRIS);
     rafraichir();
+  }
+
+  // appli installable (Android / iPhone / PC) et consultable hors connexion
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+    navigator.serviceWorker.register("sw.js").catch(() => { /* facultatif */ });
   }
 
   if (window.VEILLE_DATA) { DATA = window.VEILLE_DATA; brancher(); }

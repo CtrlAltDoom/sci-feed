@@ -55,6 +55,8 @@ h1 { font-size: 1.15rem; margin: 0; letter-spacing: -.01em; }
   .f-approche  { --c: #3f9a64; --c-fond: #15291d; --c-texte: #93d4ad; }
   .f-mecanisme { --c: #8a68d8; --c-fond: #231b38; --c-texte: #c4b2f2; }
   .f-animal    { --c: #e05252; --c-fond: #3a1717; --c-texte: #f3a5a5; }
+  /* contraste : texte sombre sur les puces sélectionnées (le blanc ne passe pas les 4,5:1) */
+  .chip[class*="f-"]:not(.f-)[aria-pressed="true"] { color: #0d1211; }
 }
 .filtres { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 10px; }
 .filtres[hidden] { display: none; }
@@ -115,3 +117,32 @@ details p { margin: 6px 0; }
 .pied { text-align: center; font-size: .8rem; color: var(--doux); padding: 10px 16px 40px; }
 .note { font-size: .72rem; max-width: 520px; margin: 6px auto; }
 @media (min-width: 700px) { .filtres { grid-template-columns: repeat(4, 1fr); } }
+
+/* alerte « veille arrêtée » */
+.alerte { max-width: 760px; margin: 10px auto 0; padding: 10px 14px; border-radius: 12px; font-size: .85rem;
+  background: #fff1d6; color: #7a4f00; border: 1px solid #f0d49a; }
+@media (prefers-color-scheme: dark) { .alerte { background: #3a2f14; color: #f1c56b; border-color: #5a4a20; } }
+
+/* personnalisation */
+.perso-ouvrir { grid-column: 1 / -1; border: 1px dashed var(--ligne); background: none; border-radius: 10px;
+  padding: 8px; font-size: .8rem; color: var(--accent); cursor: pointer; }
+.perso { width: min(560px, 100vw - 20px); max-height: 88vh; border: 1px solid var(--ligne); border-radius: var(--rayon);
+  background: var(--carte); color: var(--texte); padding: 14px 16px; }
+.perso::backdrop { background: rgba(0,0,0,.35); }
+.perso-tete { display: flex; justify-content: space-between; align-items: center; margin: 0; }
+.perso h2 { font-size: 1.05rem; margin: 0; }
+.perso h3 { font-size: .9rem; margin: 16px 0 4px; }
+.perso-aide { font-size: .78rem; color: var(--doux); margin: 4px 0 8px; }
+.perso-groupe { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--doux); font-weight: 600; margin: 10px 0 4px; }
+.perso-ligne { display: grid; grid-template-columns: auto 1fr 7.5rem; gap: 8px; align-items: center;
+  padding: 4px 0 4px 8px; border-left: 3px solid var(--c, var(--ligne)); margin-bottom: 4px; }
+.perso-nom { font-size: .82rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.perso-ligne input[type="text"] { width: 100%; padding: 5px 8px; border-radius: 8px; border: 1px solid var(--ligne);
+  background: var(--fond); font-size: .82rem; }
+.perso-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.perso-actions .icone { display: inline-block; }
+
+/* liste des flux */
+.flux { max-width: 520px; margin: 6px auto; text-align: left; }
+.flux ul { columns: 2; font-size: .75rem; padding-left: 18px; }
+@media (max-width: 480px) { .flux ul { columns: 1; } }

@@ -6,6 +6,9 @@
 <meta name="theme-color" content="#1f5f5b">
 <title>Veille scientifique</title>
 <link rel="alternate" type="application/rss+xml" title="Flux RSS" href="feed.xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icone-192.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -51,8 +54,30 @@
         <option value="preuve">Niveau de preuve</option>
       </select>
     </label>
+    <button class="perso-ouvrir" id="perso-ouvrir" type="button">Personnaliser les étiquettes, sauvegarder mes lectures…</button>
   </section>
 </header>
+
+<div class="alerte" id="alerte-veille" hidden></div>
+
+<dialog class="perso" id="perso">
+  <form method="dialog" class="perso-tete">
+    <h2>Personnaliser</h2>
+    <button class="icone" value="fermer">Fermer</button>
+  </form>
+  <p class="perso-aide">Ces réglages ne concernent que <b>cet appareil</b> et ne changent rien pour les autres utilisateurs.</p>
+  <h3>Puces de filtre</h3>
+  <p class="perso-aide">Raccourci : le texte affiché sur la puce et les fiches (ex. « Anx »). Laisser vide = nom par défaut. Décocher = puce masquée.</p>
+  <div id="perso-puces"></div>
+  <p><button class="lien" id="perso-reinit" type="button">Remettre les noms et puces par défaut</button></p>
+  <h3>Sauvegarde et transfert</h3>
+  <p class="perso-aide">Lus, favoris, masqués et réglages. Le fichier se réimporte sur un autre appareil : il est <b>fusionné</b> avec ce qui s'y trouve déjà (rien n'est effacé).</p>
+  <p class="perso-actions">
+    <button class="icone" id="perso-export" type="button">Exporter (.json)</button>
+    <label class="icone">Importer… <input type="file" id="perso-import" accept="application/json,.json" hidden></label>
+  </p>
+  <p class="perso-aide" id="perso-message"></p>
+</dialog>
 
 <main>
   <div class="resume-liste">
@@ -65,6 +90,7 @@
 
 <footer class="pied">
   <p><a href="feed.xml">Flux RSS</a> · <button class="lien" id="export">Exporter les favoris (Zotero .ris)</button></p>
+  <details class="flux"><summary>Flux RSS par thème et par étiquette</summary><ul id="liste-flux"></ul></details>
   <p class="note">Fiches générées par IA à partir des abstracts : à vérifier avant tout usage clinique. Vos lus/favoris restent dans ce navigateur.</p>
 </footer>
 <!--DONNEES-->

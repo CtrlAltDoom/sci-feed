@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#1f5f5b"/>
+  <!-- pile d'articles (zone sûre centrale, compatible icône « maskable » Android) -->
+  <rect x="146" y="150" width="220" height="230" rx="22" fill="#e3efed" opacity=".35" transform="rotate(-8 256 265)"/>
+  <rect x="146" y="140" width="220" height="240" rx="22" fill="#ffffff"/>
+  <rect x="176" y="182" width="120" height="16" rx="8" fill="#1f5f5b"/>
+  <rect x="176" y="218" width="160" height="12" rx="6" fill="#9fbfbb"/>
+  <rect x="176" y="244" width="150" height="12" rx="6" fill="#9fbfbb"/>
+  <rect x="176" y="270" width="160" height="12" rx="6" fill="#9fbfbb"/>
+  <circle cx="186" cy="330" r="12" fill="#2b6cb0"/>
+  <circle cx="222" cy="330" r="12" fill="#2f7d4f"/>
+  <circle cx="258" cy="330" r="12" fill="#6b46c1"/>
+</svg>

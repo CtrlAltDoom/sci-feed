@@ -276,6 +276,10 @@ ia:
   pause_secondes: 4              # limite gratuite : 20 requêtes/minute
   duree_max_minutes: 25          # les modèles gratuits mettent 20 s à 4 min par lot : on s'arrête à temps
   effort_raisonnement: "low"     # réflexion courte = réponses plus rapides (ignoré par les modèles qui ne réfléchissent pas)
+  # Ordre de passage : articles des N derniers jours d'abord, puis les plus pertinents
+  # (thèmes prioritaires, nombre d'étiquettes ; études animales en dernier).
+  priorite_jours_recents: 3
+  themes_prioritaires: ["sii", "hypnose", "alexithymie", "psychogastro"]
   temperature: 0.1
   profil_lecteur: >
     Psychologue clinicien et hypnothérapeute exerçant en psychogastroentérologie

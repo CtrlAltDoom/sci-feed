@@ -103,5 +103,8 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
     for t in meta["themes"]:
         _rss([a for a in articles if t["id"] in a.get("themes", [])],
              f"{meta['titre']} — {t['nom']}", "./", SORTIE / f"feed-{t['id']}.xml")
+    for t in meta["etiquettes"]:
+        _rss([a for a in articles if t["id"] in a.get("etiquettes", [])],
+             f"{meta['titre']} — {t['nom']}", "./", SORTIE / f"feed-etiquette-{t['id']}.xml")
     (SORTIE / ".nojekyll").write_text("", encoding="utf-8")
     log.info("Site généré : %d articles -> %s", len(articles), SORTIE)

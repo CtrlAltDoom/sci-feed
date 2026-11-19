@@ -1,6 +1,7 @@
 """Fiches de lecture IA via n'importe quelle API compatible OpenAI (OpenRouter, Gemini, Groq, Ollama…)."""
 from __future__ import annotations
 
+import datetime as dt
 import json
 import os
 import re
@@ -8,7 +9,7 @@ import time
 
 import requests
 
-from .core import aujourd_hui, log
+from .core import aujourd_hui, log, themes_correspondants
 from .pipeline import charger, sauvegarder
 
 TYPES = ["méta-analyse", "revue systématique", "essai randomisé", "essai non randomisé",
@@ -123,6 +124,22 @@ class ClientLLM:
         raise RuntimeError(f"aucun modèle disponible ({erreur})")
 
 
+def priorite(a: dict, cfg: dict) -> tuple:
+    """Ordre de passage des fiches IA (le quota gratuit ne suffit pas pour tout résumer) :
+    1. les articles des derniers jours d'abord (la veille du jour reste à jour) ;
+    2. puis le plus pertinent : thèmes prioritaires, étiquettes, études animales en dernier ;
+    3. puis le plus récent."""
+    ia = cfg.get("ia", {})
+    jours = ia.get("priorite_jours_recents", 3)
+    recent = a.get("ajoute_le", "") >= (aujourd_hui() - dt.timedelta(days=jours)).isoformat()
+    prioritaires = set(ia.get("themes_prioritaires", []))
+    etiq = themes_correspondants(a, cfg.get("etiquettes", []))
+    score = 2 * len(prioritaires & set(a.get("themes", []))) + len([e for e in etiq if e != "animal"])
+    if "animal" in etiq:
+        score -= 5
+    return (recent, score, a.get("ajoute_le", ""), a.get("date", ""))
+
+
 def resumer(cfg: dict, client: ClientLLM | None = None) -> int:
     ia = cfg.get("ia", {})
     if not ia.get("actif", True):
@@ -134,7 +151,7 @@ def resumer(cfg: dict, client: ClientLLM | None = None) -> int:
     base = charger()
     attente = [a for a in base.articles if not a.get("fiche") and len(a.get("resume", "")) >= 200
                and not a.get("libre")]
-    attente.sort(key=lambda a: (a.get("ajoute_le", ""), a.get("date", "")), reverse=True)
+    attente.sort(key=lambda a: priorite(a, cfg), reverse=True)
     taille = max(1, ia.get("articles_par_requete", 5))
     lots = [attente[i:i + taille] for i in range(0, len(attente), taille)]
     lots = lots[:ia.get("max_requetes_par_execution", 40)]
