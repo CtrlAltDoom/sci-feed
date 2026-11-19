@@ -2248,7 +2248,9 @@
 "psychosocial"
 ],
 "modele": "nvidia/nemotron-3.5-super-vl:free",
-"date": "2026-11-19"
+"date": "2026-11-19",
+"titre_court": "Incontinence fécale pédiatrique : prise en charge",
+"conclusion_simple": "L'incontinence fécale pédiatrique nécessite une approche multidisciplinaire précoce et adaptée au sous-type, mais les preuves manquent d'essais randomisés à long terme."
 },
 "revue_oa": "S2738182854"
 },
@@ -2436,7 +2438,9 @@
 "dépression"
 ],
 "modele": "nvidia/nemotron-3.5-super-vl:free",
-"date": "2026-11-19"
+"date": "2026-11-19",
+"titre_court": "Neuroinflammation, MICI et troubles anxio-dépressifs",
+"conclusion_simple": "La neuroinflammation médie le lien bidirectionnel entre MICI et troubles de l'humeur, justifiant une prise en charge intégrée ; mécanismes à préciser."
 },
 "revue_oa": "S44425019"
 },
@@ -4020,7 +4024,9 @@
 "axe gut-brain"
 ],
 "modele": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-"date": "2026-11-19"
+"date": "2026-11-19",
+"titre_court": "Microbiote et intestin irritable : revue narrative",
+"conclusion_simple": "Pas de signature microbienne validée pour l'intestin irritable ; régime pauvre en FODMAP et rifaximine efficaces, probiotiques et greffe fécale à confirmer."
 },
 "revue_oa": "S140847651"
 },
@@ -4930,7 +4936,9 @@
 "Mentalisation"
 ],
 "modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
-"date": "2026-11-19"
+"date": "2026-11-19",
+"titre_court": "Conditions nécessaires à la dissociation pathologique",
+"conclusion_simple": "La dissociation pathologique requiert nécessairement des déficits d'identification, de régulation émotionnelle et de mentalisation, outre le traumatisme, selon une analyse…"
 },
 "revue_oa": "S4210205887"
 },
@@ -5381,7 +5389,9 @@
 "interoception"
 ],
 "modele": "dots-studio/dots-3-note-preview:free",
-"date": "2026-11-19"
+"date": "2026-11-19",
+"titre_court": "Système autonome et états de conscience modifiés",
+"conclusion_simple": "Une revue théorique propose que l'équilibre sympathique/parasympathique soit clé dans les états de conscience modifiés thérapeutiques, mais cela nécessite une validation empirique."
 },
 "revue_oa": ""
 },
