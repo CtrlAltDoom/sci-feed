@@ -5,6 +5,7 @@ import datetime as dt
 import json
 import time
 
+from . import sante
 from .core import (RACINE, Base, Http, aujourd_hui, est_exclu, log, themes_correspondants)
 from .sources import clinicaltrials, europepmc, openalex, pubmed, rss
 
@@ -78,7 +79,9 @@ def collecter(cfg: dict) -> int:
                 lot = module.collecter(cfg, http, th, depuis, jour)
             except Exception as ex:  # une source en panne ne bloque jamais les autres
                 log.warning("  %s [%s] en échec : %s", nom, th["id"], ex)
+                sante.noter_source(nom, echec=True)
                 continue
+            sante.noter_source(nom, recus=len(lot))
             if nom in FILTRE_LOCAL:
                 # recherche plein texte trop large côté serveur : on revérifie les mots-clés du thème
                 lot = [a for a in lot if themes_correspondants(a, [th])]
@@ -98,11 +101,16 @@ def collecter(cfg: dict) -> int:
         nouveaux += base.ajouter(a)
 
     enrichir(http, base)
-    from . import revues          # import local : revues dépend de pipeline
+    from . import libre, revues   # import local : ces modules dépendent de pipeline
     try:
         revues.completer(cfg, http, base)
     except Exception as ex:       # facultatif : ne bloque jamais la veille
         log.warning("Infos revues en échec : %s", ex)
+    try:
+        libre.completer(cfg, http, base)
+    except Exception as ex:
+        log.warning("Textes intégraux libres (Unpaywall) en échec : %s", ex)
+    sante.noter(nouveaux=nouveaux)
     limite =(jour - dt.timedelta(days=c.get("conserver_jours", 180))).isoformat()
     base = Base([a for a in base.articles if a.get("ajoute_le", "") >= limite])
     etat["derniere_collecte"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")

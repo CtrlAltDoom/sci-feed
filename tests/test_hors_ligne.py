@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from veille import core, notifications, pipeline, resume_ia, site
+from veille import core, libre, notifications, pipeline, resume_ia, sante, site
 from veille.sources import clinicaltrials, europepmc, openalex, pubmed, rss
 
 AUJ = core.aujourd_hui().isoformat()
@@ -82,6 +82,12 @@ class Reponse:
 
 
 def faux_get(self, url, params=None, **kw):
+    if "unpaywall" in url:
+        if url.endswith("inconnu"):
+            r = Reponse({})
+            r.status_code = 404
+            raise core.requests.HTTPError("HTTP 404", response=r)
+        return Reponse({"best_oa_location": {"url_for_pdf": "https://hal.science/x.pdf"}})
     if "esearch" in url:
         return Reponse({"esearchresult": {"idlist": ["40000001"]}})
     if "efetch" in url:
@@ -231,6 +237,103 @@ class TestVeille(unittest.TestCase):
             self.assertIn("Option crédible", " ".join(m["message"] for m in envois))
             # deuxième passage : rien de nouveau, rien n'est renvoyé
             self.assertEqual(notifications.notifier(self.cfg, forcer=True, client=FauxCourt()), 0)
+
+    def test_deja_vus_dans_l_appli(self):
+        synchro = {"lus": {"a1": 1}, "favoris": {"a2": 1}, "masques": {"a3": 1, "a4": 0}, "horo": {}}
+        gist = {"files": {"veille-synchro.json": {"content": json.dumps(synchro)}}}
+        appels = []
+        def faux(url, headers=None, **kw):
+            appels.append(url)
+            return Reponse(gist)
+        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": "https://gist.github.com/moi/abc123"}), \
+             mock.patch.object(notifications.requests, "get", faux):
+            self.assertEqual(notifications.deja_vus_dans_l_appli(), {"a1", "a2", "a3"})
+        self.assertEqual(appels, ["https://api.github.com/gists/abc123"])
+        # sans secret, ou si GitHub ne répond pas : rien n'est exclu
+        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": ""}):
+            self.assertEqual(notifications.deja_vus_dans_l_appli(), set())
+        def panne(*a, **k):
+            raise core.requests.ConnectionError("hors ligne")
+        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": "abc"}), mock.patch.object(notifications.requests, "get", panne):
+            self.assertEqual(notifications.deja_vus_dans_l_appli(), set())
+
+    def test_texte_libre_unpaywall(self):
+        cfg = dict(self.cfg, contact_email="test@example.org")
+        a1 = core.nouvel_article(titre="Un article fermé assez long pour le test", doi="10.1/ferme")
+        a2 = core.nouvel_article(titre="Un article déjà libre assez long pour le test", doi="10.1/libre",
+                                 url_libre="https://pmc/1")
+        a3 = core.nouvel_article(titre="Un article inconnu d'Unpaywall pour le test", doi="10.1/inconnu")
+        base = core.Base([a1, a2, a3])
+        self.assertEqual(libre.completer(cfg, core.Http(), base), 1)
+        self.assertEqual(a1["url_libre"], "https://hal.science/x.pdf")
+        self.assertEqual(a2["url_libre"], "https://pmc/1")          # inchangé, pas interrogé
+        self.assertEqual(a3["libre_verifie"], AUJ)                   # 404 : noté comme vérifié
+        self.assertEqual(libre.completer(cfg, core.Http(), base), 0) # pas revérifié le jour même
+        self.assertEqual(libre.completer(self.cfg, core.Http(), base), 0)  # sans e-mail : ignoré
+
+    def test_sante(self):
+        def passage(**k):
+            p = {"sources": {"pubmed": {"essais": 5, "echecs": 0, "recus": 30}}, "nouveaux": 12,
+                 "fiches": 10, "attente": 50, "ia_erreur": ""}
+            p.update(k)
+            return p
+        panne_pubmed = {"pubmed": {"essais": 5, "echecs": 5, "recus": 0}}
+        self.assertEqual(sante.problemes([passage(), passage()], self.cfg), {})
+        # une seule journée en échec : pas encore d'alerte
+        self.assertEqual(sante.problemes([passage(), passage(sources=panne_pubmed)], self.cfg), {})
+        p = sante.problemes([passage(sources=panne_pubmed), passage(sources=panne_pubmed)], self.cfg)
+        self.assertIn("source:pubmed", p)
+        p = sante.problemes([passage(fiches=0, ia_erreur="429")] * 2, self.cfg)
+        self.assertIn("429", p["ia"])
+        self.assertNotIn("ia", sante.problemes([passage(fiches=0, attente=0)] * 2, self.cfg))
+        self.assertIn("collecte", sante.problemes([passage(nouveaux=0)] * 3, self.cfg))
+
+        envois = []
+        with mock.patch.dict("os.environ", {"NTFY_TOPIC": "canal-test"}), \
+             mock.patch.object(sante.requests, "post", lambda url, json=None, **kw: envois.append(json) or Reponse({})):
+            self.assertEqual(sante.alerter(self.cfg, {"ia": "Fiches IA : 0"}), "alerte")
+            self.assertEqual(sante.alerter(self.cfg, {"ia": "Fiches IA : 0"}), "")      # déjà signalé
+            self.assertEqual(sante.alerter(self.cfg, {}), "retabli")
+            self.assertEqual(sante.alerter(self.cfg, {}), "")
+        self.assertEqual([e["title"][0] for e in envois], ["⚠", "✅"])
+
+        # relevé d'un vrai passage, puis retard de collecte
+        sante.RELEVE = sante.Releve()
+        try:
+            sante.noter_source("pubmed", recus=3)
+            sante.noter_source("pubmed", echec=True)
+            sante.noter(nouveaux=3, fiches=1, attente=4)
+            sante.RELEVE.enregistrer()
+        finally:
+            sante.RELEVE = None
+        dernier = sante.charger()["passages"][-1]
+        self.assertEqual(dernier["sources"]["pubmed"], {"essais": 2, "echecs": 1, "recus": 3})
+        vieux = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=50)).isoformat(timespec="minutes")
+        (self.tmp / "etat.json").write_text(json.dumps({"derniere_collecte": vieux}), encoding="utf-8")
+        self.assertIn("retard", sante.collecte_en_retard(self.cfg))
+
+    def test_modeles_de_secours(self):
+        client = resume_ia.ClientLLM({"modeles": ["vieux/modele:free"], "base_url": "https://openrouter.ai/api/v1"})
+        client.cle = "test"
+        class R:
+            def __init__(self, code, data=None):
+                self.status_code, self._d = code, data or {}
+            def json(self):
+                return self._d
+            def raise_for_status(self):
+                if self.status_code >= 400:
+                    raise core.requests.HTTPError(f"HTTP {self.status_code}", response=self)
+        def post(url, json=None, **kw):
+            if json["model"] == "vieux/modele:free":
+                return R(404)
+            return R(200, {"choices": [{"message": {"content": "ok"}}], "model": json["model"]})
+        liste = {"data": [{"id": "nouveau/a:free", "context_length": 128000},
+                          {"id": "payant/b", "context_length": 200000},
+                          {"id": "petit/c:free", "context_length": 8000}]}
+        with mock.patch.object(resume_ia.requests, "post", post), \
+             mock.patch.object(resume_ia.requests, "get", lambda url, **kw: R(200, liste)):
+            self.assertEqual(client.completer("s", "u"), ("ok", "nouveau/a:free"))
+        self.assertIn("vieux/modele:free", client.morts)
 
 
 if __name__ == "__main__":

@@ -40,6 +40,8 @@ jobs:
           NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}          # alertes de santé (source en panne, IA muette…)
+          NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
             python -m veille site          # simple changement de config/apparence : pas de collecte
@@ -67,3 +69,12 @@ jobs:
         run: sleep 30
       - if: steps.deploiement.outcome == 'failure'
         uses: actions/deploy-pages@v5
+
+      - name: Prévenir en cas d'échec
+        if: failure()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          LIEN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          [ -z "$NTFY_TOPIC" ] && exit 0
+          curl -sS -X POST https://ntfy.sh -H "Content-Type: application/json" -d "{\"topic\":\"$NTFY_TOPIC\",\"title\":\"⚠️ SciFeed : la veille quotidienne a échoué\",\"message\":\"La page n'a peut-être pas été mise à jour. Touchez pour voir le détail sur GitHub.\",\"priority\":4,\"tags\":[\"warning\"],\"click\":\"$LIEN\"}"

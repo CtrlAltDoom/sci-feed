@@ -10,9 +10,11 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - ✅ Actions GitHub à jour (Node.js 24)
 - ✅ Alerte dans l'appli si la veille n'a pas été mise à jour depuis 48 h
 - ✅ Dédoublonnage des articles sans identifiant et au titre court (l'adresse sert de clé)
-- 🔜 Tests de la partie site (filtres, étiquettes, personnalisation), pas seulement de la collecte
+- ✅ Alertes de santé sur ntfy : source en panne plusieurs jours, IA muette, collecte vide, tâche quotidienne arrêtée ou en échec (puis « ✅ » quand c'est réparé)
+- ✅ Modèles IA de secours trouvés automatiquement si le modèle gratuit configuré disparaît
 - 🔜 Alléger `data.json` (environ 4 Mo et en hausse) : articles récents d'abord, le reste à la demande
-- 💡 Résumé hebdomadaire de santé de la veille : sources en échec, nombre de fiches, file d'attente IA
+- 🔜 Tests de la partie site (filtres, étiquettes, personnalisation), pas seulement de la collecte
+- 🔜 Vérifier au bout d'un mois que GitHub ne désactive pas les tâches planifiées (dépôt « inactif » 60 jours)
 
 ## 2. Fiches IA
 - ✅ Ordre de passage : articles du jour d'abord, puis les plus pertinents (thèmes prioritaires, étiquettes), études animales en dernier
@@ -38,12 +40,14 @@ Légende : ✅ fait · 🔜 prochaine étape · 💡 idée à évaluer
 - 💡 Ordre des puces au choix ; vue de démarrage au choix
 
 ## 5. Lecture et usage
-- ✅ Notifications du matin via ntfy : les 5 articles les plus pertinents, titre court et conclusion simple rédigés par l'IA
-- 💡 Notifications de l'appli elle-même (Web Push), sans appli tierce, en tenant compte des articles déjà lus
+- ✅ Notifications du matin via ntfy : les 5 articles les plus pertinents, titre court et conclusion simple rédigés par l'IA, en priorité haute (bandeau)
+- ✅ Pas de notification pour ce qui est déjà lu, favori ou masqué dans l'appli (secret `SYNC_GIST_ID`)
+- 💡 Résumé de la semaine le dimanche (les 10 articles marquants, en une notification)
+- 💡 Notifications de l'appli elle-même (Web Push), sans appli tierce
 - ✅ Appli installable (Android, iPhone, PC) avec icône, consultable hors connexion
 - 🔜 Repère « nouveaux depuis ma dernière visite »
 - 💡 Notes personnelles sur un article, reprises dans l'export Zotero
-- 💡 Lien vers le texte intégral gratuit plus souvent trouvé (Unpaywall)
+- ✅ Lien vers le texte intégral gratuit plus souvent trouvé (Unpaywall, revérifié tous les 30 jours)
 - 💡 Lier un preprint à sa version publiée
 - 💡 Alerte si un favori est rétracté
 

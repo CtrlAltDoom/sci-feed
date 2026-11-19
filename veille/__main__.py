@@ -25,16 +25,23 @@ def main():
                         format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
     cfg = charger_config(args.config)
 
-    from . import pipeline, resume_ia, site
+    from . import pipeline, resume_ia, sante, site
+    if args.action == "tout":
+        sante.RELEVE = sante.Releve()          # relevé du passage, pour repérer les pannes qui durent
     if args.action in ("tout", "collecter"):
         pipeline.collecter(cfg)
     if args.action in ("tout", "resumer"):
         resume_ia.resumer(cfg)
+    if args.action == "tout":
+        sante.RELEVE.enregistrer()
+        sante.verifier(cfg)
     if args.action in ("tout", "site"):
         site.construire(cfg, inline=args.inline)
     if args.action == "notifier":
         from . import notifications
         notifications.notifier(cfg, essai=args.essai, forcer=args.forcer)
+        if not args.essai:
+            sante.verifier(cfg, avec_retard=True)   # la collecte du matin a-t-elle bien tourné ?
 
 
 if __name__ == "__main__":

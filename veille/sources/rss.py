@@ -50,13 +50,16 @@ def analyser(contenu: bytes, nom: str, url_flux: str, depuis: dt.date) -> list[d
 
 def collecter(cfg, http, themes, depuis):
     opts = cfg["sources"].get("rss", {})
+    from .. import sante
     articles = []
     for f in opts.get("flux", []) or []:
         try:
             lus = analyser(http.get(f["url"], tentatives=2).content, f["nom"], f["url"], depuis)
         except Exception as ex:  # un flux en panne ne bloque jamais le reste
             log.warning("  RSS ignoré (%s) : %s", f["nom"], ex)
+            sante.noter_source(f"RSS {f['nom']}", echec=True)
             continue
+        sante.noter_source(f"RSS {f['nom']}", recus=len(lus))
         gardes = []
         for a in lus:
             a["themes"] = themes_correspondants(a, themes)

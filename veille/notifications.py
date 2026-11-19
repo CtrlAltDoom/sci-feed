@@ -35,6 +35,37 @@ def _sauver_etat(etat: dict):
     _fichier().write_text(json.dumps(etat, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+# ---------------------------------------------------------------- déjà vus dans l'appli
+def deja_vus_dans_l_appli() -> set[str]:
+    """Articles lus, favoris ou masqués dans l'appli, d'après le gist de synchronisation.
+
+    Le gist est secret (non listé) mais lisible sans jeton par qui connaît son identifiant :
+    l'identifiant est donc dans le secret GitHub SYNC_GIST_ID, jamais dans le dépôt public.
+    Sans ce secret, ou si GitHub ne répond pas, rien n'est exclu (on ne bloque jamais l'envoi)."""
+    gist = os.environ.get("SYNC_GIST_ID", "").strip().rsplit("/", 1)[-1]
+    if not gist:
+        return set()
+    en_tetes = {"Accept": "application/vnd.github+json"}
+    jeton = os.environ.get("GITHUB_TOKEN")     # quota d'appels plus large que l'accès anonyme
+    try:
+        url = f"https://api.github.com/gists/{gist}"
+        r = requests.get(url, headers=dict(en_tetes, Authorization=f"Bearer {jeton}") if jeton else en_tetes, timeout=30)
+        if jeton and r.status_code in (401, 403, 404):
+            r = requests.get(url, headers=en_tetes, timeout=30)
+        r.raise_for_status()
+        fichier = (r.json().get("files") or {}).get("veille-synchro.json") or {}
+        contenu = fichier.get("content", "")
+        if fichier.get("truncated") and fichier.get("raw_url"):
+            contenu = requests.get(fichier["raw_url"], timeout=30).text
+        etat = json.loads(contenu or "{}")
+    except Exception as ex:
+        log.warning("Notifications : état de l'appli illisible (%s), rien n'est exclu", ex)
+        return set()
+    vus = {k for cat in ("lus", "favoris", "masques") for k, v in (etat.get(cat) or {}).items() if v}
+    log.info("Notifications : %d articles déjà vus dans l'appli (lus, favoris ou masqués)", len(vus))
+    return vus
+
+
 # ---------------------------------------------------------------- sélection
 def score(a: dict, cfg: dict, info_revue: dict | None, etiquettes: list[str]) -> float:
     """Même calcul que le tri « Pour moi » du site (web/app.js, scorePourMoi)."""
@@ -192,7 +223,10 @@ def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None) 
             return 0
 
     base = pipeline.charger()
-    choix = selectionner(cfg, base, set(etat.get("envoyes", {})))
+    exclus = set(etat.get("envoyes", {}))
+    if n.get("ignorer_deja_vus", True):
+        exclus |= deja_vus_dans_l_appli()
+    choix = selectionner(cfg, base, exclus)
     if not choix:
         log.info("Notifications : aucun nouvel article à signaler.")
         return 0

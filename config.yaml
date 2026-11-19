@@ -266,7 +266,32 @@ notifications:
   revue_min: 0             # 0 = toutes ; 2 = revues établies ; 3 = de référence
   preuve_min: 0            # niveau de preuve minimal de la fiche IA (0 = tous)
   priorite: 4              # 1 à 5 ; 4 = haute (bandeau sur Android), 3 = normale
+  ignorer_deja_vus: true   # ne pas notifier ce qui est déjà lu, favori ou masqué dans l'appli
+                           # (nécessite le secret SYNC_GIST_ID : identifiant du gist de synchronisation)
   serveur: "https://ntfy.sh"
+
+# ------------------------------------------------------------
+#  ALERTES DE SANTÉ (même canal ntfy que les notifications)
+#  « ⚠️ SciFeed » si une panne dure, « ✅ » quand c'est réparé. Au plus une alerte par jour.
+# ------------------------------------------------------------
+sante:
+  actif: true
+  source_jours: 2          # une source en échec N passages de suite
+  ia_jours: 2              # aucune fiche IA N passages de suite alors que des articles attendent
+  collecte_vide_jours: 3   # aucun nouvel article N passages de suite
+  retard_heures: 36        # la collecte quotidienne n'a pas tourné depuis N heures
+  rappel_jours: 7          # rappel si le problème persiste
+
+# ------------------------------------------------------------
+#  TEXTES INTÉGRAUX GRATUITS ET LÉGAUX (Unpaywall)
+#  Complète le lien « Texte libre » quand OpenAlex / PubMed n'en donnent pas.
+#  Nécessite l'e-mail de contact (secret CONTACT_EMAIL).
+# ------------------------------------------------------------
+texte_libre:
+  actif: true
+  max_par_passage: 200     # articles vérifiés par jour
+  revoir_jours: 30         # revérifier un article sans version libre tous les N jours…
+  age_max_jours: 365       # …tant qu'il a moins d'un an
 
 # ------------------------------------------------------------
 #  SOURCES (toutes gratuites, sans inscription obligatoire)
@@ -320,6 +345,8 @@ ia:
   # "openrouter/free" = routeur qui choisit automatiquement un modèle gratuit disponible.
   modeles:
     - "openrouter/free"
+  secours_auto: true             # si les modèles ci-dessus échouent : essayer d'autres modèles gratuits du moment
+  secours_max: 3
   articles_par_requete: 5        # plusieurs abstracts par appel => économise le quota gratuit
   max_requetes_par_execution: 40 # OpenRouter gratuit : 50 requêtes/jour (1000 si 10 $ de crédits achetés un jour)
   pause_secondes: 4              # limite gratuite : 20 requêtes/minute

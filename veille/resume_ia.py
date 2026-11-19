@@ -9,7 +9,7 @@ import time
 
 import requests
 
-from . import revues
+from . import revues, sante
 from .core import aujourd_hui, bonus_serieux, interet, log
 from .pipeline import charger, sauvegarder
 
@@ -96,8 +96,42 @@ class ClientLLM:
         # les modèles gratuits sont souvent des modèles "qui réfléchissent" : réflexion courte = plus rapide
         self.effort = ia.get("effort_raisonnement", "low")
         self.morts: set[str] = set()  # modèles épuisés pour cette exécution
+        # si tous les modèles configurés échouent (renommés, retirés…), on essaie quelques modèles
+        # gratuits du moment, lus dans la liste publique d'OpenRouter
+        self.secours_auto = ia.get("secours_auto", True) and "openrouter.ai" in self.url
+        self.nb_secours = ia.get("secours_max", 3)
+        self._secours_charges = False
+
+    def _ajouter_secours(self) -> bool:
+        if not self.secours_auto or self._secours_charges:
+            return False
+        self._secours_charges = True
+        try:
+            r = requests.get(self.url.rsplit("/chat/", 1)[0] + "/models", timeout=30)
+            r.raise_for_status()
+            gratuits = [m for m in r.json().get("data", [])
+                        if str(m.get("id", "")).endswith(":free")
+                        and (m.get("context_length") or 0) >= 32000
+                        and "text" in str((m.get("architecture") or {}).get("output_modalities", ["text"]))]
+        except Exception as ex:
+            log.warning("IA : liste des modèles gratuits indisponible (%s)", ex)
+            return False
+        gratuits.sort(key=lambda m: m.get("context_length") or 0, reverse=True)
+        nouveaux = [m["id"] for m in gratuits if m["id"] not in self.modeles][:self.nb_secours]
+        if nouveaux:
+            log.warning("IA : modèles configurés indisponibles, essai de secours : %s", ", ".join(nouveaux))
+            self.modeles += nouveaux
+        return bool(nouveaux)
 
     def completer(self, systeme: str, utilisateur: str) -> tuple[str, str]:
+        try:
+            return self._completer(systeme, utilisateur)
+        except RuntimeError:
+            if self._ajouter_secours():
+                return self._completer(systeme, utilisateur)
+            raise
+
+    def _completer(self, systeme: str, utilisateur: str) -> tuple[str, str]:
         en_tetes = {"Content-Type": "application/json",
                     "HTTP-Referer": "https://github.com/", "X-Title": "Veille scientifique"}
         if self.cle:
@@ -124,6 +158,10 @@ class ClientLLM:
                     return contenu, data.get("model", m)
                 except Exception as ex:
                     erreur = ex
+                    code = getattr(getattr(ex, "response", None), "status_code", None)
+                    if code in (400, 402, 404):      # modèle inconnu, retiré ou devenu payant
+                        self.morts.add(m)
+                        break
                     if essai == 0 and not isinstance(ex, RuntimeError):
                         time.sleep(5)
                         continue
@@ -150,6 +188,7 @@ def resumer(cfg: dict, client: ClientLLM | None = None) -> int:
     client = client or ClientLLM(ia)
     if not client.cle and "localhost" not in client.url and "127.0.0.1" not in client.url:
         log.warning("Pas de clé LLM_API_KEY : fiches IA ignorées (les abstracts restent affichés).")
+        sante.noter(fiches=0, attente=1, ia_erreur="pas de clé : secret LLM_API_KEY absent ou vide")
         return 0
     base = charger()
     attente = [a for a in base.articles if not a.get("fiche") and len(a.get("resume", "")) >= 200
@@ -162,6 +201,7 @@ def resumer(cfg: dict, client: ClientLLM | None = None) -> int:
     systeme = CONSIGNES.format(langue="français", profil=ia.get("profil_lecteur", "").strip(),
                                types=", ".join(TYPES))
     faits = 0
+    erreur = ""
     debut = time.time()
     duree_max = ia.get("duree_max_minutes", 25) * 60
     log.info("IA : %d articles en attente, %d lots prévus", len(attente), len(lots))
@@ -185,6 +225,7 @@ def resumer(cfg: dict, client: ClientLLM | None = None) -> int:
                 fiches = _extraire_json(contenu).get("fiches", [])
         except Exception as ex:
             log.warning("  lot %d : %s", n + 1, ex)
+            erreur = str(ex)
             if "aucun modèle" in str(ex):
                 break
             continue
@@ -198,4 +239,5 @@ def resumer(cfg: dict, client: ClientLLM | None = None) -> int:
         sauvegarder(base)  # sauvegarde au fil de l'eau : rien n'est perdu si ça coupe
         time.sleep(ia.get("pause_secondes", 4))
     log.info("IA : %d fiches rédigées", faits)
+    sante.noter(fiches=faits, attente=len(attente), ia_erreur=erreur if not faits else "")
     return faits

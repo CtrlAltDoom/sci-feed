@@ -72,7 +72,15 @@ Chaque matin, les articles récents les plus pertinents pour vous arrivent sur l
 3. Dans l'appli ntfy, appuyez sur **+** et abonnez-vous à ce même nom.
 4. Pour tester tout de suite : **Actions → Notifications du matin → Run workflow**, en cochant « Envoyer maintenant ».
 
-Réglages dans la section `notifications` de `config.yaml` : nombre, format (une notification par article ou un seul résumé), plage horaire, thèmes inclus ou exclus, niveau minimal de revue ou de preuve.
+Réglages dans la section `notifications` de `config.yaml` : nombre, format (une notification par article ou un seul résumé), plage horaire, priorité, thèmes inclus ou exclus, niveau minimal de revue ou de preuve.
+
+**Ne pas être notifié de ce qu'on a déjà vu** (facultatif) : si la synchronisation entre appareils est activée dans l'appli, ajoutez le secret `SYNC_GIST_ID` avec l'identifiant de votre gist (la fin de son adresse `gist.github.com/…/IDENTIFIANT`). Les articles lus, favoris ou masqués dans l'appli ne sont alors plus notifiés.
+
+**Alertes de santé** : sur le même canal, une notification « ⚠️ SciFeed » prévient si une source est en panne plusieurs jours de suite, si l'IA ne rédige plus de fiches, si plus aucun article n'arrive, si la tâche quotidienne n'a pas tourné ou a échoué. Une notification « ✅ » suit quand tout est réparé. Réglages dans la section `sante`.
+
+## Textes intégraux gratuits
+
+Le lien « Texte libre » vient d'OpenAlex, de PubMed Central et d'Europe PMC, complétés chaque jour par **Unpaywall** (versions légales en accès ouvert : archives ouvertes, versions auteur, revues ouvertes). Unpaywall demande l'e-mail de contact (secret `CONTACT_EMAIL`). Les articles récents sans version libre sont revérifiés tous les 30 jours, car la version libre arrive souvent après la publication.
 
 ## Changer de fournisseur IA
 
