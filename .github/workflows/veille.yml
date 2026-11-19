@@ -61,3 +61,8 @@ jobs:
           path: site
       - id: deploiement
         uses: actions/deploy-pages@v5
+        continue-on-error: true     # GitHub ne voit parfois pas encore l'artefact : on retente
+      - if: steps.deploiement.outcome == 'failure'
+        run: sleep 30
+      - if: steps.deploiement.outcome == 'failure'
+        uses: actions/deploy-pages@v5
