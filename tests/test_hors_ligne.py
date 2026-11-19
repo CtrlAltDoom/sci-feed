@@ -198,6 +198,12 @@ class TestVeille(unittest.TestCase):
         # intérêt : SII + hypnose (2 + 2 + étiquettes) devant l'étude animale
         self.assertGreater(hyp["interet"], par_titre["Murine model of IBS"]["interet"])
         self.assertIn("jours_par_point", donnees["meta"])
+        self.assertEqual(hyp["etude"]["type"], "essai randomisé")
+        # précisions de méthode lues dans l'abstract
+        et = site.type_etude({"titre": "A double-blind, placebo-controlled multicentre pilot trial",
+                              "resume": "", "types": ["Randomized Controlled Trial"]})
+        self.assertEqual(et["type"], "essai randomisé")
+        self.assertEqual(et["details"], ["double aveugle", "contre placebo", "multicentrique", "pilote"])
         self.assertIn("<rss", (sortie / "feed-sii.xml").read_text(encoding="utf-8"))
         site.construire(self.cfg, inline=True)
         self.assertIn("window.VEILLE_DATA", (sortie / "index.html").read_text(encoding="utf-8"))

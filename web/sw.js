@@ -1,8 +1,8 @@
 ﻿/* Service worker : l'appli s'ouvre même hors connexion (dernière version consultée).
    Données : réseau d'abord (toujours la veille du jour si possible), cache sinon.
    Interface : cache d'abord, rafraîchi en arrière-plan. */
-const CACHE = "veille-v5";
-const COQUILLE = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "icone.svg", "icone-192.png"];
+const CACHE = "veille-v7";
+const COQUILLE = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "logo.png", "icone-192.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

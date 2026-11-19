@@ -33,7 +33,8 @@ Règles strictes :
 
 Réponds par un SEUL objet JSON valide, sans texte autour, de la forme :
 {{"fiches": [{{"id": "...", "verdict": "1 phrase (max 25 mots) : ce que l'étude montre/apporte",
-"type_etude": "...", "population": "effectif + qui, ou null", "intervention": "intervention/exposition et comparateur, ou null",
+"type_etude": "...", "design": ["0 à 3 précisions de méthode en 1 à 3 mots, si l'abstract les donne : double aveugle, contre placebo, multicentrique, pilote, en cross-over, longitudinale…"],
+"population": "effectif + qui, ou null", "intervention": "intervention/exposition et comparateur, ou null",
 "resultats_cles": ["2 à 3 puces courtes"], "conclusion": "conclusion des auteurs en 1 phrase",
 "limites": ["0 à 2 limites visibles"], "niveau_preuve": 1, "qualite_methodo": "...",
 "pertinence": 1, "pertinence_raison": "max 15 mots", "mots_cles_fr": ["2 à 4 mots-clés"]}}]}}
@@ -67,6 +68,7 @@ def valider(f: dict, modele: str) -> dict:
     return {
         "verdict": str(f.get("verdict") or "").strip(),
         "type_etude": typ if typ in TYPES else "autre",
+        "design": [d[:30] for d in _liste(f.get("design"), 3)],
         "population": (str(f["population"]).strip() if f.get("population") else None),
         "intervention": (str(f["intervention"]).strip() if f.get("intervention") else None),
         "resultats_cles": _liste(f.get("resultats_cles"), 3),

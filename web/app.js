@@ -240,15 +240,17 @@
   // ---------- rendu ----------
   function carte(a) {
     const f = a.fiche;
+    // signalements d'abord, puis date · revue · type d'étude (+ précisions de méthode)
     const badges = [];
-    if (f && f.type_etude && f.type_etude !== "autre") badges.push(`<span class="badge">${esc(f.type_etude)}</span>`);
-    else if (estSynthese(a)) badges.push(`<span class="badge">synthèse</span>`);
-    if (a.essai_registre) badges.push(`<span class="badge reg">essai enregistré</span>`);
-    if (a.preprint) badges.push(`<span class="badge pp">preprint · non relu</span>`);
     if (a.retracte) badges.push(`<span class="badge ret">RÉTRACTÉ</span>`);
+    if (a.preprint) badges.push(`<span class="badge pp">preprint · non relu</span>`);
+    if (a.essai_registre) badges.push(`<span class="badge reg">essai enregistré</span>`);
     if ((a.etiquettes || []).includes("animal")) badges.push(`<span class="badge animal">Étude animale</span>`);
+    const et = a.etude || { type: f && f.type_etude !== "autre" ? f.type_etude : (estSynthese(a) ? "synthèse" : ""), details: [] };
+    const typeTxt = [et.type === "essai enregistré" ? "" : et.type].concat(et.details || []).filter(Boolean).join(" · ");
     const meta = `<div class="meta">${badges.join("")}<span>${esc(fmtJour(a.date))}</span>` +
-      (a.revue ? `<span>· ${esc(a.revue)}</span>` : "") + `</div>`;
+      (a.revue ? `<span>· ${esc(a.revue)}</span>` : "") +
+      (typeTxt ? `<span class="badge type">${esc(typeTxt)}</span>` : "") + `</div>`;
 
     let corps = "";
     if (f) {
@@ -304,7 +306,9 @@
     const nonLus = liste.filter((a) => !etat.lus[a.id]).length;
     $("compteur").textContent = `${liste.length} article${liste.length > 1 ? "s" : ""} · ${nonLus} non lu${nonLus > 1 ? "s" : ""}`;
     if (!liste.length) {
-      $("liste").innerHTML = `<p class="vide">Aucun article pour ces filtres.</p>`;
+      $("liste").innerHTML = `<p class="vide">${etat.vue === "favoris"
+        ? (DATA.articles.some((a) => etat.favoris[a.id]) ? "Aucun favori pour ces thèmes ou étiquettes." : "Pas encore de favori : touchez « ☆ Favori » sous un article.")
+        : "Aucun article pour ces filtres."}</p>`;
       $("plus").hidden = true;
       return;
     }
@@ -325,8 +329,9 @@
   // Dépliées : toutes, rangées par famille de couleur.
   function afficherThemes() {
     const cT = {}, cE = {};
+    const vueFav = etat.vue === "favoris";   // en vue favoris, les compteurs comptent les favoris
     DATA.articles.forEach((a) => {
-      if (etat.masques[a.id] || etat.lus[a.id]) return;
+      if (vueFav ? !etat.favoris[a.id] : (etat.masques[a.id] || etat.lus[a.id])) return;
       (a.themes || []).forEach((t) => { cT[t] = (cT[t] || 0) + 1; });
       (a.etiquettes || []).forEach((t) => { cE[t] = (cE[t] || 0) + 1; });
     });
@@ -360,7 +365,16 @@
     $("chips-bascule").textContent = etat.chipsOuverts ? "Réduire ▴" : "Tout afficher ▾";
   }
 
-  const rafraichir = (garderPage) => { if (!garderPage) affiches = PAR_PAGE; afficherThemes(); afficher(); };
+  // bouton ★ : bascule la vue « Favoris » ; les puces de thèmes / étiquettes filtrent ensuite les favoris
+  function majFavoris() {
+    const b = $("btn-favoris"); if (!b) return;
+    const n = DATA.articles.filter((a) => etat.favoris[a.id]).length;
+    $("nb-favoris").textContent = n ? " " + n : "";
+    b.setAttribute("aria-pressed", String(etat.vue === "favoris"));
+    $("f-vue").value = etat.vue;
+  }
+
+  const rafraichir = (garderPage) => { if (!garderPage) affiches = PAR_PAGE; afficherThemes(); afficher(); majFavoris(); };
 
   // ---------- export Zotero (RIS) ----------
   function exporterRIS() {
@@ -494,6 +508,12 @@
       changerAcces(/^https:\/\//.test(p) ? p : "");
     });
     $("perso-ouvrir").addEventListener("click", () => { afficherPerso(); majSync(); majAcces(); $("perso-message").textContent = ""; $("perso").showModal(); });
+    // un clic (ou un toucher) en dehors de la fenêtre la ferme ; Échap aussi (natif)
+    $("perso").addEventListener("click", (e) => {
+      if (e.target !== $("perso")) return;
+      const r = $("perso").getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) $("perso").close();
+    });
     $("sync-connecter").addEventListener("click", () => {
       const j = $("sync-jeton").value.trim();
       if (!/^(ghp_|github_pat_)\w{20,}/.test(j)) { $("sync-statut").textContent = "Ce n'est pas une clé GitHub (elle commence par ghp_ ou github_pat_)."; return; }
@@ -554,6 +574,10 @@
     ["vue", "type", "niveau", "revue", "tri"].forEach((k) => {
       const el = $("f-" + k); el.value = etat[k];
       el.addEventListener("change", () => { etat[k] = el.value; enregistrer(); rafraichir(); });
+    });
+    $("btn-favoris").addEventListener("click", () => {
+      etat.vue = etat.vue === "favoris" ? "tous" : "favoris";
+      enregistrer(true); rafraichir(); window.scrollTo(0, 0);
     });
     $("btn-filtres").addEventListener("click", (e) => {
       const ouvert = $("filtres").hidden; $("filtres").hidden = !ouvert;

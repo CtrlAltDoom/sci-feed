@@ -8,12 +8,54 @@ import json
 import shutil
 
 from . import revues
-from .core import RACINE, bonus_serieux, interet, log, themes_correspondants
+from .core import RACINE, bonus_serieux, contient, interet, log, themes_correspondants
 from .pipeline import ETAT, charger
 
 WEB = RACINE / "web"
 SORTIE = RACINE / "site"
 MAX_RSS = 200
+
+
+# ---------------------------------------------------------------- type d'étude
+# Précisions de méthode repérées dans le titre / l'abstract (fiable : ce sont les mots des auteurs)
+DETAILS = [
+    ("triple aveugle", ["triple-blind", "triple blind", "triple-masked"]),
+    ("double aveugle", ["double-blind", "double blind", "double-masked", "double masked"]),
+    ("simple aveugle", ["single-blind", "single blind", "single-masked"]),
+    ("en ouvert", ["open-label", "open label"]),
+    ("contre placebo", ["placebo-controlled", "placebo controlled", "sham-controlled", "sham controlled"]),
+    ("en cross-over", ["crossover", "cross-over"]),
+    ("en grappes", ["cluster randomi*", "cluster-randomi*"]),
+    ("non-infériorité", ["non-inferiority", "noninferiority"]),
+    ("multicentrique", ["multicent*", "multi-cent*", "multisite", "multi-site"]),
+    ("pilote", ["pilot study", "pilot trial", "pilot randomi*", "feasibility study", "feasibility trial"]),
+    ("préenregistrée", ["preregistered", "pre-registered"]),
+]
+# types déclarés par PubMed / OpenAlex, quand il n'y a pas encore de fiche IA
+TYPES_SOURCE = [
+    ("méta-analyse", ["meta-analysis"]), ("revue systématique", ["systematic review"]),
+    ("essai randomisé", ["randomized controlled trial"]), ("essai clinique", ["clinical trial"]),
+    ("étude observationnelle", ["observational study"]), ("cas clinique", ["case reports"]),
+    ("revue", ["review"]), ("éditorial", ["editorial"]), ("lettre", ["letter"]), ("commentaire", ["comment"]),
+]
+
+
+def type_etude(a: dict) -> dict:
+    fiche = a.get("fiche") or {}
+    typ = fiche.get("type_etude") if fiche.get("type_etude") not in (None, "autre") else ""
+    if not typ:
+        declares = " | ".join(a.get("types") or []).lower()
+        typ = next((nom for nom, mots in TYPES_SOURCE if any(m in declares for m in mots)), "")
+    if not typ and a.get("essai_registre"):
+        typ = "essai enregistré"
+    texte = f"{a.get('titre', '')} {a.get('resume', '')}".lower()
+    details = [nom for nom, mots in DETAILS if any(contient(texte, m) for m in mots)]
+    if "double aveugle" in details or "triple aveugle" in details:
+        details = [d for d in details if d != "simple aveugle"]
+    for d in fiche.get("design") or []:          # précisions de la fiche IA (nouvelles fiches)
+        if d and d.lower() not in details and d.lower() != typ:
+            details.append(d.lower())
+    return {"type": typ, "details": details[:4]}
 
 
 def _rfc822(jour: str) -> str:
@@ -72,7 +114,7 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
     for a in articles:
         e = themes_correspondants(a, etiquettes)
         info = revues.resume(infos_revues.get(a.get("revue_oa") or ""))
-        enrichis.append(dict(a, etiquettes=e, revue_info=info,
+        enrichis.append(dict(a, etiquettes=e, revue_info=info, etude=type_etude(a),
                              interet=round(interet(a, cfg, e) + bonus_serieux(a, info, cfg), 2)))
     articles = enrichis
     meta = {

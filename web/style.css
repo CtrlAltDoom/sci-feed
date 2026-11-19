@@ -23,6 +23,14 @@ h1 { font-size: 1.15rem; margin: 0; letter-spacing: -.01em; }
 .icone { border: 1px solid var(--ligne); background: var(--carte); border-radius: 999px;
   padding: 6px 14px; font-size: .85rem; cursor: pointer; }
 .icone[aria-expanded="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.marque { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.logo { flex: none; display: block; }
+@media (prefers-color-scheme: dark) { .logo { filter: invert(1); } }
+.boutons { display: flex; gap: 6px; align-items: center; flex: none; }
+.favoris-btn { color: var(--or); font-weight: 600; padding: 6px 11px; }
+.favoris-btn[aria-pressed="true"] { background: var(--or); border-color: var(--or); color: #fff; }
+.rouage { display: inline-flex; align-items: center; justify-content: center; padding: 6px 9px; color: var(--doux); }
+.rouage:hover { color: var(--accent); }
 #recherche { width: 100%; margin-top: 10px; padding: 10px 14px; border-radius: 999px;
   border: 1px solid var(--ligne); background: var(--carte); }
 /* puces : 2 lignes repliées (+N), ou panneau déplié rangé par famille */
@@ -77,6 +85,7 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 12px 24px; }
 .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .76rem; color: var(--doux); }
 .badge { border-radius: 6px; padding: 1px 7px; font-weight: 600; font-size: .72rem;
   background: var(--accent-clair); color: var(--accent); }
+.badge.type { font-weight: 600; }
 .badge.pp { background: #fff1d6; color: #8a5a00; }
 .badge.ret { background: #fde2e2; color: #9b1c1c; }
 .badge.reg { background: #e8e6fb; color: #4338a3; }
@@ -126,12 +135,11 @@ details p { margin: 6px 0; }
 @media (prefers-color-scheme: dark) { .alerte { background: #3a2f14; color: #f1c56b; border-color: #5a4a20; } }
 
 /* personnalisation */
-.perso-ouvrir { grid-column: 1 / -1; border: 1px dashed var(--ligne); background: none; border-radius: 10px;
-  padding: 8px; font-size: .8rem; color: var(--accent); cursor: pointer; }
 .perso { width: min(560px, 100vw - 20px); max-height: 88vh; border: 1px solid var(--ligne); border-radius: var(--rayon);
   background: var(--carte); color: var(--texte); padding: 14px 16px; }
 .perso::backdrop { background: rgba(0,0,0,.35); }
-.perso-tete { display: flex; justify-content: space-between; align-items: center; margin: 0; }
+.perso-tete { display: flex; justify-content: space-between; align-items: center; margin: -14px -16px 0;
+  padding: 12px 16px 10px; position: sticky; top: -14px; background: var(--carte); border-bottom: 1px solid var(--ligne); z-index: 1; }
 .perso h2 { font-size: 1.05rem; margin: 0; }
 .perso h3 { font-size: .9rem; margin: 16px 0 4px; }
 .perso-aide { font-size: .78rem; color: var(--doux); margin: 4px 0 8px; }
