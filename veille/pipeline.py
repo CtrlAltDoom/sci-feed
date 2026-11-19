@@ -132,6 +132,15 @@ def collecter(cfg: dict) -> int:
         libre.completer(cfg, http, base)
     except Exception as ex:
         log.warning("Textes intégraux libres (Unpaywall) en échec : %s", ex)
+    from . import retractions
+    retractes = []
+    try:
+        retractes = retractions.verifier(cfg, http, base)
+        retractions.alerter(cfg, retractes)
+    except Exception as ex:       # facultatif : ne bloque jamais la veille
+        log.warning("Vérification des rétractations en échec : %s", ex)
+        for a in retractes:       # alerte non partie : on la retentera demain
+            a["retracte"] = False
     sante.noter(nouveaux=nouveaux)
     base = purger(base, (jour - dt.timedelta(days=c.get("conserver_jours", 180))).isoformat())
     etat["derniere_collecte"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")

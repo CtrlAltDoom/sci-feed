@@ -1,7 +1,7 @@
 /* Service worker : l'appli s'ouvre même hors connexion.
    Tout passe par le réseau d'abord (toujours la dernière version : page, style et données
    cohérents entre eux) ; le cache ne sert que si le réseau ne répond pas. */
-const CACHE = "veille-v10";
+const CACHE = "veille-v11";
 const COQUILLE = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "logo.png", "icone-192.png"];
 
 self.addEventListener("install", (e) => {

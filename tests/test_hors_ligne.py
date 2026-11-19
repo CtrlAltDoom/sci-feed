@@ -234,6 +234,7 @@ class TestVeille(unittest.TestCase):
                                               "conclusion_simple": "Option crédible en soins courants, à confirmer."}
                                              for i in ids]}), "faux"
         envois = []
+        self.cfg["notifications"]["hebdo"] = {"actif": False}     # testé à part (dépend du jour)
         with mock.patch.dict("os.environ", {"NTFY_TOPIC": "canal-test", "GITHUB_REPOSITORY": "moi/sci-feed"}), \
              mock.patch.object(notifications.requests, "post", lambda url, json=None, **kw: envois.append(json) or Reponse({})):
             n = notifications.notifier(self.cfg, forcer=True, client=FauxCourt())
@@ -322,6 +323,69 @@ class TestVeille(unittest.TestCase):
             raise core.requests.ConnectionError("hors ligne")
         with mock.patch.dict("os.environ", {"SYNC_GIST_ID": "abc"}), mock.patch.object(notifications.requests, "get", panne):
             self.assertEqual(ids(pipeline.purger(base, limite)), ["a0", "a1", "a2", "a3"])
+
+    def test_favori_retracte(self):
+        from veille import retractions
+        base = core.Base([dict(core.nouvel_article(titre=f"Article {i}", url=f"https://exemple.org/{i}"),
+                               id=f"a{i}", doi=f"10.1/x{i}") for i in range(3)])
+        synchro = {"favoris": {"a0": 1, "a1": 1}}
+        gist = {"files": {"veille-synchro.json": {"content": json.dumps(synchro)}}}
+        demandes = []
+        class FauxHttp:
+            def get(self, url, params=None, **kw):
+                demandes.append(params["filter"])
+                return Reponse({"results": [{"doi": "https://doi.org/10.1/X1", "is_retracted": True},
+                                            {"doi": "https://doi.org/10.1/x0", "is_retracted": False}]})
+        envois = []
+        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": "abc", "NTFY_TOPIC": "canal-test"}), \
+             mock.patch.object(notifications.requests, "get", lambda *a, **k: Reponse(gist)), \
+             mock.patch.object(sante.requests, "post", lambda url, json=None, **kw: envois.append(json) or Reponse({})):
+            nouveaux = retractions.verifier(self.cfg, FauxHttp(), base)
+            self.assertEqual([a["id"] for a in nouveaux], ["a1"])
+            self.assertTrue(retractions.alerter(self.cfg, nouveaux))
+            # le lendemain : déjà marqué, plus vérifié ni signalé
+            self.assertEqual(retractions.verifier(self.cfg, FauxHttp(), base), [])
+        self.assertEqual(demandes, ["doi:10.1/x0|10.1/x1", "doi:10.1/x0"])      # a2 n'est pas un favori
+        self.assertIn("rétracté", envois[0]["title"])
+        self.assertIn("Article 1", envois[0]["message"])
+        # sans synchronisation : rien n'est demandé
+        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": ""}):
+            self.assertEqual(retractions.verifier(self.cfg, FauxHttp(), base), [])
+        self.assertEqual(len(demandes), 2)
+
+    def test_resume_semaine(self):
+        base = core.Base()
+        for i in range(14):
+            a = core.nouvel_article(titre=f"Hypnosis for IBS number {i}", themes=["sii", "hypnose"] if i % 2 else ["sii"],
+                                    url=f"https://exemple.org/{i}")
+            a["id"], a["ajoute_le"] = f"a{i}", (core.aujourd_hui() - dt.timedelta(days=i)).isoformat()
+            a["fiche"] = {"titre_court": f"Titre court {i}", "verdict": "Verdict.", "pertinence": 5 if i == 9 else 3}
+            base.ajouter(a)
+        dimanche = dt.datetime(2026, 11, 22, 7, 0)
+        envois, etat = [], {}
+        with mock.patch.dict("os.environ", {"NTFY_TOPIC": "canal-test", "SYNC_GIST_ID": ""}), \
+             mock.patch.object(sante.requests, "post", lambda url, json=None, **kw: envois.append(json) or Reponse({})):
+            self.assertEqual(notifications.resume_semaine(self.cfg, base, etat, dimanche - dt.timedelta(days=1)), 0)  # samedi
+            self.assertEqual(notifications.resume_semaine(self.cfg, base, etat, dimanche), 1)
+            self.assertEqual(notifications.resume_semaine(self.cfg, base, etat, dimanche), 0)  # une seule fois
+        self.assertEqual(len(envois), 1)
+        m = envois[0]["message"]
+        self.assertEqual(envois[0]["title"], "SciFeed : les 8 articles de la semaine")  # 7 derniers jours (0 à 7)
+        self.assertTrue(m.startswith("1. Titre court"))
+        self.assertNotIn("Titre court 9", m)                     # trop ancien, même très pertinent
+        self.assertEqual(envois[0]["priority"], 3)
+
+    def test_taille_du_depot(self):
+        reponse = {"size": 700 * 1024}
+        with mock.patch.dict("os.environ", {"GITHUB_REPOSITORY": "moi/sci-feed"}), \
+             mock.patch.object(sante.requests, "get", lambda *a, **k: Reponse(reponse)):
+            self.assertIn("depot", sante.depot_trop_gros(self.cfg))
+            reponse["size"] = 30 * 1024
+            self.assertEqual(sante.depot_trop_gros(self.cfg), {})
+        def panne(*a, **k):
+            raise core.requests.ConnectionError("hors ligne")
+        with mock.patch.dict("os.environ", {"GITHUB_REPOSITORY": "moi/sci-feed"}), mock.patch.object(sante.requests, "get", panne):
+            self.assertEqual(sante.depot_trop_gros(self.cfg), {})
 
     def test_texte_libre_unpaywall(self):
         cfg = dict(self.cfg, contact_email="test@example.org")

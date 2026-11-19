@@ -122,6 +122,32 @@ class TestSite(unittest.TestCase):
         self.assertIn("ARFID", p.text_content("#liste"))
         self.assertEqual(p.text_content("#nb-favoris").strip(), "1")
 
+    def test_nouveaux_et_chercher_une_version(self):
+        p = self.page
+        # première visite : rien n'est « nouveau » (tout le serait)
+        self.assertEqual(p.locator(".badge.nouveau").count(), 0)
+        self.assertTrue(p.locator("#voir-nouveaux").is_hidden())
+        # visite précédente il y a deux jours, vue jusqu'aux articles d'hier
+        p.evaluate("""j => { const e = JSON.parse(localStorage.getItem('veille-etat-v1'));
+                             e.visite = { jour: j, avant: '', debut: 0 };
+                             localStorage.setItem('veille-etat-v1', JSON.stringify(e)); }""", J(1))
+        p.reload()
+        p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        self.assertEqual(p.locator(".badge.nouveau").count(), 1)
+        self.assertIn("Gut-directed", p.locator(".carte", has=p.locator(".badge.nouveau")).text_content())
+        self.assertEqual(p.text_content("#voir-nouveaux"), "1 nouveau depuis ta dernière visite")
+        p.click("#voir-nouveaux")
+        p.wait_for_function("document.querySelectorAll('.carte').length === 1")
+        p.click("#voir-nouveaux")                                                # « Tout afficher »
+        p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        # rouverte peu après : les mêmes restent « nouveaux » le temps de les lire
+        p.reload()
+        p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        self.assertEqual(p.locator(".badge.nouveau").count(), 1)
+        # lien Google Scholar, sur le titre de l'article
+        lien = p.locator(".carte", has_text="Alexithymia").locator("a", has_text="Chercher une version")
+        self.assertIn("scholar.google.com/scholar?q=Alexithymia%20and%20interoception", lien.get_attribute("href"))
+
     def test_hors_connexion(self):
         p = self.page
         p.wait_for_function("navigator.serviceWorker && navigator.serviceWorker.controller !== null")

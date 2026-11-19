@@ -76,6 +76,10 @@ Réglages dans la section `notifications` de `config.yaml` : nombre, format (une
 
 **Ne pas être notifié de ce qu'on a déjà vu** (facultatif) : si la synchronisation entre appareils est activée dans l'appli, ajoutez le secret `SYNC_GIST_ID` avec l'identifiant de votre gist (la fin de son adresse `gist.github.com/…/IDENTIFIANT`). Les articles lus, favoris ou masqués dans l'appli ne sont alors plus notifiés.
 
+**Résumé de la semaine** : le dimanche matin, une notification de plus (sans bandeau) liste les 10 articles les plus marquants des 7 derniers jours. Réglages dans `notifications.hebdo`.
+
+**Favoris rétractés** : chaque jour, vos favoris sont revérifiés (OpenAlex, qui reprend la base Retraction Watch). Si l'un d'eux est rétracté, il est marqué « RÉTRACTÉ » dans l'appli et une notification vous prévient. Nécessite le secret `SYNC_GIST_ID`.
+
 **Alertes de santé** : sur le même canal, une notification « ⚠️ SciFeed » prévient si une source est en panne plusieurs jours de suite, si l'IA ne rédige plus de fiches, si plus aucun article n'arrive, si la tâche quotidienne n'a pas tourné ou a échoué. Une notification « ✅ » suit quand tout est réparé. Réglages dans la section `sante`.
 
 ## Textes intégraux gratuits

@@ -81,12 +81,15 @@ def deja_vus_dans_l_appli() -> set[str]:
 
 
 # ---------------------------------------------------------------- sélection
-def score(a: dict, cfg: dict, info_revue: dict | None, etiquettes: list[str]) -> float:
-    """Même calcul que le tri « Pour moi » du site (web/app.js, scorePourMoi)."""
+def score(a: dict, cfg: dict, info_revue: dict | None, etiquettes: list[str], recence: bool = True) -> float:
+    """Même calcul que le tri « Pour moi » du site (web/app.js, scorePourMoi).
+    recence=False : intérêt seul, sans l'effet de l'ancienneté (résumé de la semaine)."""
     s = interet(a, cfg, etiquettes) + bonus_serieux(a, info_revue, cfg)
     f = a.get("fiche") or {}
     if f.get("pertinence"):
         s += f["pertinence"] - 3
+    if not recence:
+        return s
     ajout = dt.date.fromisoformat(a.get("ajoute_le") or aujourd_hui().isoformat())
     try:
         ref = dt.date.fromisoformat((a.get("date") or "")[:10])
@@ -118,6 +121,55 @@ def selectionner(cfg: dict, base, deja: set[str]) -> list[tuple[dict, dict | Non
         candidats.append((score(a, cfg, info, e), a, info, e))
     candidats.sort(key=lambda x: x[0], reverse=True)
     return [(a, info, e) for _, a, info, e in candidats[:n.get("nombre", 5)]]
+
+
+# ---------------------------------------------------------------- résumé de la semaine
+def resume_semaine(cfg: dict, base, etat: dict, maintenant: dt.datetime, essai: bool = False) -> int:
+    """Le jour choisi (dimanche par défaut) : les N articles les plus marquants des 7 derniers jours,
+    en une seule notification. Sans IA (titres courts et verdicts déjà rédigés) : rien de plus qui puisse casser."""
+    n = cfg.get("notifications", {})
+    h = n.get("hebdo") or {}
+    if not h.get("actif", True) or maintenant.weekday() != int(h.get("jour", 6)):
+        return 0
+    jour = maintenant.date().isoformat()
+    if etat.get("dernier_hebdo") == jour and not essai:
+        return 0
+    masques: set[str] = set()
+    if gist_configure():
+        masques = {k for k, v in ((etat_appli() or {}).get("masques") or {}).items() if v}
+    depuis = (aujourd_hui() - dt.timedelta(days=7)).isoformat()
+    infos = revues.charger()
+    exclure = set(n.get("exclure") or [])
+    candidats = []
+    for a in base.articles:
+        if a.get("ajoute_le", "") < depuis or a.get("retracte") or a["id"] in masques:
+            continue
+        e = themes_correspondants(a, cfg.get("etiquettes", []))
+        if (set(a.get("themes", [])) | set(e)) & exclure:
+            continue
+        info = revues.resume(infos.get(a.get("revue_oa") or ""))
+        candidats.append((score(a, cfg, info, e, recence=False), a))
+    if not candidats:
+        return 0
+    candidats.sort(key=lambda x: x[0], reverse=True)
+    lignes = []
+    for i, (_, a) in enumerate(candidats[:int(h.get("nombre", 10))], 1):
+        f = a.get("fiche") or {}
+        ligne = f"{i}. {f.get('titre_court') or _couper(a.get('titre', ''), 80)}"
+        phrase = f.get("conclusion_simple") or f.get("verdict")
+        lignes.append(ligne + (f"\n   {_couper(phrase, 110)}" if phrase else ""))
+    titre = f"SciFeed : les {len(lignes)} articles de la semaine"
+    corps = "\n".join(lignes)
+    if essai:
+        print(f"\n[{titre}]\n{corps}")
+        return 1
+    from . import sante
+    if sante.envoyer_ntfy(cfg, titre, corps, int(h.get("priorite", 3)), ["calendar"], adresse_site(cfg)):
+        etat["dernier_hebdo"] = jour
+        _sauver_etat(etat)
+        log.info("Résumé de la semaine envoyé (%d articles).", len(lignes))
+        return 1
+    return 0
 
 
 # ---------------------------------------------------------------- textes courts (IA)
@@ -237,6 +289,10 @@ def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None) 
             return 0
 
     base = pipeline.charger()
+    try:
+        resume_semaine(cfg, base, etat, maintenant, essai)
+    except Exception as ex:           # le résumé de la semaine ne bloque jamais les notifications du jour
+        log.warning("Résumé de la semaine en échec : %s", ex)
     exclus = set(etat.get("envoyes", {}))
     if n.get("ignorer_deja_vus", True):
         exclus |= deja_vus_dans_l_appli()

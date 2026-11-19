@@ -161,6 +161,21 @@
   const NOM_FAMILLE = { sujet: "Sujets psy", mecanisme: "Corps & mécanismes", approche: "Approches", animal: "Signalement", "": "Autres" };
   let affiches = PAR_PAGE;
 
+  // ---------- nouveaux depuis ma dernière visite (propre à cet appareil) ----------
+  // On retient le jour d'ajout le plus récent vu à chaque visite. Est « nouveau » ce qui a été ajouté
+  // après celui de la visite précédente. Une visite qui suit de moins de 3 h le début de la précédente
+  // en est la suite : les « nouveaux » restent marqués le temps de les lire.
+  let depuis = "";
+  function noterVisite() {
+    const max = DATA.articles.reduce((m, a) => ((a.ajoute_le || "") > m ? a.ajoute_le : m), "");
+    const v = etat.visite || {}, maintenant = Date.now();
+    const suite = v.debut && maintenant - v.debut < 3 * 36e5;
+    depuis = suite ? v.avant || "" : v.jour || "";
+    etat.visite = { jour: max > (v.jour || "") ? max : v.jour || max, avant: depuis, debut: suite ? v.debut : maintenant };
+    enregistrer(true);
+  }
+  const estNouveau = (a) => !!depuis && (a.ajoute_le || "") > depuis;
+
   // ---------- utilitaires ----------
   const fmtJour = (iso) => {
     if (!iso) return "";
@@ -230,6 +245,7 @@
       const masque = !!etat.masques[a.id];
       if (etat.vue === "masques") { if (!masque) return false; } else if (masque) return false;
       if (etat.vue === "nonlus" && etat.lus[a.id]) return false;
+      if (etat.vue === "nouveaux" && !estNouveau(a)) return false;
       if (etat.vue === "favoris" && !etat.favoris[a.id]) return false;
       // OU à l'intérieur des thèmes, OU à l'intérieur des étiquettes, ET entre les deux
       if (etat.themes.length && !(a.themes || []).some((t) => etat.themes.includes(t))) return false;
@@ -283,6 +299,7 @@
     const f = a.fiche;
     // signalements d'abord, puis date · revue · type d'étude (+ précisions de méthode)
     const badges = [];
+    if (estNouveau(a)) badges.push(`<span class="badge nouveau">Nouveau</span>`);
     if (a.retracte) badges.push(`<span class="badge ret">RÉTRACTÉ</span>`);
     if (a.preprint) badges.push(`<span class="badge pp">preprint · non relu</span>`);
     if (a.essai_registre) badges.push(`<span class="badge reg">essai enregistré</span>`);
@@ -325,6 +342,7 @@
         <button data-act="lu">${lu ? "↺ Non lu" : "✓ Lu"}</button>
         <button data-act="masquer">${masque ? "Réafficher" : "Pas intéressé"}</button>
         ${a.url_libre ? `<a href="${esc(a.url_libre)}" target="_blank" rel="noopener">Texte libre ↗</a>` : ""}
+        ${!a.url_libre && !a.essai_registre ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(a.titre)}" target="_blank" rel="noopener" title="Google Scholar trouve souvent une version déposée par les auteurs">Chercher une version ↗</a>` : ""}
         ${lienInstitution(a)}
         ${a.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${esc(a.pmid)}/" target="_blank" rel="noopener">PubMed ↗</a>` : ""}
       </div></article>`;
@@ -356,8 +374,13 @@
     const nonLus = liste.filter((a) => !etat.lus[a.id]).length;
     $("compteur").textContent = `${liste.length} article${liste.length > 1 ? "s" : ""} · ${nonLus} non lu${nonLus > 1 ? "s" : ""}` +
       (rechercheAbstracts ? " · recherche dans les abstracts…" : "");
+    const nbNouveaux = DATA.articles.filter((a) => estNouveau(a) && !etat.masques[a.id]).length;
+    const bn = $("voir-nouveaux");
+    bn.hidden = !nbNouveaux && etat.vue !== "nouveaux";
+    bn.textContent = etat.vue === "nouveaux" ? "Tout afficher" :
+      `${nbNouveaux} nouveau${nbNouveaux > 1 ? "x" : ""} depuis ta dernière visite`;
     if (!liste.length) {
-      $("liste").innerHTML = `<p class="vide">${etat.vue === "favoris"
+      $("liste").innerHTML = `<p class="vide">${etat.vue === "nouveaux" ? "Rien de nouveau depuis ta dernière visite." : etat.vue === "favoris"
         ? (DATA.articles.some((a) => etat.favoris[a.id]) ? "Aucun favori pour ces thèmes ou étiquettes." : "Pas encore de favori : touchez « ☆ Favori » sous un article.")
         : "Aucun article pour ces filtres."}</p>`;
       $("plus").hidden = true;
@@ -622,6 +645,7 @@
     famThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, t.famille || ""]));
     famEtiq = Object.fromEntries(DATA.meta.etiquettes.map((t) => [t.id, t.famille || ""]));
     alerteVeille();
+    noterVisite();
     listeFlux();
     brancherPerso();
     etat.themes = (etat.themes || []).filter((t) => nomsThemes[t]);
@@ -679,6 +703,10 @@
     $("plus").addEventListener("click", () => { affiches += PAR_PAGE; afficher(); });
     $("tout-lu").addEventListener("click", () => { filtrer().forEach((a) => { if (!etat.lus[a.id]) poser("lus", a.id, 1); }); enregistrer(); rafraichir(); });
     $("export").addEventListener("click", exporterRIS);
+    $("voir-nouveaux").addEventListener("click", () => {
+      etat.vue = etat.vue === "nouveaux" ? "tous" : "nouveaux";
+      enregistrer(true); rafraichir(); window.scrollTo(0, 0);
+    });
     rafraichir();
     sync.demarrer();
     setTimeout(chargerArchive, 300);      // après le premier affichage

@@ -14,7 +14,7 @@ Dans l'ordre, du plus utile au moins urgent :
 1. ✅ **Ne jamais perdre un favori** : la purge des articles de plus de 180 jours garde les favoris (lus dans le gist). Si le gist est illisible ce jour-là, la purge attend le lendemain.
 2. ✅ **Versions des bibliothèques Python bornées** : jamais de nouvelle version majeure installée d'elle-même.
 3. ✅ **Tests du site dans un vrai navigateur** à chaque changement de code, avant publication (pas pour la veille du matin, où le code ne change pas).
-4. **Repère « nouveaux depuis ma dernière visite »**, pour ne lire que ce qui a changé.
+4. ✅ **Repère « nouveaux depuis ma dernière visite »** (badge, raccourci, vue dédiée).
 5. **Rattrapage des fiches IA** du stock initial (voir la section 2) : décision à prendre entre patienter et 10 $ une fois.
 6. **Apprendre des « Pas intéressé »** (voir la section 3).
 
@@ -31,7 +31,7 @@ Dans l'ordre, du plus utile au moins urgent :
 - ✅ Tâches planifiées protégées de la mise en veille de GitHub (dépôt « inactif » 60 jours) : la collecte enregistre la base chaque jour, et une alerte part si elle ne tourne plus depuis 36 h
 - ✅ Un article mis en favori n'est jamais effacé de la base (lecture du gist ; purge reportée si le gist est illisible)
 - ✅ Bornes de versions dans `requirements.txt` (une mise à jour majeure d'une bibliothèque ne peut plus casser la collecte d'elle-même)
-- 💡 Surveiller la taille du dépôt : `data/articles.json` (environ 4 Mo) est réenregistré chaque jour. Git compresse bien les petites différences ; si l'historique dépasse quelques centaines de Mo, découper la base par mois
+- ✅ Taille du dépôt surveillée : alerte de santé au-delà de 500 Mo (`sante.depot_max_mo`). Ce jour-là, découper `data/articles.json` par mois
 
 ## 2. Fiches IA
 - ✅ Ordre de passage : articles du jour d'abord, puis les plus pertinents (thèmes prioritaires, étiquettes), études animales en dernier
@@ -59,15 +59,15 @@ Dans l'ordre, du plus utile au moins urgent :
 ## 5. Lecture et usage
 - ✅ Notifications du matin via ntfy : les 5 articles les plus pertinents, titre court et conclusion simple rédigés par l'IA, en priorité haute (bandeau)
 - ✅ Pas de notification pour ce qui est déjà lu, favori ou masqué dans l'appli (secret `SYNC_GIST_ID`)
-- 💡 Résumé de la semaine le dimanche (les 10 articles marquants, en une notification)
+- ✅ Résumé de la semaine le dimanche (les 10 articles marquants des 7 derniers jours, en une notification, sans IA ni bandeau)
 - 💡 Notifications de l'appli elle-même (Web Push), sans appli tierce
 - ✅ Appli installable (Android, iPhone, PC) avec icône, consultable hors connexion
-- 🔜 Repère « nouveaux depuis ma dernière visite »
+- ✅ Repère « nouveaux depuis ma dernière visite » : badge « Nouveau », raccourci « N nouveaux depuis ta dernière visite », vue dédiée dans les filtres. Propre à chaque appareil ; une visite qui suit de moins de 3 h garde les mêmes « nouveaux »
 - 💡 Notes personnelles sur un article, reprises dans l'export Zotero
 - ✅ Lien vers le texte intégral gratuit plus souvent trouvé (Unpaywall, revérifié tous les 30 jours)
-- 🔜 Lien « Chercher une version » vers Google Scholar (recherche par titre) : aucun appel automatique, rien à entretenir, et il trouve souvent un PDF déposé par les auteurs
+- ✅ Lien « Chercher une version » vers Google Scholar (recherche par titre), affiché quand aucun texte libre n'est connu : aucun appel automatique, rien à entretenir
 - 💡 Lier un preprint à sa version publiée
-- 💡 Alerte si un favori est rétracté
+- ✅ Alerte si un favori est rétracté (revérifié chaque jour via OpenAlex / Retraction Watch, notification ntfy et badge « RÉTRACTÉ »)
 
 ## 6. Partage de l'outil
 - ✅ E-mail de contact hors du dépôt public (secret `CONTACT_EMAIL`)
@@ -139,7 +139,7 @@ Dans l'ordre, du plus utile au moins urgent :
 
 | Piste | Coût | Risque de casse | Verdict |
 |---|---|---|---|
-| Lien « Chercher une version » vers Google Scholar | 0 € | Nul (simple lien, rien d'automatique) | 🔜 À faire |
+| Lien « Chercher une version » vers Google Scholar | 0 € | Nul (simple lien, rien d'automatique) | ✅ Fait |
 | Semantic Scholar (`openAccessPdf`) | 0 € (sans clé, quota limité) | Faible, avec repli silencieux | 💡 Gain probablement faible : il s'appuie en grande partie sur les mêmes sources qu'Unpaywall. À mesurer sur 50 articles sans lien avant de l'ajouter |
 | CORE (archives ouvertes du monde entier) | 0 € (clé gratuite) | Faible, mais une clé de plus à gérer | 💡 Même remarque : à mesurer d'abord |
 | Version preprint d'un article publié (PsyArXiv, medRxiv) | 0 € | Faible | 💡 Déjà prévu (« lier un preprint à sa version publiée ») |

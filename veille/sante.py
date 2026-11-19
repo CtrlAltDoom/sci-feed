@@ -115,6 +115,30 @@ def collecte_en_retard(cfg: dict) -> dict[str, str]:
     return {}
 
 
+def depot_trop_gros(cfg: dict) -> dict[str, str]:
+    """Taille du dépôt GitHub (la base est réenregistrée chaque jour). Au-delà du seuil, on prévient :
+    il sera temps de découper la base par mois. Aucune réponse de GitHub : on ne dit rien."""
+    seuil = cfg.get("sante", {}).get("depot_max_mo", 500)
+    depot = os.environ.get("GITHUB_REPOSITORY", "")
+    if not seuil or "/" not in depot:
+        return {}
+    en_tetes = {"Accept": "application/vnd.github+json"}
+    if os.environ.get("GITHUB_TOKEN"):
+        en_tetes["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+    try:
+        r = requests.get(f"https://api.github.com/repos/{depot}", headers=en_tetes, timeout=30)
+        r.raise_for_status()
+        mo = (r.json().get("size") or 0) / 1024
+    except Exception as ex:
+        log.info("Santé : taille du dépôt inconnue (%s)", ex)
+        return {}
+    log.info("Santé : dépôt GitHub de %.0f Mo (seuil %s Mo)", mo, seuil)
+    if mo > seuil:
+        return {"depot": f"Le dépôt GitHub pèse {mo:.0f} Mo (seuil {seuil} Mo) : "
+                         "penser à découper la base par mois (voir ROADMAP.md)"}
+    return {}
+
+
 # ---------------------------------------------------------------- alerte
 def envoyer_ntfy(cfg: dict, titre: str, message: str, priorite: int = 4, tags=None, click: str = ""):
     canal = os.environ.get("NTFY_TOPIC", "")
@@ -175,4 +199,5 @@ def verifier(cfg: dict, avec_retard: bool = False) -> str:
     actuels = problemes(etat.get("passages", []), cfg)
     if avec_retard:
         actuels.update(collecte_en_retard(cfg))
+        actuels.update(depot_trop_gros(cfg))
     return alerter(cfg, actuels, etat)

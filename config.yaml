@@ -279,6 +279,11 @@ notifications:
   ignorer_deja_vus: true   # ne pas notifier ce qui est déjà lu, favori ou masqué dans l'appli
                            # (nécessite le secret SYNC_GIST_ID : identifiant du gist de synchronisation)
   serveur: "https://ntfy.sh"
+  hebdo:                   # résumé de la semaine : une seule notification, les articles marquants des 7 derniers jours
+    actif: true
+    jour: 6                # 0 = lundi … 6 = dimanche
+    nombre: 10
+    priorite: 3            # normale : pas de bandeau
 
 # ------------------------------------------------------------
 #  ALERTES DE SANTÉ (même canal ntfy que les notifications)
@@ -291,6 +296,15 @@ sante:
   collecte_vide_jours: 3   # aucun nouvel article N passages de suite
   retard_heures: 36        # la collecte quotidienne n'a pas tourné depuis N heures
   rappel_jours: 7          # rappel si le problème persiste
+  depot_max_mo: 500        # prévenir si le dépôt GitHub dépasse cette taille (0 = ne pas surveiller)
+
+# ------------------------------------------------------------
+#  FAVORIS RÉTRACTÉS : chaque jour, vos favoris sont revérifiés (OpenAlex / Retraction Watch).
+#  Un favori nouvellement rétracté est marqué sur le site et signalé sur ntfy.
+#  Nécessite la synchronisation de l'appli (secret SYNC_GIST_ID).
+# ------------------------------------------------------------
+retractions:
+  actif: true
 
 # ------------------------------------------------------------
 #  TEXTES INTÉGRAUX GRATUITS ET LÉGAUX (Unpaywall)

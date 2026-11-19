@@ -35,6 +35,7 @@
     <label>Afficher
       <select id="f-vue">
         <option value="tous">Tout</option>
+        <option value="nouveaux">Nouveaux depuis ma dernière visite</option>
         <option value="nonlus">Non lus</option>
         <option value="favoris">Favoris</option>
         <option value="masques">Masqués</option>
@@ -128,6 +129,7 @@
 <main>
   <div class="resume-liste">
     <span id="compteur"></span>
+    <button class="lien nouveaux" id="voir-nouveaux" hidden></button>
     <button class="lien" id="tout-lu">Tout marquer comme lu</button>
   </div>
   <div id="liste" aria-live="polite"></div>
