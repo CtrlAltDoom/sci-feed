@@ -140,8 +140,8 @@ Dans l'ordre, du plus utile au moins urgent :
 | Piste | Coût | Risque de casse | Verdict |
 |---|---|---|---|
 | Lien « Chercher une version » vers Google Scholar | 0 € | Nul (simple lien, rien d'automatique) | ✅ Fait |
-| Semantic Scholar (`openAccessPdf`) | 0 € (sans clé, quota limité) | Faible, avec repli silencieux | 💡 Gain probablement faible : il s'appuie en grande partie sur les mêmes sources qu'Unpaywall. À mesurer sur 50 articles sans lien avant de l'ajouter |
-| CORE (archives ouvertes du monde entier) | 0 € (clé gratuite) | Faible, mais une clé de plus à gérer | 💡 Même remarque : à mesurer d'abord |
+| Semantic Scholar (`openAccessPdf`) | 0 € (sans clé, quota limité) | Faible, avec repli silencieux | ❌ Mesuré le 19/11/2026 : **0 PDF sur 50** articles sans version libre. Rien à gagner |
+| CORE (archives ouvertes du monde entier) | 0 € (clé gratuite) | Une clé de plus à gérer | ❌ Mesuré le 19/11/2026 : **0 PDF sur 50**, et 12 refus sans clé. Rien à gagner |
 | Version preprint d'un article publié (PsyArXiv, medRxiv) | 0 € | Faible | 💡 Déjà prévu (« lier un preprint à sa version publiée ») |
 | **Sci-Hub** | 0 € | **Élevé** | ❌ **Écarté** |
 
