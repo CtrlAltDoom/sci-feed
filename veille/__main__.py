@@ -5,6 +5,7 @@
     python -m veille resumer     # seulement les fiches IA
     python -m veille site        # seulement le site (dossier site/)
     python -m veille notifier    # notifications du matin (ntfy) ; --essai : affiche sans envoyer
+    python -m veille tester-ia   # vérifie que chaque fournisseur IA répond (OpenRouter, Gemini, Mistral)
 """
 import argparse
 import logging
@@ -14,7 +15,7 @@ from .core import charger_config
 
 def main():
     p = argparse.ArgumentParser(prog="veille", description="Veille scientifique automatisée")
-    p.add_argument("action", choices=["tout", "collecter", "resumer", "site", "notifier"], nargs="?", default="tout")
+    p.add_argument("action", choices=["tout", "collecter", "resumer", "site", "notifier", "tester-ia"], nargs="?", default="tout")
     p.add_argument("--essai", action="store_true", help="notifier : affiche les notifications sans les envoyer")
     p.add_argument("--forcer", action="store_true", help="notifier : envoie même hors de la plage horaire")
     p.add_argument("--config", default=None, help="chemin vers config.yaml")
@@ -37,6 +38,8 @@ def main():
         sante.verifier(cfg)
     if args.action in ("tout", "site"):
         site.construire(cfg, inline=args.inline)
+    if args.action == "tester-ia":
+        resume_ia.tester(cfg)
     if args.action == "notifier":
         from . import notifications
         notifications.notifier(cfg, essai=args.essai, forcer=args.forcer)

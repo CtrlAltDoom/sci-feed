@@ -219,6 +219,27 @@ class ChaineLLM:
         raise RuntimeError(f"aucun modèle disponible ({erreur or 'tous les fournisseurs ont servi leur part'})")
 
 
+def tester(cfg: dict) -> dict:
+    """Petit appel à chaque fournisseur, séparément : dit lesquels répondent (aucune clé affichée)."""
+    ia = cfg.get("ia", {})
+    resultats = {}
+    for f in ia.get("fournisseurs") or [{}]:
+        chaine = ChaineLLM({**ia, "fournisseurs": [{**f, "max_requetes": 1}], "secours_auto": False})
+        nom = f.get("nom") or "défaut"
+        if not chaine.clients:
+            resultats[nom] = f"ignoré (secret {f.get('cle_env', 'LLM_API_KEY')} absent)"
+            continue
+        debut = time.time()
+        try:
+            contenu, modele = chaine.completer("Réponds uniquement par le mot OK.", "Test de connexion.")
+            resultats[nom] = f"OK : {modele} répond en {time.time() - debut:.0f} s ({contenu.strip()[:20]!r})"
+        except Exception as ex:
+            resultats[nom] = f"ÉCHEC : {ex}"
+    for nom, r in resultats.items():
+        log.info("Test IA, %s : %s", nom, r)
+    return resultats
+
+
 def priorite(a: dict, cfg: dict, infos_revues: dict | None = None) -> tuple:
     """Ordre de passage des fiches IA (le quota gratuit ne suffit pas pour tout résumer) :
     1. les articles des derniers jours d'abord (la veille du jour reste à jour) ;

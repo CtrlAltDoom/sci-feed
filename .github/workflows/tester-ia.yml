@@ -1,0 +1,33 @@
+name: Tester les fournisseurs IA
+
+# Lancement à la main (onglet Actions > Tester les fournisseurs IA > Run workflow) :
+# un tout petit appel à OpenRouter, Gemini et Mistral, séparément. Le résultat s'affiche
+# dans le journal et dans le résumé du run. Aucune clé n'est affichée, rien n'est modifié.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tester:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Test des fournisseurs
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+        run: |
+          python -m veille tester-ia 2>&1 | tee test-ia.log
+          { echo "### Test des fournisseurs IA"; grep "Test IA" test-ia.log | sed 's/^.*Test IA, /- /'; } >> "$GITHUB_STEP_SUMMARY"
