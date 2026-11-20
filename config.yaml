@@ -371,10 +371,29 @@ ia:
     - "openrouter/free"
   secours_auto: true             # si les modèles ci-dessus échouent : essayer d'autres modèles gratuits du moment
   secours_max: 3
+  # Chaîne de fournisseurs gratuits, essayés dans l'ordre : quand l'un est épuisé (quota, panne,
+  # clé refusée) ou a utilisé sa part ci-dessous, le suivant prend le relais.
+  # Un fournisseur dont le secret est absent est simplement ignoré.
+  fournisseurs:
+    - nom: "OpenRouter"
+      base_url: "https://openrouter.ai/api/v1"
+      cle_env: "LLM_API_KEY"
+      modeles: ["openrouter/free"]
+      max_requetes: 40           # gratuit : 50 requêtes/jour
+      duree_max_minutes: 12      # modèles lents (20 s à 4 min par lot) : on laisse vite la place
+    - nom: "Google AI Studio"
+      base_url: "https://generativelanguage.googleapis.com/v1beta/openai"
+      cle_env: "GEMINI_API_KEY"
+      modeles: ["gemini-4-hydrogen", "gemini-3.8-flash", "gemini-flash-lite-latest"]  # Hydrogen = dernier Flash, gratuit
+      reasoning_effort: "low"
+    - nom: "Mistral"
+      base_url: "https://api.mistral.ai/v1"
+      cle_env: "MISTRAL_API_KEY"
+      modeles: ["mistral-small-latest", "mistral-medium-latest"]
   articles_par_requete: 5        # plusieurs abstracts par appel => économise le quota gratuit
-  max_requetes_par_execution: 40 # OpenRouter gratuit : 50 requêtes/jour (1000 si 10 $ de crédits achetés un jour)
-  pause_secondes: 4              # limite gratuite : 20 requêtes/minute
-  duree_max_minutes: 25          # les modèles gratuits mettent 20 s à 4 min par lot : on s'arrête à temps
+  max_requetes_par_execution: 150 # tous fournisseurs confondus
+  pause_secondes: 4              # limites gratuites : 20 requêtes/minute (OpenRouter), 1/seconde (Mistral)
+  duree_max_minutes: 30          # on s'arrête à temps (le workflow est coupé à 45 min)
   effort_raisonnement: "low"     # réflexion courte = réponses plus rapides (ignoré par les modèles qui ne réfléchissent pas)
   # Ordre de passage : articles des N derniers jours d'abord, puis par intérêt (section `interet`).
   priorite_jours_recents: 3

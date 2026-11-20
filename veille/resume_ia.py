@@ -95,6 +95,7 @@ class ClientLLM:
         self.temperature = ia.get("temperature", 0.1)
         # les modèles gratuits sont souvent des modèles "qui réfléchissent" : réflexion courte = plus rapide
         self.effort = ia.get("effort_raisonnement", "low")
+        self.reasoning_effort = ia.get("reasoning_effort")
         self.morts: set[str] = set()  # modèles épuisés pour cette exécution
         # si tous les modèles configurés échouent (renommés, retirés…), on essaie quelques modèles
         # gratuits du moment, lus dans la liste publique d'OpenRouter
@@ -145,6 +146,8 @@ class ClientLLM:
                                           {"role": "user", "content": utilisateur}]}
                     if self.effort and "openrouter.ai" in self.url:
                         corps["reasoning"] = {"effort": self.effort}
+                    elif self.reasoning_effort:          # Gemini (API compatible OpenAI) : "low", "none"…
+                        corps["reasoning_effort"] = self.reasoning_effort
                     r = requests.post(self.url, headers=en_tetes, timeout=300, json=corps)
                     if r.status_code == 429:
                         if essai == 0:
@@ -169,6 +172,53 @@ class ClientLLM:
         raise RuntimeError(f"aucun modèle disponible ({erreur})")
 
 
+def _local(url: str) -> bool:
+    return "localhost" in url or "127.0.0.1" in url
+
+
+class ChaineLLM:
+    """Plusieurs fournisseurs essayés dans l'ordre (ia.fournisseurs). Quand l'un est épuisé (quota,
+    clé refusée, panne) ou a utilisé sa part (max_requetes, duree_max_minutes), le suivant prend le
+    relais. Un fournisseur sans clé est simplement ignoré : la chaîne ne casse jamais la veille."""
+
+    def __init__(self, ia: dict):
+        commun = {k: v for k, v in ia.items() if k != "fournisseurs"}
+        self.clients: list[ClientLLM] = []
+        for f in ia.get("fournisseurs") or [{}]:
+            c = ClientLLM({**commun, **(f or {})})
+            c.nom = (f or {}).get("nom") or c.url.split("/")[2]
+            c.max_requetes = (f or {}).get("max_requetes")
+            c.duree_max = ((f or {}).get("duree_max_minutes") or 0) * 60
+            c.nb_requetes, c.duree, c.epuise = 0, 0.0, False
+            if c.cle or _local(c.url):
+                self.clients.append(c)
+            else:
+                log.info("IA : %s ignoré (secret %s absent)", c.nom, (f or {}).get("cle_env", "LLM_API_KEY"))
+        self.cle = next((c.cle for c in self.clients if c.cle), "")
+        self.url = self.clients[0].url if self.clients else ""
+
+    def _disponible(self, c: ClientLLM) -> bool:
+        return not (c.epuise or (c.max_requetes and c.nb_requetes >= c.max_requetes)
+                    or (c.duree_max and c.duree >= c.duree_max))
+
+    def completer(self, systeme: str, utilisateur: str) -> tuple[str, str]:
+        erreur = None
+        for c in self.clients:
+            if not self._disponible(c):
+                continue
+            c.nb_requetes += 1
+            debut = time.time()
+            try:
+                return c.completer(systeme, utilisateur)
+            except Exception as ex:   # RuntimeError attendu, mais rien ne doit casser la chaîne
+                c.epuise = True
+                erreur = f"{c.nom} : {ex}"
+                log.warning("IA : %s indisponible (%s), fournisseur suivant", c.nom, ex)
+            finally:
+                c.duree += time.time() - debut
+        raise RuntimeError(f"aucun modèle disponible ({erreur or 'tous les fournisseurs ont servi leur part'})")
+
+
 def priorite(a: dict, cfg: dict, infos_revues: dict | None = None) -> tuple:
     """Ordre de passage des fiches IA (le quota gratuit ne suffit pas pour tout résumer) :
     1. les articles des derniers jours d'abord (la veille du jour reste à jour) ;
@@ -181,14 +231,14 @@ def priorite(a: dict, cfg: dict, infos_revues: dict | None = None) -> tuple:
     return (recent, interet(a, cfg) + bonus_serieux(a, info, cfg), a.get("ajoute_le", ""), a.get("date", ""))
 
 
-def resumer(cfg: dict, client: ClientLLM | None = None) -> int:
+def resumer(cfg: dict, client=None) -> int:
     ia = cfg.get("ia", {})
     if not ia.get("actif", True):
         return 0
-    client = client or ClientLLM(ia)
-    if not client.cle and "localhost" not in client.url and "127.0.0.1" not in client.url:
-        log.warning("Pas de clé LLM_API_KEY : fiches IA ignorées (les abstracts restent affichés).")
-        sante.noter(fiches=0, attente=1, ia_erreur="pas de clé : secret LLM_API_KEY absent ou vide")
+    client = client or ChaineLLM(ia)
+    if not client.cle and not _local(client.url):
+        log.warning("Aucune clé IA : fiches IA ignorées (les abstracts restent affichés).")
+        sante.noter(fiches=0, attente=1, ia_erreur="pas de clé : secrets LLM_API_KEY / GEMINI_API_KEY / MISTRAL_API_KEY absents ou vides")
         return 0
     base = charger()
     attente = [a for a in base.articles if not a.get("fiche") and len(a.get("resume", "")) >= 200

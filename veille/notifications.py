@@ -16,7 +16,7 @@ import requests
 
 from . import pipeline, revues
 from .core import aujourd_hui, bonus_serieux, interet, log, themes_correspondants
-from .resume_ia import ClientLLM, _extraire_json
+from .resume_ia import ChaineLLM, _extraire_json
 
 
 def _fichier():
@@ -194,7 +194,7 @@ def textes_courts(cfg: dict, articles: list[dict], client=None) -> bool:
     if not a_faire:
         return False
     ia = cfg.get("ia", {})
-    client = client or ClientLLM(ia)
+    client = client or ChaineLLM(ia)
     if not client.cle and "localhost" not in client.url:
         return False
     par_id = {f"a{i}": a for i, a in enumerate(a_faire)}

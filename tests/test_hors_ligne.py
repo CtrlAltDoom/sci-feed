@@ -1,6 +1,7 @@
 """Tests sans réseau : python -m unittest discover tests"""
 import datetime as dt
 import json
+import os
 import shutil
 import tempfile
 import unittest
@@ -464,6 +465,42 @@ class TestVeille(unittest.TestCase):
              mock.patch.object(resume_ia.requests, "get", lambda url, **kw: R(200, liste)):
             self.assertEqual(client.completer("s", "u"), ("ok", "nouveau/a:free"))
         self.assertIn("vieux/modele:free", client.morts)
+
+    def test_chaine_de_fournisseurs(self):
+        ia = {"secours_auto": False, "fournisseurs": [
+            {"nom": "A", "base_url": "https://a.test/v1", "cle_env": "CLE_A", "modeles": ["a1"]},
+            {"nom": "B", "base_url": "https://b.test/v1", "cle_env": "CLE_B", "modeles": ["b1"], "max_requetes": 2},
+            {"nom": "C", "base_url": "https://c.test/v1", "cle_env": "CLE_C", "modeles": ["c1"]},
+            {"nom": "Sans clé", "base_url": "https://d.test/v1", "cle_env": "CLE_ABSENTE", "modeles": ["d1"]}]}
+        class R:
+            def __init__(self, code, data=None):
+                self.status_code, self._d = code, data or {}
+            def json(self):
+                return self._d
+            def raise_for_status(self):
+                if self.status_code >= 400:
+                    raise core.requests.HTTPError(f"HTTP {self.status_code}", response=self)
+        appels = []
+        def post(url, json=None, headers=None, **kw):
+            appels.append(json["model"])
+            if json["model"] == "a1":
+                return R(429)                         # quota atteint : B doit prendre le relais
+            if json["model"] == "c1":
+                raise core.requests.ConnectionError("panne")
+            return R(200, {"choices": [{"message": {"content": "ok"}}], "model": json["model"]})
+        env = {"CLE_A": "a", "CLE_B": "b", "CLE_C": "c"}
+        with mock.patch.dict(os.environ, env), mock.patch.object(resume_ia.requests, "post", post), \
+             mock.patch.object(resume_ia.time, "sleep", lambda s: None):
+            chaine = resume_ia.ChaineLLM(ia)
+            self.assertEqual([c.nom for c in chaine.clients], ["A", "B", "C"])   # sans clé : ignoré
+            self.assertEqual(chaine.completer("s", "u"), ("ok", "b1"))
+            self.assertEqual(chaine.completer("s", "u"), ("ok", "b1"))
+            self.assertEqual(appels.count("a1"), 2)    # A épuisé : plus réessayé
+            with self.assertRaisesRegex(RuntimeError, "aucun modèle"):   # B a servi sa part, C en panne
+                chaine.completer("s", "u")
+        with mock.patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(resume_ia.ChaineLLM(ia).cle, "")   # aucune clé : fiches ignorées sans erreur
+            self.assertEqual(resume_ia.ChaineLLM({"modeles": ["m"]}).clients, [])
 
 
 if __name__ == "__main__":
