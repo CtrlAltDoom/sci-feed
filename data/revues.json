@@ -7599,5 +7599,27 @@
 "domaine": "Chirurgie",
 "articles_par_an": 2,
 "maj": "2026-11-20"
+},
+"S4210195431": {
+"nom": "npj Digital Medicine",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 27.79,
+"h_index": 193,
+"editeur": "Nature Portfolio",
+"domaine": "Santé numérique",
+"articles_par_an": 1168,
+"maj": "2026-11-20"
+},
+"S133884896": {
+"nom": "Child and Adolescent Psychiatry and Mental Health",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 7.09,
+"h_index": 107,
+"editeur": "BioMed Central",
+"domaine": "Psychologie clinique",
+"articles_par_an": 193,
+"maj": "2026-11-20"
 }
 }

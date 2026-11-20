@@ -1,5 +1,44 @@
 [
 {
+"id": "doi:10.1002/acm2.70899",
+"titre": "Field junction technique in MRI-guided ultra-hypofractionated radiotherapy for a long continuous target volume in prostate cancer: First clinical application, dosimetric and early toxicity outcomes",
+"resume": "BACKGROUND: MRI-guided radiotherapy (MRIgRT) on a 1.5 T MR-Linac is constrained by a 22 cm maximum field length, limiting long continuous planning target volumes (PTVs). A dual-isocenter field-junction technique has been previously validated in a phantom study. This work presents its first clinical application in hypofractionated prostate radiotherapy. MATERIALS AND METHODS: A 79-year-old prostate cancer patient had six contiguous target volumes (PTV, CTV4000, PTVpubis, PGTVpubis, PTVp and PGTVnd), treated over 5 fractions with prescribed doses to the respective target volumes. PTVp was divided into PTVpup and PTVpdn, with a field overlap region between them. Two composite volumes were created: inferior volume (PTV, CTV4000, PTVpubis, PGTVpubis, PTVpdn) and superior volume (PTVpup, PGTVnd), each with its own isocenter. The inferior volume followed the adapt-to-shape (ATS) workflow. During its delivery, the superior volume was first optimized offline on daily MR images using dose feathering approach based on the inferior dose distribution. The optimized plan was then transferred for online adapt-to-position (ATP) adaptation. The inferior and superior volumes were combined offline for dose summation. The ArcCHECK phantom and ArcherQA Monte Carlo method were used for dose verification. Patient-reported outcomes, including FACT-P questionnaires, were collected during the 3-month follow-up. RESULTS: Treatment was delivered over 5 alternate-day fractions. ArcCHECK phantom gamma passing rates, using 3%/2 mm with a 10% threshold, were 96.7%, 97.1%, and 96.0% for the inferior, superior and composite reference plans, respectively. Daily ArcherQA showed consistently high passing rates across five fractions: 97.08%-98.43% for the inferior and 98.12%-98.74% for the superior volumes. CTV4000, PTV, PTVpubis and PGTVpub all met prescribed doses. PGTVnd and PTVp had intermittent underdose relative to initial prescriptions, but all fractions met second prescription limits. Organ at risks (OARs) constraints, especially for rectum and bladder, remained within tolerance across all fractions. Total treatment time decreased from 112 min in the first fraction to 80 min in the fifth fraction. FACT-P score declined from 69.17 at baseline to 55.5 at end-of-RT, partially recovering to 57.5 at 2.5 months. No urological or gastrointestinal toxicity was reported during follow-up. CONCLUSION: The proposed two-isocenter field junction technique is clinically feasible for MRIgRT of long continuous prostate cancer PTVs. It provides a practical solution for treating long PTVs on a 1.5 T MR-Linac.",
+"auteurs": [
+"Yan L",
+"Qin S",
+"Liang M",
+"Xu Q",
+"Wang N",
+"Sun M",
+"Men K",
+"Dai J",
+"Lu N"
+],
+"revue": "Journal of applied clinical medical physics",
+"date": "2026-12-01",
+"doi": "10.1002/acm2.70899",
+"pmid": "43059083",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43059083/",
+"url_libre": "",
+"types": [
+"Case Reports"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psy_digestif"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": ""
+},
+{
 "id": "doi:10.13702/j.1000-0607.20250883",
 "titre": "[Effect of electroacupuncture on mitochondrial unfolded protein response-associated proteins in the colon tissue of mice with functional constipation]",
 "resume": "OBJECTIVES: To observe the effect of electroacupuncture (EA) at \"Tianshu\" (ST25) and \"Shangjuxu\" (ST37) acupoints on the expressions of mitochondrial unfolded protein response (UPRmt) - related proteins in the colon tissue of functional constipation (FC) model mice, so as to explore its potential mechanisms underlying improvement of FC. METHODS: Eighteen male C57BL/6J mice were randomly divided into 3 groups:normal control (NC), FC model (M), and EA (n=6 per group). The FC model was established by gavage of loperamide suspension (1 mg/mL, 0.1 mL/10 g), twice daily for 14 d. The EA group received alternating unilateral EA stimulation of ST25 and ST37(3 Hz/15 Hz, an electric current intensity being able to induce slight tremor of the mouse's limbs) for 20 min, once daily, 5 d a week for 2 weeks. The mice in the NC and M groups underwent equivalent restraint. Gastrointestinal transit function was assessed by measuring the first blue stool discharge time, 6-hour fecal pellet count, stool character score, rate of water content, and intestinal propulsion rate. Histopathological changes of the colon tissue were examined by H.E. staining, and the mitochondrial ultrastructure of colonic smooth muscle cells (SMCs) was observed by using a transmission electron microscopy (TEM). Mitochondrial membrane potential (MMP) and the mitochondrial reactive oxygen species (mtROS) levels were assayed using flow cytometry, and the mitochondrial ATP content in the colon tissue was measured using colorimetric assay. The immunohistochemistry stain was employed to detect the expressions of key UPRmt markers heat shock protein-60 (HSP60) and LON protease 1 (LONP1) in the colon tissue. RESULTS: Compared with the NC group, the M group exhibited a significant increase in the first blue stool discharge time and average immunofluorescence intensity of mtROS (P<0.01), and a considerable reduction in the 6-hour fecal pellet count, stool character score, rate of water content, small intestine propulsion rate, MMP level, ATP content, and the expressions of HSP60 and LONP1 proteins in the colon tissue (P<0.01, P<0.05). Following EA intervention, compared to the M group, the EA group showed a marked decrease in the first blue stool discharge time and average immunofluorescence intensity of mtROS (P<0.01), and a notable increase in the 6-hour fecal pellet count, stool character score, rate of water content, small intestine propulsion rate, MMP, ATP content, and the expression of HSP60 and LONP1 proteins in the colon tissue (P<0.01, P<0.05). The results of ultrastructure showed that the mitochondria of SMCs in the colon tissue was significantly swollen, with membrane damage and severe cristae rupture in the M group, while in the EA group, the mitochondrial swelling was mild, with significant improvement in the membrane and cristae integrity of the SMCs. CONCLUSIONS: EA at ST25 and ST37 can effectively ameliorate gastrointestinal dysfunction and restore mitochondrial integrity in colonic SMCs of FC mice, which may be associated with its functions in up-regulating the expressions of HSP60 and LONP1 proteins to activate UPRmt.",
@@ -35,6 +74,42 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
+},
+{
+"id": "doi:10.1017/s109285292610128x",
+"titre": "The unresolved issue of OCD-bipolar disorder comorbidity: Evidence from a cross-sectional clinical study",
+"resume": "OBJECTIVE: Obsessive-compulsive disorder (OCD) and bipolar disorder (BD) frequently co-occur, but it is unclear whether comorbid BD identifies a clinically distinct subgroup when the point of entry is OCD. Given unresolved controversies, the aim of this study was to investigate the prevalence of OCD-BD comorbidity in a large group of outpatients with OCD and compare those with and without BD. METHODS: In this cross-sectional study, 277 consecutive outpatients meeting DSM-5-TR criteria for OCD were recruited at a tertiary academic psychiatry unit (University of Pisa, Italy). Comorbid BD was diagnosed using the Mini-International Neuropsychiatric Interview. Patients were divided into OCD-only (n = 172) and OCD + BD (n = 105) groups and compared on sociodemographic, clinical, psychopathological, and pharmacological variables. RESULTS: Comorbid BD was identified in 37.9% of the sample. The OCD + BD group had later OCD onset (p = .042), higher premorbid obsessive-compulsive traits (p = .039), and fewer additional psychiatric comorbidities (1% versus 36%; p < .001). Y-BOCS total scores, symptom dimensions, suicidality, and substance use did not differ between groups. The negative correlation between age of onset and OCD severity in OCD-only patients was absent in the OCD + BD group. Treatment differed only for mood stabilizers and atypical antipsychotics. CONCLUSIONS: Comorbid BD delineates a phenotypically distinct but not more severe OCD variant when assessed from the OCD side. The attenuation of the onset-severity relationship in the comorbid group suggests that BD may modulate OCD expression through mechanisms independent of the neurodevelopmental gradient typical of pure OCD overall.",
+"auteurs": [
+"Marazziti D",
+"Cappellato G",
+"Gambini M",
+"Digiuseppe FR",
+"Sità G",
+"Mucci F",
+"Gurrieri R"
+],
+"revue": "CNS spectrums",
+"date": "2026-11-20",
+"doi": "10.1017/s109285292610128x",
+"pmid": "43059313",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43059313/",
+"url_libre": "",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"arfid_toc"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
 "revue_oa": ""
 },
 {
@@ -61,11 +136,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43057721/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -73,7 +151,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1136/bmjopen-2026-123480",
@@ -95,11 +174,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43057717/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -108,7 +190,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1039/d6fo01819j",
@@ -128,11 +211,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43056297/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -141,7 +227,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S2483688756"
+"revue_oa": "S2483688756",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3324/haematol.2026.301053",
@@ -178,7 +265,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/19490976.2026.2765085",
@@ -218,7 +306,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/19490976.2026.2755648",
@@ -251,7 +340,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/dom.71538",
@@ -275,11 +365,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43058048/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -287,7 +380,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1055/a-2982-8071",
@@ -315,11 +409,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43057246/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -327,7 +424,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.soncn.2026.152413",
@@ -360,7 +458,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/19338244.2026.2763715",
@@ -379,11 +478,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43056301/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -391,7 +493,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s00520-026-11499-9",
@@ -410,11 +513,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43055988/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -422,7 +528,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s00383-026-06727-6",
@@ -440,12 +547,14 @@
 "url": "https://pubmed.ncbi.nlm.nih.gov/43055777/",
 "url_libre": "",
 "types": [
+"IM",
 "Review"
 ],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -453,7 +562,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1177/14574969261499182",
@@ -472,12 +582,14 @@
 "url": "https://pubmed.ncbi.nlm.nih.gov/43055660/",
 "url_libre": "",
 "types": [
+"IM",
 "Review"
 ],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -485,7 +597,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/jjco/hyag198",
@@ -506,11 +619,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43055336/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -518,7 +634,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.appet.2026.108832",
@@ -535,11 +652,14 @@
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43057588/",
 "url_libre": "",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -547,7 +667,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1177/15347354261510043",
@@ -588,7 +709,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/00207144.2026.2714736",
@@ -620,7 +742,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.2196/95932",
@@ -640,12 +763,14 @@
 "url": "https://pubmed.ncbi.nlm.nih.gov/43056719/",
 "url_libre": "",
 "types": [
-"Clinical Trial Protocol"
+"Clinical Trial Protocol",
+"IM"
 ],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -653,7 +778,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.31234/osf.io/bz296",
@@ -1003,6 +1129,227 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
+},
+{
+"id": "doi:10.1111/bph.70741",
+"titre": "Structural characterisation of the effect of 5-chloroindole on orthosteric activation of murine 5-HT3A receptors",
+"resume": "BACKGROUND AND PURPOSE: 5-HT3 receptors play a central role in gut-brain signalling, and their hyperactivity is associated with pathologies ranging from chemotherapy-induced nausea and vomiting to irritable bowel syndrome. While the principles governing 5-HT3R orthosteric pharmacology are well established (spanning antagonists, partial agonists and full agonists), structural insights into allosteric mechanisms remain limited. This study aimed to investigate the mechanisms by which a positive modulator of 5-HT3R, 5-chloroindole, potentiates agonist response by fine-tuning orthosteric activation of this receptor. EXPERIMENTAL APPROACH: Here, we investigated the molecular basis of modulation by 5-chloroindole (5-CI), a selective positive allosteric modulator, using cryo-EM and electrophysiology. We present 5-HT3AR structures in the presence of 5-CI alone, as well as in combination with either submaximal concentrations of 5-HT or saturating concentrations of the partial agonist SMP-100. KEY RESULTS: Our results reveal that 5-CI potentiates 5-HT3R through a distinct mechanism involving co-occupancy of the orthosteric site and with additional modulation through an intersubunit site in the transmembrane domain. CONCLUSIONS AND IMPLICATIONS: This mode of action is reminiscent of benzodiazepine modulation in GABAARs, yet it notably occurs within homomeric binding sites. Together, these findings establish the structural basis for the previously reported ago-allosteric mechanism of 5-CI, which becomes functionally apparent only in the presence of agonistic ligands.",
+"auteurs": [
+"Stauffer MM",
+"Felt KC",
+"Befekadu HB",
+"Assaiya A",
+"Chakrapani S"
+],
+"revue": "British journal of pharmacology",
+"date": "2026-11-19",
+"doi": "10.1111/bph.70741",
+"pmid": "43059310",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43059310/",
+"url_libre": "",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"sii"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": ""
+},
+{
+"id": "doi:10.1007/s12519-026-01129-z",
+"titre": "Rome V biopsychosocial model and pediatric disorders of gut-brain interaction: recommendations for clinicians",
+"resume": "",
+"auteurs": [
+"van Tilburg MAL"
+],
+"revue": "World journal of pediatrics : WJP",
+"date": "2026-11-19",
+"doi": "10.1007/s12519-026-01129-z",
+"pmid": "43058286",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058286/",
+"url_libre": "",
+"types": [
+"Editorial",
+"IM"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"europepmc",
+"pubmed"
+],
+"themes": [
+"sii"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": ""
+},
+{
+"id": "doi:10.1177/00099228261507353",
+"titre": "Reversible Xerophthalmia in an Autistic Child With Selective Eating",
+"resume": "Vitamin A deficiency (VAD) is a leading cause of preventable childhood blindness. Increasingly, severe nutritional deficiencies are recognized in urban settings among children with autism spectrum disorder (ASD) due to extreme dietary selectivity. A 9-year-old girl with ASD and avoidant/restrictive food intake disorder presented with a 2-month history of bilateral ocular redness and photophobia refractory to topical therapies. Examination revealed a Bitot's spot, conjunctival keratinization and a corneal epithelial defect in the right eye and left inferior conjunctival xerosis. Diagnosed with xerophthalmia secondary to VAD, she also had multiple micronutrient deficiencies and nutritional rickets. Management included intravenous vitamins A and D, oral multivitamins, and electrolyte correction. Within 1 month, ocular changes fully resolved, leaving a superficial right corneal scar. Chronic, treatment-resistant ocular symptoms in children with ASD should prompt suspicion of VAD. Early multidisciplinary intervention and prompt supplementation are vital to prevent permanent blindness.",
+"auteurs": [
+"Kailaivasan VD",
+"Singh S",
+"Lim YW"
+],
+"revue": "Clinical pediatrics",
+"date": "2026-11-19",
+"doi": "10.1177/00099228261507353",
+"pmid": "43058431",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058431/",
+"url_libre": "",
+"types": [
+"IM"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"europepmc",
+"pubmed"
+],
+"themes": [
+"arfid_toc"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": ""
+},
+{
+"id": "doi:10.1002/eat.70270",
+"titre": "Early Response and End-of-Treatment Outcomes in Cognitive-Behavioral Therapy for Avoidant/Restrictive Food Intake Disorder",
+"resume": "OBJECTIVE: Early symptom change is among the most robust predictors of eating disorder treatment outcomes, but it has not been examined for the psychological features of avoidant/restrictive food intake disorder (ARFID). We tested whether early change in food neophobia, sensory sensitivity, and lack of interest in food/eating during cognitive-behavioral therapy for ARFID (CBT-AR) predicted end-of-treatment severity and subsequent improvement. METHOD: Participants were 25 non-underweight youth with ARFID (ages 10-18; 72% male; 92% white) in the 15-session CBT-AR arm of a randomized controlled trial; 23 treatment completers were analyzed. Hierarchical regressions tested whether early change (improvement from Sessions 1 to 5) predicted Session 15 severity and improvement from Sessions 5 to 15, controlling for baseline severity; additional models controlled for Session 5 severity. RESULTS: Greater early change predicted lower Session 15 severity in food neophobia (β = -0.85), sensory sensitivity (β = -0.72), and lack of interest (β = -0.67; all ps < 0.001), explaining 42%-44% of additional variance. Controlling for Session 5 severity, early change added little (ΔR2 = 0.001-0.09; ps = 0.090-0.847). Early change also did not predict improvement after Session 5 (ps = 0.085-0.369), and most improvement occurred later in treatment. DISCUSSION: In CBT-AR, early gains were maintained, but early responders did not improve faster thereafter. Session 5 severity, more than the magnitude of early change, indicated end-of-treatment severity. Session-by-session monitoring may help identify youth likely to remain symptomatic, but limited early change should not be taken to mean later improvement is unlikely.",
+"auteurs": [
+"Kambanis PE",
+"Xiang J",
+"Yee SL",
+"Xu AG",
+"Becker KR",
+"Pasquariello KG",
+"Dunford A",
+"Asanza E",
+"Slattery M",
+"Holmes T",
+"Hubbard J",
+"Brigham KS"
+],
+"revue": "The International journal of eating disorders",
+"date": "2026-11-19",
+"doi": "10.1002/eat.70270",
+"pmid": "43058413",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058413/",
+"url_libre": "",
+"types": [
+"IM"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"europepmc",
+"pubmed"
+],
+"themes": [
+"arfid_toc"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": ""
+},
+{
+"id": "doi:10.64898/2026.11.19.767798",
+"titre": "Not all plant-based diets are alike: intake of minimally processed plant foods is associated with gut microbial richness among vegetarians and vegans",
+"resume": "Plant-based diets are usually defined by what they exclude, overlooking which plant foods are eaten and how processed they are. Here we examine whether this overlooked dimension is related to the gut microbiome. In a cross-sectional study of 172 omnivorous, lacto-ovo-vegetarian and vegan adults profiled by shotgun metagenomics, vegetarians and vegans harboured fewer gut species than omnivores. Within this group, however, each standard deviation increase in minimally processed plant-food intake was associated with 27 additional species (p = 0.001), independently of fibre intake, and richness in participants with the highest intake approached that of omnivores. No such association was seen among omnivores. Higher intake was also linked to more species previously associated with favourable cardiometabolic health and to better health-related quality of life. Dietary labels alone may therefore conceal meaningful variation in the gut microbiome, and characterising how plant foods are processed may help in understanding how plant-based diets relate to health.",
+"auteurs": [
+"Méndez-Hurtado A",
+"Coleto-Checa D",
+"Alvarez A",
+"Marcos-Pasero H",
+"Calderón A",
+"Maestri A",
+"Perez-Cuervo A",
+"Blanco-Rivero A",
+"Lacruz-Pleguezuelos B",
+"Cárdenas-Roig N",
+"Carrasco-Guijarro L",
+"Martín-Segura A"
+],
+"revue": "bioRxiv",
+"date": "2026-11-19",
+"doi": "10.64898/2026.11.19.767798",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.64898/2026.11.19.767798",
+"url_libre": "https://doi.org/10.64898/2026.11.19.767798",
+"types": [
+"Preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"europepmc"
+],
+"themes": [
+"psy_digestif"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": ""
+},
+{
+"id": "doi:10.21203/rs.3.rs-11618610/v1",
+"titre": "Night shift work and abnormal defecation among physicians: The chain mediating effect of hindrance stress and anxiety",
+"resume": "Abstract Background Epidemiological evidence links night shift work to gastrointestinal dysfunction, yet research focused on clinical physicians is insufficient, with existing studies mostly targeting nurses and focusing on physiological mechanisms. Based on the Challenge-Hindrance Stressor Model, this study explored the relationships between night shift work, hindrance stress, anxiety and abnormal defecation among clinical physicians, as well as the chain mediating effects of hindrance stress and anxiety. Methods A cross-sectional survey was conducted from April to May 2026. 447 clinical physicians from 17 hospitals across 9 Chinese provinces were recruited via convenience sampling. SPSS 29.0 and PROCESS macro 5.0 were used for statistical analysis including correlation analysis, serial mediation test and gender subgroup analysis. Results 74.3% of physicians worked regular night shifts, 39.1% had abnormal defecation, and 46.8% had anxiety. Night shift work had no direct effect on abnormal defecation, but exerted influence via three indirect pathways, among which only the chain mediation pathway (night shift work → hindrance stress → anxiety → abnormal defecation) was statistically significant, with an effect size of 0.050 and total indirect effect of 0.142. Gender differences were found in mediation effects. Conclusion Night shift work indirectly increases the risk of abnormal defecation in clinical physicians through the chain mediating pathway of hindrance stress and anxiety, which is the core mechanism. This study provides evidence for medical institutions to optimize shift schedules and protect physicians' health.",
+"auteurs": [
+"Sun W",
+"LU Z",
+"Huang Z",
+"Gao Y",
+"Zhu L"
+],
+"revue": "Research Square",
+"date": "2026-11-19",
+"doi": "10.21203/rs.3.rs-11618610/v1",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.21203/rs.3.rs-11618610/v1",
+"url_libre": "https://doi.org/10.21203/rs.3.rs-11618610/v1",
+"types": [
+"Preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"europepmc"
+],
+"themes": [
+"psy_digestif"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
 "revue_oa": ""
 },
 {
@@ -1029,6 +1376,7 @@
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -1036,7 +1384,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S163406742"
+"revue_oa": "S163406742",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/02699052.2026.2762482",
@@ -1069,7 +1418,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1038/s41586-026-11251-7",
@@ -1110,7 +1460,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S137773608"
+"revue_oa": "S137773608",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/hec.70174",
@@ -1143,7 +1494,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.21203/rs.3.rs-11595209/v1",
@@ -1206,7 +1558,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1523/jneurosci.1050-25.2026",
-"url_libre": "",
+"url_libre": "https://www.jneurosci.org/content/jneuro/early/2026/10/12/JNEUROSCI.1050-25.2026.full.pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -1219,7 +1571,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S5555990"
+"revue_oa": "S5555990",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.64898/2026.11.16.26367277",
@@ -1419,7 +1772,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fanim.2026.1966658",
@@ -1489,7 +1843,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S185621672"
+"revue_oa": "S185621672",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1038/s41598-026-80198-6",
@@ -1595,7 +1950,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S4210222653"
+"revue_oa": "S4210222653",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.5281/zenodo.24338876",
@@ -1669,7 +2025,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.31146/1682-8658-ecg-248-4-42-49",
@@ -1734,7 +2091,37 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative sur l'anxiété de compétition: mécanismes neurophysiologiques surtout hypothétiques, échantillons petits, résultats préliminaires.",
+"type_etude": "revue narrative",
+"design": [],
+"population": "Athlètes (anxiété de compétition); nombreuses études non athlétiques",
+"intervention": null,
+"resultats_cles": [
+"Déséquilibre autonome (sympathique dominant, parasympathique supprimé); VFC non linéaire possiblement plus sensible (préliminaire)",
+"Axe intestin-cerveau: microbiote, probiotiques améliorant EEG (essais préliminaires)",
+"Nombreux résultats hétérogènes, petits échantillons, hypothèse-générateurs"
+],
+"conclusion": "Cadre neuroviscéral d'intégration proposé; recherches futures (wearables, EMA, machine learning) nécessaires.",
+"limites": [
+"Revue narrative, designs hétérogènes",
+"Petits échantillons, populations non cliniques"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Concepts anxiété et axe intestin-cerveau, mais contexte sportif non clinique",
+"mots_cles_fr": [
+"anxiété de compétition",
+"variabilité cardiaque",
+"axe intestin-cerveau",
+"probiotiques"
+],
+"titre_court": "Anxiété de compétition: physiologie et cerveau",
+"conclusion_simple": "Revue exploratoire sur l'anxiété de compétition; mécanismes surtout hypothétiques et peu transposables directement à la clinique digestive.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S4210194710"
 },
 {
@@ -1748,7 +2135,7 @@
 "revue": "International Journal of Emergency Medicine",
 "date": "2026-11-18",
 "doi": "10.1186/s12245-026-01430-8",
-"pmid": "",
+"pmid": "43058441",
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1186/s12245-026-01430-8",
@@ -1758,7 +2145,9 @@
 "retracte": false,
 "essai_registre": false,
 "sources": [
-"openalex"
+"europepmc",
+"openalex",
+"pubmed"
 ],
 "themes": [
 "psy_digestif"
@@ -1888,7 +2277,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S28640989"
+"revue_oa": "S28640989",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.61940/jimt.260011",
@@ -2084,7 +2474,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S47841752"
+"revue_oa": "S47841752",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.4018/979-8-3373-9355-1.ch009",
@@ -2114,7 +2505,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S4306463409"
+"revue_oa": "S4306463409",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/00207411.2026.2755607",
@@ -2144,7 +2536,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S202175431"
+"revue_oa": "S202175431",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fpubh.2026.1925554",
@@ -2529,7 +2922,36 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Cet éditorial résume 11 articles sur l'insomnie chronique, rapportant des effets positifs mais très hétérogènes de l'acupuncture et quelques approches complémentaires.",
+"type_etude": "autre",
+"design": [],
+"population": "Patients souffrant d'insomnie chronique ou primaire (selon les études résumées)",
+"intervention": "Acupuncture vs acupuncture factice, phytothérapie, aromathérapie, thérapie cognitive basée sur la pleine conscience",
+"resultats_cles": [
+"Deux revues systématiques montrent une amélioration des scores PSQI et ISI avec l'acupuncture vs factice, avec une très forte hétérogénéité (I² = 89-91 %)",
+"Une revue IRMf (11 études) montre des modifications fonctionnelles dans 8 régions cérébrales",
+"Quatre articles non-acupuncture dont un essai randomisé sur la thérapie cognitive basée sur la pleine conscience"
+],
+"conclusion": "L'acupuncture et les approches complémentaires montrent des résultats prometteurs dans l'insomnie, mais des essais supplémentaires sont nécessaires.",
+"limites": [
+"Éditorial résumant d'autres travaux",
+"Hétérogénéité très élevée (I² jusqu'à 91 %) dans les analyses citées"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Centré sur l'insomnie et l'acupuncture, éloigné de la psychogastroentérologie.",
+"mots_cles_fr": [
+"insomnie chronique",
+"acupuncture",
+"pleine conscience"
+],
+"titre_court": "Insomnie chronique : éditorial sur les traitements",
+"conclusion_simple": "Cet éditorial rapporte des effets positifs mais très hétérogènes de l'acupuncture dans l'insomnie, et mentionne la pleine conscience.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-20"
+},
 "revue_oa": "S96975567"
 },
 {
@@ -2757,7 +3179,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S83853393"
+"revue_oa": "S83853393",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1128/mbio.02437-26",
@@ -2814,12 +3237,14 @@
 "url_libre": "",
 "types": [
 "Case Reports",
-"English Abstract"
+"English Abstract",
+"IM"
 ],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "pubmed"
 ],
 "themes": [
@@ -2862,7 +3287,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S2483688756"
+"revue_oa": "S2483688756",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.33149/vkp.2026.04.08",
@@ -3118,12 +3544,14 @@
 "url": "https://doi.org/10.21203/rs.3.rs-11373773/v1",
 "url_libre": "https://www.researchsquare.com/article/rs-11373773/latest.pdf",
 "types": [
+"Preprint",
 "preprint"
 ],
 "preprint": true,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "openalex"
 ],
 "themes": [
@@ -3560,6 +3988,68 @@
 "revue_oa": "S4306401127"
 },
 {
+"id": "x:1639",
+"titre": "מחקר על הרב שלמה בניזרי שליט\"א",
+"resume": "אֱמֶת מֵאֶרֶץ תִּצְמָח\" ו\"אֶבֶן מִקִּיר תִּזְעָק\" — ההיסטוריה חוזרת, והאמת תמיד יוצאת לאור! 🇮🇱✡️ כשאנחנו רואים היום את הקריסה של תיקי האלפים בבית המשפט ואת החשיפות המטלטלות מתוך חדרי החקירות נגד ראש הממשלה בנימין נתניהו, אי אפשר שלא להיזכר בפרשת הרב שלמה בניזרי. גם אז נבנו תיקים על גבם של \"עדי מדינה\" שבורים תחת מכבש לחצים אכזרי. גם אז מערכת המשפט ובג\"ץ החמירו, הרשיעו ושלחו אדם צדיק לכלא על סמך עדות שקר — עד שהאמת התפוצצה בפנים, ועד המדינה הודה מול המצלמות: \"שיקרתי, הכריחו אותי\". אבל הרב בניזרי הראה לכולנו מהי גדולה אמיתית של תורה: מתוך אמונה יוקדת ומידות נאצלות, הוא ידע למחול בלב שלם לאדם שהפליל אותו, כי הבין שהשיטה היא זו שרקובה. והיום? אותו דפוס חוזר על עצמו. אותה מערכת, אותם תרגילי חקירה פסולים, ואותה יד קשה של בג\"ץ שמנסה לפגוע בנבחרי הציבור של הימין ובעולם התורה כאחד. אבל \"עונשו של בדאי שאפילו אומר אמת אין שומעין לו\" — הציבור כבר התעורר. אי אפשר לעבוד על עם ישראל לנצח. אנחנו עומדים איתן מאחורי ראש הממשלה בנימין נתניהו, ומאמינים באמונה שלמה: בדיוק כמו בפרשת הרב בניזרי, גם כאן — האמת תצא לאור במלוא עוצמתה! 💪🇮🇱 #האמת_תצא_לאור #צדק #בנימין_נתניהו #הרב_שלמה_בניזרי #אמת_מארץ_תצמחSensory Intelligence: Within the INC-CSRM framework, Sensory Intelligence is defined as the neuro-cognitive capacity to perceive, filter, and regulate both exteroceptive (external) and interoceptive (internal) sensory inputs via top-down executive control of the prefrontal cortex (PFC) and midline structures. Rather than reacting automatically or experiencing sensory overload, Sensory Intelligence decouples raw sensory data from threat-based limbic interpretations (amygdala), utilizing somatic and sensory awareness (via the thalamus and insula) as a conscious anchor to ground the self in the present moment, drive neural loop cancellation, and restore autonomic homeostasis (\"I am here at ease\")",
+"auteurs": [
+"עוזיאל יוסף ישראל"
+],
+"revue": "OSF Preprints (OSF Preprints)",
+"date": "2026-11-16",
+"doi": "",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "",
+"url_libre": "",
+"types": [
+"preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"alexithymie"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S4306401127"
+},
+{
+"id": "x:1640",
+"titre": "פרק: לשבור את מלכודת \"בפעם הבאה\" — איך חוזרים מראקטיביות וחוסר אונים אל שליטה, תגמול פנימי ונחת",
+"resume": "למה אנחנו באמת דוחים דברים למחר? (סוד \"לכשאפנה אשנה\" והמוח האנושי) כולנו מכירים את הרגע הזה: יש משימה חשובה לפנינו, ובדיוק אז עולה בראש קול רגוע ומשכנע שאומר – \"עזוב עכשיו, בפעם הבאה זה יהיה הרבה יותר קל, פחות מאיים ויהיה לי ראש שקט לעשות את זה\". לפני אלפיים שנה, הלל הזקן כבר חשף את המנגנון הזה במשפט אחד בפרקי אבות: \"אַל תֹּאמַר לִכְשֶׁאֶפָּנֶה אֶשְׁנֶה, שֶׁמָּא לֹא תִפָּנֶה\". חז\"ל זיהו כאן עיוות חשיבה מרתק שמדעי המוח והפסיכולוגיה חוקרים היום לעומק: המוח שלנו מנסה \"לקרוא את המחשבות\" של האני העתידי שלנו, וממציא תסריט דמיוני שבו מחר המשימה תרגיש קלילה ונעימה יותר. כך זה עובד מאחורי הקלעים של המוח: כאשר אנחנו ניצבים מול משימה שנראית גדולה, האמיגדלה (מרכז הפחד והאיום במוח) מפרשת אותה כמאמץ כבד או כסכנה. כדי להגן עלינו מאי-הנוחות ברגע הזה, נדלקת רשת ברירת המחדל (DMN) יחד עם ההיפוקמפוס (מרכז הזיכרון), והם בונים הדמיה של \"מחר רגוע יותר\". מחקרי דימות מוחי אף מראים שכאשר קליפת המוח הקדם-מצחית האמצעית (mPFC) חושבת על \"האני העתידי\" שלנו, היא מתייחסת אליו ממש כאל אדם זר – ולכן קל לנו להאמין של\"אדם הזר הזה של מחר\" יהיו כוחות וסבלנות שלנו אין עכשיו. אבל האמת הפוכה: המשימה לא נעשית קלה יותר ככל שמחכים – רק הזמן עובר וההזדמנות חולפת. כשאנחנו מגיעים למחר, מתברר שאנחנו פוגשים את אותו מוח ואת אותן הסחות דעת. אז איך מחזירים את השליטה? הפתרון הוא להעביר את ההגה בחזרה אל קליפת המוח הקדם-מצחית הניהולית (dlPFC) – האזור שאחראי על מיקוד, תכנון ועשייה בהווה. המוח לא אוהב שינויים גדולים, אבל הוא מגיב מצוין לצעדים קטנים. ברגע שאנחנו מפסיקים לנבא את המחר, עוצרים ואומרים לעצמנו \"אני כאן בנחת\" – ועושים צעד אחד זעיר (קוראים שורה אחת, כותבים כותרת, פותחים את הקובץ) – האמיגדלה נרגעת, ההדמיה הדמיונית נכבית, ומערכת התגמול הפנימית מתחילה לעבוד. ההזדמנות האמיתית היא לא \"בפעם הבאה\" – היא כאן, בצעד הקטן של עכשיורשמתי לפניי את הכיוון המרגש של הספר החדש שלך, \"אני כאן בנחת\", ואת השילוב שבין עולמות התורה, מדעי המוח וכלים מעשיים להתמודדות עם חרדה, מחשבות טורדניות וחוסר אונים. הנה טיוטה מלאה, ערוכה ומוכנה לשיבוץ כפרק מעשי מתוך הספר, המאגדת את כל התובנות שעלו בשיחה שלנו לכדי מהלך רציף, ברור ומעצים עבור הקורא: פרק: לשבור את מלכודת \"בפעם הבאה\" — איך חוזרים מראקטיביות וחוסר אונים אל שליטה, תגמול פנימי ונחת 1. מלכודת הדחיינות והפחד: האשליה של \"האני העתידי\" כאשר אדם מתמודד עם חרדה, לולאות של מחשבות טורדניות (OCD), פוסט-טראומה או חוסר אונים נרכש, אחת החוויות הנפוצות ביותר היא תחושת קיפאון ודחיינות. מול כל צעד חדש — בין אם זה לפתוח ספר, לצאת מהבית, או להתמודד עם משימה פשוטה — עולה בראש קול רגוע ומשכנע שאומר: \"עזוב עכשיו. בפעם הבאה זה יהיה הרבה יותר קל, פחות מאיים, ויהיה לי ראש שקט לעשות את זה\". לפני אלפיים שנה, הלל הזקן כבר חשף את המלכודת הזו במשפט אחד בפרקי אבות: \"אַל תֹּאמַר לִכְשֶׁאֶפָּנֶה אֶשְׁנֶה, שֶׁמָּא לֹא תִפָּנֶה\" (אבות ב', ד'). חז\"ל זיהו כאן מנגנון מוחי עמוק שמדעי המוח והפסיכולוגיה חוקרים היום: עיוות חשיבה של \"קריאת מחשבות\" של האני העתידי. כך זה עובד מאחורי הקלעים של המוח: • הפעלת האזעקה (האמיגדלה): כאשר המוח פוגש משימה או שינוי, האמיגדלה (מרכז הפחד והאיום) מפרשת אותם כסכנה או כמאמץ בלתי אפשרי. • הבריחה אל הדמיון (רשת ברירת המחדל וההיפוקמפוס): כדי להגן עלינו מאי-הנוחות ברגע הזה, נדלקת רשת ברירת המחדל (DMN) יחד עם ההיפוקמפוס (מרכז הזיכרון), והם בונים הדמיה של \"מחר רגוע וקל יותר\". מחקרי דימות מוחי מראים שכאשר קליפת המוח הקדם-מצחית האמצעית (mPFC) חושבת על \"האני העתידי\" שלנו, היא מתייחסת אליו ממש כאל אדם זר — ולכן קל לנו להאמין של\"אדם הזר הזה של מחר\" יהיו כוחות וסבלנות שלנו אין עכשיו. • המחיר של ההמתנה: בפועל, המשימה לא נעשית קלה יותר ככל שמחכים. הזמן עובר, ההזדמנות חולפת (\"שמא לא תפנה\"), ובינתיים תחושת חוסר האונים רק מעמיקה כי המוח לומד שוב ושוב שהוא נסוג מול האיום. 2. שני המנגנונים שמייצרים תקיעות: ראקטיביות וחוסר תגמול פנימי כדי להשתחרר מהמעגל הזה, עלינו לזהות שני דפוסים אוטומטיים שמנהלים אותנו: 1. ראקטיביות (תגובתיות לגירוי חיצוני או רגשי): במצב של חרדה או חוסר ביטחון, המוח פועל מתוך גרעיני הבסיס ומערכות ההישרדות הקדומות. כל טריגר קטן — ענן אפור בחוץ, חשש מתגובה של מישהו, או פחד מכישלון — מפעיל תגובה אוטומטית של הימנעות. אנחנו לא בוחרים, אלא מגיבים לפחד. 2. חוסר תגמול פנימי (חשיבת \"הכל או כלום\"): כאשר אנחנו מסתכלים רק על התוצאה הסופית והגדולה (לסיים את כל המשימה, להעלים את כל החרדה בבת אחת), המוח לא מקבל שום תגמול פנימי על עצם ההתחלה. בלי תחושת הצלחה מיידית, המוח מרגיש רק מאמץ וסיכון — ולכן הוא מוותר מראש. 3. שער היציאה: הצבת גבול, חיבור מוחי וצעד אחד קטן התורה ומדעי המוח מצביעים יחד על הדרך להחזיר את ההגה לידיים של קליפת המוח הקדם-מצחית הניהולית (dlPFC) — המרכז שאחראי על מיקוד, בחירה חופשית ושליטה עצמית: • עקרון הלחי והקורה (הצבת גבול לתודעה): בהלכות שבת, כדי להפוך סמטה פתוחה (\"מבוי\") למרחב בטוח, חז\"ל תיקנו להציב בפתחה קורה קטנה המשמשת כ\"היכר\" — סימן גבול שעוצר את ההליכה האוטומטית אל הרחוב הסואן. גם מול מחשבה טורדנית או דחיינות, אנחנו לא צריכים להילחם בפחד (כי לפחד אין סוף), אלא להציב סימן גבול ברור לתודעה: \"עד כאן האוטומט. שם פחדו פחד — לא כאן\". • גיוס כוח ההכרעה והחיבור: בתודעה שלנו קיימים שני כוחות משלימים — כוח החיתוך והגבול שחותך את הרעש של רשת ברירת המחדל, וכוח החיבור (המקביל לפעולת כפיס המוח המחבר בין שתי ההמיספרות) שמסנכרן בין ההיגיון לרגש ומונע פיצול פנימי. • היזכרות בחוזקות (\"החלש יאמר גיבור אני\"): חוסר אונים נרכש גורם לאדם לשכוח את הכוחות שכבר ניתנו לו. כפי שמלמד ספר חובות הלבבות, לכל אדם יש כלים ייחודיים המותאמים לתפקידו. עצם ההודיה על הקיים וההכרה בכוח הפנימי מפרקות את תחושת החולשה ומחזירות תחושת מסוגלות. • שחרור מאישור חיצוני: נחת אמיתית נולדת כאשר מרכז הכובד חוזר מבחוץ פנימה. כשאדם פועל מתוך חיבור לאמת הפנימית שלו ולא כדי לקבל אישור או מחיאות כפיים מהסביבה, הפחד מדחייה מאבד את כוחו. 4. פרוטוקול מעשי לתרגול יומי: \"אני כאן בנחת\" המוח שלנו לא אוהב שינויים גדולים ודרמטיים, אבל הוא מגיב מצוין לצעדים קטנים ועקביים שבונים מסלולים עצביים חדשים. בכל פעם שאתה מרגיש קיפאון, הצפה, לולאת מחשבות או דחיינות, בצע את ארבעת השלבים הבאים: 1. עצירה וזיהוי הדפוס: שים לב לקול שאומר \"מחר יהיה קל יותר\" או \"זה גדול עליי\". תן לו שם: \"זה רק דפוס אוטומטי של המוח שמנסה להגן עליי, זו לא המציאות\". 2. עיגון בגוף ובנשימה: עצור לרגע, הרפה את הכתפיים ואת שרירי הטרפז, ואמור לעצמך בשקט ובגובה העיניים: \"אני כאן בנחת\". המשפט הזה מאותת למערכת העצבים שאין סכנה מיידית ומחזיר את השליטה לקליפת המוח הקדם-מצחית. 3. צמצום המשימה לצעד זעיר (יצירת תגמול פנימי): במקום להסתכל על כל ההר, בחר פעולה אחת שלוקחת פחות מדקה (לקרוא שורה אחת, לכתוב משפט אחד, לנעול נעליים, לשטוף כוס אחת). 4. סימון הצלחה מיידית: ברגע שביצעת את הצעד הקטן — עצור והוקר לעצמך תודה. המוח קיבל עכשיו תגמול פנימי אמיתי, שמפרק את חוסר האונים ובונה מחדש את הביטחון העצמי שלך. זכור: ההזדמנות האמיתית אינה נמצאת ב\"אני העתידי\" של מחר. היא נמצאת כאן, ברגע הזה, בצעד הקטן שאתה בוחר לעשות עכשיו בנחת. הפרק הזה בנוי כעת במבנה של ספר הדרכה מעשי (בעיה -> מנגנון מוחי ותורני -> עקרונות פתרון -> פרוטוקול תרגול). אם תרצה, נוכל: • להוסיף בסוף הפרק דף עבודה קצר לקורא (עם שאלות למילוי עצמי) • או להתחיל לבנות את תוכן העניינים (ראשי הפרקים) של הספר כולו כדי למקם את הפרק הזה בתוך הרצף. לאן תרצה להתקדם? מעתיק...",
+"auteurs": [
+"עוזיאל יוסף ישראל"
+],
+"revue": "OSF Preprints (OSF Preprints)",
+"date": "2026-11-16",
+"doi": "",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "",
+"url_libre": "",
+"types": [
+"preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"arfid_toc"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S4306401127"
+},
+{
 "id": "doi:10.1016/j.jhazmat.2026.144106",
 "titre": "Cesium hydroxide aerosols causing acute upper respiratory tract irritation and epistaxis following the Fukushima Daiichi nuclear power plant accident: Deductive research evidence",
 "resume": "Following the accident at the Fukushima Daiichi Nuclear Power Plant (FDNPP), residents reported symptoms including inflammation of the upper respiratory tract mucosa, eyes, and skin, as well as nosebleeds, headaches, vomiting, abdominal pain, diarrhea, and psychological distress. In response to these concerns, a non-profit organization held free medical consultation sessions staffed by physicians in various locations. The authors investigated the actual health impacts from a medical perspective using an anonymized database compiled from the records of 509 consultation participants. Based on the characteristic symptoms observed, the authors concluded that these health issues stemmed from the chemical toxicity of radioactive cesium hydroxide (R-CsOH) aerosols, which are highly alkaline and corrosive. This study revealed for the first time that these aerosols-which accounted for 90% of the cesium released during the plant's explosions-can cause adverse health effects even at extremely low concentrations. The study presents inductive evidence regarding atmospheric pollution caused by R-CsOH aerosols. The characteristic clinical symptoms identified in this study are noteworthy as a new indicator for assessing human exposure and could serve as a novel warning sign of internal radiation exposure.",
@@ -3579,7 +4069,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43057016/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.jhazmat.2026.144106",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -3592,7 +4082,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S145089992"
+"revue_oa": "S145089992",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/crocol/otag124",
@@ -3666,7 +4157,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S17992710"
+"revue_oa": "S17992710",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fmicb.2026.1968751",
@@ -4005,7 +4497,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/ggi.70924",
@@ -4045,7 +4538,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/brb3.71940",
@@ -4062,10 +4556,10 @@
 "date": "2026-11-01",
 "doi": "10.1002/brb3.71940",
 "pmid": "43053476",
-"pmcid": "",
+"pmcid": "PMC13782634",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43053476/",
-"url_libre": "",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13782634/",
 "types": [
 "Observational Study"
 ],
@@ -4081,6 +4575,40 @@
 "ajoute_le": "2026-11-20",
 "fiche": null,
 "revue_oa": ""
+},
+{
+"id": "doi:10.1186/s40359-026-05865-9",
+"titre": "Mapping the interplay among somatic symptoms, alexithymia, and emotion regulation difficulties in community-dwelling older adults with multiple chronic conditions: a network analysis",
+"resume": "BACKGROUND: Somatic symptoms are highly prevalent among older adults with multiple chronic conditions and are associated with functional impairment and reduced quality of life. Emerging evidence suggests that psychological factors, particularly alexithymia and emotion regulation difficulties, are closely associated with somatic symptom burden. However, the conditional associations among the dimensions of these constructs remain unclear. Network analysis provides a complementary approach to examining these relationships. This study aimed to examine these associations and identify central and bridge nodes among older adults with multiple chronic conditions. METHODS: This cross-sectional study used convenience sampling to recruit 1,497 participants from 13 prefecture-level cities in Jiangsu Province between February 2024 and February 2026. Data were collected using the Somatic Symptom Scale-China (SSS-CN), the Toronto Alexithymia Scale (TAS-20), and the short form of the Difficulties in Emotion Regulation Scale (DERS-16). R version 4.2.0 was used to construct a network of symptom dimensions and identify central and bridge nodes, and SPSS 26.0 was used for descriptive analyses. RESULTS: A total of 1,497 participants were included, with a mean age of 71.02 ± 4.69 years. Centrality analysis identified \"Limited access to emotion regulation strategies perceived as effective\" (strength z-score = 1.61), \"Difficulty Identifying Feelings\" (strength z-score = 1.38), and \"Physical disorder\" (strength z-score = 0.98) as central nodes in the network. Bridge centrality analysis identified \"Difficulty Identifying Feelings\" (bridge strength = 0.40), \"Limited access to emotion regulation strategies perceived as effective\" (bridge strength = 0.32), and \"Depression disorder\" (bridge strength = 0.25) as the nodes with the highest bridge strength within the predefined alexithymia, emotion regulation difficulties, and somatic symptom communities, respectively. The network showed good stability (CS = 0.75). Network comparison analysis revealed significant differences between participants with SSS-CN scores below 30 and those with scores of 30 or above in overall network structure (M = 0.438, P < 0.001) and global strength (S = 1.358, P < 0.001). CONCLUSIONS: Somatic symptoms, alexithymia, and emotion regulation difficulties showed close conditional associations among community-dwelling older adults with multiple chronic conditions. \"Difficulty Identifying Feelings\" and \"Limited access to emotion regulation strategies perceived as effective\" exhibited relatively high strength and bridge strength, while \"Physical disorder\" also occupied a central position in the network. Significant differences in network structure and global strength were observed between groups with different levels of somatic symptom burden. These findings highlight potentially relevant dimensions for future longitudinal and intervention studies.",
+"auteurs": [
+"Shang B",
+"Li J",
+"Luo C",
+"Wu J",
+"Ge Z",
+"Xu Y"
+],
+"revue": "BMC psychology",
+"date": "2026-10-24",
+"doi": "10.1186/s40359-026-05865-9",
+"pmid": "43058928",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058928/",
+"url_libre": "",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"alexithymie"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S2764871139"
 },
 {
 "id": "doi:10.7759/cureus.118138",
@@ -4149,7 +4677,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S64311837"
+"revue_oa": "S64311837",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.65801/pcp.3458",
@@ -4218,7 +4747,8 @@
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S4306525036"
+"revue_oa": "S4306525036",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/ehjvshd/xwag078",
@@ -4261,6 +4791,206 @@
 "revue_oa": "S5407051485"
 },
 {
+"id": "doi:10.1186/s12876-026-05227-0",
+"titre": "Adjunctive flupentixol-melitracen for patients labelled as having refractory gastroesophageal reflux disease in China: a systematic review and meta-analysis",
+"resume": "BACKGROUND: Persistent reflux-like symptoms during proton pump inhibitor (PPI) therapy may reflect ongoing reflux, reflux hypersensitivity, functional heartburn, or overlapping disorders of gut-brain interaction. We assessed adjunctive flupentixol-melitracen in Chinese patients labelled as having refractory gastroesophageal reflux disease (rGERD). METHODS: We reviewed controlled trials explicitly described as randomized. Quasi-randomized and non-randomized allocation were ineligible. Eight databases were searched from inception to 28 July 2026. Post-treatment arm-level data were used consistently for continuous outcomes. Random-effects models, 95% prediction intervals (PIs), exploratory subgroup and sensitivity analyses, small-study-effect tests, and GRADE assessments were performed. RESULTS: Twenty-nine trials (3242 participants), all conducted in China, were retained after source re-audit. Adjunctive therapy was associated with higher total clinical effectiveness (26 trials; RR 1.24, 95% CI 1.20 to 1.29; I²=0%), but this was a non-standard composite assessed largely without blinding. Anxiety (23 trials; SMD - 2.38, 95% CI - 2.93 to - 1.84; I²=97.0%; 95% PI - 5.01 to 0.24), depression (24 trials; SMD - 2.36, 95% CI - 2.86 to - 1.85; I²=96.5%; 95% PI - 4.82 to 0.11), and RDQ scores (8 trials; MD - 4.01, 95% CI - 5.27 to - 2.74; I²=98.6%; 95% PI - 7.67 to - 0.35) favored adjunctive therapy on average, but effect magnitude was highly uncertain. Eight trials sparsely reported adverse events (RR 0.55, 95% CI 0.37 to 0.84); this cannot establish a protective effect or comparative safety. Small-study effects were detected for total effectiveness and the principal psychological outcomes. Certainty was very low. CONCLUSIONS: In Chinese trials of patients labelled as having rGERD, adjunctive flupentixol-melitracen was associated with short-term improvements in composite response and symptom scores. Extreme heterogeneity, prediction intervals crossing no effect for the psychological domains, limited objective reflux confirmation, unclear allocation concealment and blinding, small-study effects, and sparse harms reporting preclude confident estimates of benefit or safety and do not support routine use.",
+"auteurs": [
+"Wang S",
+"Zheng R",
+"Huang W",
+"Yang Y"
+],
+"revue": "BMC gastroenterology",
+"date": "2026-08-27",
+"doi": "10.1186/s12876-026-05227-0",
+"pmid": "43058495",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058495/",
+"url_libre": "",
+"types": [
+"Meta-Analysis",
+"Systematic Review"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psy_digestif",
+"sii"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S180811554"
+},
+{
+"id": "doi:10.1186/s13063-026-09939-2",
+"titre": "Study protocol: efficacy and safety of Limosilactobacillus fermentum WIS32 as an adjunctive treatment for major depressive disorder-a randomized, double-blind, placebo-controlled trial",
+"resume": "BACKGROUND: Major depressive disorder (MDD) is one of the leading causes of disability worldwide. Although antidepressant medications are widely used as first-line treatments, a substantial proportion of patients experience insufficient therapeutic response or limited tolerability, highlighting the need for additional safe and effective adjunctive treatment strategies. In recent years, growing evidence has suggested that the microbiota-gut-brain axis may play an important modulatory role in the onset, maintenance, and treatment response of depression. OBJECTIVES: This study aims to evaluate the efficacy and safety of Limosilactobacillus fermentum WIS32, a human breast milk-derived probiotic strain, as an adjunctive intervention to stable antidepressant therapy in patients with MDD, and to further explore its potential effects on selected biological markers. METHODS: This is a single-center, randomized, double-blind, placebo-controlled clinical trial. A total of 86 patients with MDD diagnosed according to the Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition (DSM-5), are required to complete the study. Allowing for an anticipated dropout rate, 108 participants will be recruited. All participants will continue stable antidepressant treatment and will be randomly assigned in a 1:1 ratio to receive either Limosilactobacillus fermentum WIS32 or a matched placebo for 8 weeks. The primary outcome is the change in the 17-item Hamilton Depression Rating Scale (HAMD-17) score from baseline to week 8. TRIAL STATUS: This manuscript describes protocol version 1.0, dated 8 April 2025. The trial was prospectively registered in the Chinese Clinical Trial Registry (ChiCTR2500100388) on 8 April 2025, a WHO ICTRP Primary Registry, which collects and publicly displays the WHO Trial Registration Data Set (TRDS). Participant recruitment began on 10 June 2025 and is ongoing at the time of submission. Recruitment is expected to be completed by December 2026.",
+"auteurs": [
+"Xiang Q",
+"Yan Z",
+"Duan Y",
+"Li M",
+"Sheng L",
+"Chai X",
+"Ma Y",
+"Cai F",
+"Li Y",
+"Liu Y"
+],
+"revue": "Trials",
+"date": "2026-08-26",
+"doi": "10.1186/s13063-026-09939-2",
+"pmid": "43058897",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058897/",
+"url_libre": "",
+"types": [
+"Clinical Trial Protocol"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psy_digestif",
+"psychogastro"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S109512841"
+},
+{
+"id": "doi:10.1186/s13034-026-01151-z",
+"titre": "The functional connectivity of the frontoparietal control network mediates the relationship between alexithymia and non-suicidal self-injury in depressive adolescents",
+"resume": "BACKGROUND: Non-suicidal self-injury (NSSI) is common among adolescents with depression, posing a significant public health concern. Although NSSI has been linked to heightened alexithymia-characterized by difficulties in identifying and describing emotions-the neurobiological mechanisms underlying this association remain insufficiently understood in adolescents. METHODS: This study included 233 adolescents diagnosed with major depressive disorder (MDD), for whom resting-state functional magnetic resonance images were acquired. All participants completed the Toronto Alexithymia Scale (TAS) and the Functional Assessment of Self-Mutilation (FASM). We estimated intra-network functional connectivity (FC) within 17 large-scale brain sub-networks and examined associations between intra-network FC, TAS scores, and NSSI. Mediation models were then fitted to examine indirect pathways among alexithymia, intra-network FC, and NSSI. RESULTS: Adolescents with MDD who engaged in NSSI showed higher alexithymia than those without NSSI, and NSSI frequency was positively correlated with the difficulty of identifying feelings in the NSSI group. Lower intra-network FC within the frontoparietal control network was associated with the presence of NSSI, and higher TAS total scores were linked to reduced intra-network FC in this network. Mediation analyses further indicated that intra-network FC in the frontoparietal control network partially mediated the association between TAS total scores and NSSI. CONCLUSION: These findings suggest that alexithymia and aberrant connectivity within the frontoparietal control networks are jointly associated with NSSI in adolescent MDD. The identified neural markers and pathways offer insights into potential therapeutic targets, emphasizing the importance of addressing emotion regulation deficits and alexithymia in the treatment of NSSI.",
+"auteurs": [
+"Zhou Y",
+"Yin S",
+"Luo M",
+"Ni S",
+"Zhu R",
+"Li H",
+"Luo X",
+"Li J",
+"Zeng L",
+"Weng X",
+"Han J",
+"Huo L"
+],
+"revue": "Child and adolescent psychiatry and mental health",
+"date": "2026-08-26",
+"doi": "10.1186/s13034-026-01151-z",
+"pmid": "43058861",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058861/",
+"url_libre": "",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"alexithymie"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S133884896"
+},
+{
+"id": "doi:10.1186/s40359-026-05430-4",
+"titre": "Mindfulness-based intervention for adults with spinal cord injury: study protocol for a multicenter randomized controlled trial",
+"resume": "BACKGROUND: Spinal cord injury (SCI) is associated with high rates of depression and anxiety, yet evidence-based psychological interventions tailored to this population are lacking. Mindfulness-based interventions (MBIs) hold promise but have not been evaluated in large-scale trials. METHODS: This is a multi-center, assessor-blind, parallel, two-arm randomized controlled trial with an initial 6-month internal pilot phase. Following a successful pilot, 216 adults with chronic SCI will be randomized to an 8-week videoconferencing-delivered, tailored MBI plus usual care, or usual care alone. The primary outcome is quality of life measured by the SF-36 at 8 weeks post-intervention. Secondary outcomes include anxiety, depression, pain, post-traumatic growth and functional independence. Analyses will follow the intention-to-treat principle using mixed-effects regression models. RESULTS: In the feasibility study, the MBI was highly acceptable (100% willing to recommend). Significant large improvements were observed in mental health (Cohen's d = 0.83), maintained at 3-month follow-up. Attrition was 38.5%, with dropouts having significantly poorer baseline mental health. These findings informed key trial adaptations: enhanced retention strategies, a 6-month primary endpoint, and refined statistical handling of non-random missing data. CONCLUSIONS: This trial will provide robust evidence on the clinical and cost-effectiveness of a tailored MBI for improving psychological health in people with SCI, potentially guiding integration of mindfulness-based approaches into standard SCI rehabilitation. TRIAL REGISTRATION: Chinese Clinical Trial Registry, ChiCTR2500111437.",
+"auteurs": [
+"Wang S",
+"Luo N",
+"Wu Z",
+"Hu X",
+"Xu W",
+"Li C",
+"Gao H",
+"Yang X",
+"Meng T",
+"Huang L",
+"Cheng L"
+],
+"revue": "BMC psychology",
+"date": "2026-08-26",
+"doi": "10.1186/s40359-026-05430-4",
+"pmid": "43058822",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058822/",
+"url_libre": "",
+"types": [
+"Clinical Trial Protocol"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psychotherapies"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S2764871139"
+},
+{
+"id": "doi:10.1186/s12906-026-05543-8",
+"titre": "Efficacy and mechanisms of device-monitored aerobic exercise for depression treatment and cognitive function improvement (DAECD trail): protocol for a randomized controlled trial",
+"resume": "BACKGROUND: Depression is a major public health concern, yet many patients fail to achieve remission with standard pharmacotherapy or psychotherapy, and often experience relapse and persistent cognitive impairments. Enhancing treatment outcome is therefore an urgent clinical need and aerobic exercise may have great potential. However, its efficacy in depression treatment and improving cognition, as well as the underlying mechanisms remains unclear. METHODS: This device-monitored aerobic exercise for depression and cognition improvement (DAECD) trail will enroll 80 patients with depression, randomly assigned (1:1) to an aerobic exercise group or a waiting control group. The intervention group will receive a device-measured aerobic exercise prescription for eight weeks, consisting of moderate-intensity sessions lasting 30 to 50 min, three times per week, alongside their routine treatment. The control group will continue with routine treatment and will initiate the same exercise intervention after the 8-week follow-up period. No additional pharmacological treatment will be initiated or adjusted during the intervention period as part of the study protocol. For those not currently on medication, the intervention will consist of aerobic exercise only. Outcomes will be assessed at baseline, mid-intervention (week 4), and post-intervention (week 8) to evaluate the efficacy of aerobic exercise. The primary outcome is the change in Hamilton Depression Rating Scale score from baseline. Secondary outcomes include cognitive function, depressive and anxiety symptoms, rumination, sleep quality, psychological resilience, safety, physical fitness, exercise capacity, and biological markers. All analyses will follow the intention-to-treat principle. A mixed-effects model will be used for continuous outcomes, and modified Poisson regression will be applied for binary outcomes. Neuroimaging, laboratory and multi-omics tests will be conducted at both baseline and post-intervention, to explore the potential mechanisms through which aerobic exercise exerts its antidepressant effects. DISCUSSION: This study aims to evaluate the efficacy of aerobic exercise in improving depression and cognition, elucidate its underlying mechanisms, and identify patient subgroups most likely to benefit. The findings may contribute to improved treatment outcomes for depression and inform the development of individualized clinical exercise prescriptions. TRIAL REGISTRATION: ClincalTrials.gov NCT06594588, registered 5 Sep 2024.",
+"auteurs": [
+"Zhao G",
+"Yu T",
+"Liu Y",
+"Sun Y",
+"Zhang Y",
+"Lu Z",
+"Kang Z",
+"Guo J",
+"Sun J",
+"Feng X",
+"Yuan R",
+"Zhu Y"
+],
+"revue": "BMC complementary medicine and therapies",
+"date": "2026-08-26",
+"doi": "10.1186/s12906-026-05543-8",
+"pmid": "43058707",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058707/",
+"url_libre": "",
+"types": [
+"Clinical Trial Protocol"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psychotherapies"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S4210199159"
+},
+{
 "id": "doi:10.1186/s12962-026-00813-1",
 "titre": "Pre-treatment NUDT15 testing to inform thiopurine prescribing in patients with inflammatory bowel disease: an economic evaluation",
 "resume": "BACKGROUND: Pre-treatment NUDT15 genotype is effective at identifying individuals likely to have severe thiopurine-induced myelosuppression (TIM). We evaluate the cost-effectiveness of pre-treatment NUDT15 pharmacogenetic testing to inform thiopurine prescribing for people with inflammatory bowel disease (IBD). METHODS: Three strategies were compared to current practice (TPMT enzyme activity testing, not TPMT genotyping) using a decision tree model with a one-year time-horizon: • TPMT enzyme activity and NUDT15 genotyping. • Genotyping of both TPMT and NUDT15. • No testing, thiopurines are avoided, alternative treatments prescribed. Patients with IBD considered for thiopurine treatment were modelled from the UK National Health Service perspective. Primary health outcome is avoidance of severe TIM. Costs include testing, treatment for IBD and TIM. Analyses were conducted for the general population and sub-groups depending upon genetic ancestry. Parameter uncertainty is explored via deterministic sensitivity analyses. RESULTS: Compared to current practice, all strategies were associated with fewer severe TIM events. Avoidance of thiopurines was the most expensive strategy. In the general population, avoidance of thiopurines had a cost per event avoided of £227,610 compared to current practice. Adding NUDT15 genotyping to TPMT testing was associated with a cost per event avoided of £6,447 compared to current practice. Genotyping of NUDT15 and TPMT dominated current practice. Differences in cost-effectiveness estimates were seen between the two sub-populations. Depending on assumptions, NUDT15 testing could be considered less costly than current practice in both groups. Genotyping costs and specific clinical management decisions had the greatest impact on results. CONCLUSIONS: Notwithstanding limitations in the model, NUDT15 genotyping could be cost-effective to inform thiopurine use in patients with IBD in the UK.",
@@ -4277,10 +5007,10 @@
 "date": "2026-08-25",
 "doi": "10.1186/s12962-026-00813-1",
 "pmid": "43053032",
-"pmcid": "",
+"pmcid": "PMC13783558",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43053032/",
-"url_libre": "",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13783558/",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -4312,7 +5042,38 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43052814/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1186/s12876-026-05270-x",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psy_digestif"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S180811554",
+"libre_verifie": "2026-11-20"
+},
+{
+"id": "doi:10.1186/s12876-026-05212-7",
+"titre": "Gastrointestinal functional disturbances in patients with Metabolic Dysfunction-Associated Fatty Liver Disease (MAFLD): a cross-sectional study",
+"resume": "BACKGROUND: This study aimed to evaluate the prevalence, spectrum, and clinical significance of gastrointestinal functional disturbances in patients with metabolic dysfunction-associated fatty liver disease (MAFLD), and their associations with disease severity, fibrosis stage, and health-related quality of life. METHODS: This single-center cross-sectional study included 268 adults with MAFLD between October 2024 and October 2025. Fatty liver severity was assessed by ultrasound, and fibrosis stage was evaluated using liver stiffness measurement. Gastrointestinal functional disturbances were defined using standardized criteria. Multivariable logistic regression assessed associations with disease severity and fibrosis, and linear regression evaluated relationships with quality of life. RESULTS: Gastrointestinal functional disturbances were present in 46.6% of patients with MAFLD (125/268, 95% CI 40.6%-52.6%). Compared with mild disease, moderate MAFLD was associated with higher odds of gastrointestinal functional disturbances (OR = 1.68, 95% CI 1.01-2.79), while severe MAFLD showed a stronger association (OR = 2.54, 95% CI 1.36-4.73; P for trend = 0.002). Advanced fibrosis (LSM ≥ 12.4 kPa) was also independently associated with gastrointestinal functional disturbances (OR = 2.21, 95% CI 1.02-4.78). Patients with gastrointestinal functional disturbances had significantly lower SF-36 General Health scores (β = -9.15, 95% CI - 12.84 to - 5.46, P < 0.001). These associations remained robust in sensitivity analyses and after multivariable adjustment for metabolic factors, medication use, and psychological status. CONCLUSIONS: Gastrointestinal functional disturbances are common in MAFLD and are associated with more severe disease and impaired quality of life, highlighting the need for integrated clinical management.",
+"auteurs": [
+"Zheng X",
+"Sun Q"
+],
+"revue": "BMC gastroenterology",
+"date": "2026-08-25",
+"doi": "10.1186/s12876-026-05212-7",
+"pmid": "43052780",
+"pmcid": "PMC13784105",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43052780/",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13784105/",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -4328,22 +5089,25 @@
 "revue_oa": "S180811554"
 },
 {
-"id": "doi:10.1186/s12876-026-05212-7",
-"titre": "Gastrointestinal functional disturbances in patients with Metabolic Dysfunction-Associated Fatty Liver Disease (MAFLD): a cross-sectional study",
-"resume": "BACKGROUND: This study aimed to evaluate the prevalence, spectrum, and clinical significance of gastrointestinal functional disturbances in patients with metabolic dysfunction-associated fatty liver disease (MAFLD), and their associations with disease severity, fibrosis stage, and health-related quality of life. METHODS: This single-center cross-sectional study included 268 adults with MAFLD between October 2024 and October 2025. Fatty liver severity was assessed by ultrasound, and fibrosis stage was evaluated using liver stiffness measurement. Gastrointestinal functional disturbances were defined using standardized criteria. Multivariable logistic regression assessed associations with disease severity and fibrosis, and linear regression evaluated relationships with quality of life. RESULTS: Gastrointestinal functional disturbances were present in 46.6% of patients with MAFLD (125/268, 95% CI 40.6%-52.6%). Compared with mild disease, moderate MAFLD was associated with higher odds of gastrointestinal functional disturbances (OR = 1.68, 95% CI 1.01-2.79), while severe MAFLD showed a stronger association (OR = 2.54, 95% CI 1.36-4.73; P for trend = 0.002). Advanced fibrosis (LSM ≥ 12.4 kPa) was also independently associated with gastrointestinal functional disturbances (OR = 2.21, 95% CI 1.02-4.78). Patients with gastrointestinal functional disturbances had significantly lower SF-36 General Health scores (β = -9.15, 95% CI - 12.84 to - 5.46, P < 0.001). These associations remained robust in sensitivity analyses and after multivariable adjustment for metabolic factors, medication use, and psychological status. CONCLUSIONS: Gastrointestinal functional disturbances are common in MAFLD and are associated with more severe disease and impaired quality of life, highlighting the need for integrated clinical management.",
+"id": "doi:10.1186/s13256-026-06549-z",
+"titre": "When alpha-gal hides: a case series of atypical presentations of alpha-gal syndrome in children",
+"resume": "BACKGROUND: Alpha-gal syndrome is an IgE-mediated allergy resulting from sensitisation to galactose-alpha-1,3-galactose (alpha-gal). Although classically associated with delayed urticaria or anaphylaxis following red meat ingestion, it can present with diverse and atypical manifestations. We report four paediatric patients with rare and atypical manifestations of alpha-gal syndrome. CASE PRESENTATIONS: Case 1: An 18-month-old boy with recurrent respiratory symptoms was on treatment for allergic rhinitis and poorly controlled asthma for 6 months. His symptoms showed an inconsistent association with dairy consumption; however, there were no cutaneous manifestations. Case 2: An 11-year-old boy with recurrent abdominal pain and altered bowel habits for 1 year was managed as irritable bowel syndrome. His symptoms frequently followed ingestion of dairy products. Case 3: An 8-year-old boy had been experiencing brief episodes of urticaria for 4 months. He was treated as having chronic spontaneous urticaria with poor response to standard treatment. Case 4: An 18-year-old girl had 19 episodes of idiopathic anaphylaxis since the age of 6 years, with symptoms that were not consistently associated with an identifiable food trigger. All patients recalled a history of tick bites. Detailed history revealed delayed symptom onset and inconsistent reactions to alpha-gal-containing foods. The diagnosis of alpha-gal syndrome was confirmed in all four patients by skin prick testing and elevated specific IgE for alpha-gal. Elimination of the implicated food allergens led to complete resolution in all cases. CONCLUSIONS: This case series illustrates the diverse and atypical clinical presentations of alpha-gal syndrome in children which can lead to delayed recognition and misdiagnosis. Increased clinician awareness is the key to early diagnosis, thus preventing recurrent episodes of symptoms and anaphylaxis and improving overall outcomes.",
 "auteurs": [
-"Zheng X",
-"Sun Q"
+"Suriapperuma T",
+"Badanasinghe N",
+"Mettananda S"
 ],
-"revue": "BMC gastroenterology",
+"revue": "Journal of medical case reports",
 "date": "2026-08-25",
-"doi": "10.1186/s12876-026-05212-7",
-"pmid": "43052780",
+"doi": "10.1186/s13256-026-06549-z",
+"pmid": "43058878",
 "pmcid": "",
 "nct": "",
-"url": "https://pubmed.ncbi.nlm.nih.gov/43052780/",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058878/",
 "url_libre": "",
-"types": [],
+"types": [
+"Case Reports"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
@@ -4351,11 +5115,11 @@
 "pubmed"
 ],
 "themes": [
-"psy_digestif"
+"sii"
 ],
 "ajoute_le": "2026-11-20",
 "fiche": null,
-"revue_oa": "S180811554"
+"revue_oa": "S162052592"
 },
 {
 "id": "doi:10.1186/s42523-026-00621-1",
@@ -4406,13 +5170,13 @@
 "date": "2026-08-24",
 "doi": "10.1186/s12882-026-05310-4",
 "pmid": "43052800",
-"pmcid": "",
+"pmcid": "PMC13783631",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43052800/",
-"url_libre": "",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13783631/",
 "types": [
-"Systematic Review",
-"Meta-Analysis"
+"Meta-Analysis",
+"Systematic Review"
 ],
 "preprint": false,
 "retracte": false,
@@ -4594,10 +5358,10 @@
 "date": "2026-08-22",
 "doi": "10.1186/s12888-026-08476-1",
 "pmid": "43052893",
-"pmcid": "",
+"pmcid": "PMC13783779",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43052893/",
-"url_libre": "",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13783779/",
 "types": [
 "Case Reports"
 ],
@@ -4629,10 +5393,10 @@
 "date": "2026-08-21",
 "doi": "10.1186/s40359-026-05344-1",
 "pmid": "43053224",
-"pmcid": "",
+"pmcid": "PMC13783651",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43053224/",
-"url_libre": "",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13783651/",
 "types": [
 "Network Meta-Analysis",
 "Systematic Review"
@@ -4676,8 +5440,8 @@
 "url": "https://pubmed.ncbi.nlm.nih.gov/43052883/",
 "url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13780123/",
 "types": [
-"Multicenter Study",
-"Comparative Study"
+"Comparative Study",
+"Multicenter Study"
 ],
 "preprint": false,
 "retracte": false,
@@ -4691,6 +5455,37 @@
 "ajoute_le": "2026-11-20",
 "fiche": null,
 "revue_oa": "S192926780"
+},
+{
+"id": "doi:10.1038/s41746-026-03055-w",
+"titre": "Systematic review and meta analysis of self guided virtual reality exposure therapy for social anxiety",
+"resume": "Self-guided virtual reality exposure therapy (SGVRET) may offer a scalable approach for social anxiety, but its independent effects remain uncertain. This systematic review and meta-analysis was conducted in accordance with PRISMA and Cochrane methodological guidance. Searches were conducted in PubMed, Embase, Web of Science, the Cochrane Library, and Scopus, and 13 randomized controlled trials were included. Results indicate that SGVRET was associated with a significant reduction in public speaking anxiety (PSAS; SMD = -1.47, 95% CI [-2.56, -0.37]). For overall social anxiety severity (LSAS/LSAS-SR), the pooled estimate favored SGVRET but did not reach statistical significance and showed substantial heterogeneity (SMD = -0.69, 95% CI [-1.50, 0.13]). No statistically significant improvements were detected for social phobia symptoms (SPS/SPS-6; SMD = -0.17, 95% CI [-0.67, 0.32]) or social interaction anxiety (SIAS/SIAS-6; SMD = -0.35, 95% CI [-1.07, 0.37]). However, most included trials had a high risk of bias, limiting the robustness of the evidence. Overall, the findings suggest that SGVRET may hold potential for performance-related social anxiety, particularly public speaking anxiety, but the current evidence remains preliminary and requires confirmation in larger, rigorous trials.",
+"auteurs": [
+"Li Y",
+"Shen J",
+"Huang G"
+],
+"revue": "NPJ digital medicine",
+"date": "2026-08-04",
+"doi": "10.1038/s41746-026-03055-w",
+"pmid": "43058229",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43058229/",
+"url_libre": "",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psychotherapies"
+],
+"ajoute_le": "2026-11-20",
+"fiche": null,
+"revue_oa": "S4210195431"
 },
 {
 "id": "doi:10.1038/s41522-026-01098-1",
@@ -4708,10 +5503,10 @@
 "date": "2026-07-30",
 "doi": "10.1038/s41522-026-01098-1",
 "pmid": "43052305",
-"pmcid": "",
+"pmcid": "PMC13782479",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43052305/",
-"url_libre": "",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13782479/",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -5149,7 +5944,7 @@
 "date": "2026-11-18",
 "doi": "10.1007/s00520-026-11445-9",
 "pmid": "43049998",
-"pmcid": "",
+"pmcid": "PMC13782096",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43049998/",
 "url_libre": "https://doi.org/10.1007/s00520-026-11445-9",
@@ -5158,6 +5953,7 @@
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "openalex",
 "pubmed"
 ],
@@ -5207,7 +6003,7 @@
 "date": "2026-11-18",
 "doi": "10.1007/s11883-026-01489-x",
 "pmid": "43049815",
-"pmcid": "",
+"pmcid": "PMC13782187",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43049815/",
 "url_libre": "https://doi.org/10.1007/s11883-026-01489-x",
@@ -5218,6 +6014,7 @@
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "openalex",
 "pubmed"
 ],
@@ -10572,12 +11369,14 @@
 "url": "https://doi.org/10.26635/6965.7608",
 "url_libre": "",
 "types": [
+"IM",
 "Review"
 ],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "openalex",
 "pubmed"
 ],
@@ -12341,7 +13140,32 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Texte promotionnel présentant une plateforme commerciale pakistanaise de thérapie en ligne sans données empiriques ni méthodologie scientifique.",
+"type_etude": "autre",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [],
+"conclusion": "Présentation descriptive des services commerciaux de thérapie en ligne de The Healing Lounge.",
+"limites": [
+"Absence totale de données scientifiques",
+"Texte publicitaire"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Document commercial sans valeur scientifique pour la pratique clinique.",
+"mots_cles_fr": [
+"téléconsultation",
+"hypnothérapie",
+"santé mentale"
+],
+"titre_court": "Plateforme de téléthérapie au Pakistan",
+"conclusion_simple": "Document purement descriptif et commercial d'une plateforme de soins, sans aucune donnée probante exploitable en clinique.",
+"modele": "gemini-3.8-flash",
+"date": "2026-11-20"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -14891,7 +15715,39 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "L'anxiété sociale chez l'adolescent s'associe à des altérations du microbiote intestinal corrélées à des anomalies neuro-structurelles et fonctionnelles cérébrales.",
+"type_etude": "cas-témoins",
+"design": [
+"transversale"
+],
+"population": "n = 48 adolescents (31 anxiété sociale, 17 témoins sains)",
+"intervention": "Comparaison clinique, séquençage 16S fécal et IRM cérébrale multimodale",
+"resultats_cles": [
+"Enrichissement de Roseburia, Parasutterella et Clostridium sensu stricto 1 dans l'anxiété",
+"Corrélations entre genres microbiens et altérations IRM (cingulaire, frontal moyen, entorhinal)",
+"Pouvoir discriminant préliminaire : AUC = 0,852 (Clostridium sensu stricto 1) et AUC = 0,871 (homogénéité parahippocampique droite)"
+],
+"conclusion": "Les adolescents avec anxiété sociale présentent des altérations combinées du microbiote et du cerveau dans les zones de régulation émotionnelle.",
+"limites": [
+"Effectif restreint",
+"Design transversal sans causalité"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Éclaire le versant neurobiologique de l'axe microbiote-intestin-cerveau et de l'anxiété.",
+"mots_cles_fr": [
+"axe intestin-cerveau",
+"anxiété sociale",
+"microbiote",
+"neuroimagerie"
+],
+"titre_court": "Microbiote et cerveau dans l'anxiété adolescente",
+"conclusion_simple": "Des anomalies couplées microbiote-cerveau existeraient dans l'anxiété de l'adolescent, mais les données restent purement corrélatives.",
+"modele": "gemini-3.8-flash",
+"date": "2026-11-20"
+},
 "revue_oa": "S4210225740"
 },
 {
@@ -15373,7 +16229,40 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Un entraînement associant intéroception et compassion réduit significativement la dépression et module les potentiels évoqués cardiaques et l'activité Delta.",
+"type_etude": "essai randomisé",
+"design": [
+"pilote",
+"contrôlé sur liste d'attente"
+],
+"population": "n = 23 adultes avec dépression",
+"intervention": "Heart-Smile Training (4 semaines) vs liste d'attente",
+"resultats_cles": [
+"Réduction nette des scores de dépression (Hedges’ g = –1,422, p = 0,028)",
+"Atténuation de l'amplitude des potentiels évoqués cardiaques (HEP) frontaux droits",
+"Baisse de la puissance spectrale Delta durant la méditation de compassion"
+],
+"conclusion": "L'entraînement intéroceptif et compatissant améliore les symptômes dépressifs en modulant l'activité neurophysiologique liée au traitement corporel.",
+"limites": [
+"Très petit échantillon (n = 23)",
+"Groupe contrôle passif (liste d'attente)"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Lien direct entre intéroception, autocompassion et dépression, très utile en thérapie.",
+"mots_cles_fr": [
+"intéroception",
+"autocompassion",
+"dépression",
+"potentiels évoqués cardiaques"
+],
+"titre_court": "Intéroception et autocompassion contre la dépression",
+"conclusion_simple": "Un entraînement mêlant intéroception et compassion semble soulager la dépression, mais ces résultats préliminaires doivent être répliqués.",
+"modele": "gemini-3.8-flash",
+"date": "2026-11-20"
+},
 "revue_oa": "S196734849"
 },
 {
@@ -19227,7 +20116,40 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Étude transversale: l'intéroception et l'anxiété sociale prédisent la qualité de vie dans la maladie de Huntington.",
+"type_etude": "transversale",
+"design": [
+"dyades patient-proche",
+"auto-questionnaires"
+],
+"population": "36 dyades patient-proche (72 personnes), porteurs du gène Huntington et proches",
+"intervention": null,
+"resultats_cles": [
+"Porteurs: QoL, conscience émotionnelle, contagion émotionnelle, prise de perspective diminuées; anxiété/évitement social accrus",
+"QoL prédite par intéroception, empathie affective, surtout anxiété sociale",
+"Régulation attentionnelle intéroceptive prédit capacité fonctionnelle; fardeau de l'aidant lié à apathie et intéroception"
+],
+"conclusion": "Dysfonction intéroceptive dans Huntington contribue à altérations émotionnelles, empathie et fardeau de l'aidant.",
+"limites": [
+"Petit effectif, transversal (pas de causalité)",
+"Population Huntington, non digestive"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intéroception et anxiété sociale pertinentes; mais maladie de Huntington",
+"mots_cles_fr": [
+"intéroception",
+"anxiété sociale",
+"maladie de Huntington",
+"qualité de vie"
+],
+"titre_court": "Intéroception et anxiété sociale dans Huntington",
+"conclusion_simple": "L'intéroception et l'anxiété sociale influencent la qualité de vie; piste à transposer prudemment hors maladie de Huntington.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S175814247"
 },
 {
@@ -20879,7 +21801,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Évalue les modérateurs et médiateurs de la réponse au régime FODMAP versus TCC dans le syndrome de l'intestin irritable.",
+"type_etude": "essai randomisé",
+"design": [
+"groupe",
+"randomisé",
+"en ligne"
+],
+"population": "235 adultes IBS",
+"intervention": "régime FODMAP en ligne vs TCC exposition basée",
+"resultats_cles": [
+"modérateurs et médiateurs du traitement",
+"réduction de la sévérité des symptômes digestifs",
+"amélioration de la qualité de vie et du microbiome"
+],
+"conclusion": "Les modérateurs et médiateurs identifiés permettront de personnaliser le traitement IBS.",
+"limites": [
+"recrutement en cours",
+"absence de résultats préliminaires"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Étudie deux traitements IBS pour identifier modérateurs et personnaliser la prise en charge.",
+"mots_cles_fr": [
+"syndrome intestin irritable",
+"régime FODMAP",
+"thérapie cognitivo‑comportementale",
+"modérateurs"
+],
+"titre_court": "Étude RCT sur le régime FODMAP vs TCC pour IBS",
+"conclusion_simple": "Cette étude identifiera les facteurs qui déterminent quel traitement IBS est le plus efficace, aidant à personnaliser la prise en charge.",
+"modele": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S79054089"
 },
 {
@@ -22014,7 +22970,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Les thérapies digitales (TCC, hypnose) présentent les preuves les plus solides dans la douleur abdominale fonctionnelle pédiatrique, surpassant les approches diététiques.",
+"type_etude": "revue narrative",
+"design": [
+"structurée"
+],
+"population": "Enfants avec troubles de l'interaction intestin-cerveau douloureux (23 études 2025-2026 incluses)",
+"intervention": "Psychologique/digitale, diététique, probiotiques, menthe poivrée, TMF",
+"resultats_cles": [
+"TCC en ligne efficace sur les symptômes GI (n = 120 à 6 mois ; SMD 1,17 dans un groupe n = 87)",
+"Hypnothérapie en ligne : soulagement précoce à 3 et 6 mois, sans différence à 12 mois (n = 152)",
+"Probiotiques modestes (35,3 % vs 22,8 %, NNT = 7) ; inefficacité de l'huile de menthe poivrée vs placebo (n = 228)"
+],
+"conclusion": "Les interventions psychologiques et éducatives à distance sont les plus soutenues, tandis que les options microbiennes et diététiques restent mitigées.",
+"limites": [
+"Revue narrative (biais de sélection)",
+"Dates de recherche anachroniques (mention de 2026)"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Valide l'hypnose et la TCC digitales dans les douleurs abdominales pédiatriques.",
+"mots_cles_fr": [
+"douleur abdominale fonctionnelle",
+"hypnothérapie en ligne",
+"TCC",
+"pédiatrie"
+],
+"titre_court": "Traitements de la douleur abdominale pédiatrique",
+"conclusion_simple": "L'hypnose et la TCC à distance offrent les signaux d'efficacité les plus réguliers face aux douleurs digestives de l'enfant.",
+"modele": "gemini-3.8-flash",
+"date": "2026-11-20"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -22341,7 +23329,37 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Les émotions discrètes ont des profils somatiques spécifiques, et l'intensité des sensations corporelles est liée à la détresse psychologique et aux plaintes fonctionnelles.",
+"type_etude": "transversale",
+"design": [],
+"population": "127 adultes sains (âge moyen 32,2 ans)",
+"intervention": null,
+"resultats_cles": [
+"Spécificité somatique : peur (cardiaque), colère (tension musculosquelettique), dégoût (gastro-intestinal), honte/culpabilité (boule gorge/poids poitrine)",
+"Volume et intensité des sensations associés au stress, à l'anxiété, à la dépression et aux plaintes somatiques fonctionnelles",
+"Association négative entre intensité des sensations corporelles et bien-être"
+],
+"conclusion": "L'expérience affective s'ancre dans des sensations corporelles différenciées ; l'hypervigilance corporelle refléterait une détresse somatique sous tension psychologique.",
+"limites": [
+"Échantillon non clinique uniquement",
+"Design transversal ne permettant pas d'établir de causalité"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Intéroception, hypervigilance corporelle, plaintes fonctionnelles et dégoût digestif : directement utile en clinique.",
+"mots_cles_fr": [
+"intéroception",
+"hypervigilance",
+"émotions",
+"plaintes somatiques"
+],
+"titre_court": "Sensations corporelles, émotions et santé mentale",
+"conclusion_simple": "Les émotions s'accompagnent de sensations corporelles distinctes, et leur intensité est liée à la détresse psychique et aux plaintes somatiques.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-20"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -23208,7 +24226,39 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "L'acceptation expérientielle de l'anxiété suit un modèle dynamique en cinq étapes incluant l'intéroception, l'autocompassion et l'exposition intéroceptive.",
+"type_etude": "qualitative",
+"design": [
+"Grounded Theory",
+"entretiens semi-structurés"
+],
+"population": "26 participants non cliniques ayant une expérience préalable en interventions basées sur la pleine conscience/acceptation",
+"intervention": null,
+"resultats_cles": [
+"Modèle en 5 étapes : observation corporelle/intéroceptive, identification, validation/autocompassion, décentration, contact flexible (exposition intéroceptive)",
+"Identification de facteurs facilitateurs soutenant l'engagement dans le processus d'acceptation"
+],
+"conclusion": "L'acceptation est un processus actif et multidimensionnel de régulation émotionnelle offrant un cadre pour des interventions cliniques ciblées.",
+"limites": [
+"Échantillon non clinique",
+"Participants déjà initiés à la pleine conscience et à l'acceptation"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Intéroception, autocompassion et exposition intéroceptive dans l'anxiété : très utile en TCC et hypnose.",
+"mots_cles_fr": [
+"acceptation",
+"anxiété",
+"intéroception",
+"autocompassion"
+],
+"titre_court": "Modèle qualitatif d'acceptation de l'anxiété",
+"conclusion_simple": "L'acceptation de l'anxiété suit un processus actif en cinq étapes, incluant l'intéroception et l'autocompassion, chez des sujets formés.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-20"
+},
 "revue_oa": "S202381698"
 },
 {
@@ -25355,7 +26405,37 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Cette revue narrative propose un modèle multidimensionnel hypothétique reliant la dépression dans le syndrome de Sjögren à l'inflammation, l'axe intestin-cerveau et les facteurs psychosociaux.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Cinq domaines impliqués : voies inflammatoires (IL-6, TNF-α, IFN-α), axe HPA, axe intestin-cerveau, médicaments et facteurs psychosociaux",
+"Déséquilibre du microbiote intestinal pouvant altérer la régulation émotionnelle",
+"Cercle vicieux psychosocial entre symptômes somatiques et stress social"
+],
+"conclusion": "Le modèle multidimensionnel proposé reste hypothétique mais offre un cadre pour le dépistage précoce et les interventions ciblées.",
+"limites": [
+"Causalité non établie dans le syndrome de Sjögren",
+"Données mécanistiques issues d'autres pathologies, de modèles animaux ou in vitro"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Évoque l'axe intestin-cerveau et la dépression, mais centré sur le Sjögren et très biologique.",
+"mots_cles_fr": [
+"syndrome de Sjögren",
+"dépression",
+"axe intestin-cerveau",
+"inflammation"
+],
+"titre_court": "Dépression et syndrome de Sjögren : revue",
+"conclusion_simple": "Un modèle théorique relie la dépression dans le syndrome de Sjögren à l'inflammation, l'axe intestin-cerveau et les facteurs psychosociaux.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-20"
+},
 "revue_oa": "S10623703"
 },
 {
@@ -33031,7 +34111,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S22793308"
+"revue_oa": "S22793308",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1146/annurev-physiol-040425-041450",
@@ -33065,7 +34146,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S196366644"
+"revue_oa": "S196366644",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s11033-026-13012-1",
@@ -33099,7 +34181,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S197962172"
+"revue_oa": "S197962172",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s11033-026-13064-3",
@@ -33135,7 +34218,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S197962172"
+"revue_oa": "S197962172",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s11916-026-01576-3",
@@ -33171,7 +34255,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S157499488"
+"revue_oa": "S157499488",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1021/acs.jafc.6c11116",
@@ -33208,7 +34293,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S134644764"
+"revue_oa": "S134644764",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.autneu.2026.103511",
@@ -33242,7 +34328,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S74113319"
+"revue_oa": "S74113319",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1038/s41586-026-11229-5",
@@ -33269,7 +34356,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42983088/",
-"url_libre": "",
+"url_libre": "https://www.biorxiv.org/content/biorxiv/early/2025/11/28/2025.02.09.637334.full.pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -33283,7 +34370,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S137773608"
+"revue_oa": "S137773608",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.ijpsycho.2026.113502",
@@ -33333,7 +34421,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42982141/",
-"url_libre": "",
+"url_libre": "https://www.sciencedirect.com/science/article/pii/S0955286326002834/pdf",
 "types": [
 "Review"
 ],
@@ -33349,7 +34437,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S548917"
+"revue_oa": "S548917",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/sjop.70159",
@@ -33440,7 +34529,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42994250/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.brat.2026.105189",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -33454,7 +34543,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S186589312"
+"revue_oa": "S186589312",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/jcv2.70186",
@@ -33566,7 +34656,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S153913659"
+"revue_oa": "S153913659",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jad.2026.122692",
@@ -33604,7 +34695,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S113871862"
+"revue_oa": "S113871862",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s10549-026-08117-x",
@@ -33661,7 +34753,7 @@
 "date": "2026-11-04",
 "doi": "10.30773/pi.2026.0029",
 "pmid": "43041081",
-"pmcid": "",
+"pmcid": "PMC13784826",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43041081/",
 "url_libre": "https://www.psychiatryinvestigation.org/upload/pdf/pi-2026-0029.pdf",
@@ -33959,7 +35051,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1093/ibd/izag213",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1093/ibd/izag213",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -33972,7 +35064,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S45123234"
+"revue_oa": "S45123234",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/13625187.2026.2755312",
@@ -34004,7 +35097,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S31672787"
+"revue_oa": "S31672787",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/jscr/rjag1018",
@@ -34080,7 +35174,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S170496595"
+"revue_oa": "S170496595",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.64898/2026.11.03.763521",
@@ -34214,7 +35309,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1523/jneurosci.0513-26.2026",
-"url_libre": "",
+"url_libre": "https://www.jneurosci.org/content/jneuro/early/2026/09/29/JNEUROSCI.0513-26.2026.full.pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -34227,7 +35322,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S5555990"
+"revue_oa": "S5555990",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3390/microorganisms14112543",
@@ -34647,7 +35743,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4390296979"
+"revue_oa": "S4390296979",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.17605/osf.io/9rxzj",
@@ -34878,7 +35975,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306402649"
+"revue_oa": "S4306402649",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fpubh.2026.1946398",
@@ -35855,7 +36953,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S137419829"
+"revue_oa": "S137419829",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/mco2.71093",
@@ -35925,7 +37024,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S103928886"
+"revue_oa": "S103928886",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1038/s41551-026-01829-x",
@@ -35967,7 +37067,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2764624792"
+"revue_oa": "S2764624792",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.bbcan.2026.189742",
@@ -36000,7 +37101,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210180990"
+"revue_oa": "S4210180990",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/bjsopen/zrag141",
@@ -36066,7 +37168,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42977031/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.bpsc.2026.10.014",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -36080,7 +37182,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2898601774"
+"revue_oa": "S2898601774",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/25310429.2026.2757315",
@@ -36101,7 +37204,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42975987/",
-"url_libre": "",
+"url_libre": "https://www.tandfonline.com/doi/pdf/10.1080/25310429.2026.2757315?needAccess=true",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -36115,7 +37218,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2898275119"
+"revue_oa": "S2898275119",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/10640266.2026.2757015",
@@ -36151,7 +37255,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S60315679"
+"revue_oa": "S60315679",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1515/revneuro-2026-0217",
@@ -36373,7 +37478,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S113871862"
+"revue_oa": "S113871862",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jad.2026.122689",
@@ -36411,7 +37517,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S113871862"
+"revue_oa": "S113871862",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.2196/95475",
@@ -36603,7 +37710,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S141953298"
+"revue_oa": "S141953298",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.neubiorev.2026.107078",
@@ -36677,7 +37785,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S137373642"
+"revue_oa": "S137373642",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1176/appi.neuropsych.20260031",
@@ -36718,7 +37827,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S50352613"
+"revue_oa": "S50352613",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s10140-026-02560-5",
@@ -36751,7 +37861,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4357162"
+"revue_oa": "S4357162",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1097/dcr.0000000000004460",
@@ -36787,7 +37898,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S170496595"
+"revue_oa": "S170496595",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1097/dcr.0000000000004492",
@@ -36828,7 +37940,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S170496595"
+"revue_oa": "S170496595",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.ajogmf.2026.102180",
@@ -36855,7 +37968,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1016/j.ajogmf.2026.102180",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.ajogmf.2026.102180",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -36868,7 +37981,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210238021"
+"revue_oa": "S4210238021",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3791/73142",
@@ -36908,7 +38022,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S199738284"
+"revue_oa": "S199738284",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.64898/2026.10.27.762241",
@@ -37113,7 +38228,36 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Ce protocole justifie l'étude de l'ARFID et des facteurs psychologiques parentaux chez les enfants et adolescents adressés en gastroentérologie pédiatrique.",
+"type_etude": "protocole",
+"design": [],
+"population": "Enfants et adolescents danois adressés en gastroentérologie pédiatrique (étude prévue)",
+"intervention": null,
+"resultats_cles": [
+"Prévalence rapportée de l'ARFID en gastroentérologie pédiatrique très variable dans la littérature (1,5 % à 65,2 %)",
+"Chevauchement important entre ARFID et troubles de l'interaction intestin-cerveau (DGBI)",
+"Rôle potentiel de la catastrophisation parentale, de l'anxiété de santé par procuration et des perceptions de la maladie"
+],
+"conclusion": "Étudier l'ARFID et les facteurs parentaux en gastroentérologie pédiatrique est nécessaire pour améliorer le repérage et la prise en charge.",
+"limites": [
+"Aucun résultat présenté (contexte et justification d'étude uniquement)"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "ARFID, DGBI et catastrophisation : thématique centrale, bien que pédiatrique et sans résultats.",
+"mots_cles_fr": [
+"ARFID",
+"troubles digestifs fonctionnels",
+"catastrophisation",
+"pédiatrie"
+],
+"titre_court": "ARFID et troubles digestifs chez l'enfant",
+"conclusion_simple": "Ce protocole souligne le chevauchement entre ARFID et troubles digestifs fonctionnels pédiatriques, sans présenter encore de résultats.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-20"
+},
 "revue_oa": "S7407050956"
 },
 {
@@ -37274,7 +38418,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S106296714"
+"revue_oa": "S106296714",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1186/s12888-026-08758-8",
@@ -37571,7 +38716,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S949205458"
+"revue_oa": "S949205458",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "t:cognitivereserveinteroceptiveaccuracyandbrainelectricalactivityinmiddleagedandolderadultsfromquindiocolombia",
@@ -38527,7 +39673,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42969470/",
-"url_libre": "",
+"url_libre": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/nau.70528",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -38541,7 +39687,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S22797964"
+"revue_oa": "S22797964",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.7748/ns.2026.e12782",
@@ -38573,7 +39720,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S36000085"
+"revue_oa": "S36000085",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fimmu.2026.1993237",
@@ -38693,7 +39841,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S132280141"
+"revue_oa": "S132280141",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.mce.2026.112945",
@@ -38728,7 +39877,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S191044671"
+"revue_oa": "S191044671",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.bbi.2026.107095",
@@ -38751,7 +39901,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42971287/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.bbi.2026.107095",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -38764,7 +39914,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S102243518"
+"revue_oa": "S102243518",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fphar.2026.1920540",
@@ -38915,7 +40066,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S116196263"
+"revue_oa": "S116196263",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.physbeh.2026.115546",
@@ -38937,7 +40089,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42971519/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.2139/ssrn.7157320",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -38951,7 +40103,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S167407068"
+"revue_oa": "S167407068",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1037/emo0001747",
@@ -38971,7 +40124,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42970072/",
-"url_libre": "",
+"url_libre": "https://psycnet.apa.org/fulltext/2028-49782-001.pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -38985,7 +40138,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S118198609"
+"revue_oa": "S118198609",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/21622965.2026.2753417",
@@ -39160,7 +40314,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42971530/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.jval.2026.10.007",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -39174,7 +40328,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S678965"
+"revue_oa": "S678965",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1177/13591045261502148",
@@ -39191,7 +40346,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42969930/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1177/13591045261502148",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -39205,7 +40360,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S25859030"
+"revue_oa": "S25859030",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1177/15248380261495024",
@@ -39398,7 +40554,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S102243518"
+"revue_oa": "S102243518",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.acap.2026.103732",
@@ -39432,7 +40589,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S141855577"
+"revue_oa": "S141855577",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1097/spv.0000000000001912",
@@ -39468,7 +40626,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2764799840"
+"revue_oa": "S2764799840",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s11250-026-05302-4",
@@ -39574,7 +40733,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2483688756"
+"revue_oa": "S2483688756",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.31234/osf.io/dvk45",
@@ -39708,7 +40868,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S61881601"
+"revue_oa": "S61881601",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.17605/osf.io/3jzs5",
@@ -40273,7 +41434,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210215212"
+"revue_oa": "S4210215212",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3390/bs16112071",
@@ -40340,7 +41502,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S116251202"
+"revue_oa": "S116251202",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1186/s12889-026-30205-2",
@@ -40492,7 +41655,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306463855"
+"revue_oa": "S4306463855",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.17605/osf.io/yt2n8",
@@ -40770,7 +41934,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/nmo.70441",
@@ -40911,7 +42076,40 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Le CRF altère la barrière intestinale dans l'IBS-D via les voies GC/NR3C1, MAPK/ERK et Rho/ROCK/MLC, ouvrant sur des cibles thérapeutiques précliniques prometteuses.",
+"type_etude": "revue narrative",
+"design": [
+"revue de littérature",
+"recherche sur PubMed et Web of"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Le CRF régule négativement les protéines de jonction serrée via les voies GC/NR3C1, MAPK/ERK et Rho/ROCK/MLC",
+"Le CRF induit une inflammation immunitaire via les voies de signalisation TLR et l'activation des cellules immunitaires",
+"Des molécules précliniques comme la méthformine, l'Eritoran, la Puerarine et l'anakinra montrent une capacité potentielle à restaurer l'intégrité de la barrière"
+],
+"conclusion": "Les mécanismes moléculaires par lesquels le CRF induit la dysfonction de la barrière intestinale dans l'IBS-D sont partiellement élucidés, mais les preuves sont majoritairement précliniques et nécessitent des validations cliniques.",
+"limites": [
+"Données précliniques majoritairement issues de modèles animaux et cellulaires",
+"Absence de synthèse quantitative ou de méta-analyse (revue narrative)"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Intérêt majeur pour comprendre le lien stress (CRF)/barrière intestinale dans l'IBS-D.",
+"mots_cles_fr": [
+"CRF",
+"barrière intestinale",
+"IBS-D",
+"jonctions serrées"
+],
+"titre_court": "Le CRF et la barrière intestinale dans l'IBS-D",
+"conclusion_simple": "Cette revue narrative décrit les voies moléculaires par lesquelles le CRF altère la barrière intestinale dans l'IBS-D, ouvrant sur des cibles thérapeutiques prometteuses à valider cliniquement.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S2496126384"
 },
 {
@@ -41071,7 +42269,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S49250914"
+"revue_oa": "S49250914",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/nmo.70503",
@@ -41596,7 +42795,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S156364528"
+"revue_oa": "S156364528",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/brb3.71902",
@@ -41702,7 +42902,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S171311646"
+"revue_oa": "S171311646",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/nmo.70506",
@@ -41748,7 +42949,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S84837402"
+"revue_oa": "S84837402",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1097/pra.0000000000000958",
@@ -41779,7 +42981,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S156364528"
+"revue_oa": "S156364528",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/cns.71232",
@@ -41845,7 +43048,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S25652865"
+"revue_oa": "S25652865",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.21203/rs.3.rs-11381780/v1",
@@ -41912,7 +43116,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2898601774"
+"revue_oa": "S2898601774",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/ejn.70732",
@@ -41990,7 +43195,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S50602745"
+"revue_oa": "S50602745",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/s2468-1253(26)00266-9",
@@ -42025,7 +43231,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2530914053"
+"revue_oa": "S2530914053",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/s2468-1253(26)00268-2",
@@ -42060,7 +43267,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2530914053"
+"revue_oa": "S2530914053",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.22541/authorea.15011447/v1",
@@ -42128,7 +43336,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1093/jpids/piag110",
-"url_libre": "",
+"url_libre": "https://academic.oup.com/jpids/advance-article-pdf/doi/10.1093/jpids/piag110/71946593/piag110.pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -42141,7 +43349,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2912147776"
+"revue_oa": "S2912147776",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.20960/nh.06516",
@@ -42158,7 +43367,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.20960/nh.06516",
-"url_libre": "",
+"url_libre": "https://doi.org/10.20960/nh.06516",
 "types": [
 "English Abstract",
 "Randomized Controlled Trial"
@@ -42175,7 +43384,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S108953488"
+"revue_oa": "S108953488",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/brb3.71852",
@@ -42240,7 +43450,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S43893605"
+"revue_oa": "S43893605",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.20960/nh.06142",
@@ -42317,7 +43528,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S114839437"
+"revue_oa": "S114839437",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1021/acs.molpharmaceut.6c00223",
@@ -42353,7 +43565,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S204562082"
+"revue_oa": "S204562082",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/cns.71238",
@@ -42433,7 +43646,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S206392846"
+"revue_oa": "S206392846",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/ejp.70445",
@@ -42512,7 +43726,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S59685179"
+"revue_oa": "S59685179",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1155/jnme/7365660",
@@ -42571,7 +43786,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1530/ec-26-0523",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1530/ec-26-0523",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -42584,7 +43799,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2764372638"
+"revue_oa": "S2764372638",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.2147/dddt.s650753",
@@ -42657,7 +43873,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S27359860"
+"revue_oa": "S27359860",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/sleep/zsag217",
@@ -42878,7 +44095,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1001/jamapsychiatry.2026.2842",
-"url_libre": "",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13583890/",
 "types": [
 "Meta-Analysis"
 ],
@@ -42893,7 +44110,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2495708506"
+"revue_oa": "S2495708506",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1001/jamainternmed.2026.4225",
@@ -42916,7 +44134,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1001/jamainternmed.2026.4225",
-"url_libre": "",
+"url_libre": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13621312/",
 "types": [
 "Multicenter Study",
 "Randomized Controlled Trial"
@@ -42932,7 +44150,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S65364685"
+"revue_oa": "S65364685",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1097/ajp.0000000000001409",
@@ -42974,7 +44193,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S102460418"
+"revue_oa": "S102460418",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/sleep/zsag199",
@@ -43049,7 +44269,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S178548257"
+"revue_oa": "S178548257",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/s2468-2667(26)00184-2",
@@ -43076,7 +44297,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1016/s2468-2667(26)00184-2",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/s2468-2667(26)00184-2",
 "types": [
 "Multicenter Study",
 "Randomized Controlled Trial",
@@ -43093,7 +44314,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2764808104"
+"revue_oa": "S2764808104",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/bdi.70185",
@@ -43260,7 +44482,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1016/j.biopsych.2026.07.024",
-"url_libre": "",
+"url_libre": "https://doi.org/10.5167/uzh-436361",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -43273,7 +44495,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S205482884"
+"revue_oa": "S205482884",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/sim.70777",
@@ -43333,7 +44556,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S205482884"
+"revue_oa": "S205482884",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.21203/rs.3.rs-11104428/v1",
@@ -43550,7 +44774,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S102860386"
+"revue_oa": "S102860386",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/jcc5.70100",
@@ -43912,7 +45137,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S89023782"
+"revue_oa": "S89023782",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.5281/zenodo.23911450",
@@ -44015,7 +45241,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210183771"
+"revue_oa": "S4210183771",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jgo.2026.104457",
@@ -44049,7 +45276,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S199414623"
+"revue_oa": "S199414623",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.psychres.2026.117565",
@@ -44111,7 +45339,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210200583"
+"revue_oa": "S4210200583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jff.2026.107575",
@@ -44345,7 +45574,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210200583"
+"revue_oa": "S4210200583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1136/bmjcment-2026-000092",
@@ -44560,11 +45790,14 @@
 "nct": "",
 "url": "https://doi.org/10.1016/j.brat.2026.105192",
 "url_libre": "https://doi.org/10.1016/j.brat.2026.105192",
-"types": [],
+"types": [
+"IM"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"europepmc",
 "openalex",
 "pubmed"
 ],
@@ -44608,7 +45841,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210200583"
+"revue_oa": "S4210200583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jaclp.2026.10.068",
@@ -44645,7 +45879,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210200583"
+"revue_oa": "S4210200583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.cpr.2026.102817",
@@ -44744,7 +45979,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210200583"
+"revue_oa": "S4210200583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jaclp.2026.10.036",
@@ -44776,7 +46012,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210200583"
+"revue_oa": "S4210200583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.pscychresns.2026.112391",
@@ -44811,7 +46048,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210222969"
+"revue_oa": "S4210222969",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jaclp.2026.10.291",
@@ -44842,7 +46080,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210200583"
+"revue_oa": "S4210200583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jaclp.2026.10.215",
@@ -44874,7 +46113,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210200583"
+"revue_oa": "S4210200583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.eatbeh.2026.102148",
@@ -45072,7 +46312,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42966588/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.jpain.2026.106482",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -45087,7 +46327,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S194302669"
+"revue_oa": "S194302669",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.7759/cureus.118917",
@@ -45299,7 +46540,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S160879026"
+"revue_oa": "S160879026",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1111/pcn.70163",
@@ -45415,7 +46657,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210183135"
+"revue_oa": "S4210183135",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/ibd/izag212",
@@ -45449,7 +46692,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S45123234"
+"revue_oa": "S45123234",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.clineuro.2026.109683",
@@ -45480,7 +46724,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S165396890"
+"revue_oa": "S165396890",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.jare.2026.10.052",
@@ -45501,7 +46746,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1016/j.jare.2026.10.052",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.jare.2026.10.052",
 "types": [
 "Review"
 ],
@@ -45516,7 +46761,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S57607125"
+"revue_oa": "S57607125",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.31234/osf.io/fnxu2_v2",
@@ -46096,7 +47342,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "La dysbiose microbiologique et fonctionnelle est présente chez les futurs patients IBS dès le nourrisson (à 12 mois), des années avant le diagnostic, avec une altération du métabolisme des acides gras et des amines.",
+"type_etude": "cas-témoins",
+"design": [
+"prospective",
+"cas-témoins niché dans la coho",
+"suivi longitudinal de 11.8 ans"
+],
+"population": "n = 396 nourrissons de la cohorte ABIS, échantillons de selles collectés à un âge moyen de 12.4 mois.",
+"intervention": null,
+"resultats_cles": [
+"Déplétion de producteurs d'acides gras à chaîne courte et expansion de taxons mucodisrupteurs chez les futurs cas IBS",
+"Profils fonctionnels montrant une capacité fermentative réduite et une dégradation accélérée des amines aromatiques neuroactives",
+"La divergence microbiologique est détectée en moyenne 11.8 ans avant le diagnostic d'IBS"
+],
+"conclusion": "Le microbiome intestinal présente une dysbiose fonctionnelle précoce et durable chez les enfants à risque d'IBS, suggérant une potentiel cible préventive par des probiotiques.",
+"limites": [
+"Étude observationnelle (ne prouve pas la causalité)",
+"Fonctions microbiennes prédites par PICRUSt2 et non mesurées directement"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Essentielle pour comprendre l'axe microbiome-intestin-cerveau et les cibles probiotiques précoces.",
+"mots_cles_fr": [
+"microbiome",
+"IBS pédiatrique",
+"prédictif",
+"acides gras à chaîne courte"
+],
+"titre_court": "Microbiome infantile et risque futur d'IBS",
+"conclusion_simple": "Une dysbiose fonctionnelle du microbiome intestinal apparaît très tôt chez les enfants qui développeront un IBS des années plus tard, suggérant une fenêtre précoce pour des interventions préventives.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S2531685872"
 },
 {
@@ -46231,7 +47511,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "L'anxiété somatique et physiologique est le principal facteur psychologique prédictif de la sévérité des DGBI, surpassant l'impact cumulé des autres facteurs psychologiques mesurés.",
+"type_etude": "transversale",
+"design": [
+"analyse transversale",
+"regroupement par K-means (k=2)",
+"modèles de régression logique "
+],
+"population": "n = 480 patients avec des troubles du couple intestin-cerveau (DGBI).",
+"intervention": null,
+"resultats_cles": [
+"Le groupe haute sévérité (n=199) montre des scores significativement plus élevés d'anxiété (BAI d=0.55-0.92), de dépression (BDI d=0.56-0.63) et de traumatismes infantiles",
+"Le modèle de régression contenant uniquement l'anxiété (BAI) atteint un AUC de 0.750, proche du modèle complet de 17 variables (AUC = 0.753)",
+"L'anxiété somatique et physiologique émerge comme le déterminant psychologique principal de la sévérité"
+],
+"conclusion": "Le dépistage systématique de l'anxiété somatique en gastroentérologie est crucial pour identifier les patients nécessitant des thérapies comportementales de l'axe cerveau-intestin.",
+"limites": [
+"Design transversal limitant les inférences causales",
+"Données provenant d'un seul centre ou d'une seule cohorte"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Directement ciblé sur les déterminants psychologiques de la sévérité en psychogastroentérologie.",
+"mots_cles_fr": [
+"anxiété somatique",
+"DGBI",
+"traumatisme infantile",
+"prédictif"
+],
+"titre_court": "Prédictifs psychologiques de sévérité dans les DGBI",
+"conclusion_simple": "L'anxiété somatique est le principal facteur psychologique associé à la sévérité des troubles du couple intestin-cerveau, justifiant un dépistage systématique et des thérapies comportementales ciblées",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S110006991"
 },
 {
@@ -46365,7 +47679,40 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "La schizophrénie est modélisée comme un trouble multisystème de la régulation prédictive corps-cerveau sous contrainte énergétique, impliquant l'axe intestin-cerveau et l'interoception.",
+"type_etude": "revue narrative",
+"design": [
+"modèle conceptuel intégré",
+"revue de la littérature conver"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Le modèle propose un cadre de perturbation de la régulation allostatique prédictive sous contrainte énergétique",
+"Les réseaux cérébraux de la salience et auto-référentiel sont vulnérables à l'accumulation de la charge allostatique et à l'altération du métabolisme cérébral",
+"L'axe microbiome-intestin-cerveau et les rythmes vagaux agissent comme des modulateurs de l'inférence interoceptive"
+],
+"conclusion": "Ce modèle théorique ouvre des pistes pour des recherches sur les biomarqueurs multimodaux et les interventions ciblant l'interoception et l'axe intestin-cerveau dans la schizophrénie.",
+"limites": [
+"Modèle purement théorique et conceptuel, sans données quantitatives de validation",
+"Absence de revue systématique de la littérature"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intéresse l'axe intestin-cerveau et l'interoception, mais ciblé sur la schizophrénie (pas directement la clinique IBS).",
+"mots_cles_fr": [
+"axe intestin-cerveau",
+"interoception",
+"bioénergétique",
+"schizophrénie"
+],
+"titre_court": "Modèle bioénergétique-interoceptif de la schizophrénie",
+"conclusion_simple": "Ce modèle théorique conceptualise la schizophrénie comme un trouble de la régulation énergétique corps-cerveau impliquant l'axe intestin-cerveau et l'interoception, guidera la recherche clinique.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S92766711"
 },
 {
@@ -46473,7 +47820,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S85221069"
+"revue_oa": "S85221069",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fimmu.2026.1913840",
@@ -46598,7 +47946,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42962399/",
-"url_libre": "",
+"url_libre": "https://www.sciencedirect.com/science/article/pii/S0001691826018706/pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -46612,7 +47960,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S180067919"
+"revue_oa": "S180067919",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.appet.2026.108806",
@@ -46678,7 +48027,40 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "La CPT en traitement résidentiel pour troubles alimentaires et SSPT réduit plus efficacement les symptômes de SSPT, de dépression et alimentaires que le traitement standard, sans impact mesurable sur la conscience interoceptive.",
+"type_etude": "essai non randomisé",
+"design": [
+"comparaison de cohortes en vie",
+"évaluation avant/après (admiss",
+"groupe CPT+ (n=247) vs CPT- (n"
+],
+"population": "n = 348 patients avec un trouble alimentaire et un SSPT en traitement résidentiel (CPT+ : n = 247, CPT- : n = 101).",
+"intervention": "Cognitive Processing Therapy (CPT) vs traitement résidentiel standard sans CPT.",
+"resultats_cles": [
+"Le groupe CPT+ présente une réduction significativement plus grande des scores EDE-Q Global, PCL-5 total et PHQ-9 total par rapport au groupe CPT-",
+"Les changements de scores aux sous-échelles d'inefficacité et de conscience interoceptive de l'EDI-2 ne diffèrent pas significativement entre les groupes"
+],
+"conclusion": "La CPT est une intervention bénéfique en contexte résidentiel pour les troubles alimentaires comorbides de SSPT, améliorant les symptômes clés sans altérer la conscience interoceptive.",
+"limites": [
+"Design non randomisé avec risque de biais de sélection",
+"Variabilité de l'exposition à la CPT"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Très utile pour la prise en charge des TCA avec SSPT et l'évaluation de la conscience interoceptive.",
+"mots_cles_fr": [
+"troubles alimentaires",
+"SSPT",
+"CPT",
+"conscience interoceptive"
+],
+"titre_court": "CPT en résidentiel pour troubles alimentaires et SSPT",
+"conclusion_simple": "La CPT appliquée en résidentiel pour troubles alimentaires et SSPT améliore les symptômes dépressifs, de SSPT et alimentaires, sans altérer spécifiquement la conscience interoceptive.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S125585695"
 },
 {
@@ -47225,7 +48607,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S163406742"
+"revue_oa": "S163406742",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.20944/preprints202610.3092.v1",
@@ -47283,7 +48666,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1007/s13304-026-02885-3",
-"url_libre": "",
+"url_libre": "https://link.springer.com/content/pdf/10.1007/s13304-026-02885-3.pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -47296,7 +48679,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S86633019"
+"revue_oa": "S86633019",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1128/spectrum.02334-26",
@@ -47390,7 +48774,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1371/journal.pbio.3004101",
-"url_libre": "",
+"url_libre": "https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.3004101&type=printable",
 "types": [
 "Comment"
 ],
@@ -47405,7 +48789,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S154343897"
+"revue_oa": "S154343897",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3791/73055",
@@ -47443,7 +48828,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S199738284"
+"revue_oa": "S199738284",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1177/03000605261500652",
@@ -47460,7 +48846,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1177/03000605261500652",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1177/03000605261500652",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -47473,7 +48859,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S62018274"
+"revue_oa": "S62018274",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/neuonc/noag267",
@@ -47500,7 +48887,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1093/neuonc/noag267",
-"url_libre": "",
+"url_libre": "https://academic.oup.com/neuro-oncology/advance-article-pdf/doi/10.1093/neuonc/noag267/72616280/noag267.pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -47513,7 +48900,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S106908163"
+"revue_oa": "S106908163",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1200/cci-25-00183",
@@ -47540,7 +48928,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1200/cci-25-00183",
-"url_libre": "",
+"url_libre": "https://doi.org/10.2139/ssrn.4991603",
 "types": [
 "Comparative Study"
 ],
@@ -47555,7 +48943,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210181501"
+"revue_oa": "S4210181501",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.31234/osf.io/zve6d_v1",
@@ -47866,7 +49255,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Étude animale montrant que la décoction WLD améliore l'IBS-D en modulant le microbiote et la barrière intestinale via l'AhR.",
+"type_etude": "expérimentale",
+"design": [
+"modèle animal de rat IBS-D",
+"transplantation fécale (FMT)",
+"multi-omics (16S rRNA, métabol"
+],
+"population": "rat modèle IBS-D (effectif non précisé)",
+"intervention": "Weiling Decoction (WLD) vs groupe contrôle (non précisé)",
+"resultats_cles": [
+"Atténuation de l'hypersensibilité viscérale et des symptômes diarrhéiques.",
+"Restauration de la barrière intestinale (augmentation ZO-1, Claudin-1).",
+"Enrichissement en Lactobacillus et activation du signal AhR."
+],
+"conclusion": "WLD soulage l'IBS-D en renforçant la barrière intestinale via le métabolisme du tryptophane médié par Lactobacillus et l'activation d'AhR.",
+"limites": [
+"étude sur modèle animal (rat), pas de données humaines",
+"effectif non précisé"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Intervention herbale/mécanismes biologiques, intérêt clinique direct faible pour l'hypnose.",
+"mots_cles_fr": [
+"microbiote intestinal",
+"barrière intestinale",
+"tryptophane",
+"IBS-D"
+],
+"titre_court": "Weiling Decoction et microbiote dans l'IBS-D",
+"conclusion_simple": "Étude animale montrant qu'une décoction herbale (WLD) améliore l'IBS-D en agissant sur le microbiote et la barrière intestinale, sans preuve clinique.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S2764902628"
 },
 {
@@ -48075,7 +49498,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306463230"
+"revue_oa": "S4306463230",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/b978-0-443-45154-6.00032-5",
@@ -48107,7 +49531,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306463230"
+"revue_oa": "S4306463230",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.17605/osf.io/uv27j",
@@ -48327,7 +49752,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2764691453"
+"revue_oa": "S2764691453",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.5281/zenodo.23804971",
@@ -48511,7 +49937,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": ""
+"revue_oa": "",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3390/curroncol33110656",
@@ -48922,8 +50349,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
-"revue_oa": "S49861241"
+"fiche": {
+"verdict": "Revue des troubles de l'interaction intestin-cerveau; prise en charge empathique et thérapies psychologiques utiles mais efficacité globale modeste.",
+"type_etude": "revue narrative",
+"design": [],
+"population": "20% de la population mondiale (IBS, constipation chronique, diarrhée fonctionnelle)",
+"intervention": "Prise en charge: éducation, conseils alimentaires/mode de vie, fibres, médicaments, dispositifs, biofeedback, thérapies psychologiques",
+"resultats_cles": [
+"Troubles de l'axe intestin-cerveau: motilité perturbée, hypersensibilité viscérale",
+"Prise en charge empathique améliore qualité de vie, symptômes, observance",
+"Efficacité de la plupart des traitements modeste; nouveaux médicaments en développement"
+],
+"conclusion": "Approche empathique et multidisciplinaire; besoin d'élargir les traitements des troubles intestinaux.",
+"limites": [
+"Revue narrative, non systématique",
+"Pas de données chiffrées d'efficacité dans l'abstract"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Cadre global utile; thérapies psychologiques et axe intestin-cerveau au cœur de la pratique",
+"mots_cles_fr": [
+"syndrome intestin irritable",
+"axe intestin-cerveau",
+"thérapies psychologiques",
+"hypersensibilité viscérale"
+],
+"titre_court": "IBS et troubles de l'axe intestin-cerveau",
+"conclusion_simple": "Troubles intestinaux fonctionnels = axe intestin-cerveau; prise en charge empathique et psychologique utile, mais efficacité souvent modeste.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-20"
+},
+"revue_oa": "S49861241",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s11894-026-01065-y",
@@ -48956,7 +50414,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S62844930"
+"revue_oa": "S62844930",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/10408398.2026.2755720",
@@ -48991,7 +50450,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S70620193"
+"revue_oa": "S70620193",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.neubiorev.2026.107013",
@@ -49012,7 +50472,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42950963/",
-"url_libre": "",
+"url_libre": "https://www.sciencedirect.com/science/article/pii/S0149763426004719/pdf",
 "types": [
 "Review"
 ],
@@ -49028,7 +50488,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S170052170"
+"revue_oa": "S170052170",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1093/crocol/otag108",
@@ -49330,7 +50791,40 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Revue systématique indiquant que les approches psychosociales adaptées peuvent réduire la dépression dans l'ASD, avec des preuves limitées.",
+"type_etude": "revue systématique",
+"design": [
+"revue systématique (scoping re",
+"PubMed, PsycINFO, listes de ré"
+],
+"population": "patients avec trouble du spectre autistique (ASD) et dépression (effectif non précisé)",
+"intervention": "interventions pharmacologiques, neuromodulation, et psychosociales (CBT adaptée, mindfulness, DBT, etc.)",
+"resultats_cles": [
+"Amélioration des symptômes dépressifs avec des approches psychosociales adaptées (CBT, mindfulness, DBT).",
+"Preuves pharmacologiques basées sur le consensus d'expert et des données indirectes.",
+"Données de neuromodulation principalement limitées à des cas cliniques."
+],
+"conclusion": "La dépression dans l'ASD reste sous-étudiée, nécessitant des essais contrôlés plus grands avec des mesures de dépression validées spécifiquement pour l'ASD.",
+"limites": [
+"preuves indirectes pour la pharmacologie",
+"essais de petite taille ou ouverts pour les approches psychosociales"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intérêt modéré : approches psychosociales utiles, mais population cible l'ASD.",
+"mots_cles_fr": [
+"dépression",
+"trouble du spectre autistique",
+"TCC adaptée",
+"mindfulness"
+],
+"titre_court": "Dépression dans l'ASD : revue des interventions",
+"conclusion_simple": "Revue systématique montrant l'efficacité potentielle de thérapies comportementales adaptées pour la dépression dans l'ASD, mais les preuves restent limitées.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S92766711"
 },
 {
@@ -49379,7 +50873,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42957552/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.tics.2026.10.002",
 "types": [
 "Review"
 ],
@@ -49395,7 +50889,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S192051125"
+"revue_oa": "S192051125",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s10072-026-09506-2",
@@ -49434,7 +50929,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S75480959"
+"revue_oa": "S75480959",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1080/08039488.2026.2749588",
@@ -49505,7 +51001,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S177391433"
+"revue_oa": "S177391433",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.2174/011570159x396282251104115925",
@@ -49544,7 +51041,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S85221069"
+"revue_oa": "S85221069",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.clinph.2026.2112451",
@@ -49629,7 +51127,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S25155249"
+"revue_oa": "S25155249",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1038/s41380-026-03948-y",
@@ -49786,7 +51285,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S52020611"
+"revue_oa": "S52020611",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s11845-026-04666-8",
@@ -49818,7 +51318,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S117684900"
+"revue_oa": "S117684900",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/wjs.70655",
@@ -49837,7 +51338,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1002/wjs.70655",
-"url_libre": "",
+"url_libre": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/wjs.70655",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -49850,7 +51351,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S60318618"
+"revue_oa": "S60318618",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.21203/rs.3.rs-10992030/v1",
@@ -50092,7 +51594,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative suggérant que le yoga régule l'axe gut-brain via le vagus et l'HPA, avec des preuves cliniques encore préliminaires.",
+"type_etude": "revue narrative",
+"design": [
+"revue narrative",
+"recherche PubMed/MEDLINE jusqu",
+"exclusion des études animales "
+],
+"population": "patients avec troubles du gut-brain interaction (DGBI, dont IBS, dyspepsie fonctionnelle) (effectif non précisé)",
+"intervention": "yoga (postures, respiration lente, méditation), programme de respiration lente de 6 semaines",
+"resultats_cles": [
+"Amélioration de l'activité parasympathique (HRV) et des seuils sensoriels rectaux dans l'IBS.",
+"Réduction temporaire du cortisol du soir dans la douleur abdominale fonctionnelle.",
+"Méta-analyses récentes montrant l'absence d'effet global significatif sur les symptômes."
+],
+"conclusion": "Le yoga, notamment la respiration lente, améliore plausiblement les DGBI par des mécanismes vagaux et HPA, mais les preuves cliniques restent de faible certitude.",
+"limites": [
+"absence d'effet global significatif dans les méta-analyses",
+"faible certitude des preuves (petits échantillons, risque de biais)"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Intérêt majeur : le yoga régule l'axe gut-brain, corrélé à l'hypnose digestive.",
+"mots_cles_fr": [
+"yoga",
+"respiration lente",
+"axe HPA",
+"vagus"
+],
+"titre_court": "Yoga, axe HPA et vagus dans les troubles gut-brain",
+"conclusion_simple": "Le yoga et la respiration lente ont un mécanisme d'action plausible sur le système nerveux autonome dans l'IBS, mais les preuves cliniques restent de faible niveau.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S4210177742"
 },
 {
@@ -50379,7 +51915,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306462995"
+"revue_oa": "S4306462995",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1145/3801727.3844933",
@@ -50440,7 +51977,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306463708"
+"revue_oa": "S4306463708",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.22373/psikoislamedia.v11i2.34349",
@@ -50777,7 +52315,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306463708"
+"revue_oa": "S4306463708",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "nct:NCT07902882",
@@ -51015,7 +52554,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S134644764"
+"revue_oa": "S134644764",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/jad.70303",
@@ -51039,7 +52579,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42949175/",
-"url_libre": "",
+"url_libre": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/jad.70303",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -51053,7 +52593,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S179289126"
+"revue_oa": "S179289126",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fnagi.2026.1981076",
@@ -51329,7 +52870,41 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Présentation d'une nouvelle thérapie mind-body (MBRT) ciblant les alarmes cérébrales appris par exposition interoceptive dans la Long COVID.",
+"type_etude": "protocole",
+"design": [
+"théorie clinique",
+"cas clinique détaillé",
+"en cours d'essai randomisé (RC"
+],
+"population": "patients avec Long COVID et symptômes persistants (fatigue, douleur, troubles cognitifs) (un cas clinique détaillé)",
+"intervention": "Mind-Body Reprogramming Therapy (MBRT) sur format hybride de 7-10 jours (exposition interoceptive, régulation du stress)",
+"resultats_cles": [
+"Ciblage des alarmes cérébrales adaptives par éducation, régulation du stress et exposition interoceptive.",
+"Intègre du conditionnement classique/opérant et des réseaux relationnels verbaux (RFT).",
+"Cas clinique illustrant un processus de récupération, évaluation RCT en cours."
+],
+"conclusion": "MBRT est une intervention interdisciplinaire ciblant les motifs cérébraux appris dans la Long COVID, actuellement évaluée dans un essai randomisé.",
+"limites": [
+"données préliminaires (un seul cas clinique)",
+"essai randomisé en cours, pas encore de résultats groupaux"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Intérêt élevé : exposition interoceptive et régulation du stress pour les alarmes cérébrales.",
+"mots_cles_fr": [
+"Mind-Body Reprogramming Therapy",
+"Long COVID",
+"exposition interoceptive",
+"conditionnement"
+],
+"titre_court": "MBRT : rééducation mind-body pour la Long COVID",
+"conclusion_simple": "Le MBRT est une approche clinique prometteuse basée sur l'exposition interoceptive et le conditionnement pour les symptômes persistants de la Long COVID, en attente de validation.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S9692511"
 },
 {
@@ -51365,7 +52940,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S160879026"
+"revue_oa": "S160879026",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1113/jp290737",
@@ -51516,7 +53092,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S148639273"
+"revue_oa": "S148639273",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/frhs.2026.1912318",
@@ -51633,7 +53210,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4210222969"
+"revue_oa": "S4210222969",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1186/s12887-026-07935-8",
@@ -51694,7 +53272,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42947465/",
-"url_libre": "",
+"url_libre": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/053E3917240F20FE29F54E211C44EB72/S000712502610806Xa.pdf/div-class-title-time-for-psychiatry-to-seriously-consider-broad-spectrum-micronutrients-div.pdf",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -51707,7 +53285,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S127936299"
+"revue_oa": "S127936299",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/bs.pbr.2026.09.012",
@@ -51743,7 +53322,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S170217976"
+"revue_oa": "S170217976",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3724/zdxbyxb-2026-0250",
@@ -51761,7 +53341,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.3724/zdxbyxb-2026-0250",
-"url_libre": "",
+"url_libre": "https://doi.org/10.3724/zdxbyxb-2026-0250",
 "types": [
 "English Abstract"
 ],
@@ -51777,7 +53357,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S3012868290"
+"revue_oa": "S3012868290",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.ecoenv.2026.120974",
@@ -51902,7 +53483,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://doi.org/10.1002/nau.70517",
-"url_libre": "",
+"url_libre": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/nau.70517",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -51915,7 +53496,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S22797964"
+"revue_oa": "S22797964",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.bjorl.2026.101914",
@@ -52058,7 +53640,40 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative sur le potentiel de l'IA dans l'IBS, limitée par l'absence de validation externe et l'hétérogénéité des données.",
+"type_etude": "revue narrative",
+"design": [
+"revue narrative",
+"références à revue systématiqu"
+],
+"population": "patients avec syndrome de l'intestin irritable (IBS) (données de cohortes small, single-center, n=1366 dans la revue de 2025)",
+"intervention": "outils d'intelligence artificielle (ML, deep learning, NLP) pour le diagnostic, subclassification et prédiction de réponse au régime low FODMAP",
+"resultats_cles": [
+"Différenciation de l'IBS des maladies organiques et identification de sous-groupes microbiota.",
+"Prédiction de la réponse au régime low FODMAP par ML et NLP.",
+"Données de petites cohortes single-center, sans validation externe (revue 2025 : 6 études, n=1366)."
+],
+"conclusion": "L'IA a un potentiel précoce dans l'IBS mais dépend du développement de données standardisées, de validations multi-centriques et de rapports selon les standards TRIPOD+AI.",
+"limites": [
+"absence de validation externe",
+"cohortes small, single-center, méthodes hétérogènes"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Intérêt clinique direct faible : outils informatiques, pas d'application immédiate en consultation.",
+"mots_cles_fr": [
+"intelligence artificielle",
+"IBS",
+"diagnostic",
+"régime low FODMAP"
+],
+"titre_court": "L'intelligence artificielle dans l'IBS : revue narrative",
+"conclusion_simple": "L'IA présente un potentiel précoce pour le diagnostic et la subclassification de l'IBS, mais les preuves actuelles sont limitées par l'absence de validation et l'hétérogénéité des données.",
+"modele": "dots-studio/dots-3-note-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S4210213542"
 },
 {
@@ -52317,7 +53932,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2764590744"
+"revue_oa": "S2764590744",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/b978-0-443-40334-7.00081-2",
@@ -52351,7 +53967,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306463230"
+"revue_oa": "S4306463230",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1007/s44192-026-00635-w",
@@ -52482,7 +54099,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S45123234"
+"revue_oa": "S45123234",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1186/s12967-026-09127-5",
@@ -52799,7 +54417,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306463855"
+"revue_oa": "S4306463855",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.17605/osf.io/4uvnq",
@@ -52861,7 +54480,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S4306463075"
+"revue_oa": "S4306463075",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "t:obsessivecompulsivedisorderwithcomorbidsocialanxietysymptomsisamoreseverepresentationassociatedwithgreaterautistictraits",
@@ -53285,7 +54905,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S1234972"
+"revue_oa": "S1234972",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1038/s41575-026-01274-w",
@@ -53314,7 +54935,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S120397320"
+"revue_oa": "S120397320",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fmicb.2026.1910406",
@@ -53485,7 +55107,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42970315/",
-"url_libre": "",
+"url_libre": "https://www.aginganddisease.org/EN/PDF/10.14336/AD.2026.0632",
 "types": [
 "Review"
 ],
@@ -53500,7 +55122,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2738790859"
+"revue_oa": "S2738790859",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fpsyg.2026.1820860",
@@ -53659,7 +55282,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42947320/",
-"url_libre": "",
+"url_libre": "https://journals.sagepub.com/doi/pdf/10.1177/12034754261501140?download=true",
 "types": [
 "Letter"
 ],
@@ -53674,7 +55297,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S142488290"
+"revue_oa": "S142488290",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/eat.70247",
@@ -53695,7 +55319,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42946650/",
-"url_libre": "",
+"url_libre": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/eat.70247",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -53708,7 +55332,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S74080386"
+"revue_oa": "S74080386",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1002/ajmg.b.70037",
@@ -53735,7 +55360,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42946643/",
-"url_libre": "",
+"url_libre": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/ajmg.b.70037",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -53748,7 +55373,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2764647521"
+"revue_oa": "S2764647521",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3390/nu18213526",
@@ -53814,7 +55440,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S2764622253"
+"revue_oa": "S2764622253",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1590/s0004-2803.24612026-025",
@@ -53969,7 +55596,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42976420/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.psyneuen.2026.108064",
 "types": [
 "Review"
 ],
@@ -53985,7 +55612,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S81924583"
+"revue_oa": "S81924583",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.61409/v12251010",
@@ -54003,7 +55631,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43036132/",
-"url_libre": "",
+"url_libre": "https://content.ugeskriftet.dk/sites/default/files/V12251010_WEB.pdf",
 "types": [
 "English Abstract",
 "Review"
@@ -54019,7 +55647,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S113844480"
+"revue_oa": "S113844480",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3389/fimmu.2026.1997593",
@@ -54174,7 +55803,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43036131/",
-"url_libre": "",
+"url_libre": "https://content.ugeskriftet.dk/sites/default/files/2026-10/V04260297_WEB.pdf",
 "types": [
 "Case Reports",
 "English Abstract"
@@ -54190,7 +55819,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S113844480"
+"revue_oa": "S113844480",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.23922/jarc.2026-037",
@@ -54371,7 +56001,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S158766798"
+"revue_oa": "S158766798",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.7759/cureus.118495",
@@ -54463,7 +56094,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42966178/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.jfludis.2026.106263",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -54476,7 +56107,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S157553855"
+"revue_oa": "S157553855",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.1016/j.brat.2026.105186",
@@ -54494,7 +56126,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/42950587/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1016/j.brat.2026.105186",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -54506,8 +56138,37 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
-"revue_oa": "S186589312"
+"fiche": {
+"verdict": "Évitement interoceptif persiste après extinction, malgré conscience des menaces.",
+"type_etude": "expérimentale",
+"design": [
+"expérimental"
+],
+"population": "n=35, participants sains",
+"intervention": "CS+ menace interoceptive, CS- sécurité ; option évitement, extinction",
+"resultats_cles": [
+"Apprentissage discrimination correct.",
+"Évitement persistant après extinction.",
+"Pas de réponse différentielle après option évitement."
+],
+"conclusion": "Évitement interoceptif persiste après extinction ; stratégie better-safe-than-sorry.",
+"limites": [],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Évitement interoceptif persistant, pertinent pour hypervigilance et anxiété.",
+"mots_cles_fr": [
+"évitement",
+"interoception",
+"extinction"
+],
+"titre_court": "Évitement interoceptif après menace interne",
+"conclusion_simple": "Évitement interoceptif possible après menace interne ; à confirmer par des études plus solides.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-20"
+},
+"revue_oa": "S186589312",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.64898/2026.10.21.26366048",
@@ -54582,7 +56243,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S170217976"
+"revue_oa": "S170217976",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3390/nu18213498",
@@ -54721,7 +56383,36 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Mécanismes endocriniens IBS mal compris ; approches standardisées nécessaires.",
+"type_etude": "revue narrative",
+"design": [],
+"population": "IBS, n non précisé",
+"intervention": null,
+"resultats_cles": [
+"Mécanismes endocriniens mal définis.",
+"5-HT : diarrhée vs constipation.",
+"Pas de signature unique IBS."
+],
+"conclusion": "Pas de signature endocrine unique ; approches standardisées nécessaires.",
+"limites": [
+"Revue narrative",
+"Preuves non uniformes"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Mécanismes intestinaux pertinents pour IBS et symptômes digestifs.",
+"mots_cles_fr": [
+"IBS",
+"endocrinien",
+"5-HT"
+],
+"titre_court": "Signaux endocriniens de l'IBS",
+"conclusion_simple": "Les mécanismes intestinaux de l'IBS sont complexes ; des approches ciblées sont nécessaires.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S2597052008"
 },
 {
@@ -55287,7 +56978,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43045223/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.31234/osf.io/4z78q",
 "types": [
 "Review"
 ],
@@ -55302,7 +56993,8 @@
 ],
 "ajoute_le": "2026-11-18",
 "fiche": null,
-"revue_oa": "S170217976"
+"revue_oa": "S170217976",
+"libre_verifie": "2026-11-20"
 },
 {
 "id": "doi:10.3390/jcm15218272",
@@ -56723,7 +58415,36 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Rythme et mouvement peuvent aider, mais preuves limitées.",
+"type_etude": "revue narrative",
+"design": [],
+"population": "adultes dépressifs/anxieux, n non précisé",
+"intervention": "RDI, DMT ; pas de comparateur clair",
+"resultats_cles": [
+"Amélioration symptômes possible.",
+"Preuves hétérogènes.",
+"Mécanismes candidats insuffisants."
+],
+"conclusion": "RDI et DMT prometteurs mais complémentaires, pas substituts.",
+"limites": [
+"Preuves hétérogènes",
+"Mécanismes insuffisants"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Pistes complémentaires pour anxiété et dépression, preuves limitées.",
+"mots_cles_fr": [
+"danse",
+"anxiété",
+"dépression"
+],
+"titre_court": "Danse et mouvement pour l'anxiété",
+"conclusion_simple": "La danse peut aider, mais les preuves sont limitées ; ce n'est pas un remplacement.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S92766711"
 },
 {
@@ -57539,7 +59260,36 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Sélection phénotypique des interventions microbiote limitée.",
+"type_etude": "revue narrative",
+"design": [],
+"population": "IBS, n non précisé",
+"intervention": "Rifaximin, fibres, probiotiques, FMT ; pas de séquence validée",
+"resultats_cles": [
+"Rifaximin : rôle clair IBS diarrhéique.",
+"Fibres : soutien constipation.",
+"Probiotiques/FMT : preuve limitée/investigative."
+],
+"conclusion": "Sélection phénotypique limitée ; pas de séquence validée.",
+"limites": [
+"Preuves non répliquées",
+"FMT investigatif"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Choix thérapeutique IBS, pertinence clinique modérée.",
+"mots_cles_fr": [
+"IBS",
+"microbiote",
+"phénotype"
+],
+"titre_court": "Microbiote et IBS : choix thérapeutique",
+"conclusion_simple": "Le choix du traitement de l'IBS doit tenir compte du phénotype clinique.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S132108250"
 },
 {
@@ -58715,7 +60465,37 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Revue: conseils alimentaires traditionnels en 1re ligne dans l'IBS pédiatrique, efficacité durable et risque moindre de troubles alimentaires.",
+"type_etude": "revue narrative",
+"design": [],
+"population": "Enfants et adolescents avec IBS",
+"intervention": "Régimes: conseils traditionnels (1re ligne), méditerranéen, pauvre en FODMAP (cas sélectionnés), sans gluten (controversé), réduction des aliments ultra-transformés",
+"resultats_cles": [
+"Conseils traditionnels: efficacité à long terme comparable aux régimes restrictifs, moins de troubles alimentaires",
+"Régime méditerranéen: effet anti-inflammatoire, modulation du microbiote",
+"Régime pauvre en FODMAP restrictif, réservé; sans gluten limité/controversé chez l'enfant"
+],
+"conclusion": "Approche multidisciplinaire et familiale, diète personnalisée et interventions comportementales.",
+"limites": [
+"Revue narrative",
+"Données pédiatriques, peu applicables à l'adulte"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intérêt pour ARFID/troubles alimentaires; mais population pédiatrique",
+"mots_cles_fr": [
+"IBS pédiatrique",
+"régime méditerranéen",
+"FODMAP",
+"troubles alimentaires"
+],
+"titre_court": "Régimes alimentaires dans l'IBS de l'enfant",
+"conclusion_simple": "Chez l'enfant, commencer par des conseils alimentaires simples; les régimes restrictifs comme le sans FODMAP sont à réserver prudemment.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S59739785"
 },
 {
@@ -59407,7 +61187,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Cohorte EHR: le SIBO chez l'IBS augmente significativement le risque ultérieur de trouble anxieux généralisé.",
+"type_etude": "cohorte",
+"design": [
+"rétrospective",
+"appariée",
+"données EHR"
+],
+"population": "2 cohortes de 7716 patients (IBS avec vs sans SIBO), 18-50 ans",
+"intervention": "Exposition: SIBO chez patients IBS; comparateur IBS sans SIBO",
+"resultats_cles": [
+"TAG: 6,36% (avec SIBO) vs 4,71% (sans); différence 1,66% (IC95% 0,938-2,38; p<0,0001)",
+"OR 1,377 (IC95% 1,197-1,583); HR 1,301 (IC95% 1,136-1,491; p=0,0008) sur 15 ans",
+"Risque de TAG élevé et persistant chez IBS+SIBO"
+],
+"conclusion": "Le SIBO amplifie la dysfonction de l'axe intestin-cerveau au-delà de l'IBS seul.",
+"limites": [
+"Design rétrospectif sur données administratives",
+"Pas de mesure directe du SIBO (codes diagnostiques)"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Lien intestin-anxiété pertinent; mais SIBO et non mécanismes psychologiques centraux",
+"mots_cles_fr": [
+"SIBO",
+"anxiété généralisée",
+"axe intestin-cerveau",
+"IBS"
+],
+"titre_court": "SIBO, intestin irritable et risque d'anxiété",
+"conclusion_simple": "Chez l'IBS, la présence d'un SIBO semble liée à un risque accru d'anxiété; à confirmer car données rétrospectives.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S180811554"
 },
 {
@@ -59847,7 +61661,36 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "IBS associée à altérations cérébrales distribuées.",
+"type_etude": "méta-analyse",
+"design": [
+"ALE",
+"méta-analyse"
+],
+"population": "IBS vs non-IBS, 380-1187 sujets",
+"intervention": null,
+"resultats_cles": [
+"Altérations GM : thalamus/caudate.",
+"FC : insulaire/paracentral/cingular.",
+"Altérations interoceptionnelles/affectives/cognitives."
+],
+"conclusion": "IBS associée à altérations cérébrales distribuées.",
+"limites": [],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Altérations cérébrales liées à interoception, pertinent en pratique.",
+"mots_cles_fr": [
+"IBS",
+"cerveau",
+"interoception"
+],
+"titre_court": "Cerveau et IBS : altérations",
+"conclusion_simple": "Le cerveau montre des altérations chez l'IBS ; lien avec la perception interoceptive.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-20"
+},
 "revue_oa": "S163345920"
 },
 {
@@ -60983,7 +62826,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Le brossage muqueux duodénal capture plus de biomasse bactérienne que la biopsie, sans différence de diversité globale retrouvée entre dyspepsie et contrôles.",
+"type_etude": "expérimentale",
+"design": [
+"pilote",
+"appariée"
+],
+"population": "n = 40 (20 dyspepsie fonctionnelle Rome IV, 20 contrôles)",
+"intervention": "Brossage muqueux vs biopsie duodénale lors d'une endoscopie",
+"resultats_cles": [
+"Brossage : meilleure rétention de reads et pertes réduites vs biopsie (p < 0,05)",
+"Aucune différence significative d'alpha/bêta-diversité entre dyspeptiques et contrôles",
+"Tendance exploratoire à une abondance accrue de Streptococcus chez les dyspeptiques (non significative après correction FDR)"
+],
+"conclusion": "Le brossage muqueux recueille le microbiote luminal/muqueux avec plus de biomasse et diversité que la biopsie, mais sans différence confirmée entre patients et contrôles.",
+"limites": [
+"Manque de puissance statistique",
+"Étude pilote"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Dyspepsie fonctionnelle mais axée sur la technique d'échantillonnage microbiologique.",
+"mots_cles_fr": [
+"dyspepsie fonctionnelle",
+"microbiote duodénal",
+"axe intestin-cerveau"
+],
+"titre_court": "Microbiote duodénal dans la dyspepsie fonctionnelle",
+"conclusion_simple": "Le brossage muqueux optimise le prélèvement duodénal, mais aucun profil bactérien spécifique à la dyspepsie n'est confirmé.",
+"modele": "gemini-3.8-flash",
+"date": "2026-11-20"
+},
 "revue_oa": "S116933238"
 },
 {
