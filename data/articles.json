@@ -7072,7 +7072,9 @@
 "dyspepsie fonctionnelle"
 ],
 "modele": "cohere/north-mini-code:free",
-"date": "2026-11-19"
+"date": "2026-11-19",
+"titre_court": "Régime d'éviction pour troubles digestifs mixtes",
+"conclusion_simple": "Un régime d'éviction améliore les troubles digestifs mixtes, mais les bénéfices s'estompent à la réintroduction ; à personnaliser."
 },
 "revue_oa": "",
 "libre_verifie": "2026-11-20"
@@ -7445,7 +7447,9 @@
 "yoga breathing"
 ],
 "modele": "nvidia/nemotron-3.5-lightning:free",
-"date": "2026-11-19"
+"date": "2026-11-19",
+"titre_court": "Yoga et respiration guidée pour douleur chronique",
+"conclusion_simple": "La respiration guidée et le yoga peuvent soulager la douleur chronique ; ces résultats exploratoires restent à confirmer."
 },
 "revue_oa": "S2764745268",
 "libre_verifie": "2026-11-20"
