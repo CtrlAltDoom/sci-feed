@@ -74,6 +74,10 @@ Chaque matin, les articles récents les plus pertinents pour vous arrivent sur l
 
 Réglages dans la section `notifications` de `config.yaml` : nombre, format (une notification par article ou un seul résumé), plage horaire, priorité, thèmes inclus ou exclus, niveau minimal de revue ou de preuve.
 
+**Malgré les retards de GitHub** (constatés jusqu'à 9 h) : la collecte a plusieurs créneaux dans la journée (le premier qui tourne la fait, les suivants s'arrêtent aussitôt), et les notifications partent automatiquement dès qu'elle est terminée. Avant midi, elles attendent la collecte du jour ; après, elles partent avec ce qu'il y a, jusqu'à 21 h au plus tard (`attendre_collecte_jusqua`, `heure_max`). Jamais deux envois le même jour.
+
+**Réveil externe** (facultatif, plus ponctuel que GitHub) : sur [cron-job.org](https://cron-job.org) (gratuit), une tâche quotidienne vers 5 h 30 qui envoie un `POST` à `https://api.github.com/repos/<vous>/<dépôt>/actions/workflows/veille.yml/dispatches`, avec l'en-tête `Authorization: Bearer <jeton GitHub à droits « Actions : écriture »>` et le corps `{"ref":"main","inputs":{"si_pas_fait":"true"}}`. Si la collecte du jour est déjà faite, rien ne se passe.
+
 **Ne pas être notifié de ce qu'on a déjà vu** (facultatif) : si la synchronisation entre appareils est activée dans l'appli, ajoutez le secret `SYNC_GIST_ID` avec l'identifiant de votre gist (la fin de son adresse `gist.github.com/…/IDENTIFIANT`). Les articles lus, favoris ou masqués dans l'appli ne sont alors plus notifiés.
 
 **Résumé de la semaine** : le dimanche matin, une notification de plus (sans bandeau) liste les 10 articles les plus marquants des 7 derniers jours. Réglages dans `notifications.hebdo`.

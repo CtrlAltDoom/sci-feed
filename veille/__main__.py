@@ -6,6 +6,7 @@
     python -m veille site        # seulement le site (dossier site/)
     python -m veille notifier    # notifications du matin (ntfy) ; --essai : affiche sans envoyer
     python -m veille tester-ia   # vérifie que chaque fournisseur IA répond (OpenRouter, Gemini, Mistral)
+    python -m veille deja_collecte  # affiche fait=oui / fait=non (collecte du jour déjà faite ?)
 """
 import argparse
 import logging
@@ -15,7 +16,8 @@ from .core import charger_config
 
 def main():
     p = argparse.ArgumentParser(prog="veille", description="Veille scientifique automatisée")
-    p.add_argument("action", choices=["tout", "collecter", "resumer", "site", "notifier", "tester-ia"], nargs="?", default="tout")
+    p.add_argument("action", choices=["tout", "collecter", "resumer", "site", "notifier", "tester-ia",
+                                      "deja_collecte"], nargs="?", default="tout")
     p.add_argument("--essai", action="store_true", help="notifier : affiche les notifications sans les envoyer")
     p.add_argument("--forcer", action="store_true", help="notifier : envoie même hors de la plage horaire")
     p.add_argument("--config", default=None, help="chemin vers config.yaml")
@@ -27,6 +29,9 @@ def main():
     cfg = charger_config(args.config)
 
     from . import pipeline, resume_ia, sante, site
+    if args.action == "deja_collecte":         # une seule ligne sur stdout, lue par le workflow
+        print("fait=oui" if pipeline.collecte_du_jour_faite(cfg) else "fait=non")
+        return
     if args.action == "tout":
         sante.RELEVE = sante.Releve()          # relevé du passage, pour repérer les pannes qui durent
     if args.action in ("tout", "collecter"):

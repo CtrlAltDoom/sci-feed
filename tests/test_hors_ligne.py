@@ -248,6 +248,65 @@ class TestVeille(unittest.TestCase):
             # deuxième passage : rien de nouveau, rien n'est renvoyé
             self.assertEqual(notifications.notifier(self.cfg, forcer=True, client=FauxCourt()), 0)
 
+    # ---- notifications fiables malgré les retards de GitHub
+    def _a_l_heure(self, h, m=0, jour=None):
+        from zoneinfo import ZoneInfo
+        jour = jour or dt.datetime.now(ZoneInfo("Europe/Paris")).date()
+        return dt.datetime.combine(jour, dt.time(h, m), tzinfo=ZoneInfo("Europe/Paris"))
+
+    def _noter_collecte(self, quand: dt.datetime | None):
+        etat = {"derniere_collecte": quand.astimezone(dt.timezone.utc).isoformat(timespec="minutes")} if quand else {}
+        (self.tmp / "etat.json").write_text(json.dumps(etat), encoding="utf-8")
+
+    def _notifier_a(self, maintenant):
+        a = core.nouvel_article(titre="Hypnose digestive dans le SII", themes=["sii"], resume="Abstract " * 40,
+                                url="https://exemple.org/1")
+        a["id"], a["ajoute_le"] = "test:notif", AUJ
+        a["fiche"] = {"titre_court": "Hypnose et SII", "conclusion_simple": "Piste à confirmer."}
+        pipeline.sauvegarder(core.Base([a]))
+        self.cfg["notifications"]["hebdo"] = {"actif": False}
+        envois = []
+        with mock.patch.dict("os.environ", {"NTFY_TOPIC": "canal-test", "SYNC_GIST_ID": ""}), \
+             mock.patch.object(notifications.requests, "post", lambda url, json=None, **kw: envois.append(json) or Reponse({})):
+            n = notifications.notifier(self.cfg, maintenant=maintenant)
+        return n, envois
+
+    def test_notifications_attendent_la_collecte(self):
+        matin = self._a_l_heure(8)
+        self._noter_collecte(None)                       # (a) 8 h, pas de collecte du jour : on attend
+        self.assertEqual(self._notifier_a(matin), (0, []))
+        self._noter_collecte(matin - dt.timedelta(days=1))
+        self.assertEqual(self._notifier_a(matin), (0, []))
+        self._noter_collecte(matin - dt.timedelta(hours=2))   # (b) collecte faite ce matin : envoi
+        n, envois = self._notifier_a(matin)
+        self.assertEqual(n, 1)
+        self.assertEqual(len(envois), 1)
+
+    def test_notifications_apres_midi_et_soir(self):
+        self._noter_collecte(self._a_l_heure(8) - dt.timedelta(days=1))
+        n, envois = self._notifier_a(self._a_l_heure(13))   # (c) 13 h : on envoie avec ce qu'on a
+        self.assertEqual((n, len(envois)), (1, 1))
+        (self.tmp / "notifications.json").unlink()
+        self.assertEqual(self._notifier_a(self._a_l_heure(21, 30)), (0, []))   # (d) 21 h 30 : trop tard
+
+    def test_collecte_du_jour_faite(self):
+        from zoneinfo import ZoneInfo
+        paris = ZoneInfo("Europe/Paris")
+        self._noter_collecte(None)
+        self.assertFalse(pipeline.collecte_du_jour_faite(self.cfg))
+        (self.tmp / "etat.json").write_text(json.dumps({"derniere_collecte": "n'importe quoi"}), encoding="utf-8")
+        self.assertFalse(pipeline.collecte_du_jour_faite(self.cfg))
+        (self.tmp / "etat.json").write_text(json.dumps({"derniere_collecte": "2026-11-20T23:30+00:00"}), encoding="utf-8")
+        # 23 h 30 UTC le 20 = 0 h 30 le 21 à Paris : c'est la collecte du 21
+        self.assertTrue(pipeline.collecte_du_jour_faite(self.cfg, dt.datetime(2026, 11, 21, 8, 0, tzinfo=paris)))
+        self.assertFalse(pipeline.collecte_du_jour_faite(self.cfg, dt.datetime(2026, 11, 20, 23, 0, tzinfo=paris)))
+        (self.tmp / "etat.json").write_text(json.dumps({"derniere_collecte": "2026-11-20T22:30+00:00"}), encoding="utf-8")
+        self.assertFalse(pipeline.collecte_du_jour_faite(self.cfg, dt.datetime(2026, 11, 21, 8, 0, tzinfo=paris)))
+        self.assertTrue(pipeline.collecte_du_jour_faite(self.cfg, dt.datetime(2026, 11, 20, 23, 45, tzinfo=paris)))
+        # heure d'été : 21 h 30 UTC le 15 juin = 23 h 30 à Paris, encore le 15
+        (self.tmp / "etat.json").write_text(json.dumps({"derniere_collecte": "2026-06-15T21:30+00:00"}), encoding="utf-8")
+        self.assertTrue(pipeline.collecte_du_jour_faite(self.cfg, dt.datetime(2026, 6, 15, 23, 50, tzinfo=paris)))
+
     def test_site_allege(self):
         """Articles récents dans data.json, anciens dans archive.json, abstracts par paquets."""
         vieux = (core.aujourd_hui() - dt.timedelta(days=45)).isoformat()

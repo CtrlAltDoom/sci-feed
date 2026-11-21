@@ -7,6 +7,13 @@ on:
     # heure_min et heure_max (config.yaml) ; l'autre créneau ne fait rien.
     - cron: "40 4 * * *"
     - cron: "40 5 * * *"
+    # filets de secours si GitHub a pris des heures de retard (rien n'est envoyé deux fois)
+    - cron: "40 10 * * *"
+    - cron: "40 16 * * *"
+  # enchaînement automatique dès que la collecte du jour est terminée
+  workflow_run:
+    workflows: ["Veille quotidienne"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       forcer:
@@ -23,6 +30,8 @@ concurrency:
 
 jobs:
   notifier:
+    # après la veille : seulement une vraie collecte réussie (pas un simple changement de code)
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.event != 'push' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

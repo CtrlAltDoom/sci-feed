@@ -265,7 +265,8 @@ def envoyer(cfg: dict, messages: list[dict]):
         time.sleep(1)
 
 
-def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None) -> int:
+def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None,
+             maintenant: dt.datetime | None = None) -> int:
     n = cfg.get("notifications", {})
     if not n.get("actif", True) and not forcer:
         return 0
@@ -274,18 +275,22 @@ def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None) 
         return 0
     etat = _etat()
     # fenêtre horaire (les tâches GitHub partent en retard et ignorent l'heure d'été : on vérifie ici)
-    try:
-        from zoneinfo import ZoneInfo
-        maintenant = dt.datetime.now(ZoneInfo(n.get("fuseau", "Europe/Paris")))
-    except Exception:
-        maintenant = dt.datetime.now()
+    if maintenant is None:
+        try:
+            from zoneinfo import ZoneInfo
+            maintenant = dt.datetime.now(ZoneInfo(n.get("fuseau", "Europe/Paris")))
+        except Exception:
+            maintenant = dt.datetime.now()
     heure = maintenant.strftime("%H:%M")
     if not (essai or forcer):
         if etat.get("dernier_envoi") == maintenant.date().isoformat():
             log.info("Notifications : déjà envoyées aujourd'hui.")
             return 0
-        if not n.get("heure_min", "06:30") <= heure <= n.get("heure_max", "10:00"):
-            log.info("Notifications : %s, hors de la plage %s-%s.", heure, n.get("heure_min", "06:30"), n.get("heure_max", "10:00"))
+        if not n.get("heure_min", "06:30") <= heure <= n.get("heure_max", "21:00"):
+            log.info("Notifications : %s, hors de la plage %s-%s.", heure, n.get("heure_min", "06:30"), n.get("heure_max", "21:00"))
+            return 0
+        if not pipeline.collecte_du_jour_faite(cfg, maintenant) and heure < n.get("attendre_collecte_jusqua", "12:00"):
+            log.info("Notifications : la collecte du jour n'est pas encore faite, on attend.")
             return 0
 
     base = pipeline.charger()

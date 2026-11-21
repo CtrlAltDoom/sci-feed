@@ -2,8 +2,18 @@ name: Veille quotidienne
 
 on:
   schedule:
-    - cron: "23 4 * * *"     # chaque jour vers 5 h 23 (heure de Paris en hiver)
+    # Plusieurs créneaux : GitHub part parfois avec des heures de retard, voire saute un créneau.
+    # Le premier qui tourne fait la collecte ; les suivants voient qu'elle est faite et s'arrêtent.
+    - cron: "23 4 * * *"     # vers 5 h 23 (heure de Paris en hiver)
+    - cron: "23 6 * * *"
+    - cron: "23 9 * * *"
+    - cron: "23 12 * * *"
   workflow_dispatch:          # bouton "Run workflow" pour lancer à la main
+    inputs:
+      si_pas_fait:
+        description: "Ne rien faire si la collecte du jour est déjà faite (réveil externe)"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths: ["config.yaml", "requirements.txt", "web/**", "veille/**", "tests/**", ".github/workflows/veille.yml"]
@@ -34,17 +44,26 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      # Créneaux de rattrapage (et réveil externe) : si la collecte du jour est déjà faite, on s'arrête là.
+      - name: Collecte du jour déjà faite ?
+        id: garde
+        if: github.event_name == 'schedule' || inputs.si_pas_fait == true
+        run: |
+          python -m veille deja_collecte >> "$GITHUB_OUTPUT"
+          tail -n 1 "$GITHUB_OUTPUT"
+
       # Changement de code (push) : tests de la collecte et du site dans un vrai navigateur.
       # S'ils échouent, rien n'est publié et une alerte part. Pas lancés pour la veille du matin,
       # où le code ne change pas : un composant de moins qui pourrait la bloquer.
       - name: Tests (changement de code seulement)
-        if: github.event_name == 'push'
+        if: (github.event_name == 'push') && (steps.garde.outputs.fait != 'oui')
         run: |
           pip install "playwright>=1.49,<2"
           python -m playwright install --with-deps chromium
           python -m unittest discover tests
 
       - name: Collecte, fiches IA et site
+        if: steps.garde.outputs.fait != 'oui'
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -64,6 +83,7 @@ jobs:
           fi
 
       - name: Sauvegarder la base d'articles
+        if: steps.garde.outputs.fait != 'oui'
         run: |
           git config user.name "veille-bot"
           git config user.email "veille-bot@users.noreply.github.com"
@@ -72,20 +92,23 @@ jobs:
           git pull --rebase           # quelqu'un (ou les notifications) a pu pousser entre-temps
           git push
 
-      - uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v5
+      - if: steps.garde.outputs.fait != 'oui'
+        uses: actions/configure-pages@v6
+      - if: steps.garde.outputs.fait != 'oui'
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - id: deploiement
+        if: steps.garde.outputs.fait != 'oui'
         uses: actions/deploy-pages@v5
         continue-on-error: true     # GitHub ne voit parfois pas encore l'artefact : on retente
-      - if: steps.deploiement.outcome == 'failure'
+      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui')
         run: sleep 30
-      - if: steps.deploiement.outcome == 'failure'
+      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui')
         uses: actions/deploy-pages@v5
 
       - name: Prévenir en cas d'échec
-        if: failure()
+        if: failure() && steps.garde.outputs.fait != 'oui'
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           LIEN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

@@ -261,7 +261,8 @@ site:
 #  Le nom du canal n'est PAS ici (dépôt public) : il est dans le secret GitHub NTFY_TOPIC.
 #  Dans l'appli ntfy : « + » puis ce nom de canal.
 #  Envoi par .github/workflows/notifications.yml, entre heure_min et heure_max (heure de Paris,
-#  été comme hiver ; GitHub part souvent avec 10 à 30 min de retard).
+#  été comme hiver ; GitHub part souvent en retard, parfois de plusieurs heures). Les notifications
+#  partent aussi automatiquement à la fin de la collecte du jour.
 # ------------------------------------------------------------
 notifications:
   actif: true
@@ -269,7 +270,8 @@ notifications:
   format: par_article      # par_article (une notification chacun) ou resume (une seule, avec la liste)
   fenetre_jours: 2         # articles ajoutés depuis N jours (jamais deux fois le même)
   heure_min: "06:30"
-  heure_max: "10:00"
+  heure_max: "21:00"       # les tâches GitHub partent parfois avec des heures de retard : on accepte d'envoyer tard plutôt que rien
+  attendre_collecte_jusqua: "12:00"  # avant cette heure, on attend que la collecte du jour soit faite ; après, on envoie avec ce qu'on a
   fuseau: "Europe/Paris"
   exclure: ["animal"]      # thèmes ou étiquettes jamais notifiés
   inclure: []              # si rempli : seulement ces thèmes / étiquettes

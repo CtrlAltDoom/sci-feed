@@ -60,6 +60,22 @@ def _etat() -> dict:
     return json.loads(ETAT.read_text(encoding="utf-8")) if ETAT.exists() else {}
 
 
+def collecte_du_jour_faite(cfg: dict, maintenant: dt.datetime | None = None) -> bool:
+    """La collecte a-t-elle déjà tourné aujourd'hui (date du fuseau des notifications) ?"""
+    try:
+        from zoneinfo import ZoneInfo
+        fuseau = ZoneInfo((cfg.get("notifications") or {}).get("fuseau", "Europe/Paris"))
+        derniere = dt.datetime.fromisoformat(_etat().get("derniere_collecte") or "")
+        if derniere.tzinfo is None:
+            derniere = derniere.replace(tzinfo=dt.timezone.utc)
+        maintenant = maintenant or dt.datetime.now(fuseau)
+        if maintenant.tzinfo is None:
+            maintenant = maintenant.replace(tzinfo=fuseau)
+        return derniere.astimezone(fuseau).date() == maintenant.astimezone(fuseau).date()
+    except Exception:
+        return False
+
+
 def enrichir(http: Http, base: Base, maxi: int = 40):
     """Complète l'abstract (et le PMID) des articles qui n'en ont pas, via Europe PMC."""
     a_faire = [a for a in base.articles if a.get("doi") and len(a.get("resume", "")) < 200
