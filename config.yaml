@@ -386,7 +386,12 @@ ia:
     - nom: "Google AI Studio"
       base_url: "https://generativelanguage.googleapis.com/v1beta/openai"
       cle_env: "GEMINI_API_KEY"
-      modeles: ["gemini-4-hydrogen", "gemini-3.8-flash", "gemini-flash-lite-latest"]  # Hydrogen = dernier Flash, gratuit
+      # Quotas gratuits, propres à chaque modèle (AI Studio > Limite de débit, nov. 2026) :
+      # Hydrogen, 3.8 Flash, 3.6 Flash : 20 requêtes/jour chacun, 5/minute ;
+      # 3.5 et 3.1 Flash Lite : 500 requêtes/jour chacun, 15/minute (le gros du travail).
+      modeles: ["gemini-4-hydrogen", "gemini-3.8-flash", "gemini-3.6-flash",
+                "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]
+      requetes_par_minute: 5     # le plus strict des modèles ci-dessus : jamais de 429 « par minute »
       reasoning_effort: "low"
     - nom: "Mistral"
       base_url: "https://api.mistral.ai/v1"

@@ -554,12 +554,138 @@ class TestVeille(unittest.TestCase):
             self.assertEqual([c.nom for c in chaine.clients], ["A", "B", "C"])   # sans clé : ignoré
             self.assertEqual(chaine.completer("s", "u"), ("ok", "b1"))
             self.assertEqual(chaine.completer("s", "u"), ("ok", "b1"))
-            self.assertEqual(appels.count("a1"), 2)    # A épuisé : plus réessayé
+            self.assertEqual(appels.count("a1"), 3)    # 3 essais sur le 429, puis A épuisé : plus réessayé
             with self.assertRaisesRegex(RuntimeError, "aucun modèle"):   # B a servi sa part, C en panne
                 chaine.completer("s", "u")
         with mock.patch.dict(os.environ, {}, clear=True):
             self.assertEqual(resume_ia.ChaineLLM(ia).cle, "")   # aucune clé : fiches ignorées sans erreur
             self.assertEqual(resume_ia.ChaineLLM({"modeles": ["m"]}).clients, [])
+
+
+class ReponseIA:
+    """Réponse simulée de l'API compatible OpenAI (Gemini, OpenRouter…)."""
+    def __init__(self, code, data=None, texte="", en_tetes=None):
+        self.status_code, self._d, self.text, self.headers = code, data or {}, texte, en_tetes or {}
+
+    def json(self):
+        return self._d
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise core.requests.HTTPError(f"HTTP {self.status_code}", response=self)
+
+
+def reponse_fiches(corps):
+    """Réponse 200 avec une fiche valide pour chaque article du message."""
+    ids = [l.split(":", 1)[1].strip() for l in corps["messages"][1]["content"].splitlines()
+           if l.startswith("### id:")]
+    fiches = [{"id": i, "verdict": "Effet modeste de l'hypnose digestive.", "type_etude": "cohorte",
+               "titre_court": "Hypnose et SII", "conclusion_simple": "Piste prometteuse, à confirmer."}
+              for i in ids]
+    return ReponseIA(200, {"choices": [{"message": {"content": json.dumps({"fiches": fiches})}}],
+                           "model": corps["model"]})
+
+
+QUOTA_JOUR = ('[{"error": {"code": 429, "status": "RESOURCE_EXHAUSTED", "details": [{"violations": '
+              '[{"quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier"}]}]}}]')
+
+
+class TestRattrapageIA(unittest.TestCase):
+    """Rattrapage des fiches IA dans les quotas gratuits (Gemini) : client IA simulé, sans réseau."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.pauses = []
+        self.patches = [mock.patch.object(pipeline, "DATA", self.tmp),
+                        mock.patch.object(pipeline, "FICHIER", self.tmp / "articles.json"),
+                        mock.patch.object(pipeline, "ETAT", self.tmp / "etat.json"),
+                        mock.patch.object(resume_ia.time, "sleep",
+                                          lambda s: self.pauses.append(round(s)) if s else None),
+                        mock.patch.dict(os.environ, {"CLE_G": "g"})]
+        for p in self.patches:
+            p.start()
+        self.cfg = core.charger_config()
+        self.cfg["ia"].update(pause_secondes=0, articles_par_requete=5, duree_max_minutes=240,
+                              max_requetes_par_execution=600)
+
+    def tearDown(self):
+        for p in self.patches:
+            p.stop()
+        shutil.rmtree(self.tmp)
+
+    def base(self, n):
+        arts = [{"id": f"x{i}", "titre": f"Gut-directed hypnotherapy in IBS, study {i}",
+                 "resume": "Irritable bowel syndrome patients were followed. " * 6,
+                 "ajoute_le": AUJ, "date": AUJ, "themes": ["sii"]} for i in range(n)]
+        pipeline.sauvegarder(pipeline.Base(arts))
+
+    def sans_fiche(self):
+        return [a for a in pipeline.charger().articles if not a.get("fiche")]
+
+    def chaine(self, modeles, rpm=None):
+        f = {"nom": "Gemini", "base_url": "https://g.test/v1", "cle_env": "CLE_G", "modeles": modeles}
+        if rpm:
+            f["requetes_par_minute"] = rpm
+        return resume_ia.ChaineLLM({**self.cfg["ia"], "secours_auto": False, "fournisseurs": [f]})
+
+    def test_rattrapage_remplit_les_fiches(self):
+        self.base(12)
+        with mock.patch.object(resume_ia.requests, "post", lambda url, json=None, **kw: reponse_fiches(json)):
+            self.assertEqual(resume_ia.resumer(self.cfg, client=self.chaine(["g1"])), 12)
+        self.assertEqual(self.sans_fiche(), [])
+        f = pipeline.charger().articles[0]["fiche"]
+        self.assertEqual((f["modele"], f["titre_court"]), ("g1", "Hypnose et SII"))
+        # nombre de requêtes limité (--lots) : le reste attend le prochain lancement
+        self.base(12)
+        self.cfg["ia"]["max_requetes_par_execution"] = 2
+        with mock.patch.object(resume_ia.requests, "post", lambda url, json=None, **kw: reponse_fiches(json)):
+            self.assertEqual(resume_ia.resumer(self.cfg, client=self.chaine(["g1"])), 10)
+        self.assertEqual(len(self.sans_fiche()), 2)
+
+    def test_arret_au_quota_du_jour(self):
+        self.base(20)
+        appels = {"g1": 0, "g2": 0}
+        def post(url, json=None, **kw):
+            appels[json["model"]] += 1
+            if appels[json["model"]] > 1:                  # chaque modèle : 1 requête par jour
+                return ReponseIA(429, texte=QUOTA_JOUR)
+            return reponse_fiches(json)
+        with mock.patch.object(resume_ia.requests, "post", post):
+            faites = resume_ia.resumer(self.cfg, client=self.chaine(["g1", "g2"]))
+        self.assertEqual(faites, 10)                       # pas d'exception : arrêt propre
+        self.assertEqual(len(self.sans_fiche()), 10)       # fiches faites bien enregistrées
+        self.assertEqual(appels, {"g1": 2, "g2": 2})       # quota du jour : pas de nouvel essai
+        self.assertEqual(self.pauses, [])                  # ni d'attente inutile
+
+    def test_rythme_par_minute(self):
+        self.base(10)
+        with mock.patch.object(resume_ia.requests, "post", lambda url, json=None, **kw: reponse_fiches(json)):
+            self.assertEqual(resume_ia.resumer(self.cfg, client=self.chaine(["g1"], rpm=5)), 10)
+        self.assertEqual(len(self.pauses), 1)              # 2 requêtes : 1 attente entre les deux
+        self.assertAlmostEqual(self.pauses[0], 12, delta=1)
+
+    def test_429_reessaye_puis_reussi(self):
+        self.base(5)
+        reponses = [ReponseIA(429, texte="Resource exhausted"),
+                    ReponseIA(429, texte='{"retryDelay": "40s"}')]
+        def post(url, json=None, **kw):
+            return reponses.pop(0) if reponses else reponse_fiches(json)
+        with mock.patch.object(resume_ia.requests, "post", post):
+            self.assertEqual(resume_ia.resumer(self.cfg, client=self.chaine(["g1"])), 5)
+        self.assertEqual(self.pauses, [15, 41])            # attente croissante, ou celle demandée
+        self.assertEqual(resume_ia._attente_429(ReponseIA(429, en_tetes={"Retry-After": "500"}), "", 0), 90)
+
+    def test_429_persistant_article_laisse_pour_plus_tard(self):
+        self.base(5)
+        appels = []
+        def post(url, json=None, **kw):
+            appels.append(json["model"])
+            return ReponseIA(429, texte="Resource exhausted")
+        with mock.patch.object(resume_ia.requests, "post", post):
+            self.assertEqual(resume_ia.resumer(self.cfg, client=self.chaine(["g1"])), 0)
+        self.assertEqual(len(appels), 3)                   # 3 essais puis abandon, sans planter
+        self.assertEqual(self.pauses, [15, 30])
+        self.assertEqual(len(self.sans_fiche()), 5)        # repris au prochain lancement
 
 
 if __name__ == "__main__":

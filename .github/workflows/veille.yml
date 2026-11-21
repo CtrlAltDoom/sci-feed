@@ -14,6 +14,10 @@ on:
         description: "Ne rien faire si la collecte du jour est déjà faite (réveil externe)"
         type: boolean
         default: false
+      rattrapage:
+        description: "Rattrapage des fiches IA : seulement les fiches (jusqu'à 4 h), sans collecte"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths: ["config.yaml", "requirements.txt", "web/**", "veille/**", "tests/**", ".github/workflows/veille.yml"]
@@ -30,7 +34,7 @@ concurrency:
 jobs:
   veille:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: ${{ inputs.rattrapage && 270 || 45 }}
     environment:
       name: github-pages
       url: ${{ steps.deploiement.outputs.page_url }}
@@ -45,9 +49,10 @@ jobs:
       - run: pip install -r requirements.txt
 
       # Créneaux de rattrapage (et réveil externe) : si la collecte du jour est déjà faite, on s'arrête là.
+      # Le rattrapage des fiches IA ne fait pas de collecte : il n'est jamais bloqué par cette garde.
       - name: Collecte du jour déjà faite ?
         id: garde
-        if: github.event_name == 'schedule' || inputs.si_pas_fait == true
+        if: github.event_name == 'schedule' || (inputs.si_pas_fait == true && inputs.rattrapage != true)
         run: |
           python -m veille deja_collecte >> "$GITHUB_OUTPUT"
           tail -n 1 "$GITHUB_OUTPUT"
@@ -78,6 +83,9 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
             python -m veille site          # simple changement de config/apparence : pas de collecte
+          elif [ "${{ inputs.rattrapage }}" = "true" ]; then
+            python -m veille resumer --duree 240 --lots 600
+            python -m veille site
           else
             python -m veille tout
           fi

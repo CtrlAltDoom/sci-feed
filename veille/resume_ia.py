@@ -87,6 +87,26 @@ def valider(f: dict, modele: str) -> dict:
     }
 
 
+def _texte(r) -> str:
+    try:
+        return str(getattr(r, "text", "") or "")[:3000]
+    except Exception:
+        return ""
+
+
+def _attente_429(r, texte: str, essai: int) -> float:
+    """Attente avant de réessayer après un 429 « par minute » : ce que demande le serveur
+    (en-tête Retry-After, ou "retryDelay": "37s" chez Gemini), sinon 15 s puis 30 s ; 90 s au plus."""
+    croissante = 15 * 2 ** essai
+    demande = None
+    try:
+        demande = float((getattr(r, "headers", None) or {}).get("Retry-After"))
+    except (TypeError, ValueError):
+        m = re.search(r'retryDelay"?\s*:\s*"?(\d+(?:\.\d+)?)s', texte)
+        demande = float(m.group(1)) + 1 if m else None
+    return min(90.0, max(croissante, demande or 0))
+
+
 class ClientLLM:
     def __init__(self, ia: dict):
         self.url = ia.get("base_url", "https://openrouter.ai/api/v1").rstrip("/") + "/chat/completions"
@@ -139,7 +159,7 @@ class ClientLLM:
             en_tetes["Authorization"] = f"Bearer {self.cle}"
         erreur = None
         for m in [x for x in self.modeles if x not in self.morts]:
-            for essai in range(2):
+            for essai in range(3):
                 try:
                     corps = {"model": m, "temperature": self.temperature,
                              "messages": [{"role": "system", "content": systeme},
@@ -150,11 +170,15 @@ class ClientLLM:
                         corps["reasoning_effort"] = self.reasoning_effort
                     r = requests.post(self.url, headers=en_tetes, timeout=300, json=corps)
                     if r.status_code == 429:
-                        if essai == 0:
-                            time.sleep(20)
+                        # limite par minute : on patiente de plus en plus longtemps (3 essais) ;
+                        # limite du jour (Gemini : "PerDay") : inutile d'attendre, modèle suivant
+                        texte = _texte(r)
+                        par_jour = "perday" in texte.lower().replace("_", "").replace(" ", "")
+                        if not par_jour and essai < 2:
+                            time.sleep(_attente_429(r, texte, essai))
                             continue
                         self.morts.add(m)
-                        raise RuntimeError(f"{m} : quota atteint (429)")
+                        raise RuntimeError(f"{m} : quota {'du jour ' if par_jour else ''}atteint (429)")
                     r.raise_for_status()
                     data = r.json()
                     contenu = data["choices"][0]["message"]["content"] or ""
@@ -190,6 +214,9 @@ class ChaineLLM:
             c.max_requetes = (f or {}).get("max_requetes")
             c.duree_max = ((f or {}).get("duree_max_minutes") or 0) * 60
             c.nb_requetes, c.duree, c.epuise = 0, 0.0, False
+            # rythme par minute (quotas gratuits) : intervalle minimal entre deux requêtes
+            rpm = (f or {}).get("requetes_par_minute") or 0
+            c.intervalle, c.dernier_appel = (60.0 / rpm if rpm else 0.0), None
             if c.cle or _local(c.url):
                 self.clients.append(c)
             else:
@@ -206,6 +233,11 @@ class ChaineLLM:
         for c in self.clients:
             if not self._disponible(c):
                 continue
+            if c.intervalle and c.dernier_appel is not None:
+                reste = c.intervalle - (time.time() - c.dernier_appel)
+                if reste > 0:
+                    time.sleep(reste)
+            c.dernier_appel = time.time()
             c.nb_requetes += 1
             debut = time.time()
             try:
@@ -298,6 +330,7 @@ def resumer(cfg: dict, client=None) -> int:
             log.warning("  lot %d : %s", n + 1, ex)
             erreur = str(ex)
             if "aucun modèle" in str(ex):
+                log.info("IA : quotas du jour atteints, la suite au prochain lancement")
                 break
             continue
         for f in fiches:
