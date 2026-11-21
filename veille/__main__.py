@@ -22,6 +22,8 @@ def main():
     p.add_argument("--forcer", action="store_true", help="notifier : envoie même hors de la plage horaire")
     p.add_argument("--config", default=None, help="chemin vers config.yaml")
     p.add_argument("--inline", action="store_true", help="site en un seul fichier HTML (aperçu hors-ligne)")
+    p.add_argument("--rattrapage", action="store_true",
+                   help="resumer : rattrapage des fiches IA, réglages ia.rattrapage de config.yaml")
     p.add_argument("--duree", type=int, default=None, help="resumer : durée maximale en minutes (rattrapage)")
     p.add_argument("--lots", type=int, default=None, help="resumer : nombre maximal de requêtes (rattrapage)")
     p.add_argument("-v", "--verbeux", action="store_true")
@@ -29,12 +31,14 @@ def main():
     logging.basicConfig(level=logging.DEBUG if args.verbeux else logging.INFO,
                         format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
     cfg = charger_config(args.config)
+    from . import pipeline, resume_ia, sante, site
+    if args.rattrapage:                         # réglages ia.rattrapage (durée limitée : la file reste libre)
+        resume_ia.reglages_rattrapage(cfg)
     if args.duree:
         cfg.setdefault("ia", {})["duree_max_minutes"] = args.duree
     if args.lots:
         cfg.setdefault("ia", {})["max_requetes_par_execution"] = args.lots
 
-    from . import pipeline, resume_ia, sante, site
     if args.action == "deja_collecte":         # une seule ligne sur stdout, lue par le workflow
         print("fait=oui" if pipeline.collecte_du_jour_faite(cfg) else "fait=non")
         return

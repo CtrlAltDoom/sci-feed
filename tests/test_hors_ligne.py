@@ -687,6 +687,82 @@ class TestRattrapageIA(unittest.TestCase):
         self.assertEqual(self.pauses, [15, 30])
         self.assertEqual(len(self.sans_fiche()), 5)        # repris au prochain lancement
 
+    def test_panne_5xx_ou_delai_reessayes_puis_reussis(self):
+        self.base(5)
+        incidents = [ReponseIA(503), core.requests.Timeout("délai dépassé"), ReponseIA(502)]
+        def post(url, json=None, **kw):
+            if incidents:
+                x = incidents.pop(0)
+                if isinstance(x, Exception):
+                    raise x
+                return x
+            return reponse_fiches(json)
+        with mock.patch.object(resume_ia.requests, "post", post):
+            # 503 puis délai dépassé sur g1 (3 essais : 15 s, 30 s), puis 502 sur g1 → modèle suivant
+            self.assertEqual(resume_ia.resumer(self.cfg, client=self.chaine(["g1", "g2"])), 5)
+        self.assertEqual(self.pauses, [15, 30])
+        self.assertEqual(self.sans_fiche(), [])
+
+    def test_panne_persistante_n_est_pas_un_quota(self):
+        self.base(10)
+        appels = []
+        def post(url, json=None, **kw):
+            appels.append(json["model"])
+            return ReponseIA(503, texte="Service Unavailable")
+        chaine = self.chaine(["g1", "g2"])
+        with mock.patch.object(resume_ia.requests, "post", post), \
+             self.assertLogs(core.log, level="INFO") as journal:
+            self.assertEqual(resume_ia.resumer(self.cfg, client=chaine), 0)
+        self.assertEqual(appels, ["g1"] * 3 + ["g2"] * 3)  # 3 essais par modèle, attente croissante
+        self.assertEqual(self.pauses, [15, 30, 15, 30])
+        self.assertEqual(chaine.clients[0].morts, set())   # une panne n'écarte pas le modèle pour de bon
+        texte = "\n".join(journal.output)
+        self.assertIn("service IA indisponible", texte)
+        self.assertNotIn("quotas du jour", texte)
+        self.assertEqual(len(self.sans_fiche()), 10)       # repris au prochain lancement
+
+    def test_message_quota_du_jour(self):
+        self.base(5)
+        with mock.patch.object(resume_ia.requests, "post", lambda url, **kw: ReponseIA(429, texte=QUOTA_JOUR)), \
+             self.assertLogs(core.log, level="INFO") as journal:
+            self.assertEqual(resume_ia.resumer(self.cfg, client=self.chaine(["g1", "g2"])), 0)
+        texte = "\n".join(journal.output)
+        self.assertIn("quotas du jour atteints", texte)
+        self.assertNotIn("service IA indisponible", texte)
+
+    def test_json_strict_avec_repli(self):
+        self.base(10)
+        corps_recus = []
+        def post(url, json=None, **kw):
+            corps_recus.append(dict(json))
+            if json["model"] == "g1" and "response_format" in json:
+                return ReponseIA(400, texte="response_format non pris en charge")
+            return reponse_fiches(json)
+        chaine = self.chaine(["g1"])
+        with mock.patch.object(resume_ia.requests, "post", post):
+            self.assertEqual(resume_ia.resumer(self.cfg, client=chaine), 10)
+        self.assertEqual(corps_recus[0]["response_format"], {"type": "json_object"})   # demandé d'abord
+        self.assertNotIn("response_format", corps_recus[1])                            # repli silencieux
+        self.assertEqual(len(corps_recus), 3)              # 2e lot : plus redemandé, modèle gardé
+        self.assertEqual(chaine.clients[0].morts, set())
+        # désactivable dans config.yaml
+        c = resume_ia.ClientLLM({"modeles": ["m"], "json_strict": False})
+        self.assertNotIn("response_format", c._corps("m", "s", "u"))
+
+    def test_duree_limitee_du_rattrapage(self):
+        cfg = resume_ia.reglages_rattrapage(self.cfg)
+        self.assertEqual((cfg["ia"]["duree_max_minutes"], cfg["ia"]["max_requetes_par_execution"]), (40, 600))
+        self.base(25)
+        horloge = [1000.0]
+        def post(url, json=None, **kw):
+            horloge[0] += 15 * 60                          # chaque lot prend 15 min
+            return reponse_fiches(json)
+        with mock.patch.object(resume_ia.requests, "post", post), \
+             mock.patch.object(resume_ia.time, "time", lambda: horloge[0]):
+            faites = resume_ia.resumer(cfg, client=self.chaine(["g1"]))
+        self.assertEqual(faites, 15)                       # lots à 0, 15 et 30 min ; à 45 min : on s'arrête
+        self.assertEqual(len(self.sans_fiche()), 10)       # ce qui est fait est enregistré
+
 
 if __name__ == "__main__":
     unittest.main()

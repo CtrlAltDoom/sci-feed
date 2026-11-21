@@ -107,6 +107,15 @@ def _attente_429(r, texte: str, essai: int) -> float:
     return min(90.0, max(croissante, demande or 0))
 
 
+class PlusDeModele(RuntimeError):
+    """Plus aucun modèle ne répond. quota=True : quotas épuisés (inutile d'insister aujourd'hui) ;
+    quota=False : panne ou refus (le service reviendra, on reprendra au prochain lancement)."""
+
+    def __init__(self, message: str, quota: bool = False):
+        super().__init__(message)
+        self.quota = quota
+
+
 class ClientLLM:
     def __init__(self, ia: dict):
         self.url = ia.get("base_url", "https://openrouter.ai/api/v1").rstrip("/") + "/chat/completions"
@@ -117,6 +126,10 @@ class ClientLLM:
         self.effort = ia.get("effort_raisonnement", "low")
         self.reasoning_effort = ia.get("reasoning_effort")
         self.morts: set[str] = set()  # modèles épuisés pour cette exécution
+        self.morts_quota: set[str] = set()   # … dont ceux écartés pour cause de quota
+        # réponse en JSON strict (moins de fiches perdues sur un JSON mal formé), si le modèle l'accepte
+        self.json_strict = ia.get("json_strict", True)
+        self.sans_json: set[str] = set()     # modèles qui refusent response_format
         # si tous les modèles configurés échouent (renommés, retirés…), on essaie quelques modèles
         # gratuits du moment, lus dans la liste publique d'OpenRouter
         self.secours_auto = ia.get("secours_auto", True) and "openrouter.ai" in self.url
@@ -152,48 +165,85 @@ class ClientLLM:
                 return self._completer(systeme, utilisateur)
             raise
 
+    def _corps(self, m: str, systeme: str, utilisateur: str) -> dict:
+        corps = {"model": m, "temperature": self.temperature,
+                 "messages": [{"role": "system", "content": systeme},
+                              {"role": "user", "content": utilisateur}]}
+        if self.effort and "openrouter.ai" in self.url:
+            corps["reasoning"] = {"effort": self.effort}
+        elif self.reasoning_effort:          # Gemini (API compatible OpenAI) : "low", "none"…
+            corps["reasoning_effort"] = self.reasoning_effort
+        if self.json_strict and m not in self.sans_json:
+            corps["response_format"] = {"type": "json_object"}   # JSON strict (Gemini, Mistral, OpenRouter…)
+        return corps
+
     def _completer(self, systeme: str, utilisateur: str) -> tuple[str, str]:
         en_tetes = {"Content-Type": "application/json",
                     "HTTP-Referer": "https://github.com/", "X-Title": "Veille scientifique"}
         if self.cle:
             en_tetes["Authorization"] = f"Bearer {self.cle}"
-        erreur = None
+        erreur, raisons = None, []
         for m in [x for x in self.modeles if x not in self.morts]:
-            for essai in range(3):
+            essai, raison = 0, "panne"
+            while essai < 3:
+                corps = self._corps(m, systeme, utilisateur)
                 try:
-                    corps = {"model": m, "temperature": self.temperature,
-                             "messages": [{"role": "system", "content": systeme},
-                                          {"role": "user", "content": utilisateur}]}
-                    if self.effort and "openrouter.ai" in self.url:
-                        corps["reasoning"] = {"effort": self.effort}
-                    elif self.reasoning_effort:          # Gemini (API compatible OpenAI) : "low", "none"…
-                        corps["reasoning_effort"] = self.reasoning_effort
                     r = requests.post(self.url, headers=en_tetes, timeout=300, json=corps)
-                    if r.status_code == 429:
-                        # limite par minute : on patiente de plus en plus longtemps (3 essais) ;
-                        # limite du jour (Gemini : "PerDay") : inutile d'attendre, modèle suivant
-                        texte = _texte(r)
-                        par_jour = "perday" in texte.lower().replace("_", "").replace(" ", "")
-                        if not par_jour and essai < 2:
-                            time.sleep(_attente_429(r, texte, essai))
-                            continue
-                        self.morts.add(m)
-                        raise RuntimeError(f"{m} : quota {'du jour ' if par_jour else ''}atteint (429)")
+                except (requests.Timeout, requests.ConnectionError) as ex:
+                    # panne réseau ou délai dépassé : comme un 5xx, on réessaie en patientant
+                    erreur = ex
+                    if essai < 2:
+                        time.sleep(15 * 2 ** essai)
+                    essai += 1
+                    continue
+                code = r.status_code
+                if code == 400 and "response_format" in corps:
+                    # JSON strict refusé par ce modèle : repli silencieux, sans compter d'essai
+                    self.sans_json.add(m)
+                    continue
+                if code == 429:
+                    # limite par minute : on patiente de plus en plus longtemps (3 essais) ;
+                    # limite du jour (Gemini : "PerDay") : inutile d'attendre, modèle suivant
+                    texte = _texte(r)
+                    par_jour = "perday" in texte.lower().replace("_", "").replace(" ", "")
+                    erreur = f"{m} : quota {'du jour ' if par_jour else ''}atteint (429)"
+                    if not par_jour and essai < 2:
+                        time.sleep(_attente_429(r, texte, essai))
+                        essai += 1
+                        continue
+                    self.morts.add(m)
+                    self.morts_quota.add(m)
+                    raison = "quota"
+                    break
+                if code >= 500:
+                    # panne passagère du fournisseur (500, 502, 503, 504…) : attente croissante
+                    erreur = f"{m} : service indisponible ({code})"
+                    if essai < 2:
+                        time.sleep(15 * 2 ** essai)
+                    essai += 1
+                    continue
+                if code in (400, 401, 402, 403, 404):     # modèle inconnu, retiré, payant ; clé refusée
+                    erreur = f"{m} : refusé ({code})"
+                    self.morts.add(m)
+                    raison = "refus"
+                    break
+                try:
                     r.raise_for_status()
                     data = r.json()
                     contenu = data["choices"][0]["message"]["content"] or ""
                     return contenu, data.get("model", m)
-                except Exception as ex:
+                except Exception as ex:                   # réponse inattendue : un second essai
                     erreur = ex
-                    code = getattr(getattr(ex, "response", None), "status_code", None)
-                    if code in (400, 402, 404):      # modèle inconnu, retiré ou devenu payant
-                        self.morts.add(m)
-                        break
-                    if essai == 0 and not isinstance(ex, RuntimeError):
+                    if essai == 0:
                         time.sleep(5)
+                        essai += 1
                         continue
                     break
-        raise RuntimeError(f"aucun modèle disponible ({erreur})")
+            raisons.append(raison)
+        if not raisons:            # tous les modèles déjà écartés : par un quota, ou autre chose ?
+            raisons = ["quota" if x in self.morts_quota else "autre" for x in self.morts] or ["autre"]
+            erreur = erreur or "tous les modèles sont écartés"
+        raise PlusDeModele(f"aucun modèle disponible ({erreur})", quota=all(x == "quota" for x in raisons))
 
 
 def _local(url: str) -> bool:
@@ -244,11 +294,16 @@ class ChaineLLM:
                 return c.completer(systeme, utilisateur)
             except Exception as ex:   # RuntimeError attendu, mais rien ne doit casser la chaîne
                 c.epuise = True
+                c.panne = not getattr(ex, "quota", False)
                 erreur = f"{c.nom} : {ex}"
                 log.warning("IA : %s indisponible (%s), fournisseur suivant", c.nom, ex)
             finally:
                 c.duree += time.time() - debut
-        raise RuntimeError(f"aucun modèle disponible ({erreur or 'tous les fournisseurs ont servi leur part'})")
+        # quotas : tous les fournisseurs ont épuisé leur quota ou servi leur part (rien à faire avant
+        # demain) ; sinon au moins un est en panne : on reprendra au prochain lancement
+        quota = not any(getattr(c, "panne", False) for c in self.clients)
+        raise PlusDeModele(f"aucun modèle disponible ({erreur or 'tous les fournisseurs ont servi leur part'})",
+                           quota=quota)
 
 
 def tester(cfg: dict) -> dict:
@@ -256,7 +311,8 @@ def tester(cfg: dict) -> dict:
     ia = cfg.get("ia", {})
     resultats = {}
     for f in ia.get("fournisseurs") or [{}]:
-        chaine = ChaineLLM({**ia, "fournisseurs": [{**f, "max_requetes": 1}], "secours_auto": False})
+        chaine = ChaineLLM({**ia, "fournisseurs": [{**f, "max_requetes": 1}], "secours_auto": False,
+                            "json_strict": False})   # réponse attendue : « OK », pas du JSON
         nom = f.get("nom") or "défaut"
         if not chaine.clients:
             resultats[nom] = f"ignoré (secret {f.get('cle_env', 'LLM_API_KEY')} absent)"
@@ -282,6 +338,16 @@ def priorite(a: dict, cfg: dict, infos_revues: dict | None = None) -> tuple:
     recent = a.get("ajoute_le", "") >= (aujourd_hui() - dt.timedelta(days=jours)).isoformat()
     info = revues.resume((infos_revues or {}).get(a.get("revue_oa") or ""))
     return (recent, interet(a, cfg) + bonus_serieux(a, info, cfg), a.get("ajoute_le", ""), a.get("date", ""))
+
+
+def reglages_rattrapage(cfg: dict) -> dict:
+    """Rattrapage manuel des fiches : durée et nombre de requêtes de la section ia.rattrapage
+    (durée limitée, pour ne pas bloquer longtemps la file de la collecte du jour)."""
+    ia = cfg.setdefault("ia", {})
+    r = ia.get("rattrapage") or {}
+    ia["duree_max_minutes"] = r.get("duree_max_minutes", 40)
+    ia["max_requetes_par_execution"] = r.get("max_requetes", 600)
+    return cfg
 
 
 def resumer(cfg: dict, client=None) -> int:
@@ -330,7 +396,10 @@ def resumer(cfg: dict, client=None) -> int:
             log.warning("  lot %d : %s", n + 1, ex)
             erreur = str(ex)
             if "aucun modèle" in str(ex):
-                log.info("IA : quotas du jour atteints, la suite au prochain lancement")
+                if getattr(ex, "quota", False):
+                    log.info("IA : quotas du jour atteints, la suite au prochain lancement")
+                else:
+                    log.warning("IA : service IA indisponible, on reprendra au prochain lancement")
                 break
             continue
         for f in fiches:

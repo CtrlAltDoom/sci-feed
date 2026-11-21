@@ -15,12 +15,12 @@ on:
         type: boolean
         default: false
       rattrapage:
-        description: "Rattrapage des fiches IA : seulement les fiches (jusqu'à 4 h), sans collecte"
+        description: "Rattrapage des fiches IA : seulement les fiches (environ 40 min), sans collecte"
         type: boolean
         default: false
   push:
     branches: [main]
-    paths: ["config.yaml", "requirements.txt", "web/**", "veille/**", "tests/**", ".github/workflows/veille.yml"]
+    paths: ["config.yaml", "requirements.txt", "web/**", "veille/**", "tests/**", ".github/workflows/veille.yml", ".github/pousser-data.sh"]
 
 permissions:
   contents: write
@@ -34,7 +34,7 @@ concurrency:
 jobs:
   veille:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ inputs.rattrapage && 270 || 45 }}
+    timeout-minutes: ${{ inputs.rattrapage && 70 || 45 }}
     environment:
       name: github-pages
       url: ${{ steps.deploiement.outputs.page_url }}
@@ -84,21 +84,17 @@ jobs:
           if [ "${{ github.event_name }}" = "push" ]; then
             python -m veille site          # simple changement de config/apparence : pas de collecte
           elif [ "${{ inputs.rattrapage }}" = "true" ]; then
-            python -m veille resumer --duree 240 --lots 600
+            python -m veille resumer --rattrapage   # durée limitée : ia.rattrapage dans config.yaml
             python -m veille site
           else
             python -m veille tout
           fi
 
+      # les notifications ont pu pousser entre-temps : 3 essais ; en cas de conflit, la base
+      # de la collecte l'emporte (les notifications ne gardent que ce qui a été envoyé)
       - name: Sauvegarder la base d'articles
         if: steps.garde.outputs.fait != 'oui'
-        run: |
-          git config user.name "veille-bot"
-          git config user.email "veille-bot@users.noreply.github.com"
-          git add data/
-          git diff --cached --quiet || git commit -m "Veille du $(date -u +%Y-%m-%d)"
-          git pull --rebase           # quelqu'un (ou les notifications) a pu pousser entre-temps
-          git push
+        run: bash .github/pousser-data.sh "Veille du $(date -u +%Y-%m-%d)"
 
       - if: steps.garde.outputs.fait != 'oui'
         uses: actions/configure-pages@v6

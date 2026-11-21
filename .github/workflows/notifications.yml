@@ -23,9 +23,13 @@ on:
 
 permissions:
   contents: write
+  actions: read           # voir si une veille tourne encore
 
+# Sa propre file : GitHub ne garde qu'un run en attente par file, une notification ne doit donc
+# jamais prendre la place d'une collecte en attente. Pas besoin d'attendre la collecte ici :
+# le script s'arrête si elle n'est pas faite, et ce workflow est relancé dès qu'elle se termine.
 concurrency:
-  group: veille            # attend la fin de la collecte du matin si elle tourne encore
+  group: notifications
   cancel-in-progress: false
 
 jobs:
@@ -47,7 +51,28 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      # Créneau planifié pendant qu'une veille tourne : on la laisse finir, ce workflow est
+      # relancé automatiquement à sa fin (workflow_run) avec les articles du jour.
+      - name: Veille en cours ?
+        id: attente
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          n=$(gh run list -R "$GITHUB_REPOSITORY" -w veille.yml -L 10 --json status,event \
+              --jq '[.[] | select(.status != "completed" and .event != "push")] | length' || echo 0)
+          if [ "${n:-0}" -gt 0 ]; then echo "en_cours=oui" >> "$GITHUB_OUTPUT"; echo "Veille en cours : on attend sa fin"; fi
+
+      # Après une veille sans collecte (rattrapage des fiches IA) : rien à annoncer, on attend la
+      # vraie collecte du jour, sinon la notification unique du jour partirait sans ses articles.
+      - name: Collecte du jour faite ?
+        id: collecte
+        if: github.event_name == 'workflow_run'
+        run: python -m veille deja_collecte >> "$GITHUB_OUTPUT"
+
       - name: Envoyer les notifications
+        id: envoi
+        if: steps.attente.outputs.en_cours != 'oui' && steps.collecte.outputs.fait != 'non'
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
@@ -63,15 +88,11 @@ jobs:
             python -m veille notifier
           fi
 
+      # la collecte peut pousser en même temps : 3 essais ; en cas de conflit, on garde sa base
+      # et on n'impose que la liste des articles envoyés (jamais deux fois la même notification)
       - name: Retenir ce qui a été envoyé
-        run: |
-          git config user.name "veille-bot"
-          git config user.email "veille-bot@users.noreply.github.com"
-          git add data/
-          git diff --cached --quiet && exit 0
-          git commit -m "Notifications du $(date -u +%Y-%m-%d)"
-          git pull --rebase
-          git push
+        if: steps.envoi.outcome == 'success'
+        run: bash .github/pousser-data.sh "Notifications du $(date -u +%Y-%m-%d)" data/notifications.json
 
       - name: Prévenir en cas d'échec
         if: failure()
