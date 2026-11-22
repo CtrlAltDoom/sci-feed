@@ -7,9 +7,9 @@ on:
     # heure_min et heure_max (config.yaml) ; l'autre créneau ne fait rien.
     - cron: "40 4 * * *"
     - cron: "40 5 * * *"
-    # filets de secours si GitHub a pris des heures de retard (rien n'est envoyé deux fois)
-    - cron: "40 10 * * *"
-    - cron: "40 16 * * *"
+    # filets de secours toutes les heures si GitHub a pris des heures de retard
+    # (rien n'est envoyé deux fois : dernier_envoi dans data/notifications.json)
+    - cron: "47 5-19 * * *"
   # enchaînement automatique dès que la collecte du jour est terminée
   workflow_run:
     workflows: ["Veille quotidienne"]

@@ -2,12 +2,10 @@ name: Veille quotidienne
 
 on:
   schedule:
-    # Plusieurs créneaux : GitHub part parfois avec des heures de retard, voire saute un créneau.
-    # Le premier qui tourne fait la collecte ; les suivants voient qu'elle est faite et s'arrêtent.
-    - cron: "23 4 * * *"     # vers 5 h 23 (heure de Paris en hiver)
-    - cron: "23 6 * * *"
-    - cron: "23 9 * * *"
-    - cron: "23 12 * * *"
+    # Un créneau toutes les heures de 3 h 23 à 12 h 23 UTC (4 h 23 à 13 h 23 à Paris en hiver) :
+    # GitHub part parfois avec des heures de retard, voire saute des créneaux. Le premier qui
+    # tourne fait la collecte ; les suivants voient qu'elle est faite et s'arrêtent en quelques secondes.
+    - cron: "23 3-12 * * *"
     # Le soir (vers 20 h 17 à Paris) : rattrapage des fiches IA, sans collecte, seulement s'il
     # reste des articles sans fiche (ia.rattrapage.auto dans config.yaml). S'arrête tout seul.
     - cron: "17 19 * * *"

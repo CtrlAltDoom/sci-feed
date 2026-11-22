@@ -74,7 +74,7 @@ Chaque matin, les articles récents les plus pertinents pour vous arrivent sur l
 
 Réglages dans la section `notifications` de `config.yaml` : nombre, format (une notification par article ou un seul résumé), plage horaire, priorité, thèmes inclus ou exclus, niveau minimal de revue ou de preuve.
 
-**Malgré les retards de GitHub** (constatés jusqu'à 9 h) : la collecte a plusieurs créneaux dans la journée (le premier qui tourne la fait, les suivants s'arrêtent aussitôt), et les notifications partent automatiquement dès qu'elle est terminée. Avant midi, elles attendent la collecte du jour ; après, elles partent avec ce qu'il y a, jusqu'à 21 h au plus tard (`attendre_collecte_jusqua`, `heure_max`). Jamais deux envois le même jour.
+**Malgré les retards de GitHub** (constatés jusqu'à 9 h) : la collecte a un créneau toutes les heures de 4 h 23 à 13 h 23 (heure d'hiver ; le premier qui tourne la fait, les suivants s'arrêtent aussitôt), et les notifications un filet toutes les heures, et les notifications partent automatiquement dès qu'elle est terminée. Avant midi, elles attendent la collecte du jour ; après, elles partent avec ce qu'il y a, jusqu'à 21 h au plus tard (`attendre_collecte_jusqua`, `heure_max`). Jamais deux envois le même jour.
 
 **Réveil externe** (facultatif, plus ponctuel que GitHub) : sur [cron-job.org](https://cron-job.org) (gratuit), une tâche quotidienne vers 5 h 30 qui envoie un `POST` à `https://api.github.com/repos/<vous>/<dépôt>/actions/workflows/veille.yml/dispatches`, avec l'en-tête `Authorization: Bearer <jeton GitHub à droits « Actions : écriture »>` et le corps `{"ref":"main","inputs":{"si_pas_fait":"true"}}`. Si la collecte du jour est déjà faite, rien ne se passe.
 
