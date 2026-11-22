@@ -60,7 +60,12 @@ class TestSite(unittest.TestCase):
         mp3 = cls.tmp / "audio"                         # un MP3 (factice) pour l'article ARFID seulement
         mp3.mkdir()
         (mp3 / "arfid.mp3").write_bytes(b"ID3" + b"\0" * 2000)
-        (mp3 / "audio.json").write_text(json.dumps({"demo:3": {"fichier": "arfid.mp3", "jour": J(0), "empreinte": "x"}}))
+        jour = audio.jour_local(cfg).isoformat()         # et un audio du jour (factice)
+        (mp3 / f"jour-{jour}.mp3").write_bytes(b"ID3" + b"\0" * 2000)
+        (mp3 / "audio.json").write_text(json.dumps({
+            "demo:3": {"fichier": "arfid.mp3", "jour": J(0), "empreinte": "x"},
+            f"jour:{jour}": {"fichier": f"jour-{jour}.mp3", "jour": jour, "empreinte": "y", "octets": 2003,
+                             "duree": 240, "titres": ["Hypnose et SII", "Alexithymie"]}}))
         with mock.patch.object(site, "SORTIE", cls.tmp / "site"), mock.patch.object(site, "ETAT", cls.tmp / "etat.json"), \
                 mock.patch.object(audio, "DOSSIER", mp3):
             site.construire(cfg, articles=exemples())
@@ -209,6 +214,40 @@ class TestSite(unittest.TestCase):
         self.assertIn("🎧 Écouter", bouton.text_content())
         self.assertTrue(stop.is_hidden())
         self.assertEqual(p.evaluate("__joue.length"), 4)
+
+    def test_audio_du_jour(self):
+        """Bouton « Audio du jour » en haut de la liste : même lecteur (Pause / Reprendre / Stop), flux podcast listé."""
+        p = self.page
+        p.add_init_script("""
+            window.__joue = [];
+            const P = HTMLMediaElement.prototype;
+            Object.defineProperty(P, 'paused', { get() { return !this.__lit; } });
+            P.play = function () { this.__lit = true; __joue.push(this.getAttribute('src')); this.dispatchEvent(new Event('play')); return Promise.resolve(); };
+            P.pause = function () { if (!this.__lit) return; this.__lit = false; this.dispatchEvent(new Event('pause')); };
+            P.load = function () {};""")
+        p.reload()
+        p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        bouton, stop = p.locator("#audio-jour"), p.locator("#audio-jour-stop")
+        self.assertTrue(bouton.is_visible())
+        self.assertIn("2 articles · 4 min", p.text_content("#audio-jour-info"))
+        self.assertTrue(stop.is_hidden())
+        bouton.click()
+        self.assertIn("Pause", bouton.text_content())
+        self.assertTrue(stop.is_visible())
+        self.assertRegex(p.evaluate("__joue[0]"), r"^audio/jour-\d{4}-\d\d-\d\d\.mp3$")
+        self.assertIn("veille du", p.evaluate("navigator.mediaSession.metadata.title"))
+        bouton.click()
+        self.assertIn("Reprendre", bouton.text_content())
+        # une fiche avec MP3 prend la main : le bouton du jour revient à l'état de repos
+        p.locator(".carte", has_text="ARFID").locator('button[data-act="ecouter"]').click()
+        self.assertIn("Audio du jour", bouton.text_content())
+        self.assertEqual(p.evaluate("__joue[__joue.length - 1]"), "audio/arfid.mp3")
+        bouton.click()
+        stop.click()
+        self.assertIn("🎧 Audio du jour", bouton.text_content())
+        self.assertTrue(stop.is_hidden())
+        self.assertIn("podcast.xml", p.inner_html("#liste-flux"))
+        self.assertIn("<enclosure", (self.tmp / "site" / "podcast.xml").read_text(encoding="utf-8"))
 
     def test_nouveaux_et_chercher_une_version(self):
         p = self.page

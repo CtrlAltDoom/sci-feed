@@ -123,7 +123,7 @@ jobs:
             python -m veille audio
             python -m veille site
           else
-            python -m veille tout          # collecte, fiches IA, MP3 puis site
+            python -m veille tout          # collecte, fiches IA, MP3 des fiches, audio du jour puis site
           fi
 
       - name: Garder les MP3 pour demain

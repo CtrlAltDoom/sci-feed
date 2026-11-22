@@ -270,6 +270,11 @@ audio:
   jours_conserves: 7             # articles ajoutés depuis N jours ; MP3 effacés après N jours
   max_par_jour: 25               # MP3 créés au plus par passage
   pertinence_min: 4              # en plus des articles notifiés et des favoris : pertinence IA ≥ N
+  # Audio du jour : chaque nuit, un seul MP3 de 3 à 5 min (voix ci-dessus) qui présente les articles
+  # que la notification du matin enverra (les mêmes : la sélection de la nuit est reprise au matin).
+  # Texte écrit par l'IA des fiches (script simple de secours si elle échoue). Bouton « 🎧 Audio du
+  # jour » dans l'appli, action « 🎧 Écouter » sur la notification, flux podcast podcast.xml.
+  jour: true
 
 # ------------------------------------------------------------
 #  NOTIFICATIONS DU MATIN (appli gratuite ntfy, Android / iOS)

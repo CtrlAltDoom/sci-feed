@@ -377,6 +377,12 @@
         b.textContent = libelle(c.dataset.id); b.classList.toggle("actif", moi);
         if (s) s.hidden = !moi;
       });
+      const bj = $("audio-jour"), sj = $("audio-jour-stop");          // bouton « Audio du jour », en haut
+      if (bj) {
+        const moi = String(st.id || "").startsWith("jour:") && st.etat !== "arret";
+        bj.textContent = !moi ? "🎧 Audio du jour" : st.etat === "lecture" ? "⏸ Pause" : "▶ Reprendre";
+        bj.classList.toggle("actif", moi); sj.hidden = !moi;
+      }
     }
     function libelle(id) {
       if (id !== st.id || st.etat === "arret") { const a = PAR_ID.get(id); return a && a.audio ? "🎧 Écouter" : "🔊 Écouter"; }
@@ -644,8 +650,24 @@
   // ---------- flux RSS ----------
   function listeFlux() {
     const li = (href, nom) => `<li><a href="${esc(href)}">${esc(nom)}</a></li>`;
-    $("liste-flux").innerHTML = DATA.meta.themes.map((t) => li(`feed-${t.id}.xml`, t.nom))
+    $("liste-flux").innerHTML = (DATA.meta.podcast ? [li(DATA.meta.podcast, "🎧 Podcast : l'audio du jour (AntennaPod, Podcast Addict…)")] : [])
+      .concat(DATA.meta.themes.map((t) => li(`feed-${t.id}.xml`, t.nom)))
       .concat(DATA.meta.etiquettes.map((t) => li(`feed-etiquette-${t.id}.xml`, "Étiquette : " + t.nom))).join("");
+  }
+
+  // ---------- audio du jour : les articles de la notification du matin, en quelques minutes ----------
+  // Même lecteur que les fiches (écran éteint, écran de verrouillage). Masqué s'il n'est pas d'aujourd'hui.
+  function audioDuJour() {
+    const v = DATA.meta.audio_jour, boite = $("audio-jour-boite");
+    const auj = new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Paris" });   // AAAA-MM-JJ, comme le serveur
+    if (!boite || !v || !v.fichier || v.jour !== auj) { if (boite) boite.hidden = true; return; }
+    const n = (v.titres || []).length, min = Math.max(1, Math.round((v.duree || 0) / 60));
+    $("audio-jour-info").textContent = `${n} article${n > 1 ? "s" : ""} · ${min} min`;
+    const jour = new Date(v.jour + "T12:00:00").toLocaleDateString("fr-FR", { day: "numeric", month: "long" });
+    const piste = { id: "jour:" + v.jour, audio: v.fichier, titre: `SciFeed — veille du ${jour}`, revue: "Audio du jour", fiche: null };
+    $("audio-jour").addEventListener("click", () => ecoute.basculer(piste));
+    $("audio-jour-stop").addEventListener("click", () => ecoute.arreter());
+    boite.hidden = false;
   }
 
   // ---------- personnalisation (propre à cet appareil) ----------
@@ -799,6 +821,7 @@
     alerteVeille();
     noterVisite();
     listeFlux();
+    audioDuJour();
     brancherPerso();
     etat.themes = (etat.themes || []).filter((t) => nomsThemes[t]);
     etat.etiquettes = (etat.etiquettes || []).filter((t) => nomsEtiq[t]);

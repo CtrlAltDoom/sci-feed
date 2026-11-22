@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from veille import core, libre, notifications, pipeline, resume_ia, sante, site
+from veille import audio, core, libre, notifications, pipeline, resume_ia, sante, site
 from veille.sources import clinicaltrials, europepmc, openalex, pubmed, rss
 
 AUJ = core.aujourd_hui().isoformat()
@@ -129,6 +129,8 @@ class TestVeille(unittest.TestCase):
                         mock.patch.object(pipeline, "ETAT", self.tmp / "etat.json"),
                         mock.patch.object(site, "ETAT", self.tmp / "etat.json"),
                         mock.patch.object(site, "SORTIE", self.tmp / "site"),
+                        mock.patch.object(audio, "DOSSIER", self.tmp / "audio"),
+                        mock.patch.object(notifications, "audio_du_jour_en_ligne", lambda *a: ""),
                         mock.patch.object(core.Http, "get", faux_get),
                         mock.patch("time.sleep", lambda s: None)]
         for p in self.patches:

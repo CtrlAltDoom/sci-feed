@@ -34,13 +34,15 @@ class FausseVoix:
         return b"\xff\xfb" + texte.encode("utf-8") * 20 + b"\0" * 1200
 
 
-class TestAudio(unittest.TestCase):
+class _Bac(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp())
         self.cfg = core.charger_config()
         self.cfg["audio"] = {"actif": True, "jours_conserves": 7, "max_par_jour": 25, "pertinence_min": 4}
         self.patches = [mock.patch.object(audio, "DOSSIER", self.tmp / "audio"),
                         mock.patch.object(pipeline, "DATA", self.tmp),
+                        mock.patch.object(pipeline, "FICHIER", self.tmp / "articles.json"),
+                        mock.patch.object(pipeline, "ETAT", self.tmp / "etat.json"),
                         mock.patch.object(site, "SORTIE", self.tmp / "site"),
                         mock.patch.object(site, "ETAT", self.tmp / "etat.json"),
                         mock.patch.dict("os.environ", {"SYNC_GIST_ID": ""})]
@@ -52,6 +54,8 @@ class TestAudio(unittest.TestCase):
             p.stop()
         shutil.rmtree(self.tmp)
 
+
+class TestAudio(_Bac):
     def test_texte_comme_l_appli(self):
         m = audio.morceaux(art(1))
         self.assertEqual(len(m), 1)                          # tout en français : un seul appel à la voix
@@ -145,6 +149,131 @@ class TestAudio(unittest.TestCase):
         with mock.patch.object(audio, "synthetiser", FausseVoix()) as v:
             self.assertEqual(audio.generer(self.cfg, core.Base([art(1)]), set())["nouveaux"], 0)
         self.assertFalse((self.tmp / "audio").exists())
+
+
+class FauxScript:
+    cle, url = "test", "http://test"
+
+    def __init__(self, reponse=None, panne=False):
+        self.reponse, self.panne, self.recu = reponse, panne, None
+
+    def completer(self, systeme, utilisateur):
+        self.recu = (systeme, utilisateur)
+        if self.panne:
+            raise RuntimeError("quota")
+        return json.dumps({"script": self.reponse}), "faux-modele"
+
+
+class Reponse:
+    def __init__(self, code=200):
+        self.status_code = code
+
+    def raise_for_status(self):
+        pass
+
+
+class TestAudioDuJour(_Bac):
+    def base(self):
+        arts = [art(i, fiche=dict(FICHE, titre_court=f"Étude {i}", conclusion_simple=f"Piste {i} à confirmer.",
+                                  pertinence=6 - i)) for i in range(1, 8)]
+        return core.Base(arts)
+
+    def test_selection_partagee_avec_la_notification(self):
+        base = self.base()
+        jour = audio.jour_local(self.cfg)
+        with mock.patch.object(audio, "synthetiser", FausseVoix()):
+            v = audio.generer_jour(self.cfg, base, client=FauxScript(panne=True), jour=jour)
+        self.assertEqual(len(v["ids"]), self.cfg["notifications"]["nombre"])
+        sel = json.loads((self.tmp / "selection-du-jour.json").read_text(encoding="utf-8"))
+        self.assertEqual((sel["jour"], sel["ids"]), (jour.isoformat(), v["ids"]))
+        # le matin : la notification reprend exactement ces articles, même si le classement a changé
+        for a in base.articles:
+            if a["id"] not in v["ids"]:
+                a["fiche"]["pertinence"] = 5
+        choix = notifications.selection_de_la_nuit(self.cfg, base, set(), jour)
+        self.assertEqual([a["id"] for a, _, _ in choix], v["ids"])
+        # déjà envoyé : retiré ; sélection d'un autre jour : ignorée (choix habituel)
+        choix = notifications.selection_de_la_nuit(self.cfg, base, {v["ids"][0]}, jour)
+        self.assertEqual([a["id"] for a, _, _ in choix], v["ids"][1:])
+        self.assertIsNone(notifications.selection_de_la_nuit(self.cfg, base, set(), jour + dt.timedelta(days=1)))
+
+    def test_notification_avec_action_ecouter(self):
+        base = self.base()
+        pipeline.sauvegarder(base)
+        jour = audio.jour_local(self.cfg)
+        with mock.patch.object(audio, "synthetiser", FausseVoix()):
+            v = audio.generer_jour(self.cfg, base, client=FauxScript(panne=True), jour=jour)
+        self.cfg["notifications"]["hebdo"] = {"actif": False}
+        from zoneinfo import ZoneInfo
+        maintenant = dt.datetime.combine(jour, dt.time(8), tzinfo=ZoneInfo("Europe/Paris"))
+        for en_ligne, attendu in ((200, True), (404, False)):
+            (self.tmp / "notifications.json").unlink(missing_ok=True)
+            envois, tetes = [], []
+            with mock.patch.dict("os.environ", {"NTFY_TOPIC": "canal", "GITHUB_REPOSITORY": "moi/sci-feed"}), \
+                    mock.patch.object(notifications.requests, "post", lambda url, json=None, **kw: envois.append(json) or Reponse()), \
+                    mock.patch.object(notifications.requests, "head", lambda url, **kw: tetes.append(url) or Reponse(en_ligne)), \
+                    mock.patch("time.sleep", lambda s: None):
+                notifications.notifier(self.cfg, forcer=True, client=FauxScript(panne=True), maintenant=maintenant)
+            self.assertEqual(sorted(m["title"] for m in envois), sorted(v["titres"]))      # les mêmes que l'audio
+            self.assertEqual(tetes[0], f"https://moi.github.io/sci-feed/audio/jour-{jour.isoformat()}.mp3")
+            labels = [x["label"] for x in envois[0].get("actions", [])]
+            self.assertEqual("🎧 Écouter" in labels, attendu)
+            self.assertIn("Ouvrir SciFeed", labels)
+
+    def test_script_de_secours_et_script_ia(self):
+        base = self.base()
+        jour = dt.date(2026, 11, 22)
+        s = audio.script_secours(base.articles[:2], jour)
+        self.assertTrue(s.startswith("Bonjour, voici la veille SciFeed du dimanche 22 novembre. 2 articles"))
+        self.assertIn("Premier article : Étude 1. Double le taux de répondeurs. Piste 1 à confirmer.", s)
+        self.assertIn("Deuxième article : Étude 2.", s)
+        self.assertNotIn("Piste 3", s)
+        # IA : reçoit les fiches, le texte rendu est nettoyé du markdown
+        texte = "**Bonjour**, voici la veille. " + "Une phrase simple sur l'étude. " * 60
+        ia = FauxScript(texte)
+        self.assertEqual(audio.script_ia(self.cfg, base.articles[:2], jour, ia)[:30], "Bonjour, voici la veille. Une ")
+        self.assertIn("dimanche 22 novembre", ia.recu[0])
+        self.assertIn("Population : 120 adultes SII", ia.recu[1])
+        self.assertIsNone(audio.script_ia(self.cfg, base.articles[:2], jour, FauxScript("Trop court.")))
+        self.assertIsNone(audio.script_ia(self.cfg, base.articles[:2], jour, FauxScript(panne=True)))
+        # MP3 du jour : script de l'IA quand elle répond, une seule voix ; refait seulement si les articles changent
+        voix = FausseVoix()
+        with mock.patch.object(audio, "synthetiser", voix):
+            v = audio.generer_jour(self.cfg, base, client=FauxScript(texte), jour=jour)
+            self.assertEqual(len(voix.appels), 1)
+            self.assertEqual(voix.appels[0][0], "fr-FR-DeniseNeural")
+            self.assertTrue(voix.appels[0][1].startswith("Bonjour, voici la veille."))
+            audio.generer_jour(self.cfg, base, client=FauxScript(texte), jour=jour)
+            self.assertEqual(len(voix.appels), 1)
+        self.assertTrue((self.tmp / "audio" / f"jour-{jour.isoformat()}.mp3").exists())
+        self.assertGreater(v["duree"], 0)
+        # panne de la voix : avertissement, pas d'exception
+        with mock.patch.object(audio, "synthetiser", FausseVoix(panne=True)), self.assertLogs("veille", "WARNING"):
+            self.assertIsNone(audio.generer_jour(self.cfg, base, client=FauxScript(texte), jour=jour + dt.timedelta(days=1)))
+
+    def test_podcast_et_site(self):
+        base = self.base()
+        voix = FausseVoix()
+        jour = audio.jour_local(self.cfg)
+        with mock.patch.object(audio, "synthetiser", voix):
+            audio.generer_jour(self.cfg, base, client=FauxScript(panne=True), jour=jour - dt.timedelta(days=1))
+            audio.generer_jour(self.cfg, base, client=FauxScript(panne=True), jour=jour)
+        with mock.patch.dict("os.environ", {"GITHUB_REPOSITORY": "moi/sci-feed"}):
+            site.construire(self.cfg, articles=base.articles)
+        flux = (self.tmp / "site" / "podcast.xml").read_text(encoding="utf-8")
+        import xml.etree.ElementTree as ET
+        items = ET.fromstring(flux).findall("./channel/item")
+        self.assertEqual(len(items), 2)
+        self.assertIn(f"veille du {audio.date_parlee(jour, avec_jour=False)}", items[0].find("title").text)
+        enc = items[0].find("enclosure")
+        self.assertEqual(enc.get("url"), f"https://moi.github.io/sci-feed/audio/jour-{jour.isoformat()}.mp3")
+        self.assertEqual(enc.get("type"), "audio/mpeg")
+        self.assertGreater(int(enc.get("length")), 0)
+        self.assertRegex(items[0].find("{http://www.itunes.com/dtds/podcast-1.0.dtd}duration").text, r"^\d\d:\d\d:\d\d$")
+        meta = json.loads((self.tmp / "site" / "data.json").read_text(encoding="utf-8"))["meta"]
+        self.assertEqual(meta["audio_jour"]["fichier"], f"audio/jour-{jour.isoformat()}.mp3")
+        self.assertEqual(meta["podcast"], "podcast.xml")
+        self.assertTrue((self.tmp / "site" / meta["audio_jour"]["fichier"]).exists())
 
 
 class TestVoixReelle(unittest.TestCase):

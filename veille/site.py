@@ -181,6 +181,12 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
         # informations sur les revues, une seule fois par revue (et non recopiées dans chaque article)
         "revues": {a["revue_oa"]: a["revue_info"] for a in articles if a.get("revue_oa") and a.get("revue_info")},
     }
+    eps = audio.episodes() if mp3 else []          # audios du jour (5 articles de la notification)
+    if eps:
+        meta["podcast"] = "podcast.xml"
+        v = eps[0]
+        meta["audio_jour"] = {"fichier": f"audio/{v['fichier']}", "jour": v["jour"], "duree": v.get("duree", 0),
+                              "titres": v.get("titres", [])}
     if any(a.get("libre") for a in articles):
         ids = {t["id"] for t in meta["themes"]}
         for a in articles:
@@ -226,5 +232,8 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
     for t in meta["etiquettes"]:
         _rss([a for a in articles if t["id"] in a.get("etiquettes", [])],
              f"{meta['titre']} — {t['nom']}", "./", SORTIE / f"feed-etiquette-{t['id']}.xml")
+    if eps:
+        from .notifications import adresse_site
+        (SORTIE / "podcast.xml").write_text(audio.podcast(eps, meta["titre"], adresse_site(cfg)), encoding="utf-8")
     (SORTIE / ".nojekyll").write_text("", encoding="utf-8")
     log.info("Site généré : %d articles -> %s", len(articles), SORTIE)

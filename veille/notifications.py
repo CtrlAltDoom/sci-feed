@@ -123,6 +123,40 @@ def selectionner(cfg: dict, base, deja: set[str]) -> list[tuple[dict, dict | Non
     return [(a, info, e) for _, a, info, e in candidats[:n.get("nombre", 5)]]
 
 
+def selection_de_la_nuit(cfg: dict, base, envoyes: set[str], jour: dt.date):
+    """Les articles choisis la nuit pour l'audio du jour (data/selection-du-jour.json), s'ils sont
+    de ce jour : la notification parle alors exactement des mêmes. None sinon (choix habituel)."""
+    from . import audio
+    ids = audio.selection_enregistree(jour)
+    if not ids:
+        return None
+    par_id = {a["id"]: a for a in base.articles}
+    infos = revues.charger()
+    choix = []
+    for i in ids:
+        a = par_id.get(i)
+        if a is None or i in envoyes or a.get("retracte"):
+            continue
+        choix.append((a, revues.resume(infos.get(a.get("revue_oa") or "")),
+                      themes_correspondants(a, cfg.get("etiquettes", []))))
+    if choix:
+        log.info("Notifications : %d articles choisis cette nuit (les mêmes que l'audio du jour)", len(choix))
+    return choix or None
+
+
+def audio_du_jour_en_ligne(cfg: dict, jour: dt.date) -> str:
+    """Adresse du MP3 du jour sur le site, s'il y est déjà ; "" sinon (pas d'action « Écouter »)."""
+    site = adresse_site(cfg)
+    if not site:
+        return ""
+    url = site.rstrip("/") + f"/audio/jour-{jour.isoformat()}.mp3"
+    try:
+        r = requests.head(url, timeout=15, allow_redirects=True)
+        return url if r.status_code == 200 else ""
+    except requests.RequestException:
+        return ""
+
+
 # ---------------------------------------------------------------- résumé de la semaine
 def resume_semaine(cfg: dict, base, etat: dict, maintenant: dt.datetime, essai: bool = False) -> int:
     """Le jour choisi (dimanche par défaut) : les N articles les plus marquants des 7 derniers jours,
@@ -301,7 +335,8 @@ def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None,
     exclus = set(etat.get("envoyes", {}))
     if n.get("ignorer_deja_vus", True):
         exclus |= deja_vus_dans_l_appli()
-    choix = selectionner(cfg, base, exclus)
+    choix = selection_de_la_nuit(cfg, base, set(etat.get("envoyes", {})), maintenant.date()) \
+        or selectionner(cfg, base, exclus)
     if not choix:
         log.info("Notifications : aucun nouvel article à signaler.")
         return 0
@@ -309,17 +344,22 @@ def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None,
         pipeline.sauvegarder(base)          # les textes courts servent aussi au site
     site = adresse_site(cfg)
     textes = [(a, *contenu(a, info, e)) for a, info, e in choix]
+    ecouter = audio_du_jour_en_ligne(cfg, maintenant.date())
+    action_audio = [{"action": "view", "label": "🎧 Écouter", "url": ecouter}] if ecouter else []
 
     if n.get("format", "par_article") == "resume":
         corps = "\n\n".join(f"{i}. {t}\n{m.splitlines()[0] if m else ''}" for i, (_, t, m) in enumerate(textes, 1))
         messages = [{"title": f"SciFeed : {len(textes)} articles ce matin", "message": corps,
                      "click": site or textes[0][0].get("url", ""), "tags": ["books"]}]
+        if action_audio:
+            messages[0]["actions"] = action_audio
     else:
         messages = []
         for a, t, m in reversed(textes):        # le plus pertinent arrive en dernier = en haut de la liste
             msg = {"title": t, "message": m, "click": a.get("url") or site}
-            if site:
-                msg["actions"] = [{"action": "view", "label": "Ouvrir SciFeed", "url": site}]
+            actions = ([{"action": "view", "label": "Ouvrir SciFeed", "url": site}] if site else []) + action_audio
+            if actions:
+                msg["actions"] = actions
             messages.append(msg)
 
     if essai:

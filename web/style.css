@@ -74,6 +74,10 @@ h1 { font-size: 1.15rem; margin: 0; letter-spacing: -.01em; }
 .filtres select { padding: 7px 8px; border-radius: 10px; border: 1px solid var(--ligne); background: var(--carte); }
 
 main { max-width: 760px; margin: 0 auto; padding: 8px 12px 24px; }
+.audio-jour { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 4px 2px 8px; }
+.audio-jour[hidden] { display: none; }
+.audio-jour .icone.actif { background: var(--accent); color: #fff; border-color: var(--accent); }
+.audio-jour-info { font-size: .8rem; color: var(--doux); }
 .resume-liste { display: flex; justify-content: space-between; align-items: center;
   font-size: .82rem; color: var(--doux); padding: 6px 2px; }
 .lien { background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; font-size: inherit; text-decoration: underline; }

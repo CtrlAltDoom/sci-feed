@@ -4,6 +4,7 @@
     python -m veille collecter   # seulement la collecte
     python -m veille resumer     # seulement les fiches IA
     python -m veille audio       # seulement les MP3 des fiches (edge-tts, dossier audio/)
+    python -m veille audio --jour  # idem, plus l'audio du jour (fait chaque nuit par « tout »)
     python -m veille site        # seulement le site (dossier site/)
     python -m veille notifier    # notifications du matin (ntfy) ; --essai : affiche sans envoyer
     python -m veille tester-ia   # vérifie que chaque fournisseur IA répond (OpenRouter, Gemini, Mistral)
@@ -28,6 +29,7 @@ def main():
                    help="resumer : rattrapage des fiches IA, réglages ia.rattrapage de config.yaml")
     p.add_argument("--duree", type=int, default=None, help="resumer : durée maximale en minutes (rattrapage)")
     p.add_argument("--lots", type=int, default=None, help="resumer : nombre maximal de requêtes (rattrapage)")
+    p.add_argument("--jour", action="store_true", help="audio : fait aussi l'audio du jour (5 articles de la notification)")
     p.add_argument("-v", "--verbeux", action="store_true")
     args = p.parse_args()
     logging.basicConfig(level=logging.DEBUG if args.verbeux else logging.INFO,
@@ -59,6 +61,9 @@ def main():
     if args.action in ("tout", "audio"):
         from . import audio
         audio.generer(cfg)                    # n'échoue jamais : au pire, pas de MP3 aujourd'hui
+    if args.action == "tout" or (args.action == "audio" and args.jour):
+        from . import audio
+        audio.generer_jour(cfg)               # audio du jour : les articles de la notification du matin
     if args.action in ("tout", "site"):
         site.construire(cfg, inline=args.inline)
     if args.action == "tester-ia":
