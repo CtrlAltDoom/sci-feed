@@ -19,22 +19,87 @@ SOURCES_API = {"pubmed": pubmed, "europepmc": europepmc, "openalex": openalex,
 FILTRE_LOCAL = {"openalex", "clinicaltrials"}
 
 
-def purger(base: Base, limite: str) -> Base:
-    """Efface les articles ajoutés avant `limite`, sauf les favoris de l'appli (lus dans le gist).
+def _copie_favoris() -> dict:
+    """Copie des favoris gardée dans le dépôt (data/favoris.json) : {id: {"depuis", "article"}}."""
+    f = DATA / "favoris.json"
+    return (json.loads(f.read_text(encoding="utf-8")).get("favoris") or {}) if f.exists() else {}
 
-    Si le gist est configuré mais illisible ce jour-là, on n'efface rien : la purge attend le
-    lendemain, plutôt que de risquer d'effacer un favori."""
+
+def _sauver_copie_favoris(copie: dict):
+    DATA.mkdir(exist_ok=True)
+    (DATA / "favoris.json").write_text(json.dumps(
+        {"note": "Copie de secours des favoris de l'appli : ces articles ne sont jamais effacés de la base.",
+         "favoris": dict(sorted(copie.items()))}, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def proteger_favoris(base: Base, etat: dict | None) -> set[str] | None:
+    """Tient à jour la copie des favoris et renvoie les identifiants à ne jamais effacer.
+
+    `etat` : l'état de l'appli lu dans le gist (None si pas de gist ou gist illisible). Un article
+    entre dans la copie dès qu'il est favori dans le gist, avec toute sa fiche ; il n'en sort que si
+    l'appli dit explicitement qu'il a été retiré des favoris (date de retrait). Un état du gist vidé
+    par accident (plus aucun favori) ne retire rien. Un favori de la copie absent de la base y est
+    remis. Renvoie None si la copie est illisible (on n'efface alors rien)."""
+    try:
+        copie = _copie_favoris()
+    except (ValueError, AttributeError) as ex:
+        log.warning("Copie des favoris (data/favoris.json) illisible : %s", ex)
+        return None
+    change = False
+    favs: set[str] = set()
+    if etat is not None:
+        favs = {k for k, v in (etat.get("favoris") or {}).items() if v}
+        retires = {h.split("|", 1)[1] for h in (etat.get("horo") or {}) if h.startswith("favoris|")} - favs
+        if not favs and copie:
+            log.warning("Le gist ne contient plus aucun favori : la copie (%d) est gardée telle quelle", len(copie))
+            retires = set()
+        for k in retires & copie.keys():
+            del copie[k]
+            change = True
+        for k in favs:
+            a = next((x for x in base.articles if x.get("id") == k), None)
+            if a is None:
+                if k not in copie:
+                    log.warning("Favori %s introuvable dans la base (déjà effacé ?)", k)
+                continue
+            if copie.get(k, {}).get("article") != a:
+                copie[k] = {"depuis": copie.get(k, {}).get("depuis", aujourd_hui().isoformat()),
+                            "article": json.loads(json.dumps(a))}
+                change = True
+    ids_base = {a.get("id") for a in base.articles}
+    remis = 0
+    for k, e in copie.items():
+        if k not in ids_base and e.get("article"):
+            base.ajouter(json.loads(json.dumps(e["article"])))
+            remis += 1
+    if remis:
+        log.warning("%d favoris absents de la base y ont été remis depuis la copie", remis)
+    if change:
+        _sauver_copie_favoris(copie)
+    return set(copie) | favs
+
+
+def purger(base: Base, limite: str) -> Base:
+    """Efface les articles ajoutés avant `limite`, sauf les favoris de l'appli.
+
+    Les favoris sont lus dans le gist de synchronisation ET dans leur copie du dépôt
+    (data/favoris.json, voir proteger_favoris). Si le gist est configuré mais illisible ce
+    jour-là, ou si la copie est illisible, on n'efface rien : la purge attend le lendemain."""
+    from . import notifications   # import local : notifications dépend de pipeline
+    etat = notifications.etat_appli() if notifications.gist_configure() else None
+    if etat is not None and not isinstance(etat, dict):
+        log.warning("État de l'appli (gist) inattendu : ignoré")
+        etat = None
+    proteges = proteger_favoris(base, etat)
     if not any(a.get("ajoute_le", "") < limite for a in base.articles):
         return base
-    from . import notifications   # import local : notifications dépend de pipeline
-    favoris: set[str] = set()
-    if notifications.gist_configure():
-        etat = notifications.etat_appli()
-        if etat is None:
-            log.warning("Purge des anciens articles reportée : favoris de l'appli illisibles")
-            return base
-        favoris = {k for k, v in (etat.get("favoris") or {}).items() if v}
-    gardes = [a for a in base.articles if a.get("ajoute_le", "") >= limite or a["id"] in favoris]
+    if proteges is None:
+        log.warning("Purge des anciens articles reportée : copie des favoris illisible")
+        return base
+    if notifications.gist_configure() and etat is None:
+        log.warning("Purge des anciens articles reportée : favoris de l'appli illisibles")
+        return base
+    gardes = [a for a in base.articles if a.get("ajoute_le", "") >= limite or a["id"] in proteges]
     anciens_favoris = sum(1 for a in gardes if a.get("ajoute_le", "") < limite)
     log.info("Purge : %d anciens articles effacés, %d anciens favoris gardés",
              len(base.articles) - len(gardes), anciens_favoris)
