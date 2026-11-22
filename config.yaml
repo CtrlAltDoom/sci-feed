@@ -260,16 +260,19 @@ site:
 #  NOTIFICATIONS DU MATIN (appli gratuite ntfy, Android / iOS)
 #  Le nom du canal n'est PAS ici (dépôt public) : il est dans le secret GitHub NTFY_TOPIC.
 #  Dans l'appli ntfy : « + » puis ce nom de canal.
-#  Envoi par .github/workflows/notifications.yml, entre heure_min et heure_max (heure de Paris,
-#  été comme hiver ; GitHub part souvent en retard, parfois de plusieurs heures). Les notifications
-#  partent aussi automatiquement à la fin de la collecte du jour.
+#  Planning (heure de Paris) : collecte la nuit (essais toutes les heures à partir de 1 h 23
+#  l'hiver, 2 h 23 l'été) ; notifications une seule fois par jour, dès 6 h si la collecte est faite
+#  (essais toutes les 20 min jusqu'à 8 h 40 l'hiver, 9 h 40 l'été, par
+#  .github/workflows/notifications.yml) ; filet toutes les heures ensuite. Jusqu'à midi on attend
+#  la collecte du jour ; après midi (en cas de problème) on envoie avec ce qu'on a.
+#  Les notifications partent aussi à la fin de la collecte, si elle finit après 6 h.
 # ------------------------------------------------------------
 notifications:
   actif: true
   nombre: 5                # articles par matin
   format: par_article      # par_article (une notification chacun) ou resume (une seule, avec la liste)
   fenetre_jours: 2         # articles ajoutés depuis N jours (jamais deux fois le même)
-  heure_min: "06:30"
+  heure_min: "06:00"       # rien avant (heure de Paris, été comme hiver)
   heure_max: "21:00"       # les tâches GitHub partent parfois avec des heures de retard : on accepte d'envoyer tard plutôt que rien
   attendre_collecte_jusqua: "12:00"  # avant cette heure, on attend que la collecte du jour soit faite ; après, on envoie avec ce qu'on a
   fuseau: "Europe/Paris"
@@ -402,13 +405,20 @@ ia:
   pause_secondes: 4              # limites gratuites : 20 requêtes/minute (OpenRouter), 1/seconde (Mistral)
   duree_max_minutes: 30          # on s'arrête à temps (le workflow est coupé à 45 min)
   json_strict: true              # demande une réponse en JSON strict (repli automatique si refusé)
-  # Rattrapage des fiches (chaque soir vers 20 h 17 si auto, ou à la main : Actions > Veille
-  # quotidienne > rattrapage) : fiches seulement, sans collecte.
+  # Rattrapage des fiches (chaque soir à 20 h 17 à Paris l'hiver, 21 h 17 l'été, si auto ; ou à la
+  # main : Actions > Veille quotidienne > rattrapage) : fiches seulement, sans collecte.
   # Durée limitée pour ne pas bloquer la file de la collecte ; ce qui est fait est enregistré.
+  # Quota : celui de Gemini ne se renouvelle qu'à 9 h à Paris, la collecte de la nuit utilise donc
+  # le reste de la veille, après ce rattrapage. Les modèles à petit quota (20/jour) lui sont
+  # réservés (fiches des articles du jour, ceux qui sont notifiés) ; sur les Flash Lite (500/jour
+  # chacun), 40 min à 5 requêtes/minute laissent toujours bien plus que les 150 de la collecte.
+  # OpenRouter se renouvelle à minuit UTC, avant la collecte. Articles de la nuit restés sans
+  # fiche faute de quota : repris au rattrapage suivant.
   rattrapage:
     auto: true                   # rattrapage automatique chaque soir tant qu'il reste des articles sans fiche ; mettre false pour l'arrêter
     duree_max_minutes: 40
     max_requetes: 600
+    modeles_reserves: ["gemini-4-hydrogen", "gemini-3.8-flash", "gemini-3.6-flash"]   # laissés à la collecte de la nuit
   effort_raisonnement: "low"     # réflexion courte = réponses plus rapides (ignoré par les modèles qui ne réfléchissent pas)
   # Ordre de passage : articles des N derniers jours d'abord, puis par intérêt (section `interet`).
   priorite_jours_recents: 3

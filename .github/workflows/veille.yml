@@ -2,12 +2,14 @@ name: Veille quotidienne
 
 on:
   schedule:
-    # Un créneau toutes les heures de 3 h 23 à 12 h 23 UTC (4 h 23 à 13 h 23 à Paris en hiver) :
-    # GitHub part parfois avec des heures de retard, voire saute des créneaux. Le premier qui
-    # tourne fait la collecte ; les suivants voient qu'elle est faite et s'arrêtent en quelques secondes.
-    - cron: "23 3-12 * * *"
-    # Le soir (vers 20 h 17 à Paris) : rattrapage des fiches IA, sans collecte, seulement s'il
-    # reste des articles sans fiche (ia.rattrapage.auto dans config.yaml). S'arrête tout seul.
+    # Collecte la nuit : un créneau toutes les heures de 0 h 23 à 10 h 23 UTC, soit à Paris
+    # 1 h 23 → 11 h 23 en hiver, 2 h 23 → 12 h 23 en été. GitHub part parfois avec des heures de
+    # retard, voire saute des créneaux. Le premier qui tourne fait la collecte (comptée pour le jour
+    # de Paris) ; les suivants voient qu'elle est faite et s'arrêtent en quelques secondes.
+    - cron: "23 0-10 * * *"
+    # Le soir (20 h 17 à Paris en hiver, 21 h 17 en été) : rattrapage des fiches IA, sans collecte,
+    # seulement s'il reste des articles sans fiche (ia.rattrapage.auto dans config.yaml).
+    # Un run du soir que GitHub ferait partir après minuit UTC ne fait rien (créneaux de la nuit).
     - cron: "17 19 * * *"
   workflow_dispatch:          # bouton "Run workflow" pour lancer à la main
     inputs:
@@ -63,12 +65,19 @@ jobs:
           tail -n 1 "$GITHUB_OUTPUT"
 
       # Créneau du soir : rattrapage des fiches IA seulement s'il en reste (reste=0 : tout est sauté).
+      # Run du soir parti très en retard (entre 0 h et 12 h UTC) : rien, pour ne jamais occuper la
+      # file « veille » pendant les créneaux de collecte de la nuit et du matin.
       # Les étapes suivantes testent « rien != 'oui' » (comme la garde : une sortie absente, autres
       # déclenchements, vaut null, et null != '0' serait faux pour GitHub, d'où ce oui/non).
       - name: Reste-t-il des fiches IA à rattraper ?
         id: reste
         if: github.event.schedule == '17 19 * * *'
         run: |
+          heure=$(date -u +%H)
+          if [ "$((10#$heure))" -lt 12 ]; then
+            echo "Run du soir parti à ${heure} h UTC : trop tard, place à la collecte de la nuit"
+            echo "rien=oui" >> "$GITHUB_OUTPUT"; exit 0
+          fi
           ligne=$(python -m veille reste_rattrapage)
           echo "$ligne"
           if [ "$ligne" = "reste=0" ]; then echo "rien=oui" >> "$GITHUB_OUTPUT"; else echo "rien=non" >> "$GITHUB_OUTPUT"; fi

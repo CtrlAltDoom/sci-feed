@@ -2,15 +2,16 @@ name: Notifications du matin
 
 on:
   schedule:
-    # Deux créneaux pour couvrir l'heure d'hiver (5 h 40 UTC = 6 h 40 à Paris) et d'été
-    # (4 h 40 UTC = 6 h 40 à Paris). Le script n'envoie qu'une fois par jour, entre
-    # heure_min et heure_max (config.yaml) ; l'autre créneau ne fait rien.
-    - cron: "40 4 * * *"
-    - cron: "40 5 * * *"
-    # filets de secours toutes les heures si GitHub a pris des heures de retard
-    # (rien n'est envoyé deux fois : dernier_envoi dans data/notifications.json)
-    - cron: "47 5-19 * * *"
-  # enchaînement automatique dès que la collecte du jour est terminée
+    # Le matin, toutes les 20 min de 4 h à 7 h 40 UTC : à Paris 5 h → 8 h 40 en hiver,
+    # 6 h → 9 h 40 en été. Le script n'envoie qu'une fois par jour, entre heure_min (6 h) et
+    # heure_max (config.yaml) : avant 6 h à Paris, un créneau ne fait rien.
+    - cron: "*/20 4-7 * * *"
+    # filet de secours toutes les heures si GitHub a pris des heures de retard (après midi à
+    # Paris, on envoie même sans la collecte du jour). Rien n'est envoyé deux fois :
+    # dernier_envoi dans data/notifications.json.
+    - cron: "47 8-19 * * *"
+  # enchaînement automatique dès que la collecte du jour est terminée (collecte de la nuit
+  # finie avant 6 h à Paris : rien n'est envoyé, le premier créneau après 6 h s'en charge)
   workflow_run:
     workflows: ["Veille quotidienne"]
     types: [completed]

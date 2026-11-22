@@ -342,11 +342,21 @@ def priorite(a: dict, cfg: dict, infos_revues: dict | None = None) -> tuple:
 
 def reglages_rattrapage(cfg: dict) -> dict:
     """Rattrapage manuel des fiches : durée et nombre de requêtes de la section ia.rattrapage
-    (durée limitée, pour ne pas bloquer longtemps la file de la collecte du jour)."""
+    (durée limitée, pour ne pas bloquer longtemps la file de la collecte du jour).
+    modeles_reserves : modèles laissés à la collecte de la nuit (petits quotas quotidiens, qui ne se
+    renouvellent qu'à 9 h à Paris pour Gemini) ; un fournisseur sans autre modèle est sauté."""
     ia = cfg.setdefault("ia", {})
     r = ia.get("rattrapage") or {}
     ia["duree_max_minutes"] = r.get("duree_max_minutes", 40)
     ia["max_requetes_par_execution"] = r.get("max_requetes", 600)
+    reserves = set(r.get("modeles_reserves") or [])
+    if reserves and ia.get("fournisseurs"):
+        garde = []
+        for f in ia["fournisseurs"]:
+            modeles = [m for m in (f or {}).get("modeles") or ia.get("modeles") or [] if m not in reserves]
+            if modeles:
+                garde.append({**(f or {}), "modeles": modeles})
+        ia["fournisseurs"] = garde
     return cfg
 
 

@@ -35,7 +35,7 @@ Dans l'ordre, du plus utile au moins urgent :
 
 ## 2. Fiches IA
 - ✅ Ordre de passage : articles du jour d'abord, puis les plus pertinents (thèmes prioritaires, étiquettes), études animales en dernier
-- ✅ Rattrapage du stock initial : chaque soir vers 20 h 17, 40 min de fiches seulement (sans collecte ni notification), tant qu'il reste des articles sans fiche ; s'arrête tout seul (`ia.rattrapage.auto: false` pour le couper)
+- ✅ Rattrapage du stock initial : chaque soir à 20 h 17 (21 h 17 en été), 40 min de fiches seulement (sans collecte ni notification), tant qu'il reste des articles sans fiche ; s'arrête tout seul (`ia.rattrapage.auto: false` pour le couper)
 - 💡 Laisser l'IA proposer des étiquettes, en complément des mots-clés
 
 ## 3. Étiquettes et tri
@@ -58,7 +58,7 @@ Dans l'ordre, du plus utile au moins urgent :
 
 ## 5. Lecture et usage
 - ✅ Notifications du matin via ntfy : les 5 articles les plus pertinents, titre court et conclusion simple rédigés par l'IA, en priorité haute (bandeau)
-- ✅ Notifications fiables malgré les retards de GitHub : collecte toutes les heures de 4 h 23 à 13 h 23 en hiver (les suivants s'arrêtent si elle est faite), filets de notifications toutes les heures, notifications enchaînées dès la fin de la collecte, envoi accepté jusqu'à 21 h (attente de la collecte jusqu'à midi)
+- ✅ Notifications fiables malgré les retards de GitHub : collecte la nuit, toutes les heures à partir de 1 h 23 en hiver (2 h 23 en été ; les suivants s'arrêtent si elle est faite), notifications dès 6 h, essais toutes les 20 min jusqu'à 8 h 40 en hiver (9 h 40 en été), enchaînées dès la fin de la collecte, puis filet toutes les heures ; attente de la collecte jusqu'à midi, envoi accepté jusqu'à 21 h ; le rattrapage du soir laisse les modèles Gemini à petit quota à la collecte de la nuit
 - 💡 Réveil externe par cron-job.org (workflow lancé avec `si_pas_fait`) si les créneaux GitHub ne suffisent pas
 - ✅ Pas de notification pour ce qui est déjà lu, favori ou masqué dans l'appli (secret `SYNC_GIST_ID`)
 - ✅ Résumé de la semaine le dimanche (les 10 articles marquants des 7 derniers jours, en une notification, sans IA ni bandeau)

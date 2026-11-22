@@ -74,9 +74,9 @@ Chaque matin, les articles récents les plus pertinents pour vous arrivent sur l
 
 Réglages dans la section `notifications` de `config.yaml` : nombre, format (une notification par article ou un seul résumé), plage horaire, priorité, thèmes inclus ou exclus, niveau minimal de revue ou de preuve.
 
-**Malgré les retards de GitHub** (constatés jusqu'à 9 h) : la collecte a un créneau toutes les heures de 4 h 23 à 13 h 23 (heure d'hiver ; le premier qui tourne la fait, les suivants s'arrêtent aussitôt), et les notifications un filet toutes les heures, et les notifications partent automatiquement dès qu'elle est terminée. Avant midi, elles attendent la collecte du jour ; après, elles partent avec ce qu'il y a, jusqu'à 21 h au plus tard (`attendre_collecte_jusqua`, `heure_max`). Jamais deux envois le même jour.
+**Planning (heure de Paris)** : la collecte tourne la nuit, avec un créneau toutes les heures à partir de 1 h 23 en hiver (2 h 23 en été) jusqu'à 11 h 23 (12 h 23 en été) : le premier qui tourne la fait, les suivants s'arrêtent aussitôt, car GitHub part parfois avec des heures de retard (constaté jusqu'à 9 h). Les notifications partent une seule fois par jour, jamais avant 6 h : un essai toutes les 20 min de 6 h à 8 h 40 en hiver (9 h 40 en été), et aussi dès la fin de la collecte si elle finit après 6 h. Jusqu'à midi, elles attendent la collecte du jour ; en cas de problème, un filet horaire les envoie l'après-midi avec ce qu'il y a, jusqu'à 21 h au plus tard (`heure_min`, `attendre_collecte_jusqua`, `heure_max`).
 
-**Réveil externe** (facultatif, plus ponctuel que GitHub) : sur [cron-job.org](https://cron-job.org) (gratuit), une tâche quotidienne vers 5 h 30 qui envoie un `POST` à `https://api.github.com/repos/<vous>/<dépôt>/actions/workflows/veille.yml/dispatches`, avec l'en-tête `Authorization: Bearer <jeton GitHub à droits « Actions : écriture »>` et le corps `{"ref":"main","inputs":{"si_pas_fait":"true"}}`. Si la collecte du jour est déjà faite, rien ne se passe.
+**Réveil externe** (facultatif, plus ponctuel que GitHub) : sur [cron-job.org](https://cron-job.org) (gratuit), une tâche quotidienne vers 3 h qui envoie un `POST` à `https://api.github.com/repos/<vous>/<dépôt>/actions/workflows/veille.yml/dispatches`, avec l'en-tête `Authorization: Bearer <jeton GitHub à droits « Actions : écriture »>` et le corps `{"ref":"main","inputs":{"si_pas_fait":"true"}}`. Si la collecte du jour est déjà faite, rien ne se passe.
 
 **Ne pas être notifié de ce qu'on a déjà vu** (facultatif) : si la synchronisation entre appareils est activée dans l'appli, ajoutez le secret `SYNC_GIST_ID` avec l'identifiant de votre gist (la fin de son adresse `gist.github.com/…/IDENTIFIANT`). Les articles lus, favoris ou masqués dans l'appli ne sont alors plus notifiés.
 
@@ -103,7 +103,7 @@ Le code accepte n'importe quelle API « compatible OpenAI ». Il suffit de modif
 
 Plusieurs abstracts sont envoyés par requête (`articles_par_requete: 5`). Avec 50 requêtes par jour, on obtient jusqu'à environ 200 à 250 fiches quotidiennes. Les articles en surplus sont traités au passage suivant.
 
-**Rattrapage automatique** : chaque soir vers 20 h 17, tant qu'il reste des articles sans fiche, une tâche rédige des fiches pendant 40 min (sans collecte ni notification), puis s'arrête d'elle-même quand il n'y a plus de retard. Pour la couper : `ia.rattrapage.auto: false` dans `config.yaml`.
+**Rattrapage automatique** : chaque soir à 20 h 17 (21 h 17 en été), tant qu'il reste des articles sans fiche, une tâche rédige des fiches pendant 40 min (sans collecte ni notification), puis s'arrête d'elle-même quand il n'y a plus de retard. Elle laisse à la collecte de la nuit les modèles Gemini à petit quota (`ia.rattrapage.modeles_reserves`), dont le quota ne se renouvelle qu'à 9 h ; si GitHub la lance après minuit, elle ne fait rien. Pour la couper : `ia.rattrapage.auto: false` dans `config.yaml`.
 
 **Clés facultatives**, à ajouter aussi en secrets : `NCBI_API_KEY` (compte NCBI gratuit, rend PubMed plus rapide) et `OPENALEX_API_KEY`.
 

@@ -286,8 +286,8 @@ def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None,
         if etat.get("dernier_envoi") == maintenant.date().isoformat():
             log.info("Notifications : déjà envoyées aujourd'hui.")
             return 0
-        if not n.get("heure_min", "06:30") <= heure <= n.get("heure_max", "21:00"):
-            log.info("Notifications : %s, hors de la plage %s-%s.", heure, n.get("heure_min", "06:30"), n.get("heure_max", "21:00"))
+        if not n.get("heure_min", "06:00") <= heure <= n.get("heure_max", "21:00"):
+            log.info("Notifications : %s, hors de la plage %s-%s.", heure, n.get("heure_min", "06:00"), n.get("heure_max", "21:00"))
             return 0
         if not pipeline.collecte_du_jour_faite(cfg, maintenant) and heure < n.get("attendre_collecte_jusqua", "12:00"):
             log.info("Notifications : la collecte du jour n'est pas encore faite, on attend.")

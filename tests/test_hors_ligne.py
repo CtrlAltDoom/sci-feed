@@ -291,6 +291,18 @@ class TestVeille(unittest.TestCase):
         (self.tmp / "notifications.json").unlink()
         self.assertEqual(self._notifier_a(self._a_l_heure(21, 30)), (0, []))   # (d) 21 h 30 : trop tard
 
+    def test_planning_nuit_et_6h(self):
+        """Collecte de la nuit (0 h 30 UTC) = jour même à Paris ; rien avant 6 h, envoi à 6 h 05."""
+        nuit = dt.datetime(2026, 11, 22, 0, 30, tzinfo=dt.timezone.utc)     # 1 h 30 à Paris
+        self._noter_collecte(nuit)
+        self.assertTrue(pipeline.collecte_du_jour_faite(self.cfg, self._a_l_heure(5, 40, nuit.date())))
+        self.assertEqual(self.cfg["notifications"]["heure_min"], "06:00")
+        self.assertEqual(self._notifier_a(self._a_l_heure(5, 40)), (0, []))   # 5 h 40 : trop tôt
+        self._noter_collecte(self._a_l_heure(1, 30))                          # collecte faite cette nuit
+        n, envois = self._notifier_a(self._a_l_heure(6, 5))
+        self.assertEqual((n, len(envois)), (1, 1))
+        self.assertEqual(self._notifier_a(self._a_l_heure(6, 25)), (0, []))   # une seule fois par jour
+
     def test_collecte_du_jour_faite(self):
         from zoneinfo import ZoneInfo
         paris = ZoneInfo("Europe/Paris")
@@ -776,6 +788,18 @@ class TestRattrapageIA(unittest.TestCase):
         # désactivable dans config.yaml
         c = resume_ia.ClientLLM({"modeles": ["m"], "json_strict": False})
         self.assertNotIn("response_format", c._corps("m", "s", "u"))
+
+    def test_rattrapage_laisse_les_petits_quotas(self):
+        import copy
+        cfg = resume_ia.reglages_rattrapage(copy.deepcopy(core.charger_config()))
+        google = next(f for f in cfg["ia"]["fournisseurs"] if f["nom"] == "Google AI Studio")
+        self.assertEqual(google["modeles"], ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"])
+        self.assertIn("gemini-4-hydrogen", next(f for f in core.charger_config()["ia"]["fournisseurs"]
+                                                if f["nom"] == "Google AI Studio")["modeles"])
+        # fournisseur dont tous les modèles sont réservés : sauté
+        cfg = {"ia": {"rattrapage": {"modeles_reserves": ["x"]},
+                      "fournisseurs": [{"nom": "A", "modeles": ["x"]}, {"nom": "B", "modeles": ["y"]}]}}
+        self.assertEqual([f["nom"] for f in resume_ia.reglages_rattrapage(cfg)["ia"]["fournisseurs"]], ["B"])
 
     def test_duree_limitee_du_rattrapage(self):
         cfg = resume_ia.reglages_rattrapage(self.cfg)
