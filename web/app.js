@@ -294,6 +294,103 @@
     return href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(r.nom_acces || "Via mon établissement")} ↗</a>` : "";
   }
 
+  // ---------- écoute : la voix du téléphone lit la fiche (rien n'est téléchargé ni stocké) ----------
+  // Les navigateurs coupent la synthèse vocale quand l'écran s'éteint : la lecture se met alors en pause
+  // et « Reprendre » repart de la phrase interrompue.
+  const ecoute = (() => {
+    const dispo = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+    const st = { id: null, morceaux: [], i: 0, etat: "arret" };      // etat : arret | lecture | pause
+    let jeton = 0;                                                    // invalide les fins d'énoncés annulés
+    function voixPour(lang) {
+      const toutes = speechSynthesis.getVoices();
+      const norm = (v) => (v.lang || "").replace("_", "-").toLowerCase();
+      const de = toutes.filter((v) => norm(v).startsWith(lang));
+      const exacte = (v) => norm(v) === (lang === "fr" ? "fr-fr" : "en-us") || (lang === "en" && norm(v) === "en-gb");
+      const bonne = (v) => /natural|neural|online|google|premium|enhanced/i.test(v.name);
+      return de.find((v) => bonne(v) && exacte(v)) || de.find(bonne) || de.find(exacte) || de[0] || null;
+    }
+    // découpe en phrases courtes : les longs énoncés sont coupés net par certains navigateurs
+    function decouper(texte, lang) {
+      const out = [];
+      (String(texte).replace(/\s+/g, " ").trim().match(/[^.!?;]+[.!?;]*\s*/g) || []).forEach((ph) => {
+        while (ph.length > 220) {
+          let k = ph.lastIndexOf(", ", 220); if (k < 80) k = ph.lastIndexOf(" ", 220); if (k < 1) k = 220;
+          out.push({ t: ph.slice(0, k + 1), lang }); ph = ph.slice(k + 1);
+        }
+        if (ph.trim()) out.push({ t: ph, lang });
+      });
+      return out;
+    }
+    function texte(a) {
+      const f = a.fiche, m = [];
+      const fr = (t) => { if (t) m.push(...decouper(/[.!?]$/.test(String(t).trim()) ? t : t + ".", "fr")); };
+      const en = (t) => { if (t) m.push(...decouper(t, "en")); };
+      if (f && f.titre_court) fr(f.titre_court); else en(a.titre);
+      if (f) {
+        fr(f.verdict);
+        if (f.population) fr("Population : " + f.population);
+        if (f.intervention) fr("Intervention : " + f.intervention);
+        (f.resultats_cles || []).forEach(fr);
+        if (f.conclusion) fr("Conclusion des auteurs : " + f.conclusion);
+        if ((f.limites || []).length) fr("Limites : " + f.limites.join(". "));
+        if (f.pertinence_raison) fr("Pour toi : " + f.pertinence_raison);
+      } else if (a.resume) {
+        fr("Pas encore de fiche. Voici l'abstract original, en anglais.");
+        en(a.resume);
+      } else fr("Pas encore de fiche ni d'abstract pour cet article.");
+      return m;
+    }
+    function majBoutons() {
+      document.querySelectorAll(".carte").forEach((c) => {
+        const b = c.querySelector('button[data-act="ecouter"]'), s = c.querySelector('button[data-act="stop"]');
+        if (!b) return;
+        const moi = c.dataset.id === st.id && st.etat !== "arret";
+        b.textContent = libelle(c.dataset.id); b.classList.toggle("actif", moi);
+        if (s) s.hidden = !moi;
+      });
+    }
+    function libelle(id) {
+      if (id !== st.id || st.etat === "arret") return "🔊 Écouter";
+      return st.etat === "lecture" ? "⏸ Pause" : "▶ Reprendre";
+    }
+    function dire() {
+      const j = ++jeton;
+      if (st.i >= st.morceaux.length) { arreter(); return; }
+      const m = st.morceaux[st.i], u = new SpeechSynthesisUtterance(m.t);
+      u.lang = m.lang === "fr" ? "fr-FR" : "en-US";
+      const v = voixPour(m.lang); if (v) u.voice = v;
+      u.onend = () => { if (j !== jeton || st.etat !== "lecture") return; st.i++; dire(); };
+      u.onerror = () => { if (j !== jeton || st.etat !== "lecture") return; st.etat = "pause"; majBoutons(); };
+      speechSynthesis.speak(u);
+    }
+    function lancer(a) {
+      speechSynthesis.cancel(); jeton++;
+      Object.assign(st, { id: a.id, morceaux: texte(a), i: 0, etat: "lecture" });
+      majBoutons(); dire();
+    }
+    function pause() { st.etat = "pause"; jeton++; speechSynthesis.cancel(); majBoutons(); }
+    function reprendre() { st.etat = "lecture"; majBoutons(); dire(); }
+    function arreter() { st.etat = "arret"; st.id = null; jeton++; speechSynthesis.cancel(); majBoutons(); }
+    function basculer(a) {
+      if (st.id === a.id && st.etat === "lecture") return pause();
+      if (st.id === a.id && st.etat === "pause") return reprendre();
+      if (!a.fiche && sansDetails(a)) {               // l'abstract n'est pas encore chargé
+        st.id = a.id; st.etat = "pause"; majBoutons();
+        const go = () => { if (st.id === a.id) lancer(a); };
+        chargerDetails([a]).then(go, go);
+        return;
+      }
+      lancer(a);
+    }
+    if (dispo) {
+      speechSynthesis.getVoices();                    // Chrome charge les voix à la première demande
+      // écran éteint ou appli quittée : le navigateur coupe la voix, on passe en pause propre
+      document.addEventListener("visibilitychange", () => { if (document.hidden && st.etat === "lecture") pause(); });
+      window.addEventListener("pagehide", () => speechSynthesis.cancel());
+    }
+    return { dispo, basculer, arreter, libelle, enCours: (id) => st.id === id && st.etat !== "arret" };
+  })();
+
   // ---------- rendu ----------
   function carte(a) {
     const f = a.fiche;
@@ -340,6 +437,7 @@
       <div class="actions">
         <button data-act="fav" class="${fav ? "actif" : ""}">${fav ? "★ Favori" : "☆ Favori"}</button>
         <button data-act="lu">${lu ? "↺ Non lu" : "✓ Lu"}</button>
+        ${ecoute.dispo ? `<button data-act="ecouter" class="${ecoute.enCours(a.id) ? "actif" : ""}" title="Lire la fiche à voix haute">${ecoute.libelle(a.id)}</button><button data-act="stop" title="Arrêter la lecture"${ecoute.enCours(a.id) ? "" : " hidden"}>■ Stop</button>` : ""}
         <button data-act="masquer">${masque ? "Réafficher" : "Pas intéressé"}</button>
         ${a.url_libre ? `<a href="${esc(a.url_libre)}" target="_blank" rel="noopener">Texte libre ↗</a>` : ""}
         ${!a.url_libre && !a.essai_registre ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(a.titre)}" target="_blank" rel="noopener" title="Google Scholar trouve souvent une version déposée par les auteurs">Chercher une version ↗</a>` : ""}
@@ -678,6 +776,8 @@
     $("liste").addEventListener("click", (e) => {
       const b = e.target.closest("button[data-act]"); if (!b) return;
       const id = b.closest(".carte").dataset.id;
+      if (b.dataset.act === "ecouter") { const a = PAR_ID.get(id); if (a) ecoute.basculer(a); return; }
+      if (b.dataset.act === "stop") { ecoute.arreter(); return; }
       const bascule = (cat) => poser(cat, id, etat[cat][id] ? 0 : 1);
       if (b.dataset.act === "fav") bascule("favoris");
       if (b.dataset.act === "lu") bascule("lus");

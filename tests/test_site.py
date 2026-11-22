@@ -122,6 +122,45 @@ class TestSite(unittest.TestCase):
         self.assertIn("ARFID", p.text_content("#liste"))
         self.assertEqual(p.text_content("#nb-favoris").strip(), "1")
 
+    def test_ecouter(self):
+        """Bouton « Écouter » : voix du navigateur simulée (lecture, pause, reprise, stop, abstract en anglais)."""
+        p = self.page
+        p.add_init_script("""
+            window.__dit = [];
+            const s = { _u: null, getVoices: () => [{ name: 'Google français', lang: 'fr-FR' }, { name: 'Google US English', lang: 'en-US' }],
+              speak(u) { window.__dit.push([u.lang, u.text]); this._u = u;
+                         setTimeout(() => { if (this._u === u) { this._u = null; u.onend && u.onend(); } }, 40); },
+              cancel() { const u = this._u; this._u = null; if (u && u.onerror) u.onerror({ error: 'interrupted' }); } };
+            Object.defineProperty(window, 'speechSynthesis', { value: s });
+            window.SpeechSynthesisUtterance = function (t) { this.text = t; };""")
+        p.reload()
+        p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        carte = p.locator(".carte", has_text="Gut-directed")
+        bouton, stop = carte.locator('button[data-act="ecouter"]'), carte.locator('button[data-act="stop"]')
+        self.assertTrue(stop.is_hidden())
+        bouton.click()
+        self.assertIn("Pause", bouton.text_content())
+        self.assertTrue(stop.is_visible())
+        bouton.click()                                                            # pause
+        self.assertIn("Reprendre", bouton.text_content())
+        n = p.evaluate("__dit.length")
+        p.wait_for_timeout(150)
+        self.assertEqual(p.evaluate("__dit.length"), n)                           # silence pendant la pause
+        bouton.click()                                                            # reprise jusqu'au bout
+        p.wait_for_function("""() => document.querySelector('.carte[data-id="demo:1"] button[data-act="ecouter"]')
+                                        .textContent.includes('Écouter')""")
+        dit = " ".join(t for _, t in p.evaluate("__dit"))
+        self.assertIn("double le taux", dit)
+        self.assertIn("52 % vs 27 %", dit)
+        self.assertTrue(stop.is_hidden())
+        # sans fiche : l'abstract est chargé puis lu par une voix anglaise
+        p.evaluate("__dit.length = 0")
+        autre = p.locator(".carte", has_text="Alexithymia")
+        autre.locator('button[data-act="ecouter"]').click()
+        p.wait_for_function("__dit.some(([l, t]) => l === 'en-US' && t.includes('interoceptive'))")
+        autre.locator('button[data-act="stop"]').click()
+        self.assertIn("Écouter", autre.locator('button[data-act="ecouter"]').text_content())
+
     def test_nouveaux_et_chercher_une_version(self):
         p = self.page
         # première visite : rien n'est « nouveau » (tout le serait)
