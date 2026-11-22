@@ -15,7 +15,7 @@ Dans l'ordre, du plus utile au moins urgent :
 2. ✅ **Versions des bibliothèques Python bornées** : jamais de nouvelle version majeure installée d'elle-même.
 3. ✅ **Tests du site dans un vrai navigateur** à chaque changement de code, avant publication (pas pour la veille du matin, où le code ne change pas).
 4. ✅ **Repère « nouveaux depuis ma dernière visite »** (badge, raccourci, vue dédiée).
-5. **Rattrapage des fiches IA** du stock initial (voir la section 2) : décision à prendre entre patienter et 10 $ une fois.
+5. ✅ **Rattrapage des fiches IA** du stock initial : automatique chaque soir tant qu'il reste du retard (voir la section 2).
 6. **Apprendre des « Pas intéressé »** (voir la section 3).
 
 ---
@@ -35,7 +35,7 @@ Dans l'ordre, du plus utile au moins urgent :
 
 ## 2. Fiches IA
 - ✅ Ordre de passage : articles du jour d'abord, puis les plus pertinents (thèmes prioritaires, étiquettes), études animales en dernier
-- 🔜 Rattrapage du stock initial (environ 1 200 articles) : patienter environ 3 semaines, ou acheter une fois 10 $ de crédits OpenRouter (1 000 requêtes/jour au lieu de 50)
+- ✅ Rattrapage du stock initial : chaque soir vers 20 h 17, 40 min de fiches seulement (sans collecte ni notification), tant qu'il reste des articles sans fiche ; s'arrête tout seul (`ia.rattrapage.auto: false` pour le couper)
 - 💡 Laisser l'IA proposer des étiquettes, en complément des mots-clés
 
 ## 3. Étiquettes et tri

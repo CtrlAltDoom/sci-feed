@@ -1,8 +1,10 @@
 """Tests sans réseau : python -m unittest discover tests"""
 import datetime as dt
+import io
 import json
 import os
 import shutil
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -627,6 +629,32 @@ class TestRattrapageIA(unittest.TestCase):
         if rpm:
             f["requetes_par_minute"] = rpm
         return resume_ia.ChaineLLM({**self.cfg["ia"], "secours_auto": False, "fournisseurs": [f]})
+
+    def test_reste_rattrapage(self):
+        """Rattrapage automatique du soir : reste=N tant qu'il y a du retard, 0 si auto: false."""
+        self.base(7)
+        arts = pipeline.charger().articles
+        arts[0]["fiche"] = {"verdict": "ok"}          # déjà faite
+        arts[1]["resume"] = "trop court"               # abstract trop court : pas éligible
+        arts[2]["libre"] = True                        # accès libre : pas éligible
+        pipeline.sauvegarder(pipeline.Base(arts))
+        self.cfg["ia"]["rattrapage"] = {"auto": True}
+        self.assertEqual(resume_ia.reste_rattrapage(self.cfg), 4)
+        self.assertEqual(len(resume_ia.en_attente(pipeline.charger())), 4)   # même critère que resumer
+        self.cfg["ia"]["rattrapage"]["auto"] = False
+        self.assertEqual(resume_ia.reste_rattrapage(self.cfg), 0)
+        self.cfg["ia"]["rattrapage"] = {"auto": True}
+        self.cfg["ia"]["actif"] = False
+        self.assertEqual(resume_ia.reste_rattrapage(self.cfg), 0)
+        # la ligne lue par le workflow
+        self.cfg["ia"]["actif"] = True
+        with mock.patch.object(sys, "argv", ["veille", "reste_rattrapage"]), \
+                mock.patch("veille.__main__.charger_config", lambda *a: self.cfg), \
+                mock.patch("sys.stdout", new_callable=io.StringIO) as sortie:
+            from veille import __main__ as cli
+            cli.main()
+        self.assertEqual(sortie.getvalue().strip(), "reste=4")
+        self.assertTrue(core.charger_config()["ia"]["rattrapage"]["auto"])   # config.yaml : auto: true
 
     def test_rattrapage_remplit_les_fiches(self):
         self.base(12)

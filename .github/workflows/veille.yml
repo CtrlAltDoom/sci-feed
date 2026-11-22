@@ -8,6 +8,9 @@ on:
     - cron: "23 6 * * *"
     - cron: "23 9 * * *"
     - cron: "23 12 * * *"
+    # Le soir (vers 20 h 17 à Paris) : rattrapage des fiches IA, sans collecte, seulement s'il
+    # reste des articles sans fiche (ia.rattrapage.auto dans config.yaml). S'arrête tout seul.
+    - cron: "17 19 * * *"
   workflow_dispatch:          # bouton "Run workflow" pour lancer à la main
     inputs:
       si_pas_fait:
@@ -22,6 +25,10 @@ on:
     branches: [main]
     paths: ["config.yaml", "requirements.txt", "web/**", "veille/**", "tests/**", ".github/workflows/veille.yml", ".github/pousser-data.sh"]
 
+# nom du run du soir : notifications.yml le reconnaît et ne s'enchaîne pas derrière
+# (vide = nom habituel : titre du commit, ou nom du workflow)
+run-name: ${{ github.event.schedule == '17 19 * * *' && 'Rattrapage automatique des fiches IA' || '' }}
+
 permissions:
   contents: write
   pages: write
@@ -34,7 +41,7 @@ concurrency:
 jobs:
   veille:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ inputs.rattrapage && 70 || 45 }}
+    timeout-minutes: ${{ (inputs.rattrapage || github.event.schedule == '17 19 * * *') && 70 || 45 }}
     environment:
       name: github-pages
       url: ${{ steps.deploiement.outputs.page_url }}
@@ -52,23 +59,32 @@ jobs:
       # Le rattrapage des fiches IA ne fait pas de collecte : il n'est jamais bloqué par cette garde.
       - name: Collecte du jour déjà faite ?
         id: garde
-        if: github.event_name == 'schedule' || (inputs.si_pas_fait == true && inputs.rattrapage != true)
+        if: (github.event_name == 'schedule' && github.event.schedule != '17 19 * * *') || (inputs.si_pas_fait == true && inputs.rattrapage != true)
         run: |
           python -m veille deja_collecte >> "$GITHUB_OUTPUT"
+          tail -n 1 "$GITHUB_OUTPUT"
+
+      # Créneau du soir : rattrapage des fiches IA seulement s'il en reste (reste=0 : tout est sauté).
+      # Les étapes suivantes testent « reste != '0' » : vide (autres déclenchements) = on continue.
+      - name: Reste-t-il des fiches IA à rattraper ?
+        id: reste
+        if: github.event.schedule == '17 19 * * *'
+        run: |
+          python -m veille reste_rattrapage >> "$GITHUB_OUTPUT"
           tail -n 1 "$GITHUB_OUTPUT"
 
       # Changement de code (push) : tests de la collecte et du site dans un vrai navigateur.
       # S'ils échouent, rien n'est publié et une alerte part. Pas lancés pour la veille du matin,
       # où le code ne change pas : un composant de moins qui pourrait la bloquer.
       - name: Tests (changement de code seulement)
-        if: (github.event_name == 'push') && (steps.garde.outputs.fait != 'oui')
+        if: (github.event_name == 'push') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0')
         run: |
           pip install "playwright>=1.49,<2"
           python -m playwright install --with-deps chromium
           python -m unittest discover tests
 
       - name: Collecte, fiches IA et site
-        if: steps.garde.outputs.fait != 'oui'
+        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -83,7 +99,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
             python -m veille site          # simple changement de config/apparence : pas de collecte
-          elif [ "${{ inputs.rattrapage }}" = "true" ]; then
+          elif [ "${{ inputs.rattrapage }}" = "true" ] || [ "${{ github.event.schedule }}" = "17 19 * * *" ]; then
             python -m veille resumer --rattrapage   # durée limitée : ia.rattrapage dans config.yaml
             python -m veille site
           else
@@ -93,26 +109,26 @@ jobs:
       # les notifications ont pu pousser entre-temps : 3 essais ; en cas de conflit, la base
       # de la collecte l'emporte (les notifications ne gardent que ce qui a été envoyé)
       - name: Sauvegarder la base d'articles
-        if: steps.garde.outputs.fait != 'oui'
+        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
         run: bash .github/pousser-data.sh "Veille du $(date -u +%Y-%m-%d)"
 
-      - if: steps.garde.outputs.fait != 'oui'
+      - if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
         uses: actions/configure-pages@v6
-      - if: steps.garde.outputs.fait != 'oui'
+      - if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
         uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - id: deploiement
-        if: steps.garde.outputs.fait != 'oui'
+        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
         uses: actions/deploy-pages@v5
         continue-on-error: true     # GitHub ne voit parfois pas encore l'artefact : on retente
-      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui')
+      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0')
         run: sleep 30
-      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui')
+      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0')
         uses: actions/deploy-pages@v5
 
       - name: Prévenir en cas d'échec
-        if: failure() && steps.garde.outputs.fait != 'oui'
+        if: failure() && steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           LIEN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

@@ -103,6 +103,8 @@ Le code accepte n'importe quelle API « compatible OpenAI ». Il suffit de modif
 
 Plusieurs abstracts sont envoyés par requête (`articles_par_requete: 5`). Avec 50 requêtes par jour, on obtient jusqu'à environ 200 à 250 fiches quotidiennes. Les articles en surplus sont traités au passage suivant.
 
+**Rattrapage automatique** : chaque soir vers 20 h 17, tant qu'il reste des articles sans fiche, une tâche rédige des fiches pendant 40 min (sans collecte ni notification), puis s'arrête d'elle-même quand il n'y a plus de retard. Pour la couper : `ia.rattrapage.auto: false` dans `config.yaml`.
+
 **Clés facultatives**, à ajouter aussi en secrets : `NCBI_API_KEY` (compte NCBI gratuit, rend PubMed plus rapide) et `OPENALEX_API_KEY`.
 
 ## Lancer en local (facultatif)

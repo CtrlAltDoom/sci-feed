@@ -350,6 +350,21 @@ def reglages_rattrapage(cfg: dict) -> dict:
     return cfg
 
 
+def en_attente(base) -> list:
+    """Articles qui attendent leur fiche IA (abstract assez long, pas déjà en accès libre)."""
+    return [a for a in base.articles if not a.get("fiche") and len(a.get("resume", "")) >= 200
+            and not a.get("libre")]
+
+
+def reste_rattrapage(cfg: dict) -> int:
+    """Nombre d'articles encore sans fiche, pour le rattrapage automatique du soir
+    (0 si ia.rattrapage.auto est false ou si l'IA est désactivée : le rattrapage ne part pas)."""
+    ia = cfg.get("ia", {})
+    if not ia.get("actif", True) or not (ia.get("rattrapage") or {}).get("auto", False):
+        return 0
+    return len(en_attente(charger()))
+
+
 def resumer(cfg: dict, client=None) -> int:
     ia = cfg.get("ia", {})
     if not ia.get("actif", True):
@@ -360,8 +375,7 @@ def resumer(cfg: dict, client=None) -> int:
         sante.noter(fiches=0, attente=1, ia_erreur="pas de clé : secrets LLM_API_KEY / GEMINI_API_KEY / MISTRAL_API_KEY absents ou vides")
         return 0
     base = charger()
-    attente = [a for a in base.articles if not a.get("fiche") and len(a.get("resume", "")) >= 200
-               and not a.get("libre")]
+    attente = en_attente(base)
     infos_revues = revues.charger()
     attente.sort(key=lambda a: priorite(a, cfg, infos_revues), reverse=True)
     taille = max(1, ia.get("articles_par_requete", 5))

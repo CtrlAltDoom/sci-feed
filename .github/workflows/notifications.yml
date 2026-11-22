@@ -34,8 +34,9 @@ concurrency:
 
 jobs:
   notifier:
-    # après la veille : seulement une vraie collecte réussie (pas un simple changement de code)
-    if: github.event_name != 'workflow_run' || (github.event.workflow_run.event != 'push' && github.event.workflow_run.conclusion == 'success')
+    # après la veille : seulement une vraie collecte réussie (pas un simple changement de code,
+    # ni le rattrapage automatique des fiches IA du soir, reconnu à son nom)
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.event != 'push' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.display_title != 'Rattrapage automatique des fiches IA')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

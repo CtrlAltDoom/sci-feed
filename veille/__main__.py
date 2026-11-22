@@ -7,6 +7,7 @@
     python -m veille notifier    # notifications du matin (ntfy) ; --essai : affiche sans envoyer
     python -m veille tester-ia   # vérifie que chaque fournisseur IA répond (OpenRouter, Gemini, Mistral)
     python -m veille deja_collecte  # affiche fait=oui / fait=non (collecte du jour déjà faite ?)
+    python -m veille reste_rattrapage  # affiche reste=N (articles sans fiche IA ; 0 si ia.rattrapage.auto: false)
 """
 import argparse
 import logging
@@ -17,7 +18,7 @@ from .core import charger_config
 def main():
     p = argparse.ArgumentParser(prog="veille", description="Veille scientifique automatisée")
     p.add_argument("action", choices=["tout", "collecter", "resumer", "site", "notifier", "tester-ia",
-                                      "deja_collecte"], nargs="?", default="tout")
+                                      "deja_collecte", "reste_rattrapage"], nargs="?", default="tout")
     p.add_argument("--essai", action="store_true", help="notifier : affiche les notifications sans les envoyer")
     p.add_argument("--forcer", action="store_true", help="notifier : envoie même hors de la plage horaire")
     p.add_argument("--config", default=None, help="chemin vers config.yaml")
@@ -41,6 +42,9 @@ def main():
 
     if args.action == "deja_collecte":         # une seule ligne sur stdout, lue par le workflow
         print("fait=oui" if pipeline.collecte_du_jour_faite(cfg) else "fait=non")
+        return
+    if args.action == "reste_rattrapage":      # idem : reste=N, lu par le rattrapage automatique du soir
+        print(f"reste={resume_ia.reste_rattrapage(cfg)}")
         return
     if args.action == "tout":
         sante.RELEVE = sante.Releve()          # relevé du passage, pour repérer les pannes qui durent

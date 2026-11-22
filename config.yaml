@@ -402,9 +402,11 @@ ia:
   pause_secondes: 4              # limites gratuites : 20 requêtes/minute (OpenRouter), 1/seconde (Mistral)
   duree_max_minutes: 30          # on s'arrête à temps (le workflow est coupé à 45 min)
   json_strict: true              # demande une réponse en JSON strict (repli automatique si refusé)
-  # Rattrapage manuel (Actions > Veille quotidienne > rattrapage) : fiches seulement, sans collecte.
+  # Rattrapage des fiches (chaque soir vers 20 h 17 si auto, ou à la main : Actions > Veille
+  # quotidienne > rattrapage) : fiches seulement, sans collecte.
   # Durée limitée pour ne pas bloquer la file de la collecte ; ce qui est fait est enregistré.
   rattrapage:
+    auto: true                   # rattrapage automatique chaque soir tant qu'il reste des articles sans fiche ; mettre false pour l'arrêter
     duree_max_minutes: 40
     max_requetes: 600
   effort_raisonnement: "low"     # réflexion courte = réponses plus rapides (ignoré par les modèles qui ne réfléchissent pas)
