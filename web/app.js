@@ -294,12 +294,41 @@
     return href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(r.nom_acces || "Via mon établissement")} ↗</a>` : "";
   }
 
-  // ---------- écoute : la voix du téléphone lit la fiche (rien n'est téléchargé ni stocké) ----------
-  // Les navigateurs coupent la synthèse vocale quand l'écran s'éteint : la lecture se met alors en pause
-  // et « Reprendre » repart de la phrase interrompue.
+  // ---------- écoute ----------
+  // Fiche avec MP3 (a.audio, voix neuronale préparée chaque nuit) : lecteur audio du navigateur, qui
+  // continue écran éteint et se pilote depuis l'écran de verrouillage (Media Session).
+  // Sinon, la voix du téléphone lit la fiche (rien n'est téléchargé ni stocké) ; les navigateurs la
+  // coupent quand l'écran s'éteint : la lecture se met alors en pause et « Reprendre » repart de la
+  // phrase interrompue.
   const ecoute = (() => {
     const dispo = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
-    const st = { id: null, morceaux: [], i: 0, etat: "arret" };      // etat : arret | lecture | pause
+    const st = { id: null, morceaux: [], i: 0, etat: "arret", mode: "voix" };   // etat : arret | lecture | pause ; mode : voix | mp3
+    let lecteur = null;                                               // un seul élément <audio>, partagé
+    const session = "mediaSession" in navigator ? navigator.mediaSession : null;
+    function audioDe() {
+      if (lecteur) return lecteur;
+      lecteur = new Audio(); lecteur.preload = "none";
+      lecteur.addEventListener("play", () => { if (st.mode === "mp3" && st.id) { st.etat = "lecture"; majBoutons(); majSession(); } });
+      // (lecteur.paused : ignore la pause, arrivée en retard, du MP3 précédent quand on passe à une autre fiche)
+      lecteur.addEventListener("pause", () => { if (st.mode === "mp3" && st.etat === "lecture" && lecteur.paused) { st.etat = "pause"; majBoutons(); majSession(); } });
+      lecteur.addEventListener("ended", () => { if (st.mode === "mp3") arreter(); });
+      lecteur.addEventListener("error", () => {                        // MP3 introuvable : la voix du téléphone prend le relais
+        if (st.mode !== "mp3" || !st.id || !lecteur.getAttribute("src")) return;
+        const a = PAR_ID.get(st.id); st.mode = "voix"; lecteur.removeAttribute("src");
+        if (a && dispo) lancer(a, true); else arreter();
+      });
+      if (session) {
+        const act = (nom, f) => { try { session.setActionHandler(nom, f); } catch (e) { /* action inconnue */ } };
+        act("play", () => { if (st.mode === "mp3" && st.id) lecteur.play(); });
+        act("pause", () => { if (st.mode === "mp3") lecteur.pause(); });
+        act("stop", () => arreter());
+      }
+      return lecteur;
+    }
+    function majSession() {
+      if (!session) return;
+      session.playbackState = st.etat === "lecture" ? "playing" : st.etat === "pause" ? "paused" : "none";
+    }
     let jeton = 0;                                                    // invalide les fins d'énoncés annulés
     function voixPour(lang) {
       const toutes = speechSynthesis.getVoices();
@@ -350,7 +379,7 @@
       });
     }
     function libelle(id) {
-      if (id !== st.id || st.etat === "arret") return "🔊 Écouter";
+      if (id !== st.id || st.etat === "arret") { const a = PAR_ID.get(id); return a && a.audio ? "🎧 Écouter" : "🔊 Écouter"; }
       return st.etat === "lecture" ? "⏸ Pause" : "▶ Reprendre";
     }
     function dire() {
@@ -363,17 +392,40 @@
       u.onerror = () => { if (j !== jeton || st.etat !== "lecture") return; st.etat = "pause"; majBoutons(); };
       speechSynthesis.speak(u);
     }
-    function lancer(a) {
-      speechSynthesis.cancel(); jeton++;
-      Object.assign(st, { id: a.id, morceaux: texte(a), i: 0, etat: "lecture" });
+    function couperVoix() { jeton++; if (dispo) speechSynthesis.cancel(); }
+    function couperMp3() { if (lecteur) { st.mode = "voix"; lecteur.pause(); lecteur.removeAttribute("src"); lecteur.load(); } }
+    function lancer(a, sansMp3) {
+      couperVoix(); couperMp3();
+      if (a.audio && !sansMp3) {
+        const l = audioDe();
+        Object.assign(st, { id: a.id, morceaux: [], i: 0, etat: "lecture", mode: "mp3" });
+        l.src = a.audio;
+        if (session && "MediaMetadata" in window) {
+          session.metadata = new MediaMetadata({ title: (a.fiche && a.fiche.titre_court) || a.titre, artist: "SciFeed",
+            album: a.revue || "", artwork: [{ src: "icone-192.png", sizes: "192x192", type: "image/png" }] });
+        }
+        majBoutons(); majSession();
+        const p = l.play(); if (p && p.catch) p.catch(() => { if (st.mode === "mp3" && st.id === a.id) { st.etat = "pause"; majBoutons(); majSession(); } });
+        return;
+      }
+      if (!dispo) { arreter(); return; }
+      Object.assign(st, { id: a.id, morceaux: texte(a), i: 0, etat: "lecture", mode: "voix" });
       majBoutons(); dire();
     }
-    function pause() { st.etat = "pause"; jeton++; speechSynthesis.cancel(); majBoutons(); }
-    function reprendre() { st.etat = "lecture"; majBoutons(); dire(); }
-    function arreter() { st.etat = "arret"; st.id = null; jeton++; speechSynthesis.cancel(); majBoutons(); }
+    function pause() {
+      st.etat = "pause";
+      if (st.mode === "mp3") lecteur.pause(); else couperVoix();
+      majBoutons(); majSession();
+    }
+    function reprendre() {
+      st.etat = "lecture"; majBoutons(); majSession();
+      if (st.mode === "mp3") { const p = lecteur.play(); if (p && p.catch) p.catch(() => pause()); } else dire();
+    }
+    function arreter() { st.etat = "arret"; st.id = null; couperVoix(); couperMp3(); majBoutons(); majSession(); }
     function basculer(a) {
       if (st.id === a.id && st.etat === "lecture") return pause();
       if (st.id === a.id && st.etat === "pause") return reprendre();
+      if (a.audio) return lancer(a);
       if (!a.fiche && sansDetails(a)) {               // l'abstract n'est pas encore chargé
         st.id = a.id; st.etat = "pause"; majBoutons();
         const go = () => { if (st.id === a.id) lancer(a); };
@@ -385,10 +437,12 @@
     if (dispo) {
       speechSynthesis.getVoices();                    // Chrome charge les voix à la première demande
       // écran éteint ou appli quittée : le navigateur coupe la voix, on passe en pause propre
-      document.addEventListener("visibilitychange", () => { if (document.hidden && st.etat === "lecture") pause(); });
+      // (le MP3, lui, continue)
+      document.addEventListener("visibilitychange", () => { if (document.hidden && st.etat === "lecture" && st.mode === "voix") pause(); });
       window.addEventListener("pagehide", () => speechSynthesis.cancel());
     }
-    return { dispo, basculer, arreter, libelle, enCours: (id) => st.id === id && st.etat !== "arret" };
+    return { dispo, basculer, arreter, libelle, possible: (a) => dispo || !!a.audio,
+             enCours: (id) => st.id === id && st.etat !== "arret" };
   })();
 
   // ---------- rendu ----------
@@ -437,7 +491,7 @@
       <div class="actions">
         <button data-act="fav" class="${fav ? "actif" : ""}">${fav ? "★ Favori" : "☆ Favori"}</button>
         <button data-act="lu">${lu ? "↺ Non lu" : "✓ Lu"}</button>
-        ${ecoute.dispo ? `<button data-act="ecouter" class="${ecoute.enCours(a.id) ? "actif" : ""}" title="Lire la fiche à voix haute">${ecoute.libelle(a.id)}</button><button data-act="stop" title="Arrêter la lecture"${ecoute.enCours(a.id) ? "" : " hidden"}>■ Stop</button>` : ""}
+        ${ecoute.possible(a) ? `<button data-act="ecouter" class="${ecoute.enCours(a.id) ? "actif" : ""}" title="${a.audio ? "Écouter la fiche (continue écran éteint)" : "Lire la fiche à voix haute"}">${ecoute.libelle(a.id)}</button><button data-act="stop" title="Arrêter la lecture"${ecoute.enCours(a.id) ? "" : " hidden"}>■ Stop</button>` : ""}
         <button data-act="masquer">${masque ? "Réafficher" : "Pas intéressé"}</button>
         ${a.url_libre ? `<a href="${esc(a.url_libre)}" target="_blank" rel="noopener">Texte libre ↗</a>` : ""}
         ${!a.url_libre && !a.essai_registre ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(a.titre)}" target="_blank" rel="noopener" title="Google Scholar trouve souvent une version déposée par les auteurs">Chercher une version ↗</a>` : ""}

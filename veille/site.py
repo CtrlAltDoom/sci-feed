@@ -7,7 +7,7 @@ import html
 import json
 import shutil
 
-from . import revues
+from . import audio, revues
 from .core import RACINE, aujourd_hui, bonus_serieux, contient, interet, log, themes_correspondants
 from .pipeline import ETAT, charger
 
@@ -161,11 +161,12 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
     # étiquettes : calculées à chaque génération sur toute la base (rien de plus à collecter)
     etiquettes = cfg.get("etiquettes", [])
     infos_revues = revues.charger()
+    mp3 = audio.pour_le_site() if (cfg.get("audio") or {}).get("actif", True) else {}
     enrichis = []
     for a in articles:
         e = themes_correspondants(a, etiquettes)
         info = revues.resume(infos_revues.get(a.get("revue_oa") or ""))
-        enrichis.append(dict(a, etiquettes=e, revue_info=info, etude=type_etude(a),
+        enrichis.append(dict(a, etiquettes=e, revue_info=info, etude=type_etude(a), audio=mp3.get(a["id"], ""),
                              interet=round(interet(a, cfg, e) + bonus_serieux(a, info, cfg), 2)))
     articles = enrichis
     meta = {
@@ -190,6 +191,11 @@ def construire(cfg: dict, inline: bool = False, articles: list[dict] | None = No
     if SORTIE.exists():
         shutil.rmtree(SORTIE)
     shutil.copytree(WEB, SORTIE)
+    if mp3:                       # MP3 des fiches (veille/audio.py) : seulement ceux qui sont cités
+        (SORTIE / "audio").mkdir()
+        for chemin in set(mp3.values()):
+            shutil.copy2(audio.DOSSIER / chemin.split("/", 1)[1], SORTIE / chemin)
+        shutil.copy2(audio.DOSSIER / audio.MANIFESTE, SORTIE / "audio" / audio.MANIFESTE)
     ecrire = lambda chemin, d: chemin.write_text(json.dumps(d, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     if inline:
         donnees = {"meta": meta, "articles": [leger(a, avec_details=True) for a in articles]}

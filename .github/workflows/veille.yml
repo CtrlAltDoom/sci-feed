@@ -92,6 +92,16 @@ jobs:
           python -m playwright install --with-deps chromium
           python -m unittest discover tests
 
+      # MP3 des fiches (veille/audio.py) : jamais dans le dépôt, gardés d'un jour à l'autre par le
+      # cache de GitHub (une clé par run ; on reprend la plus récente), publiés avec le site.
+      - name: MP3 des jours précédents
+        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
+        uses: actions/cache/restore@v6
+        with:
+          path: audio
+          key: audio-${{ github.run_id }}
+          restore-keys: audio-
+
       - name: Collecte, fiches IA et site
         if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         env:
@@ -110,10 +120,20 @@ jobs:
             python -m veille site          # simple changement de config/apparence : pas de collecte
           elif [ "${{ inputs.rattrapage }}" = "true" ] || [ "${{ github.event.schedule }}" = "17 19 * * *" ]; then
             python -m veille resumer --rattrapage   # durée limitée : ia.rattrapage dans config.yaml
+            python -m veille audio
             python -m veille site
           else
-            python -m veille tout
+            python -m veille tout          # collecte, fiches IA, MP3 puis site
           fi
+
+      - name: Garder les MP3 pour demain
+        # (un simple push ne crée pas de MP3 : rien de neuf à garder)
+        if: github.event_name != 'push' && steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui' && hashFiles('audio/audio.json') != ''
+        continue-on-error: true     # cache indisponible : les MP3 seront refaits demain, sans plus
+        uses: actions/cache/save@v6
+        with:
+          path: audio
+          key: audio-${{ github.run_id }}
 
       # les notifications ont pu pousser entre-temps : 3 essais ; en cas de conflit, la base
       # de la collecte l'emporte (les notifications ne gardent que ce qui a été envoyé)

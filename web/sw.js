@@ -1,7 +1,7 @@
 /* Service worker : l'appli s'ouvre même hors connexion.
    Tout passe par le réseau d'abord (toujours la dernière version : page, style et données
    cohérents entre eux) ; le cache ne sert que si le réseau ne répond pas. */
-const CACHE = "veille-v13";
+const CACHE = "veille-v14";
 const COQUILLE = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "logo.png", "icone-192.png", "favicon-64.png"];
 
 self.addEventListener("install", (e) => {
@@ -16,6 +16,8 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;   // GitHub, PubMed… : pas touchés
+  // MP3 des fiches : lus par morceaux (requêtes Range) et volumineux, laissés au navigateur
+  if (url.pathname.includes("/audio/") || e.request.headers.has("range")) return;
   e.respondWith(
     fetch(e.request, { cache: "no-cache" })
       .then((rep) => {

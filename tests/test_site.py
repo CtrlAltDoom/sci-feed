@@ -15,7 +15,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from veille import core, site
+from veille import audio, core, site
 
 try:
     from playwright.sync_api import sync_playwright
@@ -56,7 +56,13 @@ class TestSite(unittest.TestCase):
         cls.tmp = Path(tempfile.mkdtemp())
         cfg = core.charger_config()
         cfg["site"] = {"jours_recents": 30, "details_par_fichier": 100}
-        with mock.patch.object(site, "SORTIE", cls.tmp / "site"), mock.patch.object(site, "ETAT", cls.tmp / "etat.json"):
+        cfg["audio"] = {"actif": True}
+        mp3 = cls.tmp / "audio"                         # un MP3 (factice) pour l'article ARFID seulement
+        mp3.mkdir()
+        (mp3 / "arfid.mp3").write_bytes(b"ID3" + b"\0" * 2000)
+        (mp3 / "audio.json").write_text(json.dumps({"demo:3": {"fichier": "arfid.mp3", "jour": J(0), "empreinte": "x"}}))
+        with mock.patch.object(site, "SORTIE", cls.tmp / "site"), mock.patch.object(site, "ETAT", cls.tmp / "etat.json"), \
+                mock.patch.object(audio, "DOSSIER", mp3):
             site.construire(cfg, articles=exemples())
         gestion = functools.partial(Silencieux, directory=str(cls.tmp / "site"))
         cls.serveur = http.server.ThreadingHTTPServer(("127.0.0.1", 0), gestion)
@@ -160,6 +166,49 @@ class TestSite(unittest.TestCase):
         p.wait_for_function("__dit.some(([l, t]) => l === 'en-US' && t.includes('interoceptive'))")
         autre.locator('button[data-act="stop"]').click()
         self.assertIn("Écouter", autre.locator('button[data-act="ecouter"]').text_content())
+
+    def test_ecouter_mp3(self):
+        """Fiche avec MP3 : un seul élément <audio> (lecture simulée), pas la voix du téléphone ; Stop l'arrête."""
+        p = self.page
+        p.add_init_script("""
+            window.__dit = []; window.__joue = [];
+            Object.defineProperty(window, 'speechSynthesis', { value: { getVoices: () => [], speak(u) { __dit.push(u.text); }, cancel() {} } });
+            window.SpeechSynthesisUtterance = function (t) { this.text = t; };
+            const P = HTMLMediaElement.prototype;
+            Object.defineProperty(P, 'paused', { get() { return !this.__lit; } });
+            P.play = function () { window.__lecteur = this; this.__lit = true; __joue.push(this.getAttribute('src')); this.dispatchEvent(new Event('play')); return Promise.resolve(); };
+            P.pause = function () { if (!this.__lit) return; this.__lit = false; this.dispatchEvent(new Event('pause')); };
+            P.load = function () {};""")
+        p.reload()
+        p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        self.assertEqual(json.loads((self.tmp / "site" / "audio" / "audio.json").read_text())["demo:3"]["fichier"], "arfid.mp3")
+        carte = p.locator(".carte", has_text="ARFID")
+        bouton, stop = carte.locator('button[data-act="ecouter"]'), carte.locator('button[data-act="stop"]')
+        self.assertIn("🎧 Écouter", bouton.text_content())
+        self.assertIn("🔊 Écouter", p.locator(".carte", has_text="Gut-directed").locator('button[data-act="ecouter"]').text_content())
+        bouton.click()
+        self.assertIn("Pause", bouton.text_content())
+        self.assertEqual(p.evaluate("__joue"), ["audio/arfid.mp3"])
+        self.assertEqual(p.evaluate("__dit"), [])                                 # pas de synthèse vocale
+        self.assertEqual(p.evaluate("navigator.mediaSession.metadata && navigator.mediaSession.metadata.artist"), "SciFeed")
+        bouton.click()                                                            # pause, puis reprise
+        self.assertIn("Reprendre", bouton.text_content())
+        bouton.click()
+        self.assertIn("Pause", bouton.text_content())
+        stop.click()
+        self.assertIn("🎧 Écouter", bouton.text_content())
+        self.assertTrue(stop.is_hidden())
+        self.assertEqual(p.evaluate("navigator.mediaSession.playbackState"), "none")
+        self.assertEqual(p.evaluate("__lecteur.paused"), True)
+        # pause depuis l'écran de verrouillage (le lecteur se met en pause tout seul), puis MP3 fini
+        bouton.click()
+        p.evaluate("__lecteur.pause()")
+        self.assertIn("Reprendre", bouton.text_content())
+        bouton.click()
+        p.evaluate("__lecteur.__lit = false; __lecteur.dispatchEvent(new Event('ended'))")
+        self.assertIn("🎧 Écouter", bouton.text_content())
+        self.assertTrue(stop.is_hidden())
+        self.assertEqual(p.evaluate("__joue.length"), 4)
 
     def test_nouveaux_et_chercher_une_version(self):
         p = self.page

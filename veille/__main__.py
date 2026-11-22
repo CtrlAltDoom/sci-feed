@@ -3,6 +3,7 @@
     python -m veille tout        # collecte + fiches IA + site (ce que fait GitHub chaque jour)
     python -m veille collecter   # seulement la collecte
     python -m veille resumer     # seulement les fiches IA
+    python -m veille audio       # seulement les MP3 des fiches (edge-tts, dossier audio/)
     python -m veille site        # seulement le site (dossier site/)
     python -m veille notifier    # notifications du matin (ntfy) ; --essai : affiche sans envoyer
     python -m veille tester-ia   # vérifie que chaque fournisseur IA répond (OpenRouter, Gemini, Mistral)
@@ -17,7 +18,7 @@ from .core import charger_config
 
 def main():
     p = argparse.ArgumentParser(prog="veille", description="Veille scientifique automatisée")
-    p.add_argument("action", choices=["tout", "collecter", "resumer", "site", "notifier", "tester-ia",
+    p.add_argument("action", choices=["tout", "collecter", "resumer", "audio", "site", "notifier", "tester-ia",
                                       "deja_collecte", "reste_rattrapage"], nargs="?", default="tout")
     p.add_argument("--essai", action="store_true", help="notifier : affiche les notifications sans les envoyer")
     p.add_argument("--forcer", action="store_true", help="notifier : envoie même hors de la plage horaire")
@@ -55,6 +56,9 @@ def main():
     if args.action == "tout":
         sante.RELEVE.enregistrer()
         sante.verifier(cfg)
+    if args.action in ("tout", "audio"):
+        from . import audio
+        audio.generer(cfg)                    # n'échoue jamais : au pire, pas de MP3 aujourd'hui
     if args.action in ("tout", "site"):
         site.construire(cfg, inline=args.inline)
     if args.action == "tester-ia":

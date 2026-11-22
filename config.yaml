@@ -257,6 +257,21 @@ site:
   details_par_fichier: 100 # abstracts regroupés par paquets de N (par jour d'ajout)
 
 # ------------------------------------------------------------
+#  FICHES EN MP3 (bouton « 🎧 Écouter » : la lecture continue écran éteint)
+#  Voix neuronales gratuites de Microsoft Edge (edge-tts), sans clé ni inscription.
+#  Les MP3 ne vont jamais dans le dépôt : ils sont gardés par le cache de GitHub Actions
+#  et publiés avec le site. Les autres fiches restent lues par la voix du téléphone.
+#  Voix possibles : fr-FR-DeniseNeural, fr-FR-HenriNeural, fr-FR-VivienneMultilingualNeural…
+# ------------------------------------------------------------
+audio:
+  actif: true
+  voix: "fr-FR-DeniseNeural"     # fiche (français)
+  voix_en: "en-US-AriaNeural"    # titre original, quand il n'y a pas de titre court
+  jours_conserves: 7             # articles ajoutés depuis N jours ; MP3 effacés après N jours
+  max_par_jour: 25               # MP3 créés au plus par passage
+  pertinence_min: 4              # en plus des articles notifiés et des favoris : pertinence IA ≥ N
+
+# ------------------------------------------------------------
 #  NOTIFICATIONS DU MATIN (appli gratuite ntfy, Android / iOS)
 #  Le nom du canal n'est PAS ici (dépôt public) : il est dans le secret GitHub NTFY_TOPIC.
 #  Dans l'appli ntfy : « + » puis ce nom de canal.
