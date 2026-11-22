@@ -631,6 +631,21 @@ class TestVeille(unittest.TestCase):
             self.assertEqual(resume_ia.ChaineLLM(ia).cle, "")   # aucune clé : fiches ignorées sans erreur
             self.assertEqual(resume_ia.ChaineLLM({"modeles": ["m"]}).clients, [])
 
+    def test_fiche_valeurs_vides_de_l_ia(self):
+        """« null », « N/A », « Non  précisé »… renvoyés par l'IA deviennent None (plus de « 👥 null »)."""
+        for vide in ["null", " NULL ", "None", "N/A", "na", "Non  précisé", "non rapporté", "Non applicable",
+                     "inconnu", "Unknown", "not reported", "-", "", None]:
+            f = resume_ia.valider({"population": vide, "intervention": vide, "conclusion": vide,
+                                   "titre_court": vide, "conclusion_simple": vide, "verdict": vide,
+                                   "limites": [vide, "Petit effectif"]}, "m")
+            for champ in ("population", "intervention", "conclusion", "titre_court", "conclusion_simple"):
+                self.assertIsNone(f[champ], f"{champ} = {vide!r}")
+            self.assertEqual(f["verdict"], "")
+            self.assertEqual(f["limites"], ["Petit effectif"])
+        f = resume_ia.valider({"population": " 120 adultes SII ", "intervention": "Non-inférieur"}, "m")
+        self.assertEqual(f["population"], "120 adultes SII")
+        self.assertEqual(f["intervention"], "Non-inférieur")
+
 
 class ReponseIA:
     """Réponse simulée de l'API compatible OpenAI (Gemini, OpenRouter…)."""

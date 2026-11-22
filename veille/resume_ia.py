@@ -58,31 +58,45 @@ def _entier(v, lo=1, hi=5):
         return None
 
 
+VIDES = {"null", "none", "n/a", "na", "non précisé", "non precise", "non rapporté", "non rapporte",
+         "non applicable", "inconnu", "unknown", "not reported", "-"}
+
+
+def _texte_ia(v):
+    """Texte nettoyé, ou None si vide ou si l'IA a écrit « null », « N/A », « non précisé »…"""
+    if v is None:
+        return None
+    s = str(v).strip()
+    if not s or " ".join(s.lower().split()) in VIDES:
+        return None
+    return s
+
+
 def _liste(v, n=3):
     if isinstance(v, str):
         v = [v]
-    return [str(x).strip() for x in (v or []) if str(x).strip()][:n]
+    return [s for s in (_texte_ia(x) for x in (v or [])) if s][:n]
 
 
 def valider(f: dict, modele: str) -> dict:
     typ = str(f.get("type_etude") or "autre").lower().strip()
     qual = str(f.get("qualite_methodo") or "non évaluable").lower().strip()
     return {
-        "verdict": str(f.get("verdict") or "").strip(),
+        "verdict": _texte_ia(f.get("verdict")) or "",
         "type_etude": typ if typ in TYPES else "autre",
         "design": [d[:30] for d in _liste(f.get("design"), 3)],
-        "population": (str(f["population"]).strip() if f.get("population") else None),
-        "intervention": (str(f["intervention"]).strip() if f.get("intervention") else None),
+        "population": _texte_ia(f.get("population")),
+        "intervention": _texte_ia(f.get("intervention")),
         "resultats_cles": _liste(f.get("resultats_cles"), 3),
-        "conclusion": (str(f["conclusion"]).strip() if f.get("conclusion") else None),
+        "conclusion": _texte_ia(f.get("conclusion")),
         "limites": _liste(f.get("limites"), 2),
         "niveau_preuve": _entier(f.get("niveau_preuve")),
         "qualite_methodo": qual if qual in QUALITES else "non évaluable",
         "pertinence": _entier(f.get("pertinence")),
-        "pertinence_raison": str(f.get("pertinence_raison") or "").strip(),
+        "pertinence_raison": _texte_ia(f.get("pertinence_raison")) or "",
         "mots_cles_fr": _liste(f.get("mots_cles_fr"), 4),
-        "titre_court": str(f.get("titre_court") or "").strip()[:70] or None,
-        "conclusion_simple": str(f.get("conclusion_simple") or "").strip()[:200] or None,
+        "titre_court": (_texte_ia(f.get("titre_court")) or "")[:70] or None,
+        "conclusion_simple": (_texte_ia(f.get("conclusion_simple")) or "")[:200] or None,
         "modele": modele, "date": aujourd_hui().isoformat(),
     }
 

@@ -5,6 +5,14 @@
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g,
     (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // Fiches déjà générées : l'IA a parfois écrit « null », « N/A », « non précisé »… au lieu de rien.
+  const VIDES = new Set(["null", "none", "n/a", "na", "non précisé", "non precise", "non rapporté", "non rapporte",
+    "non applicable", "inconnu", "unknown", "not reported", "-"]);
+  const renseigne = (v) => {
+    if (v == null) return "";
+    const s = String(v).trim();
+    return VIDES.has(s.toLowerCase().replace(/\s+/g, " ")) ? "" : s;
+  };
 
   // ---------- état local (lus, favoris, masqués, filtres) ----------
   const CLE = "veille-etat-v1";
@@ -357,7 +365,7 @@
       if (f && f.titre_court) fr(f.titre_court); else en(a.titre);
       if (f) {
         fr(f.verdict);
-        if (f.population) fr("Population : " + f.population);
+        if (renseigne(f.population)) fr("Population : " + renseigne(f.population));
         if (f.intervention) fr("Intervention : " + f.intervention);
         (f.resultats_cles || []).forEach(fr);
         if (f.conclusion) fr("Conclusion des auteurs : " + f.conclusion);
@@ -470,7 +478,7 @@
     let corps = "";
     if (f) {
       const indic = [];
-      if (f.population) indic.push(`<span>👥 <b>${esc(f.population)}</b></span>`);
+      if (renseigne(f.population)) indic.push(`<span>👥 <b>${esc(renseigne(f.population))}</b></span>`);
       if (f.niveau_preuve) indic.push(`<span>Preuve ${points(f.niveau_preuve, "Niveau de preuve")}</span>`);
       if (f.qualite_methodo && f.qualite_methodo !== "non évaluable")
         indic.push(`<span>Méthodo <b class="q-${esc(f.qualite_methodo)}">${esc(f.qualite_methodo)}</b></span>`);
