@@ -191,6 +191,70 @@
    "fiches": 112,
    "attente": 864,
    "ia_erreur": ""
+  },
+  {
+   "date": "2026-11-22T11:23+00:00",
+   "sources": {
+    "pubmed": {
+     "essais": 7,
+     "echecs": 0,
+     "recus": 202
+    },
+    "europepmc": {
+     "essais": 7,
+     "echecs": 0,
+     "recus": 80
+    },
+    "openalex": {
+     "essais": 7,
+     "echecs": 0,
+     "recus": 204
+    },
+    "clinicaltrials": {
+     "essais": 7,
+     "echecs": 0,
+     "recus": 56
+    },
+    "RSS Neurogastroenterology & Motility": {
+     "essais": 1,
+     "echecs": 0,
+     "recus": 1
+    },
+    "RSS Alimentary Pharmacology & Therapeutics": {
+     "essais": 1,
+     "echecs": 0,
+     "recus": 43
+    },
+    "RSS Gastroenterology": {
+     "essais": 1,
+     "echecs": 0,
+     "recus": 100
+    },
+    "RSS Journal of Psychosomatic Research": {
+     "essais": 1,
+     "echecs": 0,
+     "recus": 79
+    },
+    "RSS Int. Journal of Clinical and Experimental Hypnosis": {
+     "essais": 1,
+     "echecs": 0,
+     "recus": 1
+    },
+    "RSS medRxiv — Gastroentérologie": {
+     "essais": 1,
+     "echecs": 0,
+     "recus": 4
+    },
+    "RSS medRxiv — Psychiatrie & psychologie clinique": {
+     "essais": 1,
+     "echecs": 0,
+     "recus": 11
+    }
+   },
+   "nouveaux": 62,
+   "fiches": 70,
+   "attente": 812,
+   "ia_erreur": ""
   }
  ],
  "alertes": {}
