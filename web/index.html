@@ -23,16 +23,22 @@
       <p class="maj" id="maj"></p>
     </div>
     <div class="boutons">
+      <button class="icone rond" id="btn-recherche" type="button" aria-expanded="false" aria-controls="zone-recherche" title="Rechercher (titre, résumé, revue, auteur…)" aria-label="Rechercher">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM15.5 15.5 20 20"/></svg>
+      </button>
       <button class="icone favoris-btn" id="btn-favoris" type="button" aria-pressed="false" title="Afficher seulement mes favoris (les thèmes et étiquettes filtrent aussi les favoris)">★<span id="nb-favoris"></span></button>
-      <button class="icone" id="btn-filtres" aria-expanded="false" aria-controls="filtres" title="Filtres">Filtres</button>
+      <button class="icone" id="btn-filtres" type="button" aria-expanded="false" aria-controls="panneau" title="Sujets et filtres">Filtres<span class="nb-filtres" id="nb-filtres"></span></button>
       <button class="icone rouage" id="perso-ouvrir" type="button" title="Personnaliser, synchroniser, accès établissement" aria-label="Réglages">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19.14 12.94a7.4 7.4 0 0 0 .05-.94 7.4 7.4 0 0 0-.05-.94l2.03-1.58a.48.48 0 0 0 .12-.61l-1.92-3.32a.48.48 0 0 0-.59-.21l-2.39.96a7.04 7.04 0 0 0-1.62-.94l-.36-2.54A.48.48 0 0 0 13.93 2h-3.86a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.48.48 0 0 0-.59.21L2.71 8.46a.47.47 0 0 0 .12.61l2.03 1.58a7.4 7.4 0 0 0 0 1.88l-2.03 1.58a.48.48 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.21l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.25.41.48.41h3.86c.24 0 .44-.17.47-.41l.36-2.54a7.04 7.04 0 0 0 1.62-.94l2.39.96c.22.08.47 0 .59-.21l1.92-3.32a.48.48 0 0 0-.12-.61zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>
       </button>
     </div>
   </div>
-  <input type="search" id="recherche" placeholder="Rechercher (titre, résumé, revue, auteur…)" autocomplete="off">
+  <div class="zone-recherche" id="zone-recherche" hidden>
+    <input type="search" id="recherche" placeholder="Rechercher (titre, résumé, revue, auteur…)" autocomplete="off" enterkeyhint="search">
+  </div>
+  <div class="panneau" id="panneau" hidden>
   <nav class="themes" id="themes" aria-label="Thèmes"></nav>
-  <section class="filtres" id="filtres" hidden>
+  <section class="filtres" id="filtres">
     <label>Afficher
       <select id="f-vue">
         <option value="tous">Tout</option>
@@ -74,6 +80,7 @@
       </select>
     </label>
   </section>
+  </div>
 </header>
 
 <div class="alerte" id="alerte-veille" hidden></div>

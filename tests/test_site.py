@@ -115,19 +115,32 @@ class TestSite(unittest.TestCase):
 
     def test_recherche_dans_les_abstracts(self):
         p = self.page
+        self.assertTrue(p.locator("#recherche").is_hidden())                    # en-tête condensé : barre repliée
+        p.click("#btn-recherche")
         p.fill("#recherche", "zygomorphique")                                    # mot présent seulement dans un abstract
         p.wait_for_function("document.getElementById('compteur').textContent.startsWith('1 article ')")
         self.assertIn("Gut-directed", p.text_content("#liste"))
         p.fill("#recherche", "")
         p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        p.fill("#recherche", "zygomorphique")
+        p.wait_for_function("document.getElementById('compteur').textContent.startsWith('1 article ')")
+        p.click("#btn-recherche")                                                # replier la barre efface la recherche
+        p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        self.assertTrue(p.locator("#recherche").is_hidden())
 
     def test_filtres_et_favoris(self):
         p = self.page
+        self.assertTrue(p.locator("#themes").is_hidden())                       # puces et menus repliés
+        p.click("#btn-filtres")
         p.click('#themes .chip[data-id="arfid_toc"]')
         p.wait_for_function("document.querySelectorAll('.carte').length === 1")
         self.assertIn("ARFID", p.text_content("#liste"))                         # article ancien (archive) filtrable
         p.locator('.carte button[data-act="fav"]').click()
+        self.assertEqual(p.text_content("#nb-filtres"), "1")                    # filtre actif visible même replié
         p.click('#themes .chip[data-genre=""]')
+        self.assertEqual(p.text_content("#nb-filtres"), "")
+        p.click("#btn-filtres")
+        self.assertTrue(p.locator("#themes").is_hidden())
         p.click("#btn-favoris")
         p.wait_for_function("document.querySelectorAll('.carte').length === 1")
         self.assertIn("ARFID", p.text_content("#liste"))

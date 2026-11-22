@@ -9,7 +9,7 @@
   // ---------- état local (lus, favoris, masqués, filtres) ----------
   const CLE = "veille-etat-v1";
   // alias : raccourcis personnels des puces ("t:sii" / "e:anx_dep" -> "Anx") ; cachees : puces masquées
-  let etat = { lus: {}, favoris: {}, masques: {}, themes: [], etiquettes: [], chipsOuverts: false,
+  let etat = { lus: {}, favoris: {}, masques: {}, themes: [], etiquettes: [], chipsOuverts: false, panneauOuvert: false,
     alias: {}, cachees: {}, reglages: {}, horo: {}, vue: "tous", type: "", niveau: "0", revue: "0", tri: "pourmoi", triV: 2 };
   try {
     const garde = JSON.parse(localStorage.getItem(CLE) || "{}");
@@ -606,7 +606,16 @@
     $("f-vue").value = etat.vue;
   }
 
-  const rafraichir = (garderPage) => { if (!garderPage) affiches = PAR_PAGE; afficherThemes(); afficher(); majFavoris(); };
+  const rafraichir = (garderPage) => { if (!garderPage) affiches = PAR_PAGE; afficherThemes(); afficher(); majFavoris(); majBoutonsEntete(); };
+
+  // en-tête condensé : nombre de filtres actifs sur le bouton « Filtres », loupe marquée si une recherche est en cours
+  function majBoutonsEntete() {
+    const n = etat.themes.length + etat.etiquettes.length + (etat.type ? 1 : 0) + (etat.niveau !== "0" ? 1 : 0) +
+      (etat.revue !== "0" ? 1 : 0) + (etat.vue !== "tous" && etat.vue !== "favoris" ? 1 : 0);
+    $("nb-filtres").textContent = n ? String(n) : "";
+    $("btn-filtres").classList.toggle("actif", n > 0);
+    $("btn-recherche").classList.toggle("actif", !!$("recherche").value.trim());
+  }
 
   // ---------- export Zotero (RIS) ----------
   function exporterRIS() {
@@ -833,11 +842,26 @@
       etat.vue = etat.vue === "favoris" ? "tous" : "favoris";
       enregistrer(true); rafraichir(); window.scrollTo(0, 0);
     });
-    $("btn-filtres").addEventListener("click", (e) => {
-      const ouvert = $("filtres").hidden; $("filtres").hidden = !ouvert;
-      e.currentTarget.setAttribute("aria-expanded", String(ouvert));
+    // « Filtres » déplie les puces de sujets et les menus ; l'état (ouvert / replié) est retenu sur l'appareil
+    const montrerPanneau = (ouvert) => {
+      $("panneau").hidden = !ouvert; $("btn-filtres").setAttribute("aria-expanded", String(ouvert));
+    };
+    montrerPanneau(!!etat.panneauOuvert);
+    $("btn-filtres").addEventListener("click", () => {
+      etat.panneauOuvert = $("panneau").hidden; montrerPanneau(etat.panneauOuvert); enregistrer(true);
     });
+    // la loupe déplie la barre de recherche ; la replier efface la recherche
     let minuterie;
+    const montrerRecherche = (ouvert) => {
+      $("zone-recherche").hidden = !ouvert; $("btn-recherche").setAttribute("aria-expanded", String(ouvert));
+      if (ouvert) $("recherche").focus();
+      else if ($("recherche").value) { $("recherche").value = ""; clearTimeout(minuterie); rafraichir(); }
+    };
+    $("btn-recherche").addEventListener("click", () => montrerRecherche($("zone-recherche").hidden));
+    $("recherche").addEventListener("keydown", (e) => {
+      if (e.key === "Escape") montrerRecherche(false);
+      if (e.key === "Enter") e.target.blur();                 // ferme le clavier du téléphone
+    });
     $("recherche").addEventListener("input", () => { clearTimeout(minuterie); minuterie = setTimeout(() => rafraichir(), 200); });
     $("themes").addEventListener("click", (e) => {
       if (e.target.closest(".bascule")) { etat.chipsOuverts = !etat.chipsOuverts; enregistrer(); afficherThemes(); return; }
