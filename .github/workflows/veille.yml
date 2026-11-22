@@ -65,26 +65,28 @@ jobs:
           tail -n 1 "$GITHUB_OUTPUT"
 
       # Créneau du soir : rattrapage des fiches IA seulement s'il en reste (reste=0 : tout est sauté).
-      # Les étapes suivantes testent « reste != '0' » : vide (autres déclenchements) = on continue.
+      # Les étapes suivantes testent « rien != 'oui' » (comme la garde : une sortie absente, autres
+      # déclenchements, vaut null, et null != '0' serait faux pour GitHub, d'où ce oui/non).
       - name: Reste-t-il des fiches IA à rattraper ?
         id: reste
         if: github.event.schedule == '17 19 * * *'
         run: |
-          python -m veille reste_rattrapage >> "$GITHUB_OUTPUT"
-          tail -n 1 "$GITHUB_OUTPUT"
+          ligne=$(python -m veille reste_rattrapage)
+          echo "$ligne"
+          if [ "$ligne" = "reste=0" ]; then echo "rien=oui" >> "$GITHUB_OUTPUT"; else echo "rien=non" >> "$GITHUB_OUTPUT"; fi
 
       # Changement de code (push) : tests de la collecte et du site dans un vrai navigateur.
       # S'ils échouent, rien n'est publié et une alerte part. Pas lancés pour la veille du matin,
       # où le code ne change pas : un composant de moins qui pourrait la bloquer.
       - name: Tests (changement de code seulement)
-        if: (github.event_name == 'push') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0')
+        if: (github.event_name == 'push') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui')
         run: |
           pip install "playwright>=1.49,<2"
           python -m playwright install --with-deps chromium
           python -m unittest discover tests
 
       - name: Collecte, fiches IA et site
-        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
+        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -109,26 +111,26 @@ jobs:
       # les notifications ont pu pousser entre-temps : 3 essais ; en cas de conflit, la base
       # de la collecte l'emporte (les notifications ne gardent que ce qui a été envoyé)
       - name: Sauvegarder la base d'articles
-        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
+        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         run: bash .github/pousser-data.sh "Veille du $(date -u +%Y-%m-%d)"
 
-      - if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
+      - if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         uses: actions/configure-pages@v6
-      - if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
+      - if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - id: deploiement
-        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
+        if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         uses: actions/deploy-pages@v5
         continue-on-error: true     # GitHub ne voit parfois pas encore l'artefact : on retente
-      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0')
+      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui')
         run: sleep 30
-      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0')
+      - if: (steps.deploiement.outcome == 'failure') && (steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui')
         uses: actions/deploy-pages@v5
 
       - name: Prévenir en cas d'échec
-        if: failure() && steps.garde.outputs.fait != 'oui' && steps.reste.outputs.reste != '0'
+        if: failure() && steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           LIEN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
