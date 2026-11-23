@@ -1,5 +1,1349 @@
 [
 {
+"id": "doi:10.1016/j.bbi.2026.107293",
+"titre": "Diet correction after perinatal deficiency in vitamin B9 and B12 fails to rescue gut dysbiosis, serotonin pathway and psychiatric-like behavior in adult rats",
+"resume": "Perinatal dietary deficiencies such as vitamin B9 and B12 induce persistent gut dysbiosis, metabolic, physiologic imbalances and behavioral defects that could extend into adulthood, but the underlying fetal programming mechanisms remain poorly understood. We have investigated the long-term consequences of a perinatal vitamin B9 and B12 deficiency associated dysbiosis and focusing on sex-dependent outcomes related to behavior and molecular markers of the gut-brain axis. Despite post-weaning diet normalization, adult systemic metabolism related to B-vitamins was only partially restored. Intestinal dysbiosis persisted into adulthood and was characterized by altered beta-diversity and reduced relative abundance of the Prevotella genus. Both male and female offspring showed behavioral alterations, including reduced social interactions and depressive-like behaviors. Despite a sex-independent balance of kynurenine metabolites in both the frontal cortex and the colon, females displayed signs of chronic colonic inflammation, whereas males displayed alterations in immune homeostasis. Finally, perinatal B-vitamins deficiency associated dysbiosis exerted long-lasting effects into adulthood, despite post-weaning diet normalization. Early-life metabolic and intestinal microbiota dysregulations were associated with disrupted tryptophan metabolism, persistent inflammation, intestinal dysbiosis, and the emergence of depressive-like behaviors in adulthood.",
+"auteurs": [
+"Michel A",
+"Baspinar O",
+"Bossenmeyer-Pourié C",
+"Dauriat C",
+"Robert C",
+"Umoret R",
+"Alberto JM",
+"Guéant JL",
+"Chassaing B",
+"Kökten T",
+"Pourié G"
+],
+"revue": "Brain, behavior, and immunity",
+"date": "2026-11-22",
+"doi": "10.1016/j.bbi.2026.107293",
+"pmid": "43068779",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43068779/",
+"url_libre": "",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psy_digestif",
+"psychogastro"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "",
+"libre_verifie": "2026-11-23"
+},
+{
+"id": "doi:10.1080/07448481.2026.2751545",
+"titre": "Effectiveness of wellness programs in university students for mental health including health-related quality of life: A systematic review and meta-analysis",
+"resume": "OBJECTIVE: To evaluate the effectiveness of multicomponent wellness programs on psychosocial health in university students. Participants: Post-secondary students (i.e., college, university, and graduate students). Methods: We conducted a systematic review and meta-analysis of randomized controlled trials (RCTs) published from 2002-2023. We conducted independent screening and data extraction for eligible programs consisting of at least two interventions targeting wellness (i.e., nutrition, physical activity, mindfulness, emotional intelligence) lasting ≥8 wk. Our target outcomes included stress, depression, anxiety, overall health-related quality of life (HRQL), academic satisfaction, emotional intelligence, and body mass index (BMI). Data were pooled as standardized mean differences (SMD) or mean differences (MD) using a random effects model. We independently assessed risk of bias and certainty of evidence using Cochrane and Grading of Recommendations Assessment, Development, and Evaluation (GRADE) approaches, respectively. Results: Eight RCTs (n = 4627) were included and four (50%) were judged to be at low risk of bias. Physical activity, nutrition, and mindfulness were each included in three (38%) multicomponent wellness programs, and nutrition and mindfulness were the most frequently combined interventions (50%). Wellness programs delivered over a period of 8 to 14 wk may reduce stress (SMD: -0.20, 95% CI: -0.33 to -0.07; n = 2664 participants; low certainty) and depression (SMD: -0.29, 95% CI: -0.50 to -0.08; n = 1488 participants; low certainty), while the evidence is very uncertain for reducing anxiety (SMD: -0.32, 95% CI: -0.61 to -0.02); n = 1068 participants; very low certainty). With respect to overall physical and mental wellbeing, programs likely improve overall HRQL (SMD: 0.43, 95% CI: 0.28 to 0.59; n = 697 participants; moderate certainty). Overall, considerable participant loss to follow-up and heterogeneity existed, limiting our certainty in the effects for all outcomes. Conclusion: Wellness programs may offer psychosocial benefits for university students, particularly with respect to improved health-related quality of life. SYSTEMATIC REVIEW REGISTRATION: PROSPERO CRD42023461401.",
+"auteurs": [
+"Burgman AM",
+"Ghosh NR",
+"Riviere A",
+"Ramirez D",
+"Vanden Brink H",
+"Zoghi B",
+"Johnston BC"
+],
+"revue": "Journal of American college health : J of ACH",
+"date": "2026-11-22",
+"doi": "10.1080/07448481.2026.2751545",
+"pmid": "43068963",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43068963/",
+"url_libre": "",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"psychotherapies"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "",
+"libre_verifie": "2026-11-23"
+},
+{
+"id": "doi:10.1080/17460441.2026.2764141",
+"titre": "New animal models of obsessive-compulsive disorder and their value to novel drug discovery",
+"resume": "INTRODUCTION: Obsessive-Compulsive Disorder (OCD) is a chronic and highly debilitating neuropsychiatric disorder with profound clinical heterogeneity and high-degree of treatment-resistance. The field relies heavily on monoamine-focused drug therapies highlighting an imperative to develop novel therapeutic targets. AREAS COVERED: This review provides an evaluation of the expanding animal-model landscape for OCD, evaluating transgenic (e.g. Sapap3, Slitrk5, Hoxb8), pharmacological, and naturally occurring models. It also examines how these platforms enable the investigation of micro-level synaptic changes and broader cortico-striato-thalamo-cortical (CSTC) circuit dysfunction. Furthermore, the article synthesizes findings from recent circuit-level and pharmacological examinations such as optogenetics, glutamate-modulators, endocannabinoid signaling, novel probiotic approaches, and other novel molecular and receptor targets to assess their translational potential. Literature was retrieved through a comprehensive search of PubMed database. EXPERT OPINION: The future of OCD drug discovery lies in a shift toward mechanism-based pharmacotherapy that moves beyond traditional serotonergic targets. By leveraging the high-throughput screening capabilities of modern transgenic models to identify compounds capable of achieving disease-modifying mechanisms rather than mere symptom suppression, the field will move toward novel targeted pharmacological options for treatment-resistant OCD.",
+"auteurs": [
+"S V M",
+"D P L",
+"Manasadeepika",
+"Paul P",
+"Viswanath B",
+"Narayanaswamy JC"
+],
+"revue": "Expert opinion on drug discovery",
+"date": "2026-11-22",
+"doi": "10.1080/17460441.2026.2764141",
+"pmid": "43068964",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43068964/",
+"url_libre": "",
+"types": [
+"Review"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"arfid_toc"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "",
+"libre_verifie": "2026-11-23"
+},
+{
+"id": "doi:10.1016/j.neubiorev.2026.107112",
+"titre": "Network Control Theory in Psychiatry: From Connectivity-Derived Controllability to Brain-State Transitions and Interventions",
+"resume": "Psychiatric disorders are increasingly conceptualized as disruptions in brain dynamics, particularly in how activity patterns evolve over time. Network Control Theory (NCT), a framework derived from control engineering, has emerged as a promising approach for studying these dynamics. Yet, despite its growing application in psychiatry, it remains unclear whether NCT has provided mechanistic or clinical insights beyond conventional measures of network topology. Here, we conducted a PRISMA-guided systematic review of NCT applications across major psychiatric disorders in adults. Of 178 records identified, 26 studies met inclusion criteria, representing 17 unique cohorts spanning schizophrenia spectrum disorders, major depressive disorder, bipolar disorder, obsessive-compulsive disorder, and post-traumatic stress disorder. Across studies, a recurring pattern of lower modal controllability was reported in several disorders (3 independent cohorts), although regional findings were heterogeneous and diagnostic specificity was limited. In contrast, task-based analyses under cognitive load (2 cohorts) and energy-based metrics (2 cohorts), though scarce, revealed more extensive case-control abnormalities and between-disorder differentiation. Intervention studies provided preliminary evidence that NCT-derived measures may predict treatment response and inform individualized neuromodulation targets (4 cohorts). However, 21 of 26 studies exclusively relied on connectivity-derived controllability metrics that were closely related to conventional measures of network topology and characterized model-implied control properties rather than directly observed state transitions. Furthermore, translational evidence came largely from single-arm, retrospective and simulation studies. The distinct value of NCT in psychiatry therefore remains to be established. Future progress requires the use of empirically observed brain states, energy-based measures, and prospective intervention studies.",
+"auteurs": [
+"Wang YL",
+"Harrison R",
+"Supekar K",
+"Lavigne K",
+"Wang F",
+"Khan A",
+"Theberge J",
+"Palaniyappan L"
+],
+"revue": "Neuroscience and biobehavioral reviews",
+"date": "2026-11-22",
+"doi": "10.1016/j.neubiorev.2026.107112",
+"pmid": "43068718",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43068718/",
+"url_libre": "",
+"types": [
+"Review"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"arfid_toc"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "",
+"libre_verifie": "2026-11-23"
+},
+{
+"id": "doi:10.5281/zenodo.24430126",
+"titre": "DEPRESSION AND ANXIETY: OVERCOMING ACROSS THE TIMELINE THROUGH THE LCBASIC METHOD",
+"resume": "Introduction: Chronic states of depression and anxiety do not constitute permanent structural defects of the encephalon, but rather the result of phase noise, temporal entrapment, and signal isolation of the carbon infrastructure (Jurisdiction h) in relation to the life-creating and life-sustaining forces (YHW). Objective: To present the exclusive theoretical-operational foundations of the LCBASIC Method (Basal Cerebral Lucidity of Cortical Integrative Systemic Architecture) applied to overcoming depression and anxiety across the timeline, establishing the proper operational sequence: using Grounding Geometry and 0.1 Hz Breathing as emergency first aid during acute crises, followed by Knowledge Conversation, the Mechanical Engineering of Forgiveness in clearing the 3D Screen of Consciousness, and finally consolidating the Permanent Inhibitory Veto and Daily Grounding as a Lifestyle to prevent relapse. Methodology: A theoretical-methodological study structured strictly upon the conceptual architecture of the LCBASIC Method: the Symmetric Quartet System (YHW+h), the Pipeline of the Five Governors, the Temporal Axis (Past × Future), the Neutral Report of the Anterior Insula, the Matrix of the Six Perpendicular Failures, the Grounding Geometry of Clay, the 0.1 Hertz Respiratory Pacemaker, the Liability Settlement Floodgates, and the Rhetorical Suppression Portal within 200 milliseconds. Results and Discussion: Anxiety and depression emerge when the Inadequate Governor (Phase 3) keeps adult life governed by obsolete contracts recorded by the Child Governor (ages 0 to 12), locking the body inside the Adult Biological Faraday Cage. While depression reflects trophic prostration due to useless expenditure of useful energy (ATP) and interoceptive dissonance signaled by the Insula regarding unsettled liabilities from the past, anxiety stems from paranoid future projection under high beta waves and tunnel vision. Recovery begins mechanically through emergency 0.1 Hz grounding to extinguish acute firing, advances through cognitive restructuring via Knowledge Conversation and liability settlement via Forgiveness across the timeline, and stabilizes in daily maintenance. Conclusion: Definitive overcoming of depression and anxiety is consolidated when the Inhibitory Veto within 200 ms and daily Grounding practice become a permanent post-recovery lifestyle, shielding the circuit against relapse and allowing the Senior Governor to walk with parallel feet, a free chest, and parted teeth in gentle, legitimate, and unshakeable peace on Earth's matter.",
+"auteurs": [
+"Luiz Buso"
+],
+"revue": "Zenodo (CERN European Organization for Nuclear Research)",
+"date": "2026-11-22",
+"doi": "10.5281/zenodo.24430126",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.5281/zenodo.24430126",
+"url_libre": "https://doi.org/10.5281/zenodo.24430126",
+"types": [
+"preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"alexithymie"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Prépublication théorique présentant la méthode LCBASIC (non validée) pour dépression/anxiété sans données empiriques.",
+"type_etude": "revue narrative",
+"design": [
+"théorique",
+"prépublication"
+],
+"population": null,
+"intervention": "Méthode LCBASIC (théorique)",
+"resultats_cles": [
+"Cadre conceptuel original : Grounding Geometry, respiration 0,1 Hz, Conversation Connaissance, Ingénierie Pardon",
+"Prétend surmonter dépression/anxiété par veto inhibiteur permanent et ancrage quotidien",
+"Aucune donnée empirique, aucune validation clinique"
+],
+"conclusion": "La méthode LCBASIC propose une séquence théorique pour surmonter définitivement dépression et anxiété.",
+"limites": [
+"Purement théorique, sans aucune donnée empirique",
+"Terminologie non standard, non révisée par les pairs"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Méthode théorique non validée, sans lien direct avec la psychogastroentérologie",
+"mots_cles_fr": [
+"dépression",
+"anxiété",
+"méthode théorique",
+"non validée"
+],
+"titre_court": "Méthode LCBASIC : approche théorique pour dépression/anxiété",
+"conclusion_simple": "Une proposition théorique non validée empiriquement pour traiter dépression et anxiété, sans pertinence clinique directe pour le SII.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4306400562"
+},
+{
+"id": "doi:10.15403/jgld-7806",
+"titre": "Treatment of Chronic Digestive Diseases from a Psychosomatic Perspective, as Reflected in Guidelines on Inflammatory Bowel Disease (IBD) and Irritable Bowel Syndrome (IBS)",
+"resume": "",
+"auteurs": [
+"Deter HC"
+],
+"revue": "Journal of gastrointestinal and liver diseases : JGLD",
+"date": "2026-11-21",
+"doi": "10.15403/jgld-7806",
+"pmid": "43068351",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43068351/",
+"url_libre": "https://doi.org/10.15403/jgld-7806",
+"types": [
+"Editorial",
+"editorial"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex",
+"pubmed"
+],
+"themes": [
+"sii"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "S165008743"
+},
+{
+"id": "doi:10.5281/zenodo.24422428",
+"titre": "FRCUTAN INTOLERANCE AND LOW FODMAP DIET",
+"resume": "This narrative review examines fructan intolerance and the role of the low-FODMAP diet in the management of gastrointestinal symptoms, particularly in individuals with irritable bowel syndrome (IBS) and non-celiac wheat sensitivity. The article discusses the chemical structure, dietary sources, digestion and colonic fermentation of fructans, as well as the potential mechanisms underlying fructan-related gastrointestinal symptoms, including gas production, intestinal distension and visceral hypersensitivity. It further evaluates current scientific evidence regarding the effectiveness of the low-FODMAP diet, its clinical applications, nutritional considerations, effects on gut microbiota, and the importance of structured food reintroduction and personalized dietary management. This manuscript is based on a literature review conducted as part of an undergraduate medical thesis at Nicolae Testemițanu State University of Medicine and Pharmacy, Chișinău, Republic of Moldova. Keywords: Fructan intolerance; Fructans; Low-FODMAP diet; Irritable bowel syndrome; Gastrointestinal symptoms; Gut microbiota; Dietary management.",
+"auteurs": [
+"Stephymol Priness Binu"
+],
+"revue": "Zenodo (CERN European Organization for Nuclear Research)",
+"date": "2026-11-21",
+"doi": "10.5281/zenodo.24422428",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.5281/zenodo.24422428",
+"url_libre": "https://doi.org/10.5281/zenodo.24422428",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psychogastro",
+"sii"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Revue narrative (thèse de premier cycle) sur intolérance aux fructans et régime pauvre en FODMAP dans le SII.",
+"type_etude": "revue narrative",
+"design": [
+"recherche bibliographique",
+"thèse étudiante"
+],
+"population": null,
+"intervention": "Régime pauvre en FODMAP (revue)",
+"resultats_cles": [
+"Les fructans (FODMAP) fermentescibles provoquent gaz, distension, hypersensibilité viscérale",
+"Régime pauvre en FODMAP efficace sur symptômes SII",
+"Réintroduction structurée et personnalisation essentielles pour éviter carences et impact microbiote"
+],
+"conclusion": "Le régime pauvre en FODMAP est efficace dans le SII mais nécessite une réintroduction alimentaire structurée et une gestion personnalisée.",
+"limites": [
+"Revue narrative non systématique",
+"Basée sur thèse de premier cycle, pas de données originales"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Régime pauvre en FODMAP, intolérance aux fructans, SII, prise en charge diététique",
+"mots_cles_fr": [
+"intolérance aux fructans",
+"régime pauvre en FODMAP",
+"syndrome de l'intestin irritable",
+"prise en charge diététique"
+],
+"titre_court": "Intolérance aux fructans et régime FODMAP dans le SII",
+"conclusion_simple": "Une revue narrative résume l'intérêt du régime pauvre en FODMAP pour le SII, mais sans niveau de preuve élevé ni données originales.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4306400562"
+},
+{
+"id": "doi:10.1002/mmr3.70016",
+"titre": "The Tree Shrew Model Connecting Stress, the Gut–Brain Axis, and Mental Health",
+"resume": "The increasing pervasiveness of artificial light at night (LAN) has turned light‐induced circadian disruption into a significant, yet underappreciated, risk factor for neuropsychiatric disorders. The gut–brain axis is a key mediator linking environmental stressors with brain function; however, how prolonged nocturnal light exposure (“staying up late”) impairs mental health remains poorly understood. Here, we take the staying‐up‐late model established in the diurnal tree shrew ( Tupaia belangeri chinensis ) as our central narrative thread, and review recent advances across circadian biology, gut microbiome neuroscience, and neural circuit research. We established a clinically relevant staying‐up‐late paradigm in tree shrews by extending daily light exposure by 4 h for 3 consecutive weeks, which recapitulates the most common form of light‐induced stress in modern humans. This paradigm triggered a cascade of abnormalities, including gut microbiota dysbiosis enriched Proteobacteria and Actinobacteria but depleted Firmicutes and Bacteroidetes relative to controls, brain structural remodeling (increased gray matter density in the prefrontal and visual cortices, and decreased white matter density in the corpus callosum and thalamus, and impaired cognition. Washed microbiota transplantation (WMT), a refined form of fecal microbiota transplantation (FMT), significantly accelerated recovery and exhibited specific regional targeting in the brain. A complementary study further identified a direct retina–perihabenular nucleus–nucleus accumbens (retina–pHb–NAc) pathway that mediated light‐induced depressive‐like behaviors. Together, these findings support a dual‐pathway model in which light‐induced stress engages a retina‐driven mood circuit and a microbiota‐dependent pathway that reshapes brain structure and cognition. We propose that this framework advances our mechanistic understanding and may inform microbiota‐targeted interventions such as WMT for stress‐related neuropsychiatric conditions.",
+"auteurs": [
+"Meiyu Wang",
+"Peng Wang",
+"Jing Wang"
+],
+"revue": "Microbiota Medicine Research",
+"date": "2026-11-21",
+"doi": "10.1002/mmr3.70016",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.1002/mmr3.70016",
+"url_libre": "https://doi.org/10.1002/mmr3.70016",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psy_digestif",
+"psychogastro"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Revue narrative décrivant un modèle de musaraigne arboricole : stress lumineux nocturne altère microbiote et cerveau ; transplantation microbiote lavé (WMT) favorise récupération.",
+"type_etude": "revue narrative",
+"design": [
+"modèle animal",
+"transplantation microbiote",
+"voie rétinienne"
+],
+"population": "Musaraignes arboricoles (Tupaia belangeri chinensis)",
+"intervention": "Exposition lumineuse nocturne (+4h/3 sem) ; Transplantation microbiote lavé (WMT)",
+"resultats_cles": [
+"Stress lumineux : dysbiose (↑Proteobacteria/Actinobacteria, ↓Firmicutes/Bacteroidetes), remodelage cérébral (substance grise/blanche), troubles cognitifs",
+"WMT accélère récupération avec ciblage cérébral régional",
+"Voie rétine-périhabénulaire-noyau accumbens médie comportements dépressifs"
+],
+"conclusion": "Un modèle à double voie (rétinienne pour l'humeur, microbiote-dépendante pour structure/cognition) explique l'impact du stress lumineux ; la WMT est une piste thérapeutique.",
+"limites": [
+"Modèle animal (extrapolation humaine incertaine)",
+"Format revue narrative (détails méthodologiques limités)"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Axe intestin-cerveau, stress circadien, microbiote, dépression, modèle animal",
+"mots_cles_fr": [
+"axe intestin-cerveau",
+"stress circadien",
+"microbiote",
+"transplantation fécale"
+],
+"titre_court": "Modèle animal : stress lumineux, microbiote et santé mentale",
+"conclusion_simple": "Chez la musaraigne, lumière nocturne altère microbiote et cerveau ; transplantation microbiote lavé aide récupération, suggérant double voie intestin-cerveau.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S5407055245"
+},
+{
+"id": "doi:10.5281/zenodo.24413545",
+"titre": "Stilbenoid Scaffolds at the Interface of Anxiety and Glucose Homeostasis: A Mechanistic and Translational Review of Preclinical Evidence and Evaluation Strategies",
+"resume": "Anxiety and type 2 diabetes mellitus (T2DM) are frequently associated conditions that share several pathophysiological mechanisms, including oxidative stress, neuroinflammation, insulin resistance, and dysregulation of the hypothalamic–pituitary–adrenal (HPA) axis. The bidirectional relationship between metabolic dysfunction and anxiety highlights the need to investigate pharmacological agents that may influence both neurological and metabolic parameters. Lunularin, a dihydrostilbene and gut microbial metabolite of resveratrol, has attracted interest because of its potential biological activities. However, its anxiolytic potential and influence on glucose homeostasis remain insufficiently investigated. The present study aims to investigate the anxiolytic potential of lunularin and its influence on glucose homeostasis in an experimental model of type 2 diabetes mellitus. Diabetes will be induced in Wistar rats using streptozotocin and nicotinamide (STZ–NA). Animals will be divided into appropriate experimental groups, including normal control, diabetic control, standard treatment, and lunularin-treated groups at selected dose levels. The anxiolytic potential of lunularin will be evaluated using behavioural paradigms such as the elevated plus maze and actophotometer, while locomotor activity and motor coordination will be assessed to distinguish anxiolytic effects from nonspecific behavioural changes. Glucose homeostasis will be evaluated through fasting blood glucose, glycated haemoglobin, and relevant metabolic parameters. Biochemical investigations may include oxidative stress markers, antioxidant status, and selected molecular pathways associated with metabolic and behavioural regulation. Histopathological examination of relevant tissues will provide additional evidence of treatment-associated changes.The study is expected to provide preliminary experimental evidence regarding the relationship between lunularin-mediated behavioural responses and glucose regulation in diabetic animals. The findings may contribute to understanding the pharmacological potential of lunularin and identify directions for further mechanistic and translational research.",
+"auteurs": [
+"Mahadev Anitha",
+"Koppala R. V. S. Chaitanya",
+"Hajera Begum",
+"Bommu Vaishnavi"
+],
+"revue": "Zenodo (CERN European Organization for Nuclear Research)",
+"date": "2026-11-21",
+"doi": "10.5281/zenodo.24413545",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.5281/zenodo.24413545",
+"url_libre": "https://doi.org/10.5281/zenodo.24413545",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psy_digestif"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "S4306400562"
+},
+{
+"id": "doi:10.23917/jk.v19i3.20869",
+"titre": "Plant-Based Dietary Patterns in Prostate Cancer: A Review of Mechanistic Pathways and Disease Progression",
+"resume": "Pendahuluan: Kanker prostat (PCa) merupakan keganasan yang umum terjadi pada pria di seluruh dunia. Semakin banyak bukti menunjukkan bahwa pola makan berbasis nabati dan pola makan rendah karbohidrat dapat memengaruhi luaran PCa melalui jalur metabolik, inflamasi, dan molekuler. Tinjauan naratif ini merangkum bukti mengenai pola-pola makan tersebut beserta potensi mekanisme biologis yang mendasarinya. Metode: Literatur yang relevan diidentifikasi melalui penelusuran di PubMed, Scopus, dan Web of Science, dilengkapi dengan studi epidemiologis dan mekanistik yang mengkaji pola makan, luaran PCa, serta jalur biologis yang terlibat. Hasil: Kepatuhan yang lebih tinggi terhadap pola makan sehat berbasis nabati umumnya dikaitkan dengan risiko progresi penyakit yang lebih rendah, tingkat keparahan penyakit yang berkurang, kualitas hidup yang lebih baik, dan angka kematian spesifik akibat PCa yang lebih rendah. Lemak yang berasal dari tanaman dikaitkan dengan luaran klinis yang lebih baik dibandingkan lemak yang berasal dari hewan. Intervensi pola makan rendah karbohidrat menunjukkan efek metabolik yang menguntungkan serta memperpanjang waktu penggandaan antigen spesifik prostat (PSA), yang mengindikasikan potensi manfaat dalam menunda progresi biokimia. Mekanisme yang diusulkan mencakup penurunan inflamasi sistemik dan stres oksidatif, perbaikan sinyal insulin dan insulin-like growth factor-1 (IGF-1), metabolisme lipid yang lebih baik, serta modulasi ekspresi gen yang terkait dengan tumor. Namun, bukti langsung yang menghubungkan intervensi pola makan dengan perubahan mikrobioma usus pada pria dengan PCa masih terbatas. Kesimpulan: Pola makan sehat berbasis nabati—dan dalam tingkat tertentu, intervensi rendah karbohidrat—dapat menjadi strategi pelengkap untuk memperbaiki luaran PCa, kemungkinan melalui mekanisme metabolik, inflamasi, dan molekuler. Akan tetapi, bukti yang ada saat ini belum dapat menetapkan hubungan sebab-akibat. Studi prospektif lebih lanjut yang mengintegrasikan penilaian pola makan, pemprofilan mikrobioma usus, dan pendekatan multi-omics diperlukan untuk memperjelas mekanisme yang mendasari serta implikasi klinisnya. Introduction: Prostate cancer (PCa) is a common malignancy among men worldwide. Growing evidence suggests that plant-based and low-carbohydrate dietary patterns may influence PCa outcomes through metabolic, inflammatory, and molecular pathways. This narrative review synthesizes evidence on these dietary patterns and their potential biological mechanisms. Methods: Relevant literature was identified through searches of PubMed, Scopus, and Web of Science, supplemented by epidemiological and mechanistic studies examining dietary patterns, PCa outcomes, and underlying biological pathways. Results: Greater adherence to healthy plant-based dietary patterns was generally associated with lower risks of disease progression, reduced disease severity, improved quality of life, and lower PCa-specific mortality. Plant-derived dietary fats were associated with more favorable clinical outcomes than animal-derived fats. Low-carbohydrate dietary interventions demonstrated beneficial metabolic effects and prolonged prostate-specific antigen (PSA) doubling time, suggesting potential benefits in delaying biochemical progression. Proposed mechanisms include reduced systemic inflammation and oxidative stress, improved insulin and insulin-like growth factor-1 (IGF-1) signaling, favorable lipid metabolism, and modulation of tumor-related gene expression. However, direct evidence linking dietary interventions to gut microbiome alterations in men with PCa remains limited. Conclusions: Healthy plant-based dietary patterns and, to a lesser extent, low-carbohydrate interventions may represent complementary strategies for improving PCa outcomes, potentially through metabolic, inflammatory, and molecular mechanisms. However, current evidence does not establish causality. Further prospective studies integrating dietary assessment, gut microbiome profiling, and multi-omics approaches are needed to clarify underlying mechanisms and clinical implications.",
+"auteurs": [
+"Kevin Aldenio Hatma Krista",
+"Ahmad Akmal Zaidan",
+"Muhammad Zulfikar Fiko",
+"Farhan Ubaidillah Ramadhan",
+"Roy Novri Ramadhan",
+"Sherlyn Angky"
+],
+"revue": "Jurnal Kesehatan",
+"date": "2026-11-21",
+"doi": "10.23917/jk.v19i3.20869",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.23917/jk.v19i3.20869",
+"url_libre": "https://doi.org/10.23917/jk.v19i3.20869",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psy_digestif"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Revue narrative : adhésion alimentation végétale associée à moins de progression du cancer prostatique, mais preuve de causalité faible.",
+"type_etude": "revue narrative",
+"design": [
+"revue narrative"
+],
+"population": "Hommes atteints de cancer prostatique (PCa) ; n non précisé",
+"intervention": "Polaire végétale saine et faible carb ; comparateur non précisé",
+"resultats_cles": [
+"Adhésion régime végétal saine associée progression moins élevée",
+"Diète faible carb prolonge PSA doubling time",
+"Preuve microbiome gut limitée"
+],
+"conclusion": "Polaire végétale saine et, dans certains cas, faible carb peuvent compléter ; preuve actuelle non causal.",
+"limites": [
+"Preuve directe microbiome gut limitée",
+"Preuves non causales"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Hors cible principale, mais intérêt pour troubles digestifs associés.",
+"mots_cles_fr": [
+"cancer prostatique",
+"diète végétale",
+"PSA",
+"inflammation"
+],
+"titre_court": "Régime végétal et cancer prostatique",
+"conclusion_simple": "Adhésion à un régime végétal sain pourrait aider, mais l’effet causal reste incertain.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4210239435"
+},
+{
+"id": "doi:10.5281/zenodo.24411704",
+"titre": "Interoceptive State Regularization: Homeostatic Priors for Safe Exploration in Constrained Reinforcement Learning",
+"resume": "",
+"auteurs": [
+"manivenkat"
+],
+"revue": "Zenodo (CERN European Organization for Nuclear Research)",
+"date": "2026-11-21",
+"doi": "10.5281/zenodo.24411704",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.5281/zenodo.24411704",
+"url_libre": "https://doi.org/10.5281/zenodo.24411704",
+"types": [
+"preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"alexithymie"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "S4306400562"
+},
+{
+"id": "doi:10.5281/zenodo.24429373",
+"titre": "SENSORY STABILIZATION AND EX-POST COGNITIVE SEDIMENTATION: BODILY TRANQUILITY AS A CONDITION FOR TIMELINE CALIBRATION IN THE LCBASIC METHOD",
+"resume": "Background and Problem: Conventional cognitive and psychophysiological approaches frequently attempt to restructure emotional memories through discursive analysis performed during or immediately after states of sympathetic activation. Within the LCBASIC Method (Basal Cerebral Lucidity of the Cortical Integrative Systemic Architecture), it is demonstrated that recording or interpreting events while the organism operates under high electrical impedance (high-beta brainwaves, mandibular tension, and mediastinal compression) distorts sensory capture and encodes the episode as an atemporal threat within the Emotional Experience Database of the ancestral amygdala. Objective: To formalize the protocol of Prior Sensory Stabilization and Ex-Post Cognitive Sedimentation, establishing bodily tranquility as an indispensable biophysical prerequisite for the functional consolidation of memory along the timeline. Protocol Architecture: The model articulates four sequential stages: (1) interruption of motor reaction via the Central Inhibitory Veto (120–200 ms) and thermal drainage through the Deceleration Gradient (45–90 min); (2) calibration of the Somatic Receptacle through the alignment of the three peripheral terminals (parallel pedal axis, masseter depressurization, and mediastinal opening) and 0.1 Hz cardio-encephalic resonance; (3) simultaneous, distortion-free reception of internal interoceptive (visceral) impulses and external exogenous data through the 12 sensory and regulatory channels (5 exogenous fruits and 7 hidden fruits); and (4) Ex-Post Cognitive Sedimentation within the demagnetized Ventromedial Prefrontal Cortex. Conclusion: Bodily tranquility converts emotionally dense experiences into organized, chronologically indexed cognitive records, enabling memory to operate in the future as a functional navigational instrument along the timeline rather than an automatic reactive trigger.",
+"auteurs": [
+"Luiz Buso"
+],
+"revue": "Zenodo (CERN European Organization for Nuclear Research)",
+"date": "2026-11-21",
+"doi": "10.5281/zenodo.24429373",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.5281/zenodo.24429373",
+"url_libre": "https://doi.org/10.5281/zenodo.24429373",
+"types": [
+"preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"alexithymie"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Modèle théorique (LCBASIC) proposant que la tranquillité corporelle est prérequis biophysique pour consolidation mémorielle fonctionnelle via 4 étapes séquentielles.",
+"type_etude": "protocole",
+"design": [
+"théorique",
+"modèle",
+"prépublication"
+],
+"population": null,
+"intervention": "Méthode LCBASIC (stabilisation sensorielle, sédimentation cognitive ex-post)",
+"resultats_cles": [
+"Modèle en 4 étapes: veto inhibiteur, calibration somatique, réception interoceptive/exogène, sédimentation cognitive",
+"La tranquillité corporelle permettrait la consolidation mémorielle fonctionnelle"
+],
+"conclusion": "La tranquillité corporelle convertit les expériences émotionnellement denses en enregistrements cognitifs organisés et indexés chronologiquement.",
+"limites": [
+"Aucune donnée empirique, modèle théorique non validé"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Modèle théorique sur tranquillité corporelle et mémoire, pertinent pour hypnose",
+"mots_cles_fr": [
+"interoception",
+"mémoire",
+"tranquillité corporelle",
+"modèle théorique"
+],
+"titre_court": "Modèle LCBASIC: tranquillité corporelle et consolidation mémorielle",
+"conclusion_simple": "Modèle théorique non validé proposant que la tranquillité corporelle permet une consolidation mémorielle fonctionnelle via un protocole en 4 étapes.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4306400562"
+},
+{
+"id": "doi:10.5281/zenodo.24425421",
+"titre": "• Thermodynamic Unification of Propositional Belief Evaluation: Subsuming Content-Independent fMRI Signatures Under Metabolic Active Inference",
+"resume": "Neuroimaging studies of propositional evaluation reveal that the human brain relies on a remarkably consistent, content-independent network to assess truth, falsehood, and uncertainty. Anchored in the ventromedial prefrontal cortex (vmPFC), the anterior insula, and the anterior cingulate cortex (ACC), this circuitry operates identically whether we are evaluating mathematical equations, geographical facts, ethical claims, or religious doctrines (Harris et al., 2008, 2009). Yet classical neuroimaging taxonomies treat belief, disbelief, and uncertainty as static, cost-free labels. They leave an essential question unanswered: why do specific mental states impose distinct subjective effort, reaction-time delays, and metabolic costs? Here, we resolve this problem by unifying content-independent neuroimaging findings within the Thermodynamic State-Space Model (TSSM) of active inference. First, we derive explicit biophysical couplings that link variational free energy (F) and Kullback-Leibler divergence (DKL) directly to Landauer work bounds, adenosine triphosphate (ATP) hydrolysis flux (J̇ATP), and regional cerebral metabolic rate of oxygen consumption (CMRO2). Second, we explain vmPFC reward signaling as neurochemical reinforcement for the rapid collapse of free energy into familiar, prior-congruent basins. In contrast, we frame anterior insula disgust responses as interoceptive alarms triggered by costly prediction-error spikes (ε), which force the dorsal ACC (dACC) to inhibit default comprehension signals. Third, we expose a major methodological blind spot in forced-choice fMRI experiments. Across decision deadlines (τd), the single \"undecided\" category conflates two entirely different cognitive realities: low-energy apathetic disengagement (Uapathy) and high-energy active epistemic neutrality (Uactive), a frontoparietal control policy governed by a calibrated prefrontal metabolic depletion threshold (ζcrit ≈ 0.45). Finally, we propose a falsifiable 7-Tesla hybrid multi-echo fMRI and dual-voxel event-related proton functional magnetic resonance spectroscopy (1H-fMRS) protocol. By measuring trial-averaged regional lactate (ΔLac) and glutamate (ΔGlu) turnover over extended evaluation windows (τd = 30 s), this experiment can directly test the thermodynamic reality of human belief.",
+"auteurs": [
+"Benjamin Ruby"
+],
+"revue": "Zenodo (CERN European Organization for Nuclear Research)",
+"date": "2026-11-21",
+"doi": "10.5281/zenodo.24425421",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.5281/zenodo.24425421",
+"url_libre": "https://doi.org/10.5281/zenodo.24425421",
+"types": [
+"preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"alexithymie"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Article théorique unifiant l'évaluation propositionnelle sous un modèle thermodynamique d'inférence active et proposant un protocole IRM 7T pour le tester.",
+"type_etude": "protocole",
+"design": [
+"théorique",
+"modélisation",
+"protocole proposé"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Couplages biophysique liant énergie libre, ATP, CMRO2",
+"vmPFC: effondrement énergie libre; insula antérieure: pics erreur prédiction",
+"Point aveugle fMRI: confusion désengagement apathique vs neutralité épistémique active"
+],
+"conclusion": "Le modèle thermodynamique unifie les signatures IRMf indépendantes du contenu et propose un protocole falsifiable pour tester la réalité thermodynamique de la croyance.",
+"limites": [
+"Aucune donnée expérimentale, modèle théorique, protocole non réalisé"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Modèle thermodynamique de l'évaluation propositionnelle, pertinent pour anxiété/TOC",
+"mots_cles_fr": [
+"inférence active",
+"métabolisme cérébral",
+"croyance",
+"modèle théorique"
+],
+"titre_court": "Unification thermodynamique de l'évaluation des croyances",
+"conclusion_simple": "Article théorique proposant un modèle thermodynamique de l'évaluation des croyances et un protocole IRM 7T pour le tester, sans validation empirique.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4306400562"
+},
+{
+"id": "doi:10.17605/osf.io/rmjt9",
+"titre": "Mindfulness-based interventions for stress reduction and recovery in adult stroke survivors: a scoping review protocol",
+"resume": "Title: Mindfulness-based interventions for stress reduction and recovery in adult stroke survivors: a scoping review protocol Description / Protocol Summary: Background and Objective: Stroke is a leading cause of long-term disability, often accompanied by psychological distress, perceived stress, anxiety, and cognitive or functional impairments that hinder rehabilitation. Mindfulness-based interventions (MBIs) are increasingly integrated into neurological rehabilitation to support emotional regulation and overall recovery. The objective of this scoping review is to map the existing peer-reviewed evidence on the use of mindfulness-based interventions to promote recovery and reduce stress in adult stroke survivors. Review Question: What is the current evidence regarding the use, characteristics, and outcomes of mindfulness-based interventions aimed at supporting recovery and reducing stress in adult stroke survivors? Eligibility Criteria (PCC Framework): - Population (P): Adults (aged 18 years and older) with a clinical diagnosis of ischemic or hemorrhagic stroke, at any stage of recovery (acute, subacute, or chronic). Studies focusing exclusively on caregivers or healthcare professionals will be excluded. - Concept (C): Any structured or adapted mindfulness-based intervention (e.g., Mindfulness-Based Stress Reduction [MBSR], Mindfulness-Based Cognitive Therapy [MBCT], mindfulness meditation, or mindful movement) designed to support post-stroke recovery and stress reduction. - Context (C): Any clinical, inpatient, outpatient, community, or home-based rehabilitation setting, with no geographical restrictions. - Types of Sources: Primary peer-reviewed quantitative, qualitative, and mixed-methods studies (e.g., randomized controlled trials, quasi-experimental studies, pilot/feasibility studies, case series). Conference abstracts, book chapters, study protocols, and non-peer-reviewed articles will be excluded. Search Strategy: A comprehensive literature search will be conducted across four electronic databases—PubMed, Cochrane Library, PEDro, and OpenAlex—from database inception to November 2026. No language restrictions will be applied during the initial search, with full-text inclusion focused on studies published in English or Italian. Study Selection and Data Charting: All retrieved records will be imported into Rayyan software for deduplication and screening. Due to single-author constraints, title/abstract and full-text screening will be performed independently in two separate rounds spaced two weeks apart to ensure intra-rater reliability. Data will be extracted using a standardized charting form (including study design, sample characteristics, stroke phase, type and duration of mindfulness intervention, and stress/recovery outcomes). Findings will be synthesized narratively and presented following the PRISMA-ScR (Preferred Reporting Items for Systematic Reviews and Meta-Analyses extension for Scoping Reviews) guidelines.",
+"auteurs": [
+"Ermenegilda Di Nardo"
+],
+"revue": "Open Science Framework",
+"date": "2026-11-21",
+"doi": "10.17605/osf.io/rmjt9",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.17605/osf.io/rmjt9",
+"url_libre": "https://doi.org/10.17605/osf.io/rmjt9",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psychotherapies"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Revue de cadrage : état des preuves sur MBI pour stress et réadaptation après AVC.",
+"type_etude": "protocole",
+"design": [
+"scoping review"
+],
+"population": "Adultes avec AVC ischémique ou hémorragique ; n non précisé",
+"intervention": "MBSR, MBCT, méditation, mouvement ; comparateur non précisé",
+"resultats_cles": [
+"Aucun résultat d’efficacité rapporté dans ce protocole",
+"État des preuves sur MBI à cartographier"
+],
+"conclusion": "Cette revue de cadrage évaluera l’évidence sur MBI après AVC.",
+"limites": [
+"Protocole seul, pas de données synthétisées",
+"Qualité méthode non évaluable"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Hors cible principale, mais stress post-AVC.",
+"mots_cles_fr": [
+"AVC",
+"mindfulness",
+"stress",
+"réadaptation"
+],
+"titre_court": "Mindfulness après AVC : revue",
+"conclusion_simple": "Des interventions mindfulness sont testées après AVC, mais les preuves sont à cartographier.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S7407050956"
+},
+{
+"id": "doi:10.3791/70477",
+"titre": "Efficacy and Safety of Chinese Herbal Formulas Plus Western Medicine for Functional Dyspepsia: A Systematic Review and Meta-Analysis",
+"resume": "",
+"auteurs": [
+"Lili Yan",
+"Xiaoxue Song",
+"Wenwei Zhang",
+"Zhongxin Chen"
+],
+"revue": "Journal of Visualized Experiments",
+"date": "2026-11-20",
+"doi": "10.3791/70477",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.3791/70477",
+"url_libre": "",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"sii"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "S199738284",
+"libre_verifie": "2026-11-23"
+},
+{
+"id": "doi:10.4081/ejh.2026.4833",
+"titre": "P013 | GUT-BRAIN AXIS IN IBD AND IBS: HOW ANXIETY-DEPRESSIVE SYMPTOMS AND DIETARY HABITS SHAPE GUT MICROBIOTA DIVERSITY AND COMPOSITION",
+"resume": "Background. Growing evidence supports a bidirectional interaction along the gut-brain axis, where diet and gut microbiota influence psychological wellbeing. However, the role of anxiety-depressive symptoms in modulating gut microbiota composition and diversity remains unclear. This study aimed to investigate the relationship between anxiety-depressive symptoms, dietary patterns, and gut microbiota in patients with inflammatory bowel disease (IBD), irritable bowel syndrome (IBS), and healthy controls (HC). Methods. 139 subjects (39 IBD, 50 IBS, and 50 HC) were recruited at the Fondazione Policlinico Universitario Campus Bio-Medico. Psychological assessment was performed using the Hospital Anxiety and Depression Scale (HADS). Dietary intake was evaluated through 7-day food diaries and nutrient analysis with WinFood. Gut microbiota from 131 stool specimens (36 IBD, 48 IBS, and 47 HC) was analyzed by sequencing the 16S rDNA V3/V4 region. Colonic biopsies were also collected from IBD patients for histological and immunohistochemical characterization of intestinal barrier-related markers. Non-parametric t-test based on Monte Carlo permutations was used for alpha diversity comparisons (Faith’s phylogenetic and Shannon’s Diversity Indices), and PERMANOVA for beta diversity comparison of distance matrices (unweighted and weighted UniFrac). Results. IBD and IBS patients showed significantly higher anxiety and depression scores compared with HC (p",
+"auteurs": [
+"Gastroenterology Unit"
+],
+"revue": "European Journal of Histochemistry",
+"date": "2026-11-20",
+"doi": "10.4081/ejh.2026.4833",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.4081/ejh.2026.4833",
+"url_libre": "https://www.ejh.it/ejh/article/view/4833/3890",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psy_digestif",
+"psychogastro",
+"sii"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Étude transversale liant anxiété/dépression et microbiote chez patients SII et MICI vs témoins.",
+"type_etude": "transversale",
+"design": [
+"observationnelle",
+"cas-témoins",
+"monocentrique"
+],
+"population": "139 sujets (39 MICI, 50 SII, 50 témoins sains)",
+"intervention": null,
+"resultats_cles": [
+"Scores HADS anxiété/dépression plus élevés dans SII et MICI vs témoins (p<0,05)",
+"Différences de diversité alpha/bêta du microbiote entre groupes",
+"Corrélations entre scores psychologiques et taxons bactériens spécifiques"
+],
+"conclusion": "Les symptômes anxio-dépressifs et l'alimentation modulent la composition et la diversité du microbiote intestinal dans le SII et les MICI.",
+"limites": [
+"Conception transversale (pas de causalité)",
+"Effectif modéré, monocentrique"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "SII, anxiété, dépression, microbiote, axe intestin-cerveau",
+"mots_cles_fr": [
+"syndrome de l'intestin irritable",
+"anxiété",
+"dépression",
+"microbiote intestinal"
+],
+"titre_court": "Anxiété, dépression et microbiote dans le SII et MICI",
+"conclusion_simple": "Chez les patients SII et MICI, l'anxiété et la dépression sont associées à des altérations du microbiote intestinal, mais la causalité n'est pas établie.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S182700976"
+},
+{
+"id": "doi:10.5281/zenodo.24385787",
+"titre": "A Inconstitucionalidade do Art. 24, V, da Lei Complementar nº 214/2025: Os Limites Constitucionais da Responsabilidade de Terceiros no IBS e na CBS",
+"resume": "O presente estudo examina os limites constitucionais da responsabilidade tributária de terceiros no âmbito do Imposto sobre Bens e Serviços e da Contribuição sobre Bens e Serviços instituídos pela reforma tributária, com foco na controvérsia em torno do artigo 24, inciso V, da Lei Complementar nº 214/2025, cuja crítica doutrinária costuma concentrar-se na compatibilidade infraconstitucional com o Código Tributário Nacional. O objetivo do estudo consiste em identificar os parâmetros constitucionais que restringem a responsabilização de terceiros nesses tributos e testar a validade do referido dispositivo frente a tais balizas, inclusive diante da autorização específica prevista na Constituição para definir sujeitos passivos que concorram para a realização, execução ou pagamento da operação. Metodologicamente, adota-se abordagem dogmático-jurídica conduzida pelo método hipotético-dedutivo, com formulação da hipótese e enfrentamento de hipóteses concorrentes, análise de casos hipotéticos, exame da legislação vigente até novembro de 2026 e seleção de precedentes do Supremo Tribunal Federal e do Superior Tribunal de Justiça. Os principais resultados e discussões demonstram que a divergência frente ao Código Tributário Nacional não basta por si só diante do caráter de lei complementar especial e posterior, mas revelam que a norma impugnada ultrapassa o círculo constitucional de sujeitos passivos, prescinde de dever próprio de colaboração, cria desconsideração administrativa de alcance subjetivo universal e quantitativamente ilimitado na modalidade ligada ao abuso da personalidade jurídica e estende multas punitivas sem correspondência com a conduta do terceiro. Conclui-se que o artigo 24, inciso V, da Lei Complementar nº 214/2025 é materialmente inconstitucional — cabendo interpretação conforme a Constituição apenas subsidiariamente —, sem que sua invalidade gere vazio normativo para condutas constitucionalmente sujeitas à responsabilização.",
+"auteurs": [
+"Célia de Oliveira de Santana",
+"Ricardo Hiroshi Botelho Yoshino",
+"Heber Silveira Rocha"
+],
+"revue": "Zenodo (CERN European Organization for Nuclear Research)",
+"date": "2026-11-20",
+"doi": "10.5281/zenodo.24385787",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.5281/zenodo.24385787",
+"url_libre": "https://doi.org/10.5281/zenodo.24385787",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"sii"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Analyse juridique : article examiné matériellement inconstitucional.",
+"type_etude": "autre",
+"design": [
+"dogmatique-juridique",
+"hypotético-déductive"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Responsabilité de tiers dépasse limites constitutionnelles",
+"Divergence avec code fiscal non suffisante",
+"Amendes punitives sans correspondance"
+],
+"conclusion": "Art. 24, V, LC 214/2025 est matériellement inconstitutionnel.",
+"limites": [
+"Analyse dogmatique-juridique",
+"Sans données empiriques"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Hors domaine clinique du lecteur.",
+"mots_cles_fr": [
+"droit fiscal",
+"terceira partie",
+"constitution",
+"amendes"
+],
+"titre_court": "Inconstitutionnalité du droit fiscal",
+"conclusion_simple": "La norme examinée est jugée inconstitutionnelle, mais ce n’est pas un sujet clinique.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4306400562"
+},
+{
+"id": "doi:10.70882/vvad3a24",
+"titre": "Real-Time PCR-Based Identification of Blastocystis Subtypes and Their Impact on Th1/Th2 Cytokine Balance",
+"resume": "Blastocystis spp., one of the most common intestinal protist species found globally, has many subtype-specific characteristics that have been shown to modify the immune system (e.g., by producing cytokines) as well as being associated with particular gastrointestinal symptoms; however, the relationship between the number of subtypes of Blastocystis and the balance of cytokines produced by the immune system hasn't been fully explored yet, especially when using sensitive molecular diagnostic tests to measure it. This study was conducted to identify Blastocystis subtypes using real-time polymerase chain reaction (RT-PCR) and assess the possible relationship of the subtypes to Th1/Th2 cytokine responses among symptomatic and asymptomatic individuals infected with Blastocystis. Materials and Methods A cross-sectional molecular immunological study was conducted among 180 participants consisting of symptomatic Blastocystis-positive patients, asymptomatic carriers, and healthy controls. Stool samples were analyzed for the detection and molecular characterization of Blastocystis subtypes by RT-PCR targeted to the SSU-rRNA gene. Subtype and sequence-verified positive samples were confirmed by sequencing and subtype analysis. Serum concentrations of Th1 cytokines (IFN-γ, TNF-α, IL-2, and IL-12) and Th2 cytokines (IL-4, IL-5, IL-10, and IL-13) were measured using enzyme-linked immunosorbent assay (ELISA) and statistical analysis was performed using SPSS software (version 27.0), with p-values of <0.05 being statistically significant. RT PCR analysis showed a large diversity in Blastocystis subtypes in the samples that tested positive for this organism with the most frequent subtype being ST3 (40.0%), followed by ST1 (23.6%), ST2 (20.0%), and lastly ST4 (11.4%). ST1 and ST3 were found to have strong positive correlations with symptomatic gastrointestinal manifestations (i.e., abdominal pain, diarrhea, bloating, and irritable bowel syndrome-IIBS-like symptoms). In addition, symptomatic individuals had significantly greater levels of Th1 associated cytokines, particularly IFN-γ, TNF-α, IL-2, and IL-12 (p<0.001), consistent with pro inflammatory immune activation. Conversely, both ST2 and ST4 infections had significantly increased levels of Th2 associated cytokines, (IL-4, IL-10, and IL-13; p<0.001), indicating that these groups had responses primarily in the anti inflammatory and immunoregulatory responses. Correlation analysis supported strong positive correlations between ST1/ST3 infections and Th1 cytokine polarization but also showed positive correlations between ST2/ST4 infections and Th2 cytokine polarization. This study shows that the diversity of Blastocystis subtypes affects the immune response of the host. Subtypes ST1 and ST3 are more likely to cause disease by producing an inflammatory Th1 response, while ST2 and ST4 are more likely to produce an anti-inflammatory Th2 response and asymptomatically colonize. By collecting and analyzing RT-PCR-derived subtypes and cytokine profiles, more information about how Blastocystis infections are caused by the immune system's response can be gathered. This information might be useful in developing better ways to identify and diagnose specific subtypes of Blastocystis that cause different kinds of infection.",
+"auteurs": [
+"Sheimaa J.alsheibany"
+],
+"revue": "Science Forum (Journal of Pure and Applied Sciences)",
+"date": "2026-11-20",
+"doi": "10.70882/vvad3a24",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.70882/vvad3a24",
+"url_libre": "https://atbuscienceforum.com.ng/index.php/jpas/article/view/682",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"sii"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Étude transversale (n=180) liant sous-types Blastocystis à symptômes digestifs et polarisation Th1/Th2: ST1/ST3 pro-inflammatoires, ST2/ST4 anti-inflammatoires.",
+"type_etude": "transversale",
+"design": [
+"cross-sectional",
+"moléculaire",
+"immunologique"
+],
+"population": "180 participants: patients symptomatiques Blastocystis+, porteurs asymptomatiques, témoins sains",
+"intervention": null,
+"resultats_cles": [
+"ST3 dominant (40%), puis ST1 (23,6%), ST2 (20%), ST4 (11,4%)",
+"ST1/ST3 corrélés symptômes SII-like et cytokines Th1 (IFN-γ, TNF-α, IL-2, IL-12, p<0,001)",
+"ST2/ST4 corrélés cytokines Th2 (IL-4, IL-10, IL-13, p<0,001) et portage asymptomatique"
+],
+"conclusion": "Les sous-types Blastocystis influencent la réponse immunitaire: ST1/ST3 causent maladie via réponse Th1 inflammatoire, ST2/ST4 induisent réponse Th2 anti-inflammatoire et colonisation asymptomatique.",
+"limites": [
+"Design transversal, pas de causalité",
+"Étude monocentrique non précisée"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Sous-types Blastocystis liés à symptômes SII-like et réponse immunitaire, pertinent pour psychogastroentérologie",
+"mots_cles_fr": [
+"Blastocystis",
+"sous-types",
+"cytokines",
+"syndrome intestin irritable"
+],
+"titre_court": "Sous-types Blastocystis et équilibre Th1/Th2 dans symptômes digestifs",
+"conclusion_simple": "Étude transversale montrant que les sous-types Blastocystis ST1/ST3 sont associés à des symptômes de type SII et une réponse Th1 pro-inflammatoire, tandis que ST2/ST4 sont liés à une réponse Th2 anti-",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4210210550"
+},
+{
+"id": "doi:10.4081/ejh.2026.4823",
+"titre": "P003 | HISTOMORPHOLOGICAL CHANGES IN THE INTESTINAL WALL OF YOUNG AND OLD MICE: POSSIBLE RELATIONSHIPS WITH THE GUT-BRAIN AXIS",
+"resume": "The intestinal epithelial barrier represents the first line of defense between the internal and external environment. Its alteration can have various consequences, such as increased intestinal permeability, allowing the passage of potential pathogens into the circulation. In addition to the epithelial barrier, a gut-vascular barrier (GVB) has also been identified, consisting of the presence of a complex formed by vascular endothelium, pericytes and surrounding enteric glial cells (EGCs). The relationship between intestinal inflammation and brain changes, such as neurodegeneration is not yet fully understood but underpins the gut-brain axis. The study aimed to investigate changes in the intestinal wall, particularly the epithelial and vascular barriers, of young and old mice. Young (3-month-old) and aged (18-month-old) C57BL/6J mice were used. In all these samples, the following aspects were assessed: (i) intestinal barrier morphology through H&E, (ii) epithelial cell architecture via PAS and IHC, (iii) epithelial integrity using markers such as occludin, (iv) vascular barrier using endothelial cell (CD31), pericyte (desmin) and enteric glial cell markers (GFAP), and (v) macrophage presence (evaluated via IHC and IF for F4/80 and CD68), which plays an essential role in maintaining barrier integrity. The observed changes involved: (i) intestinal villi structure, (ii) the percentages of different intestinal cells, (iii) epithelial junctions, (iv) the number of endothelial, glial cells and intestinal pericytes, and (v) the presence of macrophages in the aged (inflamed) intestine compared to the young (control) intestine. Alterations found in intestinal barriers, both epithelial and vascular, can affect homeostasis, leading to the development of intestinal and extraintestinal diseases along the gut-brain axis.",
+"auteurs": [
+"Orthopedics Sciences"
+],
+"revue": "European Journal of Histochemistry",
+"date": "2026-11-20",
+"doi": "10.4081/ejh.2026.4823",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.4081/ejh.2026.4823",
+"url_libre": "https://www.ejh.it/ejh/article/view/4823/3880",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psychogastro"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "S182700976"
+},
+{
+"id": "doi:10.1038/s41398-026-04420-9",
+"titre": "A pro-inflammatory gut microbiota-metabolic axis in global developmental delay identified by integrated multi-omics",
+"resume": "Global developmental delay (GDD) affects 1–3% of children, yet its etiology remains undetermined in 40–50% of cases despite comprehensive genetic testing. The role of the gut-brain axis in GDD is poorly defined, partly due to prior studies’ reliance on relative microbial abundance metrics. In this hypothesis-generating pilot cross-sectional study, we applied an integrated multi-omics framework combining absolute quantitative 16S rRNA gene sequencing with untargeted metabolomics to characterize the gut ecosystem in 16 young children with GDD (aged ≤3 years) and 20 age-matched healthy controls. Absolute quantification revealed significant enrichment of a pro-inflammatory consortium in the GDD gut microbiome, most notably the Ruminococcus gnavus group (2.15-fold increase, p < 0.05). Untargeted metabolomics identified Ethyl Diethanolamine as the top discriminant metabolite, markedly depleted in the GDD group (FC = 0.73, p < 0.0001). Pathway analysis pinpointed tryptophan metabolism as the most significantly perturbed pathway ( p < 0.001), characterized by a complex, multi-directional shift involving simultaneous upregulation of kynurenine, melatonin, and microbial indole metabolites. Multi-omics integration revealed strong overall microbiota-metabolome concordance alongside GDD-specific disruptions in fine-scale correlation networks. These pilot data suggest a pro-inflammatory gut microbiota–metabolite axis in GDD, potentially driven by expansion of R. gnavus and disruption of tryptophan metabolism. Ethyl Diethanolamine depletion emerges as a novel candidate biomarker, warranting future validation in larger cohorts.",
+"auteurs": [
+"Haiying Liu",
+"Lingyu Wan",
+"Yongmei Zeng",
+"Jindou Hao",
+"Meifen Li",
+"Congfu Huang"
+],
+"revue": "Translational Psychiatry",
+"date": "2026-11-20",
+"doi": "10.1038/s41398-026-04420-9",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.1038/s41398-026-04420-9",
+"url_libre": "https://www.nature.com/articles/s41398-026-04420-9_reference.pdf",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psychogastro"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Étude pilote transversale identifiant un axe microbiote-métabolites pro-inflammatoire dans le retard développemental global chez l'enfant.",
+"type_etude": "transversale",
+"design": [
+"pilote",
+"cross-sectional",
+"multi-omics"
+],
+"population": "16 enfants GDD ≤3 ans, 20 témoins appariés",
+"intervention": null,
+"resultats_cles": [
+"Enrichissement consortium pro-inflammatoire (R. gnavus +2,15x, p<0,05)",
+"Éthyl-diethanolamine déplété (FC=0,73, p<0,0001)",
+"Métabolisme tryptophane perturbé (p<0,001)"
+],
+"conclusion": "Les données suggèrent un axe microbiote-métabolites pro-inflammatoire dans le GDD, potentiellement piloté par R. gnavus et la perturbation du métabolisme du tryptophane.",
+"limites": [
+"Étude pilote, petit effectif (n=36)",
+"Design transversal, pas de causalité"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Axe microbiote-métabolites dans retard développement, peu direct pour SII",
+"mots_cles_fr": [
+"microbiote",
+"métabolomique",
+"retard développement",
+"tryptophane"
+],
+"titre_court": "Microbiote pro-inflammatoire dans retard développemental global",
+"conclusion_simple": "Étude pilote suggérant un axe microbiote-métabolites pro-inflammatoire dans le retard développemental global, à valider sur cohortes plus larges.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S163345920"
+},
+{
+"id": "doi:10.4081/ejh.2026.4842",
+"titre": "P022 | MODIFICATIONS OF NEUTROPHIL EXTRACELLULAR TRAPS IN THE GUT EPITHELIUM OF YOUNG AND AGED MICE: POSSIBLE RELATIONS WITH THE GUT-TO-BRAIN AXIS",
+"resume": "Neutrophils are the most abundant immune cells in mammals, constituting the first defense against pathogens. Recent studies have identified a crucial defense mechanism, known as neutrophil extracellular traps (NETs). NETs are specialized extracellular structures formed by the extrusion of decondensed chromatin from activated neutrophils, composed of DNA with histones and a wide array of proteins, such as neutrophil elastase (NE). NETs play an essential role in aiding innate immunity by trapping, immobilizing, and neutralizing a wide variety of pathogens. It has been reported that in intestinal disorders there is an excessive release of NETs, probably correlated both to the immune response and to neutrophil clearance. The aim of our study was to evaluate the presence of NETs in the intestinal epithelium of young and aged mice. We evaluated the morphology of the intestinal wall and the position of neutrophils through hematoxylin & eosin (H&E) and May Grünwald - Giemsa stain. In addition, we studied the presence of DNA traps using SYTO-13 as selective fluorogenic DNA staining and the expression of Ly6G and NE as specific neutrophilic markers. Comparing intestinal morphology and neutrophil presence between young and aged mice, we found transepithelial migration of neutrophils and localization of NETs at the level of goblet cells in young mice, whereas no such presence in goblet was observed in aged mice. These cells are not only simple and fast producers of mucus, but they are also able to regulate the gastrointestinal (GI) barrier. In conclusion, we showed for the first time the possibility that goblet cells act as a vehicle for NETs from neutrophils to the intestinal lumen. Evidence indicates that, although the degree of NET involvement varies across neurodegenerative diseases, a possible and convergent pathogenic axis emerges linking progressive intestinal injury, sustained neuroinflammation and blood-brain barrier (BBB) dysfunction. Overall, NETs have become a therapeutic target in critical diseases, making it important to explore their signaling pathways to guide possible interventions in intestinal disorders correlated with neurodegeneration along the gut-brain axis.",
+"auteurs": [
+"Orthopaedics Sciences"
+],
+"revue": "European Journal of Histochemistry",
+"date": "2026-11-20",
+"doi": "10.4081/ejh.2026.4842",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.4081/ejh.2026.4842",
+"url_libre": "https://www.ejh.it/ejh/article/view/4842/3899",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psychogastro"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "S182700976"
+},
+{
+"id": "doi:10.36017/jahc202684658",
+"titre": "Interprofessional Management of Anxiety in Claustrophobic Patients Undergoing Magnetic Resonance Imaging",
+"resume": "Magnetic Resonance Imaging (MRI) is an essential diagnostic modality across a wide range of clinical settings. However, anxiety and claustrophobia remain common barriers to successful examination completion, potentially compromising image quality, patient experience, and healthcare service efficiency. This systematic review aimed to evaluate the effectiveness of non-pharmacological interventions implemented by the MRI team, with particular emphasis on the collaborative role of nurses and radiographers in the management of anxiety and claustrophobia among adult patients undergoing MRI. A literature search was conducted in PubMed/MEDLINE between September and October 2025, following the PRISMA 2020 guidelines and a research question developed according to the PICO framework. Studies published between 2008 and 2025 investigating MRI-related anxiety or claustrophobia and evaluating nursing, communicative, educational, or other non-pharmacological interventions were considered eligible. Of the 190 records initially identified, nine studies met the inclusion criteria and were included in the final narrative synthesis. The findings indicate that MRI-related anxiety is highly prevalent and may result in motion artefacts, premature examination termination, reduced patient cooperation, and an increased need for sedation. Interventions such as therapeutic communication, structured patient education, emotional support, breathing and relaxation techniques, music therapy, mindfulness, and immersive technologies demonstrated beneficial effects in reducing anxiety and improving examination tolerability. The available evidence suggests that a multidisciplinary, patient-centred approach can facilitate successful examination completion, improve diagnostic outcomes, and reduce the need for pharmacological interventions.",
+"auteurs": [
+"Calogero Curatolo",
+"Elisa Maria Daniele",
+"Maria Chiara Amato",
+"Mario Caruso",
+"Gaetano Faraci",
+"Santoro Vincenzo",
+"Giuseppe Maria Vaccaro"
+],
+"revue": "Journal of Advanced Health Care",
+"date": "2026-11-20",
+"doi": "10.36017/jahc202684658",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "https://doi.org/10.36017/jahc202684658",
+"url_libre": "https://doi.org/10.36017/jahc202684658",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"psychotherapies"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Revue systématique (9 études) soutenant l'efficacité d'approches multidisciplinaires non pharmacologiques pour réduire l'anxiété et la claustrophobie en IRM.",
+"type_etude": "revue systématique",
+"design": [
+"revue systématique",
+"PRISMA",
+"synthèse narrative"
+],
+"population": "patients adultes claustrophobes/anxieux en IRM (9 études incluses)",
+"intervention": "interventions non pharmacologiques (communication, éducation, relaxation, musique, pleine conscience, technologies immersives) par équipe IRM",
+"resultats_cles": [
+"Anxiété IRM très prévalente, cause artefacts, arrêts prématurés, sédation",
+"Communication thérapeutique, éducation, relaxation, musique, pleine conscience, technologies immersives réduisent l'anxiété",
+"Approche multidisciplinaire centrée patient facilite réalisation examen, réduit pharmacologie"
+],
+"conclusion": "Une approche multidisciplinaire centrée sur le patient peut faciliter la réalisation de l'examen, améliorer les résultats diagnostiques et réduire le besoin d'interventions pharmacologiques.",
+"limites": [
+"Seulement 9 études, synthèse narrative sans méta-analyse",
+"Hétérogénéité probable des interventions et mesures"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Interventions non pharmacologiques pour anxiété/claustrophobie en IRM, dont relaxation, pleine conscience, pertinentes pour pratique clinique",
+"mots_cles_fr": [
+"claustrophobie",
+"IRM",
+"anxiété",
+"interventions non pharmacologiques"
+],
+"titre_court": "Gestion interprofessionnelle de l'anxiété en IRM chez claustrophobes",
+"conclusion_simple": "Revue systématique indiquant que les approches multidisciplinaires non pharmacologiques (communication, relaxation, pleine conscience, technologies immersives) réduisent l'anxiété en IRM et améliorent",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4394735677"
+},
+{
+"id": "t:digitalaccessibilityandneurodivergence",
+"titre": "Digital Accessibility and Neurodivergence",
+"resume": "This research aims to find how students at Gonzaga University interact or struggle with required digital educational materials, and if neurological conditions play a role in that interaction. We hypothesize that students with neurological conditions like ADHD, Autism, OCD, Dyslexia, or others experience greater difficulty.",
+"auteurs": [
+"Stivers",
+"Douglas A. Addleman",
+"Jeremy Orona"
+],
+"revue": "OSF Preprints (OSF Preprints)",
+"date": "2026-11-19",
+"doi": "",
+"pmid": "",
+"pmcid": "",
+"nct": "",
+"url": "",
+"url_libre": "https://osf.io/658rh",
+"types": [
+"preprint"
+],
+"preprint": true,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"openalex"
+],
+"themes": [
+"arfid_toc"
+],
+"ajoute_le": "2026-11-23",
+"fiche": null,
+"revue_oa": "S4306401127"
+},
+{
+"id": "doi:10.1016/j.psychres.2026.117581",
+"titre": "Predicting the naturalistic course of obsessive-compulsive disorder during two-year follow-up in adolescence",
+"resume": "OBJECTIVE: Obsessive-compulsive disorder (OCD) during adolescence follows heterogeneous trajectories, from remission to persistence. Early identification of these patterns is crucial for optimizing clinical management. This study examined whether behavior symptoms or neuroimaging data could predict the persistence of OCD diagnosis at two-year follow-up. METHODS: 492 children between 9-10 years old with OCD were selected from Adolescent Brain Cognitive Development (ABCD) study. They were classified as persisters or remitters by clinical status at two year follow-up. Baseline Child Behavior Checklist (CBCL) item scores and multimodality MRI measures were used to examine behavioral and neuroimaging differences associated with follow-up OCD diagnostic status. We further applied machine learning models to predict individual symptom persistence using CBCL scores alone, MRI features alone from single modality or multimodal data, and combined CBCL and MRI features. RESULTS: Group-level CBCL and neuroimaging analyses identified significant behavioral, structural and functional brain differences at baseline between persisters and remitters. The best-performing CBCL model demonstrated limited discriminative ability (AUCbest = 0.638). In comparison, the best MRI-derived model, utilizing resting-state fMRI (rsfMRI) features, performed slightly above chance (AUCbest = 0.577). Integrating rsfMRI features with CBCL improved performance only marginally and non-significantly (AUCbest = 0.665). Integrating rsfMRI features with CBCL did not significantly outperform the CBCL-only model, although the performance was numerically higher (AUCbest = 0.665). Feature-importance analyses suggested that the most clinically informative signals were compulsive behavior and functional connectivity linking large scale networks with widely distributed subcortical regions. CONCLUSION: These findings suggest that OCD persistence follow-up OCD outcome is related to distinct clinical symptoms and brain measures. However, the accuracy to predict diagnosis is limited, indicating that OCD persistence naturalistic course is difficult to predict from clinical and neuroimaging data evaluated here.",
+"auteurs": [
+"Zhong Z",
+"Hou J",
+"van de Mortel LA",
+"Smit DJ",
+"van Wingen GA"
+],
+"revue": "Psychiatry research",
+"date": "2026-11-18",
+"doi": "10.1016/j.psychres.2026.117581",
+"pmid": "43068604",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43068604/",
+"url_libre": "https://doi.org/10.1016/j.psychres.2026.117581",
+"types": [],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"arfid_toc"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Les données cliniques et d'IRM à l'inclusion peinent à prédire individuellement la persistance du TOC à 2 ans chez l'adolescent.",
+"type_etude": "cohorte",
+"design": [
+"longitudinale",
+"suivi à 2 ans"
+],
+"population": "492 enfants (9-10 ans) avec TOC (cohorte ABCD)",
+"intervention": null,
+"resultats_cles": [
+"Différences comportementales et cérébrales à l'inclusion entre TOC persistants et en rémission.",
+"Pouvoir discriminant limité : CBCL seul (AUC = 0,638), IRMf de repos seule (AUC = 0,577).",
+"L'ajout de l'IRMf au CBCL n'améliore pas significativement la prédiction (AUC = 0,665)."
+],
+"conclusion": "L'évolution naturelle du TOC à l'adolescence est difficile à prédire individuellement à partir des données cliniques et de neuro-imagerie évaluées.",
+"limites": [
+"Précision prédictive limitée (AUC < 0,67)",
+"Données d'imagerie peu informatives en pratique clinique"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Concerne les TOC, mais chez l'adolescent et centré sur la neuro-imagerie.",
+"mots_cles_fr": [
+"TOC",
+"adolescence",
+"neuro-imagerie",
+"prédiction"
+],
+"titre_court": "Prédire l'évolution du TOC chez l'adolescent",
+"conclusion_simple": "Les symptômes et l'IRM ne suffisent pas encore à prédire individuellement la persistance du TOC chez l'adolescent.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
+"revue_oa": "S84074229",
+"libre_verifie": "2026-11-23"
+},
+{
+"id": "pmid:43068370",
+"titre": "[Mediterranean diet in irritable bowel syndrome]",
+"resume": "Irritable bowel syndrome (IBS) is the most common functional gastrointestinal disorder; it is diagnosed according to the Rome IV criteria and is characterized by abdominal pain and altered bowel habits. The therapeutic approach to IBS is based on a multidisciplinary biopsychosocial model that includes nutritional interventions. The highest evidence-based dietary strategy is the low-FODMAP diet; however, due to its restrictive nature and negative impact on the gut microbiota, its long-term use is limited. Therefore, there is a need for a sustainable dietary approach for the long-term management of IBS. The Mediterranean diet (MedDiet), recommended by the Israeli Ministry of Health as part of a healthy lifestyle, emphasizes a high and varied intake of vegetables, fruits, legumes, whole grains, nuts, olive oil, and fish, alongside the moderate consumption of poultry and dairy products, while reducing the intake of ultra-processed foods and saturated fats. In recent years, the potential role of MedDiet in IBS management has been explored. Epidemiological studies have demonstrated an inverse association between adherence to the Mediterranean pattern and gastrointestinal symptoms, while intervention studies have shown its feasibility and efficacy. Specifically, a 2024 randomized controlled trial found significantly greater symptom improvement in the MedDiet group compared to the control group (83% vs. 37%), and a 2025 study demonstrated superior outcomes for a low-FODMAP Mediterranean diet compared with the NICE guidelines. These findings suggest that the Mediterranean diet may serve as an effective, balanced, and sustainable long-term nutritional strategy for IBS management, tailored and monitored by a dietitian within a multidisciplinary framework.",
+"auteurs": [
+"Pfeffer-Gik T",
+"Dickman R"
+],
+"revue": "Harefuah",
+"date": "2026-11-01",
+"doi": "",
+"pmid": "43068370",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43068370/",
+"url_libre": "",
+"types": [
+"Review",
+"English Abstract"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"sii"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Revue : MedDiet potentiellement efficace et durable pour IBS, après low-FODMAP.",
+"type_etude": "autre",
+"design": [
+"revue"
+],
+"population": "Adultes avec syndrome de l’intestin irritable (IBS) ; n non précisé",
+"intervention": "Mediterranean diet vs contrôle ; low-FODMAP MedDiet vs NICE",
+"resultats_cles": [
+"2024 RCT : amélioration symptômes MedDiet vs contrôle (83% vs 37%)",
+"2025 : low-FODMAP MedDiet supérieur aux guidelines NICE",
+"IBS : low-FODMAP meilleure preuve, mais restrictif"
+],
+"conclusion": "MedDiet peut être stratégie durable pour IBS, complément low-FODMAP.",
+"limites": [
+"Low-FODMAP long terme limité",
+"Preuves insuffisantes causalité"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Directement pertinent pour IBS et approche nutritionnelle.",
+"mots_cles_fr": [
+"IBS",
+"Mediterranean diet",
+"low-FODMAP",
+"Rome IV"
+],
+"titre_court": "Régime méditerranéen et IBS",
+"conclusion_simple": "Le régime méditerranéen semble utile pour le IBS, mais les limites des preuves restent.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-23"
+}
+},
+{
+"id": "pmid:43068363",
+"titre": "[Gastroenterology in Israel: quality, innovation, and prevention]",
+"resume": "This issue of Harefuah highlights the breadth of contemporary gastroenterology in Israel, spanning the Mediterranean diet in irritable bowel syndrome, gastrointestinal complications of diabetes, future therapies for celiac disease, and the central role of colonoscopy quality metrics and adequate bowel preparation. Alongside these reviews and position statements, the issue includes case reports that emphasize a broad differential diagnosis and complex therapeutic solutions, including Wernicke encephalopathy as a presenting feature of celiac disease, primary intestinal lymphangiectasia, and severe malnutrition after gastric bypass surgery. It also presents a position paper on surveillance of individuals at increased risk for pancreatic malignancy, defining risk groups, recommended workup and multidisciplinary follow-up, while underscoring the importance of reducing modifiable risk factors.",
+"auteurs": [
+"Boltin D",
+"Ungar B"
+],
+"revue": "Harefuah",
+"date": "2026-11-01",
+"doi": "",
+"pmid": "43068363",
+"pmcid": "",
+"nct": "",
+"url": "https://pubmed.ncbi.nlm.nih.gov/43068363/",
+"url_libre": "",
+"types": [
+"Editorial",
+"English Abstract",
+"Introductory Journal Article"
+],
+"preprint": false,
+"retracte": false,
+"essai_registre": false,
+"sources": [
+"pubmed"
+],
+"themes": [
+"sii"
+],
+"ajoute_le": "2026-11-23",
+"fiche": {
+"verdict": "Éditorial : divers sujets de gastroentérologie en Israël.",
+"type_etude": "autre",
+"design": [
+"éditorial"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Éditorial couvre large panorama gastro en Israël",
+"IBS, diabète, cœlia, qualité colonoscopy",
+"Cas et position paper"
+],
+"conclusion": "Cet éditorial présente panorama de gastroentérologie israélienne.",
+"limites": [
+"Éditorial, pas preuve",
+"Données non systématiques"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Hors cible principale, mais IBS et colonoscopy.",
+"mots_cles_fr": [
+"gastroentérologie",
+"Israël",
+"IBS",
+"colonoscopy"
+],
+"titre_court": "Gastroentérologie en Israël : éditorial",
+"conclusion_simple": "Cet éditorial présente un panorama large de la gastroentérologie israélienne.",
+"modele": "recursive/flint-v1.0:free",
+"date": "2026-11-23"
+}
+},
+{
 "id": "doi:10.1016/j.endien.2026.501875",
 "titre": "Home subcutaneous hydration as an alternative to intravenous therapy in a patient with high output ileostomy: A case report",
 "resume": "High-output ileostomy represents a significant clinical challenge due to its association with dehydration, electrolyte imbalances, acute kidney injury, and frequent hospital readmissions, often requiring prolonged intravenous (IV) fluid therapy. We report the case of a 54-year-old woman with a terminal ileostomy following emergency intestinal resection, presenting persistent high stoma output (2200-2500 mL/day) and dependence on daily IV hydration despite optimized treatment. As early intestinal reconstruction was not feasible, a home-based subcutaneous hydration system (500-700 mL/day) was implemented, enabling hospital discharge and maintenance of adequate hydration. The patient developed one episode of local cellulitis, which resolved with oral antibiotics. During follow-up, progressive intestinal adaptation was observed, with reduced stoma output and improved diuresis. Body weight remained stable, and muscle mass and function improved. Home subcutaneous hydration appears to be a safe and effective alternative that enhances quality of life and reduces hospitalizations.",
@@ -90,20 +1434,55 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43066927/",
-"url_libre": "",
+"url_libre": "https://doi.org/10.1007/s13555-026-01893-w",
 "types": [],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"openalex",
 "pubmed"
 ],
 "themes": [
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
-"revue_oa": "",
+"fiche": {
+"verdict": "Étude rétrospective monocentrique (n=26) : dupilumab efficace sur prurit et lésions en vie réelle, comorbidité psychiatrique liée à moindre réponse.",
+"type_etude": "cohorte",
+"design": [
+"rétrospectif",
+"monocentrique",
+"observationnel"
+],
+"population": "26 adultes prurigo nodulaire modéré-sévère",
+"intervention": "dupilumab (sans comparateur)",
+"resultats_cles": [
+"59% réponse prurit (≥4 pts WI-NRS) à 24 sem",
+"45% réponse clinique IGA PN-S 0/1",
+"Comorbidité psychiatrique (73%) associée à moindre réponse prurit"
+],
+"conclusion": "Dupilumab montre une efficacité et une sécurité réelles en prurigo nodulaire chronique modéré-sévère, soutenant une prise en charge individualisée.",
+"limites": [
+"Petit effectif (n=26)",
+"Rétrospectif sans groupe contrôle"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Dermatologie, hors champ gastro-psychologie",
+"mots_cles_fr": [
+"Prurigo nodulaire",
+"Dupilumab",
+"Vie réelle",
+"Comorbidité psychiatrique"
+],
+"titre_court": "Dupilumab dans le prurigo nodulaire chronique (vie réelle)",
+"conclusion_simple": "Dupilumab efficace en vie réelle sur prurit et lésions, mais comorbidité psychiatrique fréquente et associée à moindre réponse ; étude petite et rétrospective.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S4210222097",
 "libre_verifie": "2026-11-22"
 },
 {
@@ -164,14 +1543,41 @@
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"openalex",
 "pubmed"
 ],
 "themes": [
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
-"revue_oa": "",
+"fiche": {
+"verdict": "Cette revue aide les chirurgiens à diagnostiquer le prolapsus rectal et à orienter la décision chirurgicale éclairée chez les patients âgés.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Prévalence croissante du prolapsus rectal avec l'âge",
+"Incontinence fécale sévère impactant la qualité de vie",
+"Chirurgie mini-invasive élargit les options de réparation"
+],
+"conclusion": "Aide chirurgiens à poser le bon diagnostic et à soutenir la décision chirurgicale éclairée.",
+"limites": [],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Peu pertinent pour la pratique en psychogastroentérologie fonctionnelle.",
+"mots_cles_fr": [
+"prolapsus rectal",
+"incontinence fécale",
+"chirurgie"
+],
+"titre_court": "Prolapsus rectal : décision abdominale vs périnéale",
+"conclusion_simple": "Les chirurgiens doivent affiner le diagnostic et accompagner les patients dans le choix chirurgical, bien que les données soient issues d'une revue narrative.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S113474406",
 "libre_verifie": "2026-11-22"
 },
 {
@@ -272,7 +1678,36 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "L'ACT réduit l'anxiété, la dépression, la fatigue et le stress, améliore la QoL en cancérologie, mais l'hétérogénéité limite les effets.",
+"type_etude": "revue systématique",
+"design": [],
+"population": null,
+"intervention": "ACT",
+"resultats_cles": [
+"Réduction significative de l'anxiété, de la dépression, de la fatigue et du stress",
+"Amélioration de la qualité de vie",
+"Hétérogénéité élevée en QoL warrantant prudence"
+],
+"conclusion": "Malgré hétérogénéité en QoL et possible biais de publication, l'ACT montre un bénéfice constant sur les résultats, mais les effets pooled doivent être interprétés prudemment.",
+"limites": [
+"hétérogénéité élevée en QoL",
+"possible biais de publication"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intérêt pour ACT et approches TCC en oncologie et maladies chroniques.",
+"mots_cles_fr": [
+"ACT",
+"cancer",
+"anxiété"
+],
+"titre_court": "ACT sur anxiété, dépression, fatigue, stress, QoL",
+"conclusion_simple": "L'ACT améliore l'anxiété, la dépression, la fatigue, le stress et la QoL en cancérologie, mais l'hétérogénéité en QoL et un possible biais de publication limitent l'interprétation des effets.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-23"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-22"
 },
@@ -347,14 +1782,49 @@
 "retracte": false,
 "essai_registre": false,
 "sources": [
+"openalex",
 "pubmed"
 ],
 "themes": [
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
-"revue_oa": "",
+"fiche": {
+"verdict": "RCT grand groupe (n=519) : exposition unique peur avion efficace à 3 ans, sans différence entre 4 stratégies d'augmentation.",
+"type_etude": "essai randomisé",
+"design": [
+"grand groupe",
+"séance unique",
+"suivi 3 ans"
+],
+"population": "519 patients phobie avion, 308 évalués à 3 ans",
+"intervention": "exposition groupe unique vs 4 stratégies (soutien, auto-efficacité, violation attente, coping)",
+"resultats_cles": [
+"Amélioration soutenue significative à 3 ans sur toutes mesures (p<.001)",
+"Aucune différence entre les 4 stratégies d'augmentation",
+"Effets robustes et durables"
+],
+"conclusion": "L'intervention d'exposition en groupe unique pour la peur de l'avion démontre des effets robustes et durables sur 3 ans, indépendamment de la stratégie d'augmentation.",
+"limites": [
+"Perte de suivi 36% à 3 ans",
+"Auto-questionnaires uniquement"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Phobie spécifique avion, hors champ digestif",
+"mots_cles_fr": [
+"Peur de l'avion",
+"Exposition en groupe",
+"Suivi 3 ans",
+"Stratégies d'augmentation"
+],
+"titre_court": "Exposition en groupe pour peur de l'avion : suivi 3 ans",
+"conclusion_simple": "L'exposition en groupe unique pour la peur de l'avion montre une efficacité durable à 3 ans, sans supériorité d'une stratégie d'augmentation sur l'autre.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S184803288",
 "libre_verifie": "2026-11-22"
 },
 {
@@ -804,7 +2274,40 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Chez la souris, le diabète de type 2 modifie le métabolome cérébral, le microbiome intestinal et la cognition de façon sexe-dépendante.",
+"type_etude": "expérimentale",
+"design": [
+"modèle animal",
+"comparative"
+],
+"population": "Souris mâles et femelles db/db (diabète type 2) et sauvages (WT) âgées de 9 mois",
+"intervention": null,
+"resultats_cles": [
+"Chez db/db vs WT : hausse des acides gras cérébraux, corticostérone élevée et altération du microbiome intestinal.",
+"Profils métaboliques et microbiens distincts selon le sexe (Turicibacter chez les femelles, Kineothrix/Alistipes chez les mâles).",
+"Dysfonctionnement cognitif (Y-maze) observé uniquement chez les souris mâles db/db."
+],
+"conclusion": "Le développement du diabète de type 2 au cours du vieillissement induit des modifications sexe-dépendantes du métabolome cérébral, du microbiome et de la cognition.",
+"limites": [
+"Modèle murin non transposable directement à l'humain",
+"Effectifs non précisés dans l'abstract"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Aborde l'axe intestin-cerveau, mais sur modèle animal de diabète.",
+"mots_cles_fr": [
+"axe intestin-cerveau",
+"microbiome",
+"diabète type 2",
+"cognition"
+],
+"titre_court": "Diabète et axe intestin-cerveau chez la souris",
+"conclusion_simple": "Chez la souris, le diabète modifie l'axe intestin-cerveau et la cognition selon le sexe, mais cela reste préclinique.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S2764402194"
 },
 {
@@ -897,7 +2400,38 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Programme en ligne de 7 jours ACT auto-en contexte réduit l'anxiété chez femmes russes, maintien partiel à 4 semaines.",
+"type_etude": "essai randomisé",
+"design": [
+"essai randomisé"
+],
+"population": "676 femmes russes 20-60 ans",
+"intervention": "ACT isolé vs wait-list",
+"resultats_cles": [
+"676 femmes russes 20-60 ans",
+"ACT isolé en programme en ligne de 7 jours",
+"325/338 complétées à 4 semaines"
+],
+"conclusion": "Le composant auto-en contexte de l'ACT en ligne de 7 jours réduit l'anxiété chez femmes russes, avec maintien partiel à 4 semaines.",
+"limites": [
+"échelle de frustration sociale non analysée",
+"taux de suivi partiel 325/338"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intérêt pour ACT et auto-en contexte en anxiété, mais population spécifique.",
+"mots_cles_fr": [
+"ACT",
+"auto-en contexte",
+"anxiété"
+],
+"titre_court": "Auto-en contexte ACT anxiété femmes adultes",
+"conclusion_simple": "L'ACT en composant auto-en contexte en ligne réduit l'anxiété chez femmes russes, avec maintien partiel à 4 semaines.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -1130,7 +2664,38 @@
 "sii"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Cette étude qualitative montre que entrepreneurs IBS en Malaisie associent CE au recyclage, mais connaissances limitées freinent son intégration durable.",
+"type_etude": "qualitative",
+"design": [
+"entretiens semi-structurés"
+],
+"population": "20 entrepreneurs IBS",
+"intervention": null,
+"resultats_cles": [
+"Association CE avec séparation déchets et recyclage",
+"Connaissances CE limitées freinent optimisation",
+"Matrice STEEP identifie freins et leviers"
+],
+"conclusion": "Les entrepreneurs IBS en Malaisie lient CE au recyclage, mais connaissances limitées freinent son intégration pour le développement durable.",
+"limites": [
+"résultats spécifiques à la Malaisie",
+"connaissances CE limitées chez entrepreneurs"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Absolument sans rapport avec la pratique clinique en psychogastroentérologie.",
+"mots_cles_fr": [
+"économie circulaire",
+"IBS",
+"déchets"
+],
+"titre_court": "Entrepreneurs IBS économie circulaire",
+"conclusion_simple": "Les entrepreneurs IBS en Malaisie associent CE au recyclage, mais connaissances limitées freinent son intégration durable.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S7407050775"
 },
 {
@@ -1479,7 +3044,36 @@
 "sii"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "La réforme fiscale conserve la Zone Franca jusqu'en 2073, reconfigurant les incitations via IBS et CBS, avec simulations à taux hypothétiques.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Zone Franca maintenue jusqu'en 2073",
+"Transfert des incitations de IPI/ICMS vers IBS/CBS",
+"Simulations avec taux IBS 17,7% et CBS 8,8%"
+],
+"conclusion": "La réforme fiscale préserve la Zone Franca jusqu'en 2073 en reconfigurant les incitations, avec des simulations basées sur des taux IBS et CBS.",
+"limites": [
+"taux hypothétiques non officiels",
+"législations et interprétations divergentes"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Absolument sans rapport avec la pratique clinique en psychogastroentérologie.",
+"mots_cles_fr": [
+"Zone Franca",
+"réforme fiscale",
+"IBS"
+],
+"titre_court": "Zone Franca Manaus : réforme fiscale et compétitivité",
+"conclusion_simple": "La réforme fiscale conserve la Zone Franca jusqu'en 2073, reconfigurant les incitations via IBS et CBS, avec simulations à taux hypothétiques.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -1510,7 +3104,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Des modèles d'apprentissage par survie prédisent efficacement les échecs de livraison et réduisent les émissions de CO2 en logistique.",
+"type_etude": "autre",
+"design": [
+"benchmark",
+"simulation"
+],
+"population": "60 000 commandes de livraison technique",
+"intervention": "Modèles de survie (Random Survival Forest, Cox) vs modèles statistiques de base",
+"resultats_cles": [
+"Le modèle Enhanced Random Survival Forest obtient une bonne discrimination (C-index ≈ 0,84, AUC = 0,8450).",
+"La charge de travail, les contraintes urbaines et thermiques influencent le risque d'échec.",
+"La surveillance proactive en cours de route réduit les perturbations et les émissions de CO2."
+],
+"conclusion": "L'apprentissage par survie permet de prédire et de réduire les échecs de livraison dans la logistique du dernier kilomètre.",
+"limites": [
+"Preprint non évalué par les pairs",
+"Hors domaine médical et psychologique"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Étude de logistique sans aucun lien avec la pratique clinique.",
+"mots_cles_fr": [
+"logistique",
+"analyse de survie",
+"machine learning"
+],
+"titre_court": "Prédire les échecs de livraison en logistique",
+"conclusion_simple": "Étude de logistique sans aucun rapport avec la pratique clinique ou la psychogastroentérologie.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -1745,7 +3371,37 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative suggérant l'intérêt des probiotiques/prébiotiques sur le microbiote dans Parkinson, principalement efficace sur la constipation.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": "Probiotiques, prébiotiques, synbiotiques et stratégies nutritionnelles",
+"resultats_cles": [
+"Bénéfice clinique le plus constant des probiotiques sur les symptômes gastro-intestinaux (constipation).",
+"Effets incertains sur les paramètres inflammatoires et neurologiques.",
+"Preuves limitées concernant la modification du cours de la maladie."
+],
+"conclusion": "Les interventions microbiennes et nutritionnelles sont bien tolérées mais nécessitent des essais randomisés spécifiques pour établir leur efficacité.",
+"limites": [
+"Absence de méta-analyse ou d'évaluation méthodologique formelle",
+"Données probantes très limitées sur la modification de la maladie"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Pertinent uniquement pour le volet constipation/microbiote de la maladie de Parkinson.",
+"mots_cles_fr": [
+"Parkinson",
+"microbiote",
+"constipation",
+"probiotiques"
+],
+"titre_court": "Microbiote et nutrition dans la maladie de Parkinson",
+"conclusion_simple": "L'ajustement du microbiote par la nutrition et les probiotiques soulage principalement la constipation dans Parkinson sans preuve d'effet neurologique direct.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -2091,7 +3747,37 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Les interventions d'autocompassion réduisent l'anxiété et la dépression chez l'enfant/adolescent, mais les preuves actuelles restent très préliminaires.",
+"type_etude": "revue systématique",
+"design": [],
+"population": "8 études (n=324 participants, dont 2 études chez l'enfant n=44)",
+"intervention": "Interventions basées sur l'autocompassion",
+"resultats_cles": [
+"Enfants : réduction significative de l'anxiété et des symptômes dépressifs pré-post intervention.",
+"Adolescents : réduction significative de l'anxiété, résultats mixtes pour la dépression et le stress.",
+"Risque de biais global élevé dans la majorité des études incluses."
+],
+"conclusion": "L'autocompassion semble bénéfique pour les enfants et adolescents mais les données restent trop limitées et préliminaires.",
+"limites": [
+"Fort risque de biais (absence d'aveugle et de groupe contrôle)",
+"Taille d'échantillon très faible (seulement 44 enfants)"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "faible",
+"pertinence": 4,
+"pertinence_raison": "Utile pour la prise en charge de l'anxiété/autocompassion chez le jeune public.",
+"mots_cles_fr": [
+"autocompassion",
+"anxiété",
+"dépression",
+"pédiatrie"
+],
+"titre_court": "Autocompassion et bien-être chez l'enfant et l'adolescent",
+"conclusion_simple": "L'autocompassion montre des signaux positifs sur l'anxiété des jeunes, mais le faible nombre d'études invite à la prudence.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S4210224676"
 },
 {
@@ -2225,7 +3911,40 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Une intervention psychologique graduée réduit la détresse, l'anxiété, la dépression et le risque suicidaire chez des patients traités pour cancer du foie.",
+"type_etude": "essai randomisé",
+"design": [
+"monocentrique",
+"non pré-enregistré"
+],
+"population": "98 patients atteints de cancer du foie (TACE + thérapie ciblée)",
+"intervention": "Soins psychologiques gradués selon le risque vs soins infirmiers de routine (n=49/groupe)",
+"resultats_cles": [
+"Réductions supérieures de la détresse (DT), du risque suicidaire (NGASR), de l'anxiété (SAS) et dépression (SDS) à 4 semaines.",
+"Diminution des odds de détresse significative (aOR=0,31, p=0,014) et de risque suicidaire élevé (aOR=0,27, p=0,018).",
+"Meilleure adhésion thérapeutique (95,92% vs 77,55%, p=0,007) et moins d'événements de sécurité."
+],
+"conclusion": "L'intervention psychologique graduée améliore la détresse, l'humeur, le risque suicidaire et l'adhésion à court terme chez ces patients.",
+"limites": [
+"Taille d'échantillon réduite et suivi court à 4 semaines",
+"Absence de pré-enregistrement du protocole d'essai"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intérêt méthodologique pour la prise en charge graduée de l'anxiété/dépression en oncologie.",
+"mots_cles_fr": [
+"intervention graduée",
+"oncologie",
+"détresse",
+"suicide"
+],
+"titre_court": "Intervention psychologique graduée en oncologie hépatique",
+"conclusion_simple": "Une prise en charge psychologique stratifiée selon le risque diminue la détresse et le risque suicidaire à court terme en oncologie.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S2764369821"
 },
 {
@@ -2517,7 +4236,40 @@
 "sii"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Le choix des métriques d'évaluation et les caractéristiques des données influencent fortement les performances des modèles d'analyse de survie.",
+"type_etude": "autre",
+"design": [
+"benchmark",
+"modélisation bayésienne"
+],
+"population": "49 jeux de données divers",
+"intervention": "Comparaison de 10 méthodes d'analyse de survie selon le critère de sélection (C-index, IBS, MAE-PO)",
+"resultats_cles": [
+"Optimiser l'IBS plutôt que le C-index améliore la calibration des modèles complexes (deep learning, arbres).",
+"Les performances dépendent de la taille d'échantillon et de la dimensionnalité.",
+"Une censure importante gonfle artificiellement les métriques de calibration."
+],
+"conclusion": "Les résumés de performance uniques sont insuffisants ; les études d'analyse de survie doivent rapporter de manière transparente leur protocole d'évaluation.",
+"limites": [
+"Preprint non évalué par les pairs",
+"Étude purement méthodologique et informatique"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Méthodologie statistique pure sans application clinique directe.",
+"mots_cles_fr": [
+"analyse de survie",
+"benchmark",
+"deep learning",
+"méthodologie"
+],
+"titre_court": "Impact du choix des métriques en analyse de survie",
+"conclusion_simple": "Article purement méthodologique sur l'évaluation des modèles de survie, sans intérêt clinique direct.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306400194"
 },
 {
@@ -2546,7 +4298,37 @@
 "sii"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Dépôt de données et de code R pour reproduire une analyse de progressivité fiscale sur l'alimentation au Brésil.",
+"type_etude": "autre",
+"design": [
+"transversale",
+"reproductibilité"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Mise à disposition de scripts R et planilhas de classification des dépenses alimentaires.",
+"Exécution séquentielle validée produisant des résultats identiques sur 58 valeurs numériquement testées."
+],
+"conclusion": "Les matériels permettent la reproductibilité exacte des analyses fiscales sur la panier de la ménagère à partir des microdonnées POF 2017-2018.",
+"limites": [
+"Microdonnées originales non incluses dans le dépôt (accès source requise)"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Hors sujet (économie fiscale au Brésil).",
+"mots_cles_fr": [
+"économie",
+"reproductibilité",
+"données"
+],
+"titre_court": "Matériel de reproductibilité fiscale sur la panier aliment",
+"conclusion_simple": "Ce travail met uniquement à disposition des outils d'analyse économique et n'a pas d'application en psychologie ou gastroentérologie.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -2624,7 +4406,37 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Revue synthétisant les liens bidirectionnels entre troubles du sommeil et dépression, soulignant l'efficacité des TCC de l'insomnie.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": "TCC-I, pharmacothérapie, luminothérapie, thérapie par l'éveil",
+"resultats_cles": [
+"L'insomnie prospective double environ le risque de développer une dépression ultérieure.",
+"La TCC-I améliore le sommeil, réduit les symptômes dépressifs et présente un effet préventif chez les jeunes à risque.",
+"La luminothérapie constitue un bon adjuvant dans la dépression non saisonnière."
+],
+"conclusion": "Les troubles du sommeil doivent être évalués et traités en parallèle des symptômes dépressifs fondamentaux via une approche ciblée.",
+"limites": [
+"Absence de méta-analyse formelle",
+"Pas d'évaluation rigoureuse du risque de biais des études incluses"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "faible",
+"pertinence": 3,
+"pertinence_raison": "Utile pour la prise en charge des comorbidités d'anxiété/dépression et l'usage de la TCC.",
+"mots_cles_fr": [
+"sommeil",
+"insomnie",
+"dépression",
+"TCC"
+],
+"titre_court": "Troubles du sommeil et dépression : mécanismes et TCC",
+"conclusion_simple": "Traiter le sommeil par des interventions ciblant l'insomnie permet d'optimiser la prise en charge et la prévention des symptômes dépressifs.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S33826441"
 },
 {
@@ -3180,7 +4992,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "Efficacité à 14 semaines comparable entre vedolizumab et infliximab dans la RCH, avec moins d'effets indésirables et un coût moindre sous vedolizumab.",
+"type_etude": "cohorte",
+"design": [
+"rétrospective",
+"comparative",
+"monocentrique"
+],
+"population": "96 adultes naïfs de biothérapie avec RCH modérée à sévère (IFX n=36, VDZ n=60)",
+"intervention": "Vedolizumab (VDZ) vs Infliximab (IFX)",
+"resultats_cles": [
+"Efficacité clinique, endoscopique et biologique (CRP, VS) comparable à 14 semaines (P > 0,05).",
+"Amélioration significative des symptômes et de la qualité de vie (WHOQOL-BREF) dans les deux groupes.",
+"Moins d'effets indésirables (1,7 % vs 13,9 %, P = 0,027) et coût d'induction moindre sous VDZ (P = 0,038)."
+],
+"conclusion": "IFX et VDZ ont une efficacité à court terme comparable, mais le VDZ présente un meilleur profil de tolérance et un coût d'induction inférieur.",
+"limites": [
+"Étude rétrospective monocentrique",
+"Suivi court (14 semaines), sans données de maintien à long terme"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "MICI uniquement ; pas d'intervention psychologique, simple mesure de qualité de vie.",
+"mots_cles_fr": [
+"rectocolite hémorragique",
+"vedolizumab",
+"infliximab",
+"qualité de vie"
+],
+"titre_court": "VDZ vs IFX dans la RCH modérée à sévère",
+"conclusion_simple": "À court terme, le vedolizumab semble aussi efficace que l'infliximab dans la RCH, avec moins d'effets secondaires et un coût moindre.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S25983388"
 },
 {
@@ -3214,7 +5060,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-22",
-"fiche": null,
+"fiche": {
+"verdict": "La voie de sortie sous-xiphoïdienne du drain biliaire améliore le confort, la qualité de vie digestive et les scores d'anxiété/dépression postopératoires.",
+"type_etude": "cohorte",
+"design": [
+"rétrospective",
+"comparative"
+],
+"population": "280 patients opérés par LCBDE avec drain de Kehr pour cholédocholithiase (sous-xiphoïdien n=137, médio-claviculaire n=143)",
+"intervention": "Voie de sortie sous-xiphoïdienne vs médio-claviculaire droite du drain",
+"resultats_cles": [
+"Qualité de vie digestive (GIQLI) supérieure et scores d'anxiété/dépression (SAS, SDS) plus bas en sous-xiphoïdien (P < 0,0001).",
+"Moins d'antalgiques de secours (13,1 % vs 32,9 %, P < 0,001) et lever précoce plus fréquent.",
+"Moins d'irritations cutanées et de fuites biliaires péritubulaires (P < 0,01)."
+],
+"conclusion": "Les deux voies sont sûres, mais l'abord sous-xiphoïdien améliore le confort postopératoire et la récupération psychologique.",
+"limites": [
+"Étude rétrospective sans randomisation",
+"Biais de sélection possible"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Technique chirurgicale biliaire ; intérêt mineur via les scores anxiété/dépression et GIQLI.",
+"mots_cles_fr": [
+"chirurgie biliaire",
+"drain de Kehr",
+"anxiété",
+"qualité de vie"
+],
+"titre_court": "Voie de sortie du drain biliaire et confort",
+"conclusion_simple": "La sortie sous-xiphoïdienne du drain biliaire améliore le confort, l'anxiété et la dépression postopératoires sans risque supplémentaire.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S25983388"
 },
 {
@@ -3447,7 +5326,9 @@
 "url_libre": "https://doi.org/10.1007/s11894-026-01075-w",
 "types": [
 "IM",
-"Review"
+"Review",
+"review",
+"review-article"
 ],
 "preprint": false,
 "retracte": false,
@@ -3588,7 +5469,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43065124/",
-"url_libre": "",
+"url_libre": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/joor.70387",
 "types": [
 "IM"
 ],
@@ -3597,14 +5478,49 @@
 "essai_registre": false,
 "sources": [
 "europepmc",
+"openalex",
 "pubmed"
 ],
 "themes": [
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
-"revue_oa": "",
+"fiche": {
+"verdict": "RCT (n=180) AVC dysphagie : températures froides/chaudes supérieures à tiède pour déglutition, chaud optimal pour confort/apport, froid plus complications digestives.",
+"type_etude": "essai randomisé",
+"design": [
+"températures graduées",
+"mesures répétées 5 temps",
+"viscosité standardisée"
+],
+"population": "180 patients AVC aigu dysphagie modérée (WST 2-4)",
+"intervention": "froid (15-25°C) vs tiède (35-45°C) vs chaud (45-55°C) + entraînement standardisé",
+"resultats_cles": [
+"Froid et chaud meilleurs que tiède : score WST, durée sonde, toux (p<0.05)",
+"Chaud : meilleur confort (8.4/10) et apport alimentaire (395 mL)",
+"Froid : plus rétention gastrique (6.6%) et diarrhée (8.3%)"
+],
+"conclusion": "L'alimentation à température froide ou chaude améliore significativement la récupération de la déglutition post-AVC vs température modérée ; le chaud optimise confort et apport.",
+"limites": [
+"Non aveugle",
+"Court terme (3 mois)"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Dysphagie, confort alimentaire, stimulation sensorielle pertinent ARFID/TCA",
+"mots_cles_fr": [
+"Dysphagie post-AVC",
+"Température alimentaire",
+"Déglutition",
+"Confort alimentaire"
+],
+"titre_court": "Température des aliments et déglutition post-AVC (RCT)",
+"conclusion_simple": "Les températures froides ou chaudes améliorent la déglutition post-AVC mieux que tiède ; le chaud optimise confort et apport, le froid augmente risques digestifs.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
+"revue_oa": "S75186586",
 "libre_verifie": "2026-11-21"
 },
 {
@@ -3709,7 +5625,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "Un programme d'exercice multimodal en groupe réduit la fatigue, l'insomnie et la perte d'appétit pendant les traitements du cancer.",
+"type_etude": "cohorte",
+"design": [
+"longitudinale",
+"multicentrique",
+"en vie réelle"
+],
+"population": "328 patients sous traitement anticancéreux (63 % < 65 ans, 56 % cancer du sein, 86 % localisé)",
+"intervention": "Programme d'exercice multimodal en groupe (3 mois, 2x/semaine, intensité modérée à élevée), sans groupe contrôle",
+"resultats_cles": [
+"Amélioration post-intervention de la fatigue (EORTC -3,3 ; FACIT-F +1,7), de l'insomnie (-3,6) et de la perte d'appétit (-3,2).",
+"Bénéfices majoritairement maintenus à 6 mois post-intervention.",
+"Améliorations constantes chez les patients ayant des symptômes cliniquement significatifs à l'inclusion."
+],
+"conclusion": "L'exercice multimodal d'intensité modérée à élevée est une intervention prometteuse pour réduire la charge symptomatique pendant les traitements du cancer.",
+"limites": [
+"Absence de groupe contrôle",
+"Hétérogénéité des cancers et des traitements"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Oncologie et exercice en groupe ; peu spécifique aux troubles digestifs fonctionnels.",
+"mots_cles_fr": [
+"exercice physique",
+"oncologie",
+"fatigue",
+"groupe"
+],
+"titre_court": "Exercice en groupe et symptômes en oncologie",
+"conclusion_simple": "Un programme d'exercice en groupe semble réduire durablement fatigue, insomnie et perte d'appétit pendant un traitement anticancéreux.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S14544163",
 "libre_verifie": "2026-11-21"
 },
@@ -3888,7 +5838,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "La sécheresse oculaire touche 15,2 % des patients avec MICI et est indépendamment associée à l'anxiété/dépression.",
+"type_etude": "transversale",
+"design": [
+"rétrospective",
+"transversale"
+],
+"population": "501 adultes avec MICI confirmée (300 RCH, 201 maladie de Crohn) évalués en ophtalmologie",
+"intervention": null,
+"resultats_cles": [
+"Prévalence de la sécheresse oculaire (Schirmer <= 5 mm/5 min) : 15,2 % (76/501).",
+"Facteurs indépendamment associés : âge (aOR 1,06), manifestations extra-intestinales (aOR 2,46), asthme (aOR 3,52).",
+"Anxiété/dépression fortement associée (aOR 3,09, IC 95 % 1,25-7,65)."
+],
+"conclusion": "La sécheresse oculaire concerne environ 15 % de cette cohorte MICI et est associée à des facteurs systémiques et psychologiques.",
+"limites": [
+"Cohorte cliniquement sélectionnée (biais de sélection)",
+"Design transversal ne permettant pas d'établir la causalité"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Lien significatif entre anxiété/dépression et sécheresse oculaire dans les MICI.",
+"mots_cles_fr": [
+"MICI",
+"sécheresse oculaire",
+"anxiété",
+"dépression"
+],
+"titre_court": "Sécheresse oculaire et anxiété dans les MICI",
+"conclusion_simple": "Chez les patients avec MICI, la sécheresse oculaire est fréquente et associée à l'anxiété et la dépression, indépendamment de la sévérité intestinale.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S104415515",
 "libre_verifie": "2026-11-21"
 },
@@ -4130,7 +6113,40 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "La rTMS sur le cortex préfrontal médian montre une efficacité modérée à grande sur les TOC, modérée sur le craving, mais nulle sur l'anxiété.",
+"type_etude": "méta-analyse",
+"design": [
+"essais randomisés",
+"contrôlés contre placebo (sham"
+],
+"population": "1 083 participants issus de 30 essais (troubles psychiatriques divers)",
+"intervention": "rTMS sur le cortex préfrontal médian (mPFC) vs stimulation factice (sham)",
+"resultats_cles": [
+"Effets modérés à grands sur les symptômes obsessionnels-compulsifs (TOC).",
+"Effets modérés sur les symptômes négatifs et le craving ; effets faibles sur la dépression.",
+"Effets non significatifs sur l'anxiété, la cognition, la consommation et l'impulsivité."
+],
+"conclusion": "La rTMS sur le mPFC montre un potentiel thérapeutique pour les TOC, les symptômes négatifs et le craving, avec un effet modeste sur la dépression.",
+"limites": [
+"Nombre limité d'études par domaine symptomatique",
+"Forte hétérogénéité et risques de biais"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Utile pour les TOC et la dépression, mais approche de neuromodulation (rTMS).",
+"mots_cles_fr": [
+"rTMS",
+"TOC",
+"dépression",
+"méta-analyse"
+],
+"titre_court": "Effets transdiagnostiques de la rTMS préfrontale",
+"conclusion_simple": "La rTMS sur le cortex préfrontal médian réduit modérément les TOC et le craving, mais reste sans effet sur l'anxiété.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S170052170",
 "libre_verifie": "2026-11-21"
 },
@@ -4149,7 +6165,7 @@
 "pmcid": "",
 "nct": "",
 "url": "https://pubmed.ncbi.nlm.nih.gov/43059596/",
-"url_libre": "",
+"url_libre": "https://journals.sagepub.com/doi/pdf/10.1177/00207640261501178?download=true",
 "types": [],
 "preprint": false,
 "retracte": false,
@@ -4228,7 +6244,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "L'analyse multi-omique (métabolome NMR) capture la consistance des selles dans le SII, mais son apport clinique supplémentaire reste incertain.",
+"type_etude": "autre",
+"design": [
+"cohortes",
+"validation croisée",
+"prépublication"
+],
+"population": "75 sujets (cohorte Cell 2020, 441 échantillons) et cohorte externe LC-MS",
+"intervention": "Comparaison de plusieurs couches omiques (métabolome NMR vs genre bactérien) pour prédire l'échelle de Bristol",
+"resultats_cles": [
+"Le métabolome NMR a le R² le plus élevé (0,247 ; IC 95% 0,097-0,327)",
+"Un panneau de 5 métabolites n'ajoute que +0,051 d'AUC par rapport aux données âge/sexe/IMC",
+"Pas d'effet causal retrouvé pour 27 genres bactériens (randomisation mendélienne)"
+],
+"conclusion": "La mesure métabolique directe capture la consistance des selles, mais la supériorité inter-couches et la valeur clinique incrémentale restent incertaines.",
+"limites": [
+"Manque d'apport clinique démontré par rapport aux variables simples",
+"Données issues d'un preprint"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Étude biologique/omique sans application directe pour la prise en charge psychologique ou hypnothérapeutique.",
+"mots_cles_fr": [
+"SII",
+"échelle de Bristol",
+"métabolome",
+"microbiote"
+],
+"titre_court": "Multi-omique et consistance des selles dans le SII",
+"conclusion_simple": "La mesure du métabolome permet de caractériser la consistance des selles, mais son utilité clinique pratique reste à prouver.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306525896"
 },
 {
@@ -4658,7 +6708,7 @@
 {
 "id": "doi:10.1186/s12876-026-05398-w",
 "titre": "Depression, sleep disturbance, and negative life events as nonlinear risk factors for irritable bowel syndrome in Chinese adolescents: an interpretable machine-learning analysis",
-"resume": "",
+"resume": "Irritable bowel syndrome (IBS) is a common disorder of gut–brain interaction that often begins in adolescence, yet tools to identify affected adolescents are lacking. We developed and internally validated an interpretable diagnostic machine-learning model for adolescent IBS and characterised nonlinear exposure–outcome relationships. In this school-based cross-sectional study, 2269 students aged 11–19 years in Yantai, China, were assessed with the Rome IV self-report questionnaire and validated instruments for anxiety, depression, negative life events, academic stress and sleep quality, plus diet and sociodemographic factors. Because predictors and outcome were concurrent, the model is diagnostic, not prognostic. Predictors were selected by penalised (LASSO) regression; seven algorithms were trained on 80% of the data with class weighting and evaluated on validation and test sets (10% each). The final model was interpreted with SHapley Additive exPlanations (SHAP), and restricted cubic splines characterised nonlinearity. IBS prevalence was 21.7% (493/2269). Discrimination was similar across the seven algorithms (test area under the curve 0.791–0.816; no significant pairwise difference). XGBoost, pre-specified before the test set was examined, achieved an area under the curve of 0.808 (95% CI 0.730–0.879) in the test set (227 participants, 49 events), with positive predictive value 0.437 (0.337–0.542) and negative predictive value 0.921 (0.874–0.963); optimism-corrected bootstrap discrimination was 0.756. Depression and sleep quality were the largest SHAP contributors, then anxiety and life events. In the multivariable model, family history of gastrointestinal disease (adjusted odds ratio 3.06, 95% CI 2.09–4.47), poorer sleep (per SD 1.36) and depression (per SD 1.28) were associated with IBS. Associations with all five psychosocial exposures were nonlinear (all P for nonlinearity < 0.01), the curves flattening at higher exposure, although change points were imprecisely estimated and the plateau may partly reflect instrument ceiling effects. An interpretable diagnostic model based on routinely collectable psychosocial and behavioural information distinguished adolescents with and without Rome IV-defined IBS, and its associations with depression, sleep disturbance and negative life events were nonlinear rather than uniformly graded. The model has internal validation only, from a single district and survey wave; findings are hypothesis-generating and require external, preferably multicentre, validation before use.",
 "auteurs": [
 "Yu Yan",
 "Xin-Yi Cui",
@@ -4686,7 +6736,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "Étude transversale chez 2269 adolescents chinois : modèle ML diagnostique du SII (AUC 0,81) montrant liens non-linéaires avec dépression, sommeil, événements de vie.",
+"type_etude": "transversale",
+"design": [
+"apprentissage automatique",
+"validation interne",
+"monocentrique"
+],
+"population": "2269 adolescents (11-19 ans) en Chine, prévalence SII 21,7%",
+"intervention": null,
+"resultats_cles": [
+"Modèle XGBoost AUC test 0,808 (IC95% 0,730-0,879)",
+"Dépression, qualité du sommeil, événements de vie : contributeurs SHAP majeurs",
+"Associations non-linéaires (aplatissement à forte exposition) pour 5 facteurs psychosociaux"
+],
+"conclusion": "Un modèle diagnostique basé sur facteurs psychosociaux distingue adolescents avec/sans SII Rome IV ; liens non-linéaires avec dépression, sommeil, événements de vie ; validation externe nécessaire.",
+"limites": [
+"Transversal (pas de causalité)",
+"Validation interne seulement, un district, une vague"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "SII adolescents, dépression, sommeil, événements de vie, relations non-linéaires",
+"mots_cles_fr": [
+"syndrome de l'intestin irritable",
+"adolescents",
+"dépression",
+"sommeil"
+],
+"titre_court": "Facteurs psychosociaux non-linéaires du SII chez l'adolescent",
+"conclusion_simple": "Chez l'adolescent, dépression, troubles du sommeil et événements de vie négatifs sont liés au SII de façon non-linéaire ; modèle prédictif à valider externement.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S180811554"
 },
 {
@@ -4718,7 +6802,36 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "Éditorial présentant 39 articles sur la médecine de précision et les biomarqueurs dans les cancers digestifs et génito-urinaires.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Utilisation croissante des biomarqueurs (HER2, PD-L1, CLDN18.2), biopsies liquides (ADNtc) et données multi-omiques.",
+"La myostéatose et la sarcopénie prédisent la toxicité des traitements et une survie sans maladie moindre.",
+"Émergence de thérapies ciblées, d'oligonucléotides et d'anticorps conjugués."
+],
+"conclusion": "La médecine de précision en oncologie GI et GU évolue vers des stratégies multidimensionnelles et adaptatives.",
+"limites": [
+"Éditorial descriptif sans méthodologie systématique",
+"Abstract tronqué en fin de texte"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Oncologie moléculaire GI/GU ; aucun lien avec la psychogastroentérologie clinique.",
+"mots_cles_fr": [
+"oncologie de précision",
+"biomarqueurs",
+"tumeurs digestives"
+],
+"titre_court": "Médecine de précision en oncologie digestive",
+"conclusion_simple": "Cet éditorial résume les avancées des biomarqueurs et thérapies ciblées en oncologie digestive, sans application directe en psychologie.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S2595292759"
 },
 {
@@ -4871,7 +6984,9 @@
 "nct": "",
 "url": "https://doi.org/10.61873/rcpp.40.e205330",
 "url_libre": "https://doi.org/10.61873/rcpp.40.e205330",
-"types": [],
+"types": [
+"review"
+],
 "preprint": false,
 "retracte": false,
 "essai_registre": false,
@@ -4882,7 +6997,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "La constipation est fréquente et détériore la qualité de vie chez les patients en dialyse péritonéale, mais les preuves d'interventions restent hétérogènes.",
+"type_etude": "revue systématique",
+"design": [
+"PRISMA",
+"synthèse narrative"
+],
+"population": "Adultes en dialyse péritonéale (28 études incluses)",
+"intervention": "Évaluation de la prévalence, du fardeau des symptômes, de la qualité de vie et des interventions pour la constipation",
+"resultats_cles": [
+"Prévalence de la constipation très variable : 13% à 77,4%",
+"Association entre constipation/symptômes digestifs et altération de la qualité de vie",
+"Association prospective avec des complications cliniques comme la péritonite"
+],
+"conclusion": "La constipation est cliniquement pertinente en dialyse péritonéale, nécessitant une évaluation multidimensionnelle standardisée et une prise en charge individualisée.",
+"limites": [
+"Hétérogénéité des définitions et des mesures",
+"Impossibilité de conclure sur l'efficacité comparative des interventions"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Sujet digestif et qualité de vie, mais population spécifique (dialyse péritonéale) éloignée du cœur de cible.",
+"mots_cles_fr": [
+"constipation",
+"dialyse péritonéale",
+"qualité de vie",
+"symptômes digestifs"
+],
+"titre_court": "Constipation chez les patients en dialyse péritonéale",
+"conclusion_simple": "La constipation affecte fortement la qualité de vie des patients en dialyse péritonéale, exigeant une évaluation et un suivi systématiques.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S4389158278"
 },
 {
@@ -4974,7 +7122,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "La tafalgine, un agoniste tétrapeptidique sélectif mu1, offre une analgésie efficace dans les douleurs cancéreuses avec moins d'effets secondaires digestifs.",
+"type_etude": "revue narrative",
+"design": [
+"synthèse d'essais cliniques",
+"analyse narrative"
+],
+"population": null,
+"intervention": "Tafalgine (agoniste sélectif des récepteurs μ1-opioïdes) vs opioïdes classiques",
+"resultats_cles": [
+"Absence d'interaction avec les récepteurs μ2 (réduction théorique des troubles du transit digestif)",
+"Efficacité analgésique équivalente à la morphine (essais phase II et III)",
+"Meilleure tolérance sans signes de tolérance ou dépendance significative à long terme"
+],
+"conclusion": "Les agonistes peptidiques sélectifs des récepteurs opioïdes sont prometteurs pour le traitement de la douleur chronique oncologique.",
+"limites": [
+"Absence de méthodologie de recherche systématique détaillée dans l'abstract",
+"Focus sur une molécule spécifique"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Pharmacologie médicale axée sur la douleur oncologique, très éloignée de la psychogastroentérologie et de l'hypnose.",
+"mots_cles_fr": [
+"douleur oncologique",
+"opioïdes",
+"motilité digestive",
+"tafalgine"
+],
+"titre_court": "Tafalgine dans la douleur chronique en oncologie",
+"conclusion_simple": "Cet opioïde sélectif pourrait soulager la douleur cancérigène tout en épargnant la motilité digestive, selon des données préliminaires.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S2738175511"
 },
 {
@@ -5009,7 +7190,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "Le soutien infirmier et l'écoute qualifiée sont essentiels pour surmonter l'anxiété maternelle et prévenir le sevrage précoce de l'allaitement.",
+"type_etude": "revue narrative",
+"design": [
+"étude bibliographique",
+"approche qualitative"
+],
+"population": "6 articles inclus",
+"intervention": "Rôle des soins infirmiers, de l'éducation à la santé et du soutien à la lactation",
+"resultats_cles": [
+"Le sevrage précoce est lié à des facteurs biologiques, émotionnels (anxiété maternelle) et sociaux",
+"Rôle clé des infirmiers via l'accueil, l'écoute qualifiée et le soutien pré/postnatal",
+"Renforcement de l'autonomie maternelle pour maintenir l'allaitement exclusif"
+],
+"conclusion": "Un soin infirmier continu et humanisé permet de renforcer l'autonomie maternelle et de réduire le sevrage précoce.",
+"limites": [
+"Nombre d'études incluses très faible (n=6)",
+"Méthodologie de synthèse qualitative limitée"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "faible",
+"pertinence": 1,
+"pertinence_raison": "Thématique d'allaitement et soins infirmiers, hors du champ de la psychogastroentérologie de l'adulte.",
+"mots_cles_fr": [
+"allaitement",
+"sevrage précoce",
+"anxiété maternelle",
+"soins infirmiers"
+],
+"titre_court": "Rôle infirmier dans la prévention du sevrage précoce",
+"conclusion_simple": "Un accompagnement humain et à l'écoute permet de réduire l'anxiété maternelle et de soutenir l'allaitement maternel.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S4404677285"
 },
 {
@@ -6105,7 +8319,40 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "Une étude omique sur le cancer colorectal chez des patients sud-africains identifie des altérations des voies neurales suggérant un axe intestin-cerveau lié au cancer.",
+"type_etude": "expérimentale",
+"design": [
+"séquençage génomique et transc",
+"prépublication"
+],
+"population": "32 échantillons (RNA seq) et 12 échantillons (WGS) de patients sud-africains atteints de cancer colorectal",
+"intervention": "Profilage transcriptomique et génomique de tissus tumoraux vs normaux",
+"resultats_cles": [
+"SALL4 identifié comme marqueur diagnostic performant (sensibilité 99,9%, spécificité 94,22%)",
+"Prédominance des sous-types métaboliques (CMS3 30%) et mésenchymateux (CMS4 30%)",
+"Altération des voies neurales suggérant une boucle de rétroaction sur l'axe intestin-cerveau"
+],
+"conclusion": "Les données révèlent un paysage moléculaire propre aux patients sud-africains et soulignent le rôle de l'axe intestin-cerveau et de l'inflammation dans le cancer colorectal.",
+"limites": [
+"Petit effectif (n=32 et n=12)",
+"Prépublication non encore révisée par les pairs"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "faible",
+"pertinence": 1,
+"pertinence_raison": "Oncologie génomique fondamentale ; la mention de l'axe intestin-cerveau reste strictement biologique/tumorale.",
+"mots_cles_fr": [
+"cancer colorectal",
+"axe intestin-cerveau",
+"transcriptomique",
+"oncologie"
+],
+"titre_court": "Profil omique du cancer colorectal en Afrique du Sud",
+"conclusion_simple": "Cette étude fondamentale met en évidence des spécificités génétiques et une atteinte des voies neurales dans le cancer colorectal.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S3005729997"
 },
 {
@@ -6135,7 +8382,37 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "44 % des patients MICI souffrent de fatigue significative, liée aux symptômes continus mais aussi au stress, au sommeil et à la douleur.",
+"type_etude": "méthodes mixtes",
+"design": [],
+"population": "675 patients suédois atteints de MICI",
+"intervention": "Évaluation par l'échelle IBD Fatigue Scale et analyse qualitative de réponses libres",
+"resultats_cles": [
+"Prévalence de fatigue significative : 44 %",
+"Associée aux symptômes continus, manifestations extra-intestinales et bien-être altéré",
+"4 thèmes : définition difficile, fardeaux corporels/psychosociaux, gestion d'énergie, restauration"
+],
+"conclusion": "Une approche holistique et centrée sur la personne est nécessaire pour évaluer la fatigue au-delà de l'activité intestinale.",
+"limites": [
+"Absence de groupe contrôle",
+"Données auto-rapportées"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Explore fatigue, détresse psychologique, sommeil et douleur dans les MICI.",
+"mots_cles_fr": [
+"MICI",
+"fatigue",
+"détresse psychologique",
+"méthodes mixtes"
+],
+"titre_court": "Fatigue et facteurs associés dans les MICI",
+"conclusion_simple": "La fatigue touche près de la moitié des patients MICI et nécessite une prise en charge globale intégrant les facteurs psychosociaux.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S2737969411"
 },
 {
@@ -6501,7 +8778,35 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "La réinfusion de chyme a permis une évolution favorable chez une patiente avec syndrome du grêle court post-ischémie mésentérique.",
+"type_etude": "étude de cas",
+"design": [],
+"population": "1 femme de 36 ans avec syndrome du grêle court",
+"intervention": "Réinfusion de chyme dans un segment intestinal distal fonctionnel",
+"resultats_cles": [
+"Bons résultats postopératoires",
+"Amélioration potentielle des résultats nutritionnels à long terme et de la qualité de vie"
+],
+"conclusion": "La réinfusion de chyme peut intégrer la prise en charge multidisciplinaire du syndrome du grêle court chez des patients sélectionnés.",
+"limites": [
+"Étude de cas unique (n=1)",
+"Absence de comparateur"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Prise en charge chirurgicale et nutritionnelle pure, hors champ psychogastroentérologique.",
+"mots_cles_fr": [
+"syndrome du grêle court",
+"réinfusion de chyme",
+"ischémie mésentérique"
+],
+"titre_court": "Réinfusion de chyme dans le grêle court",
+"conclusion_simple": "La réinfusion de chyme semble prometteuse dans certains cas de grêle court, mais des études plus larges sont nécessaires.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S5398819"
 },
 {
@@ -7464,7 +9769,37 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "Les données actuelles ne montrent pas de supériorité universelle de la chirurgie sur le traitement médical dans l'endométriose profonde.",
+"type_etude": "revue systématique",
+"design": [],
+"population": "Femmes atteintes d'endométriose profonde infiltrante",
+"intervention": "Chirurgie versus traitement hormonal/médical",
+"resultats_cles": [
+"Les deux approches améliorent la douleur liée à l'endométriose",
+"La chirurgie améliore la qualité de vie et la fonction intestinale",
+"Risques persistants de récidive et de complications intestinales ou urinaires"
+],
+"conclusion": "La prise en charge doit être individualisée selon les symptômes, les lésions, le projet reproductif et les risques.",
+"limites": [
+"Prédominance d'études observationnelles sans groupe contrôle",
+"Recrutement insuffisant de l'essai randomisé disponible"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Aborde douleur pelvienne chronique et symptômes intestinaux, mais focus médico-chirurgical.",
+"mots_cles_fr": [
+"endométriose profonde",
+"chirurgie",
+"traitement médical",
+"douleur"
+],
+"titre_court": "Chirurgie vs médical dans l'endométriose",
+"conclusion_simple": "Aucune supériorité nette de la chirurgie sur le traitement médical n'est prouvée ; le choix doit rester individualisé.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S2738950867"
 },
 {
@@ -7725,7 +10060,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "Un protocole standardisé de thérapie Chuzhen semble sûr et améliore douleur, fonction et qualité de vie dans la lombalgie non spécifique.",
+"type_etude": "essai non randomisé",
+"design": [
+"bras unique",
+"auto-contrôlé"
+],
+"population": "Patients atteints de lombalgie non spécifique (effectif non précisé)",
+"intervention": "Thérapie Chuzhen (stimulation non invasive des points d'acupuncture)",
+"resultats_cles": [
+"Réduction significative de l'intensité de la douleur (VAS)",
+"Restauration de la fonction lombaire (ODI) et amélioration de la qualité de vie (SF-36)",
+"Aucun événement indésirable grave rapporté"
+],
+"conclusion": "La thérapie Chuzhen standardisée est faisable et cliniquement applicable comme alternative non pharmacologique sûre.",
+"limites": [
+"Bras unique sans groupe contrôle externe",
+"Effectif non précisé dans l'abstract"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Lombalgie et médecine traditionnelle chinoise, hors champ de la psychogastroentérologie.",
+"mots_cles_fr": [
+"lombalgie",
+"médecine chinoise",
+"thérapie Chuzhen",
+"douleur"
+],
+"titre_court": "Thérapie Chuzhen pour la lombalgie commune",
+"conclusion_simple": "Cette thérapie manuelle chinoise semble sûre et réduire la lombalgie, mais l'absence de groupe contrôle limite la portée des résultats.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S199738284",
 "libre_verifie": "2026-11-21"
 },
@@ -7832,7 +10200,36 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "La transplantation hépatique à donneur vivant a permis une guérison clinique et métabolique chez un adolescent avec porphyrie aiguë réfractaire.",
+"type_etude": "étude de cas",
+"design": [],
+"population": "1 adolescent de 14 ans avec porphyrie aiguë intermittente réfractaire",
+"intervention": "Transplantation hépatique à donneur vivant (mère)",
+"resultats_cles": [
+"Aucune récidive des crises de porphyrie",
+"Amélioration progressive des symptômes neurologiques et psychiatriques",
+"Résolution complète des troubles gastro-intestinaux et sortie à J14"
+],
+"conclusion": "La greffe hépatique à donneur vivant offre une correction métabolique définitive dans la porphyrie pédiatrique réfractaire.",
+"limites": [
+"Étude de cas unique (n=1)",
+"Absence de groupe contrôle"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Chirurgie hépatique pédiatrique pour maladie métabolique rare, hors pratique clinique.",
+"mots_cles_fr": [
+"porphyrie aiguë",
+"transplantation hépatique",
+"pédiatrie"
+],
+"titre_court": "Greffe hépatique et porphyrie chez l'adolescent",
+"conclusion_simple": "La greffe de foie peut corriger la porphyrie aiguë sévère de l'adolescent, mais cela repose uniquement sur un cas clinique.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S27713550",
 "libre_verifie": "2026-11-21"
 },
@@ -8017,7 +10414,41 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-21",
-"fiche": null,
+"fiche": {
+"verdict": "Protocole d'un essai randomisé évaluant une TCC renforcée sur l'idéation suicidaire chez des patients avec comorbidités physiques et mentales.",
+"type_etude": "protocole",
+"design": [
+"pragmatique",
+"randomisé",
+"contrôlé"
+],
+"population": null,
+"intervention": "TCC renforcée en complément des soins usuels vs soins usuels seuls",
+"resultats_cles": [
+"Mesure de la sévérité de l'idéation suicidaire post-intervention (critère principal).",
+"Évaluation de l'auto-mutilation, dépression, anxiété, coping et bien-être.",
+"Analyse de biomarqueurs (inflammation, axe HHSR, plasticité neuro, voie tryptophane-kynurénine)."
+],
+"conclusion": "L'étude vise à établir l'efficacité d'une TCC adaptée pour réduire l'idéation suicidaire et clarifier ses mécanismes biologiques chez des patients multi-comorbides.",
+"limites": [
+"Résultats non encore disponibles (protocole)",
+"Absence d'aveugle mentionnée"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Protocole général sur la TCC, comorbidités physiques et biomarqueurs, mais hors ciblage digestif spécifique.",
+"mots_cles_fr": [
+"TCC",
+"suicide",
+"comorbidité",
+"axe HPA"
+],
+"titre_court": "Protocole TCC renforcée et idéation suicidaire",
+"conclusion_simple": "Ce protocole propose d'évaluer une TCC ciblée sur le risque suicidaire en présence de comorbidités physiques et mentales.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S109512841",
 "libre_verifie": "2026-11-21"
 },
@@ -8668,7 +11099,37 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative décrivant l'impact de la colonisation microbiotique précoce sur la neuroimmunité, le nerf vague et le développement cérébral.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Rôle des métabolites (AGCC, tryptophane, VEB) via le nerf vague et l'immunité muqueuse.",
+"Dysbiose précoce associée à un risque accru de TSA, TDAH et déficience intellectuelle chez l'humain.",
+"Absence de preuve de causalité directe en raison des facteurs de confusion (prématurité, infections)."
+],
+"conclusion": "La colonisation microbiotique précoce module la neuroimmunité et l'axe gut-brain, orientant la prévention des troubles du neurodéveloppement.",
+"limites": [
+"Revue narrative",
+"Données observationnelles n'établissant pas de causalité"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Éclairage théorique utile sur l'axe microbiote-intestin-cerveau, les métabolites du tryptophane et le nerf vague.",
+"mots_cles_fr": [
+"axe intestin-cerveau",
+"microbiote",
+"neuroimmunité",
+"développement"
+],
+"titre_court": "Microbiote précoce et modulation neuroimmune",
+"conclusion_simple": "La colonisation microbiotique précoce influence l'axe intestin-cerveau, mais la causalité directe avec les troubles neurodéveloppementaux reste à prouver.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-20"
 },
@@ -8788,7 +11249,39 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Consensus de l'ESGE définissant les situations où les endoscopies digestives de routine ne sont pas indiquées.",
+"type_etude": "autre",
+"design": [
+"recommandations",
+"consensus d'experts"
+],
+"population": null,
+"intervention": "Recommandations contre la réalisation d'endoscopies inutiles",
+"resultats_cles": [
+"Identification de 4 scénarios : dépistage sans bénéfice, surveillance redondante, diagnostic si alternatives non invasives validées existantes, thérapeutique sans gain clinique.",
+"Consolidation des recommandations pour réduire les actes à faible valeur clinique et l'empreinte environnementale.",
+"Priorisation des stratégies non invasives validées pour guider la prise en charge."
+],
+"conclusion": "Éviter les endoscopies inutiles préserve les ressources, réduit le fardeau des patients et améliore la sécurité sans compromettre les soins.",
+"limites": [
+"Synthèse de recommandations existantes sans nouvelles données primaires"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Utile pour rassurer les patients hypervigilants inquiets de l'absence d'endoscopie de contrôle.",
+"mots_cles_fr": [
+"endoscopie",
+"recommandations",
+"pertinence des soins",
+"digestif"
+],
+"titre_court": "Recommandations ESGE contre les endoscopies inutiles",
+"conclusion_simple": "Les recommandations européennes confirment que l'endoscopie est inutile si des alternatives non invasives validées suffisent au diagnostic.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S195182175",
 "libre_verifie": "2026-11-20"
 },
@@ -8858,7 +11351,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Le smog s'associe à une augmentation de la détresse psychologique et des symptômes somatiques (respiratoires, digestifs) au Pakistan.",
+"type_etude": "méthodes mixtes",
+"design": [
+"transversale",
+"qualitative"
+],
+"population": "n=350 (étude 1) et n=15 (étude 2) employés universitaires au Pakistan",
+"intervention": "Exposition perçue au smog et à la mauvaise qualité de l'air",
+"resultats_cles": [
+"Lien significatif positif entre mauvaise qualité de l'air, détresse psychologique et symptômes physiques (digestifs, respiratoires, sommeil, céphalées).",
+"Vulnérabilité accrue chez les personnes âgées et celles présentant des conditions préexistantes.",
+"Nécessité de mesures institutionnelles et de soutien en santé mentale."
+],
+"conclusion": "La pollution par le smog affecte négativement la santé physique et psychologique, nécessitant des interventions organisationnelles et du soutien mental.",
+"limites": [
+"Étude transversale ne permettant pas d'établir de lien causal",
+"Échantillon spécifique (employés universitaires au Pakistan)"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "faible",
+"pertinence": 2,
+"pertinence_raison": "Mentionne des symptômes digestifs liés au stress environnemental, mais contexte très éloigné de la pratique clinique ciblée.",
+"mots_cles_fr": [
+"pollution",
+"détresse psychologique",
+"symptômes digestifs",
+"stress"
+],
+"titre_court": "Impact du smog sur la santé physique et mentale",
+"conclusion_simple": "L'exposition au smog est associée à une hausse du stress et des troubles physiques, y compris digestifs, chez des employés au Pakistan.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S204015880",
 "libre_verifie": "2026-11-20"
 },
@@ -8928,7 +11454,37 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Les questionnaires spécifiques détectent une altération de la qualité de vie liée aux troubles intestinaux chroniques post-chirurgie de Hirschsprung.",
+"type_etude": "revue narrative",
+"design": [],
+"population": "Enfants et adolescents opérés d'une maladie de Hirschsprung (19 études retenues)",
+"intervention": "Évaluation du dysfonctionnement intestinal persistant et de la qualité de vie (QoL génerique vs spécifique)",
+"resultats_cles": [
+"Pas de différence significative de qualité de vie générique globale par rapport aux témoins sains, mais forte hétérogénéité.",
+"Altération significative de la qualité de vie identifiée via les outils spécifiques au sous-groupe avec dysfonction chronique.",
+"Non-interchangeabilité et complémentarité des auto-évaluations enfants et des auto-évaluations parents."
+],
+"conclusion": "Le suivi doit associer bilans fonctionnels, questionnaires de qualité de vie génériques et spécifiques, et combiner les rapports parents-enfants.",
+"limites": [
+"Revue narrative",
+"Hétérogénéité importante des définitions et outils de mesure dans la littérature"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Population pédiatrique/chirurgicale spécifique, mais souligne l'importance d'outils de mesure digestifs spécifiques.",
+"mots_cles_fr": [
+"Hirschsprung",
+"qualité de vie",
+"pédiatrie",
+"incontinence"
+],
+"titre_court": "Qualité de vie et maladie de Hirschsprung",
+"conclusion_simple": "L'évaluation de la qualité de vie après chirurgie digestive pédiatrique nécessite des échelles spécifiques au sous-groupe symptomatique.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S76925378",
 "libre_verifie": "2026-11-20"
 },
@@ -8965,7 +11521,38 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative synthétisant les données sur le syndrome du ligament arqué médian, une cause rare et controversée de douleur abdominale.",
+"type_etude": "revue narrative",
+"design": [
+"revue narrative"
+],
+"population": null,
+"intervention": "Décompression chirurgicale du tronc céliaque vs diagnostic d'exclusion/prise en charge multidisciplinaire",
+"resultats_cles": [
+"Incidence estimée à ~1,3/100 000 habitants ; prédominance féminine avec douleurs épigastriques postprandiales et perte de poids.",
+"Sténose du tronc céliaque ⩾70% à l'imagerie ; diagnostic d'exclusion nécessitant un bilan multidisciplinaire.",
+"Amélioration clinique jusqu'à 80% des opératifs, mais échec thérapeutique proche de 50% dans de grandes cohortes multicentriques."
+],
+"conclusion": "Le syndrome du ligament arqué médian reste un diagnostic complexe exigeant une sélection rigoureuse et une évaluation multidisciplinaire.",
+"limites": [
+"Niveau de preuve globalement faible et contradictoire",
+"Absence de méta-analyse intégrée"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "faible",
+"pertinence": 2,
+"pertinence_raison": "Utile pour le diagnostic différentiel des douleurs abdominales chroniques atypiques.",
+"mots_cles_fr": [
+"ligament arqué médian",
+"douleur abdominale chroniques",
+"tronc céliaque"
+],
+"titre_court": "Syndrome du ligament arqué médian : revue narrative",
+"conclusion_simple": "Devant des douleurs abdominales chroniques postprandiales inexpliquées, ce syndrome rare nécessite un bilan d'exclusion multidisciplinaire avant chirurgie.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S38148070",
 "libre_verifie": "2026-11-20"
 },
@@ -9003,7 +11590,39 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Analyse rétrospective d'un service de téléconsultation par email pour les tumeurs stromales gastro-intestinales (GIST) sur 20 ans au Japon.",
+"type_etude": "cohorte",
+"design": [
+"rétrospective",
+"longitudinale"
+],
+"population": "596 consultations par email (952 emails) reçues entre 2003 et 2025 (soignants, patients, familles)",
+"intervention": "Consultation et support d'information par email pour le GIST",
+"resultats_cles": [
+"Évolution des demandes : d'abord orientées soignants/développement médical, puis principalement patients/familles (soins standards, experts).",
+"28% des patients et familles demandaient une orientation vers des spécialistes ou centres experts.",
+"Freins principaux : manque d'informations médicales précises fournies et imprécision de la demande."
+],
+"conclusion": "Les besoins d'information par email sont passés des soignants aux patients, exigeant des données cliniques précises pour être efficaces.",
+"limites": [
+"Étude rétrospective unicentrique sur données d'emails",
+"Biais de sélection des utilisateurs d'Internet"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Concerne l'oncologie médicale spécifique (GIST) et l'information par email, hors champ de la psychogastroentérologie.",
+"mots_cles_fr": [
+"GIST",
+"téléconsultation",
+"oncologie"
+],
+"titre_court": "Téléconsultation par email et GIST : étude sur 20 ans",
+"conclusion_simple": "L'accompagnement à distance des cancers rares évolue vers des demandes directes des patients, nécessitant des informations cliniques précises.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S149902429",
 "libre_verifie": "2026-11-20"
 },
@@ -9110,7 +11729,39 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative explorant l'utilisation des médecines complémentaires (dont l'hypnose) pour la douleur cancéreuse pendant la grossesse.",
+"type_etude": "revue narrative",
+"design": [
+"revue narrative"
+],
+"population": null,
+"intervention": "Médecines complémentaires (acupuncture, yoga, hypnose, imagerie guidée, etc.) dans le contexte oncologique et/ou obstétrique",
+"resultats_cles": [
+"Les approches complémentaires (dont l'hypnose) réduisent la douleur, le stress, l'anxiété et le recours aux antalgiques dans les populations étudiées séparément.",
+"Nécessité de concilier la sécurité fœto-maternelle et la physiopathologie complexe de la douleur cancéreuse.",
+"Absence d'évaluation systématique de l'efficacité clinique spécifique à la douleur cancéreuse pendant la grossesse dans la littérature actuelle."
+],
+"conclusion": "L'intégration des médecines complémentaires est prometteuse pour la douleur cancéreuse en grossesse mais nécessite des études prospectives dédiées.",
+"limites": [
+"Qualité et efficacité des études non évaluées rigoureusement",
+"Données extrapolées de populations étudiées séparément (cancer ou grossesse)"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "faible",
+"pertinence": 2,
+"pertinence_raison": "Mentionne l'hypnose pour la douleur, mais ciblé sur l'oncologie et la grossesse.",
+"mots_cles_fr": [
+"hypnose",
+"douleur cancéreuse",
+"grossesse",
+"médecines complémentaires"
+],
+"titre_court": "Douleur cancéreuse et grossesse : approche complémentaire",
+"conclusion_simple": "L'hypnose et les thérapies complémentaires semblent utiles contre la douleur et l'anxiété, mais des études spécifiques à la grossesse restent nécessaires.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-20"
 },
@@ -9143,7 +11794,38 @@
 "hypnose"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Éditorial présentant un numéro spécial sur l'état de la recherche et les modalités d'application de l'hypnose dans les douleurs chroniques.",
+"type_etude": "revue narrative",
+"design": [
+"éditorial"
+],
+"population": null,
+"intervention": "Hypnose clinique (en présentiel ou santé numérique/télémédecine) pour diverses douleurs chroniques (arthrose, fibromyalgie, douleurs pelviennes, lumbalgie, neuropathie)",
+"resultats_cles": [
+"Base de preuve établie pour l'hypnose dans la réduction de la douleur chronique globale.",
+"Interrogations en cours sur l'efficacité spécifique par pathologie (arthrose, fibromyalgie, douleurs pelviennes).",
+"Évaluation de la faisabilité des formats distanciels (santé numérique, télémédecine)."
+],
+"conclusion": "L'hypnose clinique dispose de preuves solides pour la douleur chronique, mais la recherche doit préciser ses indications spécifiques et ses formats digitaux.",
+"limites": [
+"Texte d'introduction/éditorial sans méthodologie propre",
+"Pas de résultats chiffrés présentés"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Directement en lien avec la pratique de l'hypnothérapie dans la douleur chronique et le distanciel.",
+"mots_cles_fr": [
+"hypnose clinique",
+"douleur chronique",
+"télémédecine"
+],
+"titre_court": "Hypnose et douleur chronique : revue des avancées",
+"conclusion_simple": "L'hypnose est efficace contre la douleur chronique, mais son application à des pathologies spécifiques et via la télémédecine continue d'être évaluée.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-20"
 },
@@ -9722,7 +12404,39 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Rapport de cas d'une xérophtalmie réversible causée par une carence en vitamine A liée à un ARFID chez une enfant autiste.",
+"type_etude": "étude de cas",
+"design": [
+"rapport de cas"
+],
+"population": "1 fille de 9 ans autiste présentant un ARFID (sélectivité alimentaire extrême)",
+"intervention": "Supplémentation en vitamines A et D IV, multivitamines orales et correction électrolytique",
+"resultats_cles": [
+"Présentation initiale : rougeur oculaire, photophobie, tache de Bitot et kératinisation conjonctivale secondaires à une sélectivité alimentaire sévère.",
+"Présence de carences micronutritionnelles multiples et rachitisme nutritionnel associés.",
+"Résolution complète des lésions oculaires en 1 mois après supplémentation injectable et orale."
+],
+"conclusion": "Des symptômes oculaires chroniques chez un enfant autiste doivent faire suspecter une carence en vitamine A secondaire à une sélectivité alimentaire.",
+"limites": [
+"Étude de cas unique (n=1)",
+"Pas de groupe comparateur"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "faible",
+"pertinence": 4,
+"pertinence_raison": "Illustration clinique majeure de l'ARFID et de ses complications nutritionnelles graves.",
+"mots_cles_fr": [
+"ARFID",
+"autisme",
+"troubles alimentaires",
+"carence nutritionnelle"
+],
+"titre_court": "ARFID et carence sévère en vitamine A : cas clinique",
+"conclusion_simple": "Une sélectivité alimentaire extrême liée à un ARFID peut causer de graves carences vitale et visuelle, réversibles par une prise en charge rapide.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S29434542",
 "libre_verifie": "2026-11-21"
 },
@@ -10803,7 +13517,34 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative synthétisant la physiopathologie, les biomarqueurs et l'axe intestin-cerveau dans la maladie de Parkinson.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"L'axe intestin-cerveau et l'agrégation d'alpha-synucléine sont au cœur de la progression de la maladie.",
+"Nouveaux biomarqueurs identifiés : alpha-synucléine dans le LCR, chaîne légère de neurofilaments, biomarqueurs digitaux."
+],
+"conclusion": "La compréhension accrue des mécanismes moléculaires accélère le développement de thérapies ciblant la progression de la maladie.",
+"limites": [
+"Revue narrative générale, pas de données cliniques directes sur la psychogastroentérologie"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Contexte général sur l'axe intestin-cerveau dans Parkinson, mais très éloigné de la pratique clinique directe.",
+"mots_cles_fr": [
+"maladie de parkinson",
+"axe intestin cerveau",
+"biomarqueurs"
+],
+"titre_court": "Axe intestin-cerveau et biomarqueurs dans Parkinson",
+"conclusion_simple": "La recherche sur l'axe intestin-cerveau avance dans la maladie de Parkinson mais n'offre pas d'application clinique immédiate en thérapie.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -11034,7 +13775,34 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Rapport de cas décrivant un syndrome de Valentino mimant une appendicite aiguë suite à une perforation gastrique.",
+"type_etude": "étude de cas",
+"design": [],
+"population": "1 homme de 33 ans",
+"intervention": "Laparoscopie convertie en laparotomie, appendicectomie et omentopexie",
+"resultats_cles": [
+"Une perforation gastrique contenue peut simuler une appendicite aiguë dans la fosse iliaque droite.",
+"L'imagerie précoce et l'exploration chirurgicale permettent d'éviter un retard diagnostique."
+],
+"conclusion": "Le syndrome de Valentino doit être évoqué devant une douleur de la fosse iliaque droite avec antécédents d'AINS.",
+"limites": [
+"Rapport de cas unique"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Urgence chirurgicale sans rapport avec la prise en charge psychologique des TFG.",
+"mots_cles_fr": [
+"syndrome de valentino",
+"perforation gastrique",
+"appendicite"
+],
+"titre_court": "Syndrome de Valentino mimant une appendicite aiguë",
+"conclusion_simple": "Ce cas médical rappelle une cause chirurgicale rare de douleur abdominale aiguë, sans lien avec la psychogastroentérologie.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S105925683"
 },
 {
@@ -11157,7 +13925,35 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative explorant le rôle immunomodulateur des acides gras à chaîne courte (AGCC) dans la maladie de Basedow.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Les AGCC (notamment le butyrate) restaurent l'équilibre Th17/Treg et la barrière intestinale.",
+"Le butyrate réduit l'inflammation locale, la fibrose et l'accumulation de graisse au niveau orbital."
+],
+"conclusion": "La modulation du microbiote intestinal par les AGCC représente une voie thérapeutique prometteuse dans la maladie de Basedow.",
+"limites": [
+"Revue narrative théorique, absence de données d'essais cliniques chez l'humain"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Thématique microbiote/barrière intestinale intéressante mais centrée sur une pathologie auto-immune spécifique.",
+"mots_cles_fr": [
+"acides gras chaine courte",
+"butyrate",
+"microbiote",
+"maladie de basedow"
+],
+"titre_court": "Rôle des AGCC dans la maladie de Basedow",
+"conclusion_simple": "Les acides gras issus du microbiote pourraient réduire l'inflammation auto-immune, mais les applications cliniques restent à prouver.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S186748139"
 },
 {
@@ -11187,7 +13983,34 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative sur les complications à long terme et la prise en charge pluridisciplinaire du réservoir iléo-anal (IPAA).",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Fonction normale du réservoir : 7-8 selles/jour, absence de douleur, continence satisfaisante.",
+"Complications variées : inflammatoires, mécaniques, néoplasiques et fonctionnelles (infertilité, dysfonction sexuelle)."
+],
+"conclusion": "La prise en charge des complications complexes du réservoir requiert une approche multidisciplinaire dans des centres experts.",
+"limites": [
+"Revue narrative sans protocole systématique"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Utile pour comprendre le fonctionnement physique et les complications post-chirurgie d'une poche iléo-anale.",
+"mots_cles_fr": [
+"anastomose ileo anale",
+"complications reservoir",
+"qualite de vie"
+],
+"titre_court": "Complications à long terme des réservoirs iléo-anaux",
+"conclusion_simple": "Le suivi multidisciplinaire des patients porteurs d'un réservoir iléo-anal doit prendre en compte les complications chirurgicales et fonctionnelles.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S28640989",
 "libre_verifie": "2026-11-20"
 },
@@ -11781,7 +14604,40 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Essai randomisé montrant qu'un soutien régulier des superviseurs améliore la fidélité des intervenants et l'efficacité des TCC pour enfants.",
+"type_etude": "essai randomisé",
+"design": [
+"cluster",
+"multicentrique",
+"longitudinale"
+],
+"population": "40 intervenants, 2 coachs, 435 élèves de primaire/collège",
+"intervention": "Stratégie de pérennisation PFS (supervision par coach du district + consultants externes) vs SAU (supervision classique)",
+"resultats_cles": [
+"Meilleure fidélité de processus (chaleur, clarté, organisation) pour les intervenants du groupe PFS en phase 3.",
+"Réduction supérieure des symptômes d'extériorisation (CPP, grand effet) et d'anxiété (CATS, effet moyen) chez les élèves du groupe PFS."
+],
+"conclusion": "Une stratégie combinant formation initiale et consultation ponctuelle pour les coachs maintient une haute fidélité TCC et améliore la santé mentale des élèves.",
+"limites": [
+"Contexte scolaire urbain spécifique",
+"Pas d'application directe aux pathologies digestives"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Informatif pour la mise en œuvre et le maintien des compétences en TCC/thérapie de groupe.",
+"mots_cles_fr": [
+"tcc",
+"anxiete",
+"supervision",
+"therapie de groupe"
+],
+"titre_court": "Pérennisation des TCC de groupe en milieu scolaire",
+"conclusion_simple": "Un accompagnement continu des thérapeutes améliore la qualité de délivrance des TCC et augmente leur efficacité sur l'anxiété.",
+"modele": "gemini-3.6-flash",
+"date": "2026-11-23"
+},
 "revue_oa": "S4210195270"
 },
 {
@@ -12145,7 +15001,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Amélioration significative des symptômes d'évacuation et de qualité de vie à 12 mois après chirurgie transpérinéale pour rectocèle.",
+"type_etude": "cohorte",
+"design": [
+"rétrospective",
+"monocentrique"
+],
+"population": "50 femmes (sur 63 opérées) avec rectocèle symptomatique et descente périnéale après échec conservateur",
+"intervention": "Lévatoroplastie antérieure transpérinéale (TPAL)",
+"resultats_cles": [
+"Score ODs : 15,8 à 5,9 à 12 mois (p < 0,001)",
+"Amélioration PFDI-20 et PAC-QoL (p < 0,001), CCFIS inchangé",
+"Aucune rechute clinique à 12 mois ; morbidité grade I (24 %)"
+],
+"conclusion": "La TPAL est associée à une amélioration durable des symptômes d'obstruction défécatoire et de la qualité de vie à 12 mois.",
+"limites": [
+"Pas d'imagerie postopératoire systématique (récidive anatomique non évaluée)",
+"Étude rétrospective monocentrique sans groupe contrôle"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Chirurgie pelvienne, utile pour comprendre le parcours somatique des troubles d'évacuation.",
+"mots_cles_fr": [
+"rectocèle",
+"dyschésie",
+"chirurgie transpérinéale",
+"qualité de vie"
+],
+"titre_court": "Lévatoroplastie transpérinéale pour rectocèle",
+"conclusion_simple": "Cette chirurgie améliore les symptômes d'évacuation à un an, mais la durabilité anatomique reste à confirmer.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S83451902"
 },
 {
@@ -12374,7 +15263,37 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Revue éthique et clinique sur la justification de la chirurgie du gyrus cingulaire antérieur pour douleur réfractaire en pédiatrie.",
+"type_etude": "revue narrative",
+"design": [],
+"population": "Pédiatrie (douleur chronique réfractaire, dépression sévère)",
+"intervention": "Chirurgie ablative ou neuromodulation (DBS, LITT) du gyrus cingulaire antérieur",
+"resultats_cles": [
+"Efficacité documentée chez l'adulte pour douleur réfractaire et dépression",
+"Cadres éthiques pédiatriques exigeant intérêt supérieur de l'enfant et consentement",
+"Utilisation uniquement si échec des traitements médicaux et psychologiques"
+],
+"conclusion": "La chirurgie du gyrus cingulaire en pédiatrie n'est éthiquement justifiable qu'en dernier recours sous strict encadrement.",
+"limites": [
+"Données principalement extrapolées de l'adulte",
+"Absence de données cliniques pédiatriques directes"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Neurochirurgie pédiatrique, très éloigné de la psychogastroentérologie adulte.",
+"mots_cles_fr": [
+"douleur réfractaire",
+"pédiatrie",
+"neurochirurgie",
+"éthique"
+],
+"titre_court": "Éthique de la chirurgie cingulaire pédiatrique",
+"conclusion_simple": "La neurochirurgie de la douleur chez l'enfant reste expérimentale et réservée aux échecs thérapeutiques complets.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S2595365928"
 },
 {
@@ -12703,7 +15622,37 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Cadre biosocial calibré sur les preuves pour la santé mentale périnatale en contexte d'urgence sanitaire.",
+"type_etude": "autre",
+"design": [],
+"population": "Femmes enceintes et en post-partum en situation d'urgence",
+"intervention": "Cadre de soins biosocial et outils numériques",
+"resultats_cles": [
+"Distinction entre soins immédiats, données de routine et outils de recherche",
+"L'axe microbiote-intestin-cerveau est impliqué mais les biomarqueurs restent expérimentaux",
+"Les outils numériques doivent compléter et non remplacer les soins"
+],
+"conclusion": "Les biomarqueurs et le profilage du microbiote doivent rester des outils de recherche jusqu'à preuve de leur valeur clinique.",
+"limites": [
+"Article théorique (Perspective) sans données empiriques",
+"Absence d'évaluation clinique du cadre proposé"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Mentionne l'axe microbiote-intestin-cerveau et la santé mentale, mais hors contexte clinique digestif.",
+"mots_cles_fr": [
+"santé mentale périnatale",
+"microbiote-intestin-cerveau",
+"urgences",
+"biomarqueurs"
+],
+"titre_court": "Santé mentale périnatale et urgences sanitaires",
+"conclusion_simple": "En situation de crise, les soins psychosociaux priment sur les biomarqueurs ou le microbiote encore expérimentaux.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -13013,7 +15962,39 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Faisabilité à long terme (7 ans) de l'anastomose artérielle mésentérique-iléocolique lors d'une proctocolectomie avec réservoir iléal.",
+"type_etude": "cohorte",
+"design": [
+"rétrospective"
+],
+"population": "5 patients (4 RCH, 1 polypose adénomateuse familiale) avec tension mésentérique excessive",
+"intervention": "Anastomose artérielle IMA-ICA combinée à l'anastomose iléo-anale (IPAA)",
+"resultats_cles": [
+"Suivi médian de 91 mois : aucune nécrose ni sténose ischémique",
+"Perméabilité vasculaire complète et muqueuse saine à l'endoscopie",
+"Score d'incontinence Wexner médian à 2, qualité de vie CGQL à 0,73"
+],
+"conclusion": "L'anastomose IMA-ICA maintient la perfusion du réservoir à long terme avec une fonction défécatoire acceptable.",
+"limites": [
+"Très petit effectif (n = 5)",
+"Étude rétrospective sans groupe comparateur"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Technique purement chirurgicale en proctologie, sans lien avec la prise en charge psychologique.",
+"mots_cles_fr": [
+"proctocolectomie",
+"réservoir iléal",
+"anastomose vasculaire",
+"RCH"
+],
+"titre_court": "Anastomose vasculaire et réservoir iléal à 7 ans",
+"conclusion_simple": "Cette technique chirurgicale semble préserver la perfusion du réservoir iléal à long terme chez quelques patients.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S83451902"
 },
 {
@@ -13077,7 +16058,36 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Cas clinique d'un syndrome de microdélétion 17q12 révélé par un diabète incontrôlé et une hypomagnésémie rénale.",
+"type_etude": "étude de cas",
+"design": [],
+"population": "1 patient avec diabète incontrôlé et hypomagnésémie",
+"intervention": null,
+"resultats_cles": [
+"Hypomagnésémie rarement causée par une perte rénale de magnésium",
+"Syndrome 17q12 associé au diabète MODY5 et à des troubles neuropsychiatriques (anxiété, schizophrénie)"
+],
+"conclusion": "Ce cas illustre une cause génétique rare d'hypomagnésémie rénale associée au diabète.",
+"limites": [
+"Étude de cas unique (n = 1)",
+"Absence de données sur l'évolution ou le traitement"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Cas génétique et métabolique rare, sans intérêt direct en psychogastroentérologie.",
+"mots_cles_fr": [
+"microdélétion 17q12",
+"hypomagnésémie",
+"diabète MODY5",
+"étude de cas"
+],
+"titre_court": "Microdélétion 17q12, diabète et hypomagnésémie",
+"conclusion_simple": "Une perte rénale de magnésium associée au diabète doit faire évoquer un syndrome génétique rare.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S2738950867"
 },
 {
@@ -13108,7 +16118,39 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "La thérapie murottal Al-Qur'an (15 min) réduit significativement l'anxiété chez des patients dyspeptiques comparé à l'absence d'intervention.",
+"type_etude": "essai non randomisé",
+"design": [
+"quasi-expérimental",
+"pré-test/post-test",
+"deux groupes"
+],
+"population": "50 patients atteints de dyspepsie",
+"intervention": "Thérapie murottal Al-Qur'an (15 minutes) vs contrôle sans intervention",
+"resultats_cles": [
+"Baisse significative de l'anxiété (échelle ZSAS) après intervention (test de Wilcoxon, p < 0,001)."
+],
+"conclusion": "La thérapie murottal Al-Qur'an est une intervention non pharmacologique complémentaire potentielle pour gérer l'anxiété liée à la dyspepsie.",
+"limites": [
+"Absence de randomisation, d'aveugle et de groupe contrôle actif (effet placebo/attention non contrôlé).",
+"Effet immédiat uniquement, sans suivi à moyen terme."
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Dyspepsie et anxiété, mais intervention culturelle/religieuse peu transposable.",
+"mots_cles_fr": [
+"dyspepsie",
+"anxiété",
+"relaxation",
+"non pharmacologique"
+],
+"titre_court": "Thérapie audio religieuse et anxiété dans la dyspepsie",
+"conclusion_simple": "Une écoute audio relaxante pourrait réduire à court terme l'anxiété dans la dyspepsie, mais la méthode est trop fragile pour conclure.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S4210221609"
 },
 {
@@ -13310,7 +16352,38 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Commentaire méthodologique critiquant l'interprétation causale et clinique d'une étude de pharmacovigilance (FAERS) sur les toxicités neuro-ophtalmologiques des immunothérapies.",
+"type_etude": "autre",
+"design": [
+"éditorial",
+"commentaire"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Les données FAERS (521 cas) ne permettent pas d'établir une causalité ni une mortalité attribuable sans adjudication clinique.",
+"Absence d'ajustement sur les facteurs confondants et données incomplètes (39,2 % avec délai d'apparition)."
+],
+"conclusion": "La détection de signaux de pharmacovigilance nécessite une évaluation multidisciplinaire cas par cas avant toute recommandation clinique.",
+"limites": [
+"Simple commentaire d'opinion sans nouvelles données."
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Hors sujet : oncologie, ophtalmologie et méthodologie de pharmacovigilance.",
+"mots_cles_fr": [
+"pharmacovigilance",
+"immunothérapie",
+"biais",
+"méthodologie"
+],
+"titre_court": "Limites de la pharmacovigilance en oncologie",
+"conclusion_simple": "Les bases de pharmacovigilance détectent des signaux mais ne prouvent pas la causalité sans analyse clinique individuelle.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S2595292759"
 },
 {
@@ -14334,7 +17407,38 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "L'évaluation gériatrique globale et la force musculaire préopératoires prédisent les complications postopératoires (dont le délirium) chez les patients âgés opérés d'un cancer digestif.",
+"type_etude": "cohorte",
+"design": [
+"rétrospective",
+"monocentrique"
+],
+"population": "1135 patients ≥ 65 ans opérés d'un cancer gastro-intestinal",
+"intervention": "Évaluation gériatrique globale (ADL, cognition, dépression) et force d'extension du genou préopératoires",
+"resultats_cles": [
+"60,0 % de complications postopératoires (Clavien-Dindo).",
+"En analyse multivariée, l'âge, le sexe, le site tumoral, la cognition et la force musculaire prédisent indépendamment les complications."
+],
+"conclusion": "L'évaluation gériatrique et la force musculaire préopératoires sont utiles pour stratifier le risque postopératoire en oncologie digestive gériatrique.",
+"limites": [
+"Étude monocentrique rétrospective."
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Oncologie digestive gériatrique, peu lié aux troubles fonctionnels ou à la psychothérapie.",
+"mots_cles_fr": [
+"cancer digestif",
+"gériatrie",
+"cognition",
+"complications postopératoires"
+],
+"titre_court": "Risque postopératoire et évaluation gériatrique en cancer digestif",
+"conclusion_simple": "Évaluer la cognition et la force musculaire avant chirurgie digestive aide à repérer les patients âgés à risque de complications.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-20"
 },
@@ -14682,7 +17786,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Cohorte nationale HTAP (n=462) : 55% morts liées HTAP (dominent haut risque), 45% non-HTAP (septicémie première cause), sexe/âge discriminent cause.",
+"type_etude": "cohorte",
+"design": [
+"registre national",
+"modèles risques compétitifs",
+"suivi médian 2,2 ans"
+],
+"population": "462 patients HTAP groupe 1 (registre grec 2015-2024)",
+"intervention": "Observationnel (stratification risque ESC/ERS baseline)",
+"resultats_cles": [
+"163 décès, causes adjudiquées 149 : 55% HTAP, 45% non-HTAP",
+"Morts HTAP croissent avec strates risque ; septicémie 1ère cause non-HTAP",
+"Sexe masculin -> mort HTAP ; âge -> mort non-HTAP ; AUC 0.75-0.77"
+],
+"conclusion": "En HTAP contemporaine, la cause de décès diffère selon le risque basal : progression HTAP domine en haut risque, causes concurrentes (septicémie) influentes partout.",
+"limites": [
+"Registre unique (Grèce)",
+"Période inclusion large (2015-2024)"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Cardiologie/pneumologie, hors champ gastro-psychologie",
+"mots_cles_fr": [
+"Hypertension pulmonaire",
+"Causes de décès",
+"Risques compétitifs",
+"Registre"
+],
+"titre_court": "Causes de décès dans l'hypertension pulmonaire (cohorte)",
+"conclusion_simple": "En HTAP contemporaine, la mort liée à la maladie domine chez les haut risque, tandis que la septicémie est la première cause non-HTAP ; le sexe et l'âge orientent le type de mortalité.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S5407051485"
 },
 {
@@ -15077,7 +18215,38 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Le génotypage pré-thérapeutique NUDT15 est coût-efficace au Royaume-Uni pour prévenir la myélosuppression sévère sous thiopurines dans les MICI.",
+"type_etude": "autre",
+"design": [
+"évaluation économique",
+"modèle d'arbre de décision"
+],
+"population": "Patients atteints de MICI éligibles aux thiopurines (modélisation NHS)",
+"intervention": "Stratégies de génotypage NUDT15/TPMT ou évitement des thiopurines vs pratique actuelle (activité TPMT seule)",
+"resultats_cles": [
+"L'ajout du génotypage NUDT15 coûte 6 447 £ par événement sévère évité.",
+"Le génotypage combiné NUDT15 et TPMT domine la pratique actuelle."
+],
+"conclusion": "Le génotypage NUDT15 pourrait être coût-efficace pour guider la prescription de thiopurines dans les MICI au Royaume-Uni.",
+"limites": [
+"Résultats issus d'une modélisation dépendant des coûts du génotypage et des hypothèses cliniques."
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Pharmacogénétique et économie de la santé dans les MICI, hors champ psychologique.",
+"mots_cles_fr": [
+"MICI",
+"pharmacogénétique",
+"thiopurines",
+"coût-efficacité"
+],
+"titre_court": "Coût-efficacité du test NUDT15 dans les MICI",
+"conclusion_simple": "Selon une modélisation économique, tester le gène NUDT15 avant thiopurines dans les MICI permettrait d'éviter des toxicités à coût raisonnable.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S22361854"
 },
 {
@@ -15109,7 +18278,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Pharmacovigilance FAERS (1101 cas) prucalopride : 35 signaux (GI, psy, neuro), surcroissance bactérienne fort, 19 non listés (occlusion, syndrome sérotoninergique), signaux psy notables.",
+"type_etude": "autre",
+"design": [
+"FAERS",
+"4 algorithmes détection",
+"analyses sensibilité kappa"
+],
+"population": "1101 déclarations prucalopride FAERS (déc 2018-sept 2025)",
+"intervention": "Prucalopride (analyse signaux disproportionnalité)",
+"resultats_cles": [
+"35 signaux positifs sur 10 classes : GI (12), psy (9), neuro (5)",
+"Surcroissance bactérienne intestinale : signal fort sur 4 algorithmes",
+"19 effets non listés dont occlusion intestinale, syndrome sérotoninergique ; dépression/idées suicidaires seulement notice US"
+],
+"conclusion": "Les ADE liés au prucalopride impliquent multiples systèmes, surtout GI, psy, neuro ; certains effets graves non listés nécessitent vigilance clinique, surtout en comorbidités/polythérapie.",
+"limites": [
+"Biais déclaration spontanée (sous/déclaration, pas dénominateur)",
+"Pas relation causale prouvée"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Prucalopride utilisé constipation/gastroparésie ; signaux psy et SIBO très pertinents",
+"mots_cles_fr": [
+"Prucalopride",
+"Pharmacovigilance",
+"FAERS",
+"Effets indésirables psychiatriques"
+],
+"titre_court": "Signaux pharmacovigilance prucalopride (FAERS)",
+"conclusion_simple": "La pharmacovigilance réelle signale des effets psychiatriques (dépression, idées suicidaires) et neurologiques non tous listés, plus un signal fort de surcroissance bactérienne ; surveillance clinique",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S180811554",
 "libre_verifie": "2026-11-20"
 },
@@ -15140,7 +18343,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Étude transversale : 46,6 % des patients MAFLD présentent des troubles digestifs fonctionnels, liés à la sévérité hépatique et à une qualité de vie altérée.",
+"type_etude": "transversale",
+"design": [
+"monocentrique",
+"régression multivariable"
+],
+"population": "268 adultes MAFLD",
+"intervention": null,
+"resultats_cles": [
+"Prévalence troubles digestifs fonctionnels : 46,6 % (IC95 40,6-52,6 %)",
+"MAFLD modéré OR 1,68 ; sévère OR 2,54 pour troubles digestifs (P tendance 0,002)",
+"Fibrose avancée OR 2,21 ; score SF-36 General Health β = -9,15 (P < 0,001)"
+],
+"conclusion": "Les troubles digestifs fonctionnels sont fréquents dans le MAFLD, associés à la sévérité et à la fibrose, et dégradent la qualité de vie.",
+"limites": [
+"Transversal : pas de causalité",
+"Centre unique, population chinoise"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Troubles digestifs fonctionnels et qualité de vie",
+"mots_cles_fr": [
+"MAFLD",
+"troubles digestifs fonctionnels",
+"fibrose",
+"qualité de vie"
+],
+"titre_court": "Troubles digestifs fonctionnels dans le MAFLD",
+"conclusion_simple": "Près de la moitié des patients MAFLD ont des troubles digestifs fonctionnels, plus fréquents si maladie sévère ou fibrose avancée, avec impact négatif sur la qualité de vie.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S180811554"
 },
 {
@@ -15303,7 +18539,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Méta-analyse de 9 ECR (878 hémodialysés) : biotiques n'améliorent pas l'hémoglobine globalement ; probiotiques seuls montrent un effet modeste.",
+"type_etude": "méta-analyse",
+"design": [
+"random-effects",
+"GRADE",
+"PRISMA 2020"
+],
+"population": "878 patients hémodialyse (9 ECR)",
+"intervention": "probiotiques, prébiotiques, symbiotiques vs placebo",
+"resultats_cles": [
+"Effet global non significatif sur hémoglobine (MD 0,56 ; IC95 -0,21 à 1,32 ; I² 89 %)",
+"Probiotiques seuls (3 ECR, 148 pts) : MD 0,51 g/dL (IC95 0,01-1,01 ; I² 0 %)",
+"Symbiotiques sans effet ; prébiotiques 1 seul ECR ; certitude preuves faible à modérée"
+],
+"conclusion": "Preuves de faible certitude suggérant que les probiotiques pourraient légèrement augmenter l'hémoglobine ; symbiotiques inefficaces ; prébiotiques à étudier.",
+"limites": [
+"Hétérogénéité élevée globalement",
+"Peu d'études par sous-groupe, certitude faible"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Population hémodialyse, anémie, hors champ",
+"mots_cles_fr": [
+"probiotiques",
+"anémie",
+"hémodialyse",
+"méta-analyse"
+],
+"titre_court": "Biotiques et anémie en hémodialyse",
+"conclusion_simple": "Les probiotiques seuls pourraient modestement améliorer l'hémoglobine chez les hémodialysés, mais les preuves sont de faible certitude ; symbiotiques et prébiotiques non concluants.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S172421378"
 },
 {
@@ -15487,7 +18757,35 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Cas d'une adolescente de 16 ans présentant un syndrome de Rapunzel (trichobézoard) révélant une trichotillomanie, sans alopécie visible ni trouble psychiatrique préalable.",
+"type_etude": "étude de cas",
+"design": [],
+"population": "1 adolescente de 16 ans",
+"intervention": "Extraction chirurgicale du bézoard, sertraline 25 mg et orientation en TCC",
+"resultats_cles": [
+"Occlusion gastro-duodénale par trichobézoard nécessitant une chirurgie.",
+"Diagnostic de trichotillomanie posé après l'intervention malgré l'absence de perte de cheveux visible."
+],
+"conclusion": "Il faut évoquer le trichobézoard devant des symptômes digestifs hauts chez l'adolescente, même sans alopécie ni trouble psychiatrique connu.",
+"limites": [
+"Cas clinique unique, non généralisable."
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Trouble du comportement alimentaire/impulsif (trichophagie) à expression digestive, prise en charge TCC.",
+"mots_cles_fr": [
+"trichotillomanie",
+"trichobézoard",
+"syndrome de Rapunzel",
+"TCC"
+],
+"titre_court": "Syndrome de Rapunzel sans alopécie chez une adolescente",
+"conclusion_simple": "Un trichobézoard doit être suspecté devant des vomissements chez une adolescente, même sans alopécie visible.",
+"modele": "gemini-4-hydrogen",
+"date": "2026-11-23"
+},
 "revue_oa": "S162052592"
 },
 {
@@ -15523,7 +18821,41 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Analyse de profils latents chez 579 personnes âgées : 4 profils de traits appetitifs ; profil 'High Conflicted' lié à symptômes ARFID, détresse, mauvaise qualité de vie.",
+"type_etude": "transversale",
+"design": [
+"analyse profils latents (LPA)",
+"régression multinomiale",
+"BCH"
+],
+"population": "579 adultes chinois 60-93 ans",
+"intervention": null,
+"resultats_cles": [
+"4 profils : Low 16,1 % ; Moderate Emotional Under-Eating 29 % ; Moderate 44,9 % ; High Conflicted 10 %",
+"Profil High Conflicted : plus symptômes troubles alimentaires, ARFID, détresse psychologique, pire qualité de vie",
+"Santé bucco-dentaire, âge, statut marital, résidence, éducation corrélés aux profils"
+],
+"conclusion": "Hétérogénéité marquée des traits appetitifs chez les personnes âgées, liés à santé bucco-dentaire, facteurs sociodémographiques et bien-être psychosocial.",
+"limites": [
+"Transversal, population chinoise",
+"Auto-questionnaires, causalité non établie"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "ARFID, psychopathologie alimentaire, bien-être psychosocial",
+"mots_cles_fr": [
+"traits appetitifs",
+"personnes âgées",
+"ARFID",
+"troubles alimentaires"
+],
+"titre_court": "Profils appetitifs et ARFID chez personnes âgées",
+"conclusion_simple": "Chez les personnes âgées, un profil de traits appetitifs 'conflité' (10 %) concentre symptômes ARFID, détresse et mauvaise qualité de vie, suggérant des cibles d'intervention nutritionnelle et psychos",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S4210234357"
 },
 {
@@ -15557,7 +18889,40 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Cas unique : adolescente 17 ans avec rêverie maladaptive probable (MDS-16 76 %), fantasmes intrusifs mixtes, amélioration partielle sous quétiapine + TCC + approche multidisciplinaire.",
+"type_etude": "étude de cas",
+"design": [
+"rapport de cas",
+"multidisciplinaire"
+],
+"population": "1 adolescente 17 ans",
+"intervention": "quétiapine, TCC, ergothérapie, stratégies comportementales, psychoéducation familiale",
+"resultats_cles": [
+"MDS-16 76 % : rêverie maladaptive probable",
+"Fantaisies ego-syntoniques et ego-dystoniques, pseudo-hallucinations auditives",
+"Amélioration progressive détresse, insight, sommeil, engagement ; fantasmes intrusifs persistants"
+],
+"conclusion": "Complexité diagnostique entre rêverie maladaptive, TOC, troubles du spectre autistique et schizophrénie ; approche multidisciplinaire centrée sur le fonctionnement recommandée.",
+"limites": [
+"Cas unique, généralisation impossible",
+"Pas de groupe contrôle, suivi court"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "TOC, imagerie intrusive, TCC, adolescent",
+"mots_cles_fr": [
+"rêverie maladaptive",
+"TOC",
+"adolescent",
+"diagnostic différentiel"
+],
+"titre_court": "Rêverie maladaptive chez adolescente : cas complexe",
+"conclusion_simple": "La rêverie maladaptive chez l'adolescent peut imiter TOC ou prodrome psychotique ; une prise en charge multidisciplinaire (médicaments, TCC, famille) améliore le fonctionnement malgré la persistance d",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S94610253"
 },
 {
@@ -15668,7 +19033,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-20",
-"fiche": null,
+"fiche": {
+"verdict": "Étude rétrospective multicentrique appariée (116 patients) : DEB-TACE CalliSpheres® supérieur au cTACE sur réponse tumorale, PFS, OS et tolérance pour métastases hépatiques réfractaires.",
+"type_etude": "essai non randomisé",
+"design": [
+"rétrospectif",
+"multicentrique",
+"appariement score propension"
+],
+"population": "116 patients métastases hépatiques réfractaires (58/groupe après appariement)",
+"intervention": "DEB-TACE CalliSpheres® vs cTACE conventionnel",
+"resultats_cles": [
+"ORR supérieure DEB-TACE à 1, 3, 6 mois (58,6 % vs 34,5 % ; 48,3 % vs 27,6 % ; 44,8 % vs 25,9 %)",
+"PFS médiane 10,5 vs 6,7 mois (HR 1,72 pour cTACE) ; OS 25,2 vs 15,7 mois (HR 1,65)",
+"Moins d'élévation ALT/AST J4 et moins de douleurs abdominales avec DEB-TACE ; pas d'événement grave grade ≥3"
+],
+"conclusion": "DEB-TACE CalliSpheres® offre une efficacité et une sécurité supérieures au cTACE pour les métastases hépatiques réfractaires ; ECR nécessaires.",
+"limites": [
+"Rétrospectif, non randomisé malgré appariement",
+"Taille d'échantillon modérée, suivi limité"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Oncologie interventionnelle, hors champ clinique",
+"mots_cles_fr": [
+"chimioembolisation",
+"métastases hépatiques",
+"DEB-TACE",
+"survie"
+],
+"titre_court": "DEB-TACE vs cTACE métastases hépatiques réfractaires",
+"conclusion_simple": "Pour les métastases hépatiques réfractaires, le DEB-TACE avec CalliSpheres® semble plus efficace et mieux toléré que le TACE conventionnel, mais des essais randomisés sont nécessaires pour confirmer.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-23"
+},
 "revue_oa": "S192926780"
 },
 {

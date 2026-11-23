@@ -8270,5 +8270,93 @@
 "domaine": "Pédiatrie",
 "articles_par_an": 77,
 "maj": "2026-11-22"
+},
+"S75186586": {
+"nom": "Journal of Oral Rehabilitation",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 4.47,
+"h_index": 177,
+"editeur": "Wiley",
+"domaine": "Oral Surgery",
+"articles_par_an": 299,
+"maj": "2026-11-23"
+},
+"S4210222097": {
+"nom": "Dermatology and Therapy",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 5.73,
+"h_index": 80,
+"editeur": "Adis, Springer Healthcare",
+"domaine": "Dermatology",
+"articles_par_an": 337,
+"maj": "2026-11-23"
+},
+"S182700976": {
+"nom": "European Journal of Histochemistry",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 2.08,
+"h_index": 57,
+"editeur": "PAGEPress (Italy)",
+"domaine": "Anatomy",
+"articles_par_an": 172,
+"maj": "2026-11-23"
+},
+"S165008743": {
+"nom": "Journal of Gastrointestinal and Liver Diseases",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 1.89,
+"h_index": 47,
+"editeur": "Editura Medicală Universitară Iuliu Hatieganu",
+"domaine": "Gastro-entérologie",
+"articles_par_an": 121,
+"maj": "2026-11-23"
+},
+"S4210210550": {
+"nom": "Science Forum (Journal of Pure and Applied Sciences)",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 0.08,
+"h_index": 7,
+"editeur": "Abubakar Tafawa Balewa University",
+"domaine": "Geochemistry and Petrology",
+"articles_par_an": 322,
+"maj": "2026-11-23"
+},
+"S4394735677": {
+"nom": "Journal of Advanced Health Care",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 0.28,
+"h_index": 6,
+"editeur": "",
+"domaine": "Santé publique",
+"articles_par_an": 41,
+"maj": "2026-11-23"
+},
+"S4210239435": {
+"nom": "Jurnal Kesehatan",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 1.55,
+"h_index": 28,
+"editeur": "Muhammadiyah University Press",
+"domaine": "Pédiatrie",
+"articles_par_an": 37,
+"maj": "2026-11-23"
+},
+"S5407055245": {
+"nom": "Microbiota Medicine Research",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 0,
+"h_index": 3,
+"editeur": "Wiley",
+"domaine": "Biologie moléculaire",
+"articles_par_an": 18,
+"maj": "2026-11-23"
 }
 }
