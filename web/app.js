@@ -460,6 +460,9 @@
   })();
 
   // ---------- rendu ----------
+  // cartes repliées par défaut (méta + titre + preuve / pertinence) ; toucher le titre déplie la fiche IA.
+  // Les cartes dépliées le restent pendant la visite, même quand la liste est redessinée.
+  const ouverts = new Set();
   function carte(a) {
     const f = a.fiche;
     // signalements d'abord, puis date · revue · type d'étude (+ précisions de méthode)
@@ -472,7 +475,7 @@
     const et = a.etude || { type: f && f.type_etude !== "autre" ? f.type_etude : (estSynthese(a) ? "synthèse" : ""), details: [] };
     const typeTxt = [et.type === "essai enregistré" ? "" : et.type].concat(et.details || []).filter(Boolean).join(" · ");
     const meta = `<div class="meta">${badges.join("")}<span>${esc(fmtJour(a.date))}</span>` +
-      (a.revue ? `<span>· ${esc(a.revue)}</span>` : "") +
+      (a.revue ? `<span class="m-revue">· ${esc(a.revue)}</span>` : "") +
       (typeTxt ? `<span class="badge type">${esc(typeTxt)}</span>` : "") + `</div>`;
 
     let corps = "";
@@ -496,13 +499,21 @@
       .concat((a.etiquettes || []).filter((t) => t !== "animal" && nomsEtiq[t])
         .map((t) => `<span class="tag f-${esc(famEtiq[t] || "")}">${esc(nomsEtiq[t])}</span>`)).join("");
     const fav = !!etat.favoris[a.id], lu = !!etat.lus[a.id], masque = !!etat.masques[a.id];
-    return `<article class="carte${lu ? " lu" : ""}" data-id="${esc(a.id)}">${meta}
-      <h2><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.titre)}</a></h2>
+    const ouvert = ouverts.has(a.id);
+    const mini = [];
+    if (f && f.niveau_preuve) mini.push(`<span>Preuve ${points(f.niveau_preuve, "Niveau de preuve")}</span>`);
+    if (f && f.pertinence) mini.push(`<span>Pour moi ${points(f.pertinence, "Pertinence")}</span>`);
+    if (!f) mini.push(`<span class="attente">${a.resume || a.extrait ? "fiche IA à venir" : "pas d'abstract"}</span>`);
+    return `<article class="carte${lu ? " lu" : ""}${ouvert ? "" : " replie"}" data-id="${esc(a.id)}">${meta}
+      <h2><button class="titre-btn" type="button" data-act="deplier" aria-expanded="${ouvert}">${esc(a.titre)}</button></h2>
+      <div class="mini">${mini.join("")}<button data-act="fav" class="mini-fav${fav ? " actif" : ""}" title="Favori" aria-label="Favori">${fav ? "★" : "☆"}</button></div>
+      <div class="plein">
       ${ligneRevue(a)}
       ${corps}
       <details><summary>Détails & abstract</summary>${contenuDetails(a)}</details>
       <div class="tags">${tags}</div>
       <div class="actions">
+        <a href="${esc(a.url)}" target="_blank" rel="noopener" class="ouvrir">Lire l'article ↗</a>
         <button data-act="fav" class="${fav ? "actif" : ""}">${fav ? "★ Favori" : "☆ Favori"}</button>
         <button data-act="lu">${lu ? "↺ Non lu" : "✓ Lu"}</button>
         ${ecoute.possible(a) ? `<button data-act="ecouter" class="${ecoute.enCours(a.id) ? "actif" : ""}" title="${a.audio ? "Écouter la fiche (continue écran éteint)" : "Lire la fiche à voix haute"}">${ecoute.libelle(a.id)}</button><button data-act="stop" title="Arrêter la lecture"${ecoute.enCours(a.id) ? "" : " hidden"}>■ Stop</button>` : ""}
@@ -511,7 +522,7 @@
         ${!a.url_libre && !a.essai_registre ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(a.titre)}" target="_blank" rel="noopener" title="Google Scholar trouve souvent une version déposée par les auteurs">Chercher une version ↗</a>` : ""}
         ${lienInstitution(a)}
         ${a.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${esc(a.pmid)}/" target="_blank" rel="noopener">PubMed ↗</a>` : ""}
-      </div></article>`;
+      </div></div></article>`;
   }
 
   // contenu de « Détails & abstract » (l'abstract et les auteurs arrivent à l'ouverture, s'ils manquent)
@@ -884,7 +895,17 @@
     });
     $("liste").addEventListener("click", (e) => {
       const b = e.target.closest("button[data-act]"); if (!b) return;
-      const id = b.closest(".carte").dataset.id;
+      const c = b.closest(".carte"), id = c.dataset.id;
+      if (b.dataset.act === "deplier") {           // déplier = lire : marqué comme lu, sans redessiner la liste
+        const ouvrir = !ouverts.has(id);
+        if (ouvrir) ouverts.add(id); else ouverts.delete(id);
+        c.classList.toggle("replie", !ouvrir); b.setAttribute("aria-expanded", String(ouvrir));
+        if (ouvrir && !etat.lus[id]) {
+          poser("lus", id, 1); enregistrer(); c.classList.add("lu");
+          const bl = c.querySelector('button[data-act="lu"]'); if (bl) bl.textContent = "↺ Non lu";
+        }
+        return;
+      }
       if (b.dataset.act === "ecouter") { const a = PAR_ID.get(id); if (a) ecoute.basculer(a); return; }
       if (b.dataset.act === "stop") { ecoute.arreter(); return; }
       const bascule = (cat) => poser(cat, id, etat[cat][id] ? 0 : 1);

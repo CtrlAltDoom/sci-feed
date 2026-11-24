@@ -101,12 +101,23 @@ class TestSite(unittest.TestCase):
     def compteur(self):
         return self.page.text_content("#compteur")
 
+    @staticmethod
+    def deplier(carte):
+        """Les cartes sont repliées par défaut : toucher le titre déplie la fiche."""
+        carte.locator(".titre-btn").click()
+        return carte
+
     def test_liste_et_details(self):
         p = self.page
         self.assertIn("3 articles", self.compteur())
         self.assertIn("double le taux", p.text_content("body"))                 # fiche IA affichée
         self.assertIn("Cross-sectional", p.text_content(".extrait"))            # extrait sans fiche
         carte = p.locator(".carte", has_text="Gut-directed")
+        self.assertTrue(carte.locator(".verdict").is_hidden())                   # repliée : titre seulement
+        self.assertTrue(carte.locator(".mini").is_visible())
+        self.deplier(carte)
+        self.assertTrue(carte.locator(".verdict").is_visible())                  # dépliée : fiche IA
+        self.assertIn("↺ Non lu", carte.locator('button[data-act="lu"]').text_content())   # déplier = lu
         carte.locator("summary").click()                                         # abstract chargé à la demande
         carte.locator(".abstract").wait_for()
         self.assertIn("zygomorphique", carte.locator(".abstract").text_content())
@@ -135,7 +146,7 @@ class TestSite(unittest.TestCase):
         p.click('#themes .chip[data-id="arfid_toc"]')
         p.wait_for_function("document.querySelectorAll('.carte').length === 1")
         self.assertIn("ARFID", p.text_content("#liste"))                         # article ancien (archive) filtrable
-        p.locator('.carte button[data-act="fav"]').click()
+        p.locator('.carte .mini-fav').click()                                  # ☆ sur la carte repliée
         self.assertEqual(p.text_content("#nb-filtres"), "1")                    # filtre actif visible même replié
         p.click('#themes .chip[data-genre=""]')
         self.assertEqual(p.text_content("#nb-filtres"), "")
@@ -159,7 +170,7 @@ class TestSite(unittest.TestCase):
             window.SpeechSynthesisUtterance = function (t) { this.text = t; };""")
         p.reload()
         p.wait_for_function("document.querySelectorAll('.carte').length === 3")
-        carte = p.locator(".carte", has_text="Gut-directed")
+        carte = self.deplier(p.locator(".carte", has_text="Gut-directed"))
         bouton, stop = carte.locator('button[data-act="ecouter"]'), carte.locator('button[data-act="stop"]')
         self.assertTrue(stop.is_hidden())
         bouton.click()
@@ -179,7 +190,7 @@ class TestSite(unittest.TestCase):
         self.assertTrue(stop.is_hidden())
         # sans fiche : l'abstract est chargé puis lu par une voix anglaise
         p.evaluate("__dit.length = 0")
-        autre = p.locator(".carte", has_text="Alexithymia")
+        autre = self.deplier(p.locator(".carte", has_text="Alexithymia"))
         autre.locator('button[data-act="ecouter"]').click()
         p.wait_for_function("__dit.some(([l, t]) => l === 'en-US' && t.includes('interoceptive'))")
         autre.locator('button[data-act="stop"]').click()
@@ -200,7 +211,7 @@ class TestSite(unittest.TestCase):
         p.reload()
         p.wait_for_function("document.querySelectorAll('.carte').length === 3")
         self.assertEqual(json.loads((self.tmp / "site" / "audio" / "audio.json").read_text())["demo:3"]["fichier"], "arfid.mp3")
-        carte = p.locator(".carte", has_text="ARFID")
+        carte = self.deplier(p.locator(".carte", has_text="ARFID"))
         bouton, stop = carte.locator('button[data-act="ecouter"]'), carte.locator('button[data-act="stop"]')
         self.assertIn("🎧 Écouter", bouton.text_content())
         self.assertIn("🔊 Écouter", p.locator(".carte", has_text="Gut-directed").locator('button[data-act="ecouter"]').text_content())
@@ -252,7 +263,7 @@ class TestSite(unittest.TestCase):
         bouton.click()
         self.assertIn("Reprendre", bouton.text_content())
         # une fiche avec MP3 prend la main : le bouton du jour revient à l'état de repos
-        p.locator(".carte", has_text="ARFID").locator('button[data-act="ecouter"]').click()
+        self.deplier(p.locator(".carte", has_text="ARFID")).locator('button[data-act="ecouter"]').click()
         self.assertIn("Audio du jour", bouton.text_content())
         self.assertEqual(p.evaluate("__joue[__joue.length - 1]"), "audio/arfid.mp3")
         bouton.click()
@@ -297,7 +308,7 @@ class TestSite(unittest.TestCase):
         self.ctx.set_offline(True)
         p.reload()
         p.wait_for_function("document.querySelectorAll('.carte').length === 3")
-        carte = p.locator(".carte", has_text="Alexithymia")                       # abstract jamais ouvert : message clair
+        carte = self.deplier(p.locator(".carte", has_text="Alexithymia"))         # abstract jamais ouvert : message clair
         carte.locator("summary").click()
         carte.locator(".charge-details", has_text="indisponible").wait_for()
 
