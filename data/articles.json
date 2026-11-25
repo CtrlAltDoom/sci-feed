@@ -1147,7 +1147,10 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-24",
-"fiche": null,
+"fiche": {
+"titre_court": "Axe gut-brain Drosophila : émèse aversive",
+"conclusion_simple": "Ces résultats offrent un modèle génétique pour étudier la communication gut-brain aversive, à confirmer en contexte humain."
+},
 "revue_oa": "S128425624",
 "libre_verifie": "2026-11-24"
 },
@@ -1724,7 +1727,10 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-24",
-"fiche": null,
+"fiche": {
+"titre_court": "Alexithymie, clarté du soi et anxiété sociale",
+"conclusion_simple": "L'auto-concept clair médie le lien entre alexithymie et anxiété sociale, l'évitement modérant cette relation, à confirmer cliniquement."
+},
 "revue_oa": "S147670119",
 "libre_verifie": "2026-11-24"
 },
@@ -1763,7 +1769,10 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-24",
-"fiche": null,
+"fiche": {
+"titre_court": "Psychothérapies et réorganisation cérébrale en douleur",
+"conclusion_simple": "Des changements cérébraux convergents soutiennent le ciblage du catastrophisme et de la peur, à confirmer."
+},
 "revue_oa": "S194302669",
 "libre_verifie": "2026-11-24"
 },
@@ -2433,7 +2442,10 @@
 "sii"
 ],
 "ajoute_le": "2026-11-24",
-"fiche": null,
+"fiche": {
+"titre_court": "Supplément enzymatique adjonctif en IBS low-FODMAP",
+"conclusion_simple": "L'ajout d'enzymes digestives au régime low-FODMAP améliore les symptômes IBS, notamment ballonnements et douleurs, à confirmer sur le long terme."
+},
 "revue_oa": "S2596909297"
 },
 {
