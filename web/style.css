@@ -200,6 +200,9 @@ details p { margin: 6px 0; }
   padding: 4px 6px; cursor: pointer; }
 .mini-fav.actif { color: var(--or); }
 .actions .ouvrir { color: var(--accent); font-weight: 600; }
-.carte.replie .meta { flex-wrap: nowrap; white-space: nowrap; overflow: hidden; }
+.carte.replie .meta { flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+.carte.replie .meta::-webkit-scrollbar { display: none; }
+.carte.replie .type-long, .carte:not(.replie) .type-court { display: none; }
 .carte.replie .meta > * { flex: none; }
 .carte.replie .meta > .m-revue { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.carte.replie .type-court { max-width: 45%; overflow: hidden; text-overflow: ellipsis; }

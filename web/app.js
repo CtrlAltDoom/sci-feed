@@ -476,7 +476,9 @@
     const typeTxt = [et.type === "essai enregistré" ? "" : et.type].concat(et.details || []).filter(Boolean).join(" · ");
     const meta = `<div class="meta">${badges.join("")}<span>${esc(fmtJour(a.date))}</span>` +
       (a.revue ? `<span class="m-revue">· ${esc(a.revue)}</span>` : "") +
-      (typeTxt ? `<span class="badge type">${esc(typeTxt)}</span>` : "") + `</div>`;
+      (typeTxt ? `<span class="badge type type-long">${esc(typeTxt)}</span>` : "") +
+      // carte repliée : seulement le type principal (« transversale »), les précisions apparaissent en dépliant
+      (typeTxt ? `<span class="badge type type-court">${esc(typeTxt.split(" · ")[0])}</span>` : "") + `</div>`;
 
     let corps = "";
     if (f) {
