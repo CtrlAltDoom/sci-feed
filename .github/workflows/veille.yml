@@ -41,7 +41,7 @@ concurrency:
 jobs:
   veille:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ (inputs.rattrapage || github.event.schedule == '17 19 * * *') && 70 || 45 }}
+    timeout-minutes: ${{ (inputs.rattrapage || github.event.schedule == '17 19 * * *') && 85 || 65 }}   # dont 15 min au plus pour l'audio
     environment:
       name: github-pages
       url: ${{ steps.deploiement.outputs.page_url }}
@@ -120,26 +120,50 @@ jobs:
             python -m veille site          # simple changement de config/apparence : pas de collecte
           elif [ "${{ inputs.rattrapage }}" = "true" ] || [ "${{ github.event.schedule }}" = "17 19 * * *" ]; then
             python -m veille resumer --rattrapage   # durée limitée : ia.rattrapage dans config.yaml
-            python -m veille audio
             python -m veille site
           else
-            python -m veille tout          # collecte, fiches IA, MP3 des fiches, audio du jour puis site
+            python -m veille tout          # collecte, fiches IA, choix des articles du jour, puis site
           fi
-
-      - name: Garder les MP3 pour demain
-        # (un simple push ne crée pas de MP3 : rien de neuf à garder)
-        if: github.event_name != 'push' && steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui' && hashFiles('audio/audio.json') != ''
-        continue-on-error: true     # cache indisponible : les MP3 seront refaits demain, sans plus
-        uses: actions/cache/save@v6
-        with:
-          path: audio
-          key: audio-${{ github.run_id }}
 
       # les notifications ont pu pousser entre-temps : 3 essais ; en cas de conflit, la base
       # de la collecte l'emporte (les notifications ne gardent que ce qui a été envoyé)
       - name: Sauvegarder la base d'articles
         if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         run: bash .github/pousser-data.sh "Veille du $(date -u +%Y-%m-%d)"
+
+      # MP3 des fiches et audio du jour, APRÈS la collecte et la sauvegarde de la base : une panne ou
+      # une lenteur du service de voix (ou de l'IA qui écrit le texte) ne peut ni annuler la collecte
+      # ni empêcher la publication. Au pire, le site part avec les MP3 de la veille.
+      - name: Audio (MP3 des fiches, audio du jour)
+        if: github.event_name != 'push' && steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
+        timeout-minutes: 15
+        continue-on-error: true
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          SYNC_GIST_ID: ${{ secrets.SYNC_GIST_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ inputs.rattrapage }}" = "true" ] || [ "${{ github.event.schedule }}" = "17 19 * * *" ]; then
+            python -m veille audio           # le soir : MP3 des nouvelles fiches (l'audio du jour est fait la nuit)
+          else
+            python -m veille audio --jour
+          fi
+
+      - name: Site avec l'audio
+        if: github.event_name != 'push' && steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
+        run: python -m veille site           # quelques secondes : reprend les MP3 présents dans audio/
+
+      - name: Garder les MP3 pour demain
+        # même si l'étape audio a échoué ou dépassé son temps : ce qui est fait est gardé
+        # (un simple push ne crée pas de MP3 : rien de neuf à garder)
+        if: always() && github.event_name != 'push' && steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui' && hashFiles('audio/audio.json') != ''
+        continue-on-error: true     # cache indisponible : les MP3 seront refaits demain, sans plus
+        uses: actions/cache/save@v6
+        with:
+          path: audio
+          key: audio-${{ github.run_id }}
 
       - if: steps.garde.outputs.fait != 'oui' && steps.reste.outputs.rien != 'oui'
         uses: actions/configure-pages@v6

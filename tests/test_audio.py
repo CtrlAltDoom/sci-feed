@@ -231,11 +231,24 @@ class TestAudioDuJour(_Bac):
         # IA : reçoit les fiches, le texte rendu est nettoyé du markdown
         texte = "**Bonjour**, voici la veille. " + "Une phrase simple sur l'étude. " * 60
         ia = FauxScript(texte)
-        self.assertEqual(audio.script_ia(self.cfg, base.articles[:2], jour, ia)[:30], "Bonjour, voici la veille. Une ")
+        script, origine = audio.script_ia(self.cfg, base.articles[:2], jour, ia)
+        self.assertEqual(script[:30], "Bonjour, voici la veille. Une ")
+        self.assertEqual(origine, "écrit par faux-modele")
         self.assertIn("dimanche 22 novembre", ia.recu[0])
         self.assertIn("Population : 120 adultes SII", ia.recu[1])
-        self.assertIsNone(audio.script_ia(self.cfg, base.articles[:2], jour, FauxScript("Trop court.")))
-        self.assertIsNone(audio.script_ia(self.cfg, base.articles[:2], jour, FauxScript(panne=True)))
+        # échecs : pas de texte, et la raison (journal « texte de secours (raison) »)
+        script, origine = audio.script_ia(self.cfg, base.articles[:2], jour, FauxScript("Trop court."))
+        self.assertIsNone(script)
+        self.assertIn("trop courte (2 mots, 80 au moins)", origine)
+        script, origine = audio.script_ia(self.cfg, base.articles[:2], jour, FauxScript(panne=True))
+        self.assertEqual((script, origine), (None, "IA en échec : quota"))
+        sans_cle = FauxScript(texte)
+        sans_cle.cle, sans_cle.url = "", "https://exemple.org"
+        self.assertEqual(audio.script_ia(self.cfg, base.articles[:2], jour, sans_cle), (None, "aucune clé d'IA disponible"))
+        with mock.patch.object(audio, "synthetiser", FausseVoix()), self.assertLogs("veille", "INFO") as logs:
+            v = audio.generer_jour(self.cfg, base, client=FauxScript(panne=True), jour=jour - dt.timedelta(days=3))
+        self.assertTrue(any("texte de secours (IA en échec : quota)" in l for l in logs.output))
+        self.assertTrue(v["texte"].startswith("secours, IA en échec"))
         # MP3 du jour : script de l'IA quand elle répond, une seule voix ; refait seulement si les articles changent
         voix = FausseVoix()
         with mock.patch.object(audio, "synthetiser", voix):
@@ -245,11 +258,81 @@ class TestAudioDuJour(_Bac):
             self.assertTrue(voix.appels[0][1].startswith("Bonjour, voici la veille."))
             audio.generer_jour(self.cfg, base, client=FauxScript(texte), jour=jour)
             self.assertEqual(len(voix.appels), 1)
+        self.assertEqual(v["texte"], "IA, écrit par faux-modele")
         self.assertTrue((self.tmp / "audio" / f"jour-{jour.isoformat()}.mp3").exists())
         self.assertGreater(v["duree"], 0)
         # panne de la voix : avertissement, pas d'exception
         with mock.patch.object(audio, "synthetiser", FausseVoix(panne=True)), self.assertLogs("veille", "WARNING"):
             self.assertIsNone(audio.generer_jour(self.cfg, base, client=FauxScript(texte), jour=jour + dt.timedelta(days=1)))
+
+    def test_collecte_en_retard_audio_aligne_sur_les_envois(self):
+        """Notifications déjà parties aujourd'hui (collecte en retard) : l'audio parle des articles envoyés."""
+        base = self.base()
+        pipeline.sauvegarder(base)
+        jour = audio.jour_local(self.cfg)
+        from zoneinfo import ZoneInfo
+        maintenant = dt.datetime.combine(jour, dt.time(15), tzinfo=ZoneInfo("Europe/Paris"))
+        self.cfg["notifications"]["hebdo"] = {"actif": False}
+        self.cfg["notifications"]["nombre"] = 3
+        with mock.patch.dict("os.environ", {"NTFY_TOPIC": "canal"}), \
+                mock.patch.object(notifications.requests, "post", lambda url, json=None, **kw: Reponse()), \
+                mock.patch.object(notifications, "audio_du_jour_en_ligne", lambda *a: ""), \
+                mock.patch("time.sleep", lambda s: None):
+            notifications.notifier(self.cfg, forcer=True, client=FauxScript(panne=True), maintenant=maintenant)
+        etat = json.loads((self.tmp / "notifications.json").read_text(encoding="utf-8"))
+        envoyes = etat["envoi_du_jour"]["ids"]
+        self.assertEqual((etat["envoi_du_jour"]["jour"], len(envoyes)), (jour.isoformat(), 3))   # liste enregistrée
+        # la collecte arrive ensuite et choisit d'autres articles (les envoyés sont exclus)
+        self.cfg["notifications"]["nombre"] = 5
+        choisis = [a["id"] for a in audio.preparer_selection(self.cfg, base)]
+        self.assertFalse(set(choisis) & set(envoyes))
+        with mock.patch.object(audio, "synthetiser", FausseVoix()), self.assertLogs("veille", "INFO") as logs:
+            v = audio.generer_jour(self.cfg, base, client=FauxScript(panne=True), jour=jour)
+        self.assertEqual(v["ids"], envoyes)                                   # les articles réellement envoyés
+        self.assertEqual(v["source"], "notifications déjà envoyées aujourd'hui")
+        self.assertTrue(any("3 articles (notifications déjà envoyées aujourd'hui)" in l for l in logs.output))
+        # ancien format (avant envoi_du_jour) : les articles marqués envoyés ce jour-là
+        del etat["envoi_du_jour"]
+        (self.tmp / "notifications.json").write_text(json.dumps(etat), encoding="utf-8")
+        self.assertEqual(sorted(audio.envoyes_du_jour(jour)), sorted(envoyes))
+        # pas d'envoi aujourd'hui : sélection de la nuit
+        etat["dernier_envoi"] = (jour - dt.timedelta(days=1)).isoformat()
+        (self.tmp / "notifications.json").write_text(json.dumps(etat), encoding="utf-8")
+        self.assertEqual([a["id"] for a in audio.articles_du_jour(self.cfg, base, jour)[0]], choisis)
+
+    def test_commandes_et_workflow(self):
+        """« tout » ne fait plus de MP3 (seulement le choix du jour) ; l'audio est une étape à part du workflow."""
+        import sys
+        from veille import __main__ as cli, resume_ia, sante
+        appels = []
+        with mock.patch.object(audio, "generer", lambda cfg: appels.append("fiches")), \
+                mock.patch.object(audio, "generer_jour", lambda cfg: appels.append("jour")), \
+                mock.patch.object(audio, "preparer_selection", lambda cfg: appels.append("selection")), \
+                mock.patch.object(pipeline, "collecter", lambda cfg: None), \
+                mock.patch.object(resume_ia, "resumer", lambda cfg: None), \
+                mock.patch.object(sante, "verifier", lambda *a, **k: None), \
+                mock.patch.object(sante.Releve, "enregistrer", lambda self: None), \
+                mock.patch.object(site, "construire", lambda *a, **k: appels.append("site")), \
+                mock.patch("veille.__main__.charger_config", lambda *a: self.cfg):
+            for args in (["tout"], ["audio"], ["audio", "--jour"]):
+                with mock.patch.object(sys, "argv", ["veille"] + args):
+                    cli.main()
+                appels.append("|")
+        self.assertEqual(appels, ["selection", "site", "|", "fiches", "|", "fiches", "jour", "|"])
+        import yaml
+        wf = yaml.safe_load((core.RACINE / ".github" / "workflows" / "veille.yml").read_text(encoding="utf-8"))
+        etapes = wf["jobs"]["veille"]["steps"]
+        noms = [e.get("name") or e.get("uses") for e in etapes]
+        i = {n: noms.index(n) for n in ("Collecte, fiches IA et site", "Sauvegarder la base d'articles",
+                                        "Audio (MP3 des fiches, audio du jour)", "Site avec l'audio",
+                                        "Garder les MP3 pour demain", "actions/upload-pages-artifact@v5")}
+        self.assertEqual(sorted(i.values()), list(i.values()))              # dans cet ordre
+        self.assertNotIn("veille audio", etapes[i["Collecte, fiches IA et site"]]["run"])
+        a = etapes[i["Audio (MP3 des fiches, audio du jour)"]]
+        self.assertEqual((a["timeout-minutes"], a["continue-on-error"]), (15, True))
+        self.assertIn("python -m veille audio --jour", a["run"])
+        self.assertTrue(etapes[i["Garder les MP3 pour demain"]]["if"].startswith("always()"))
+        self.assertIn("65", wf["jobs"]["veille"]["timeout-minutes"])
 
     def test_podcast_et_site(self):
         base = self.base()

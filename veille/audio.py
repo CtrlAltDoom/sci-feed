@@ -272,6 +272,48 @@ def enregistrer_selection(cfg: dict, base, jour: dt.date | None = None) -> list[
     return choix
 
 
+def preparer_selection(cfg: dict, base=None) -> list[dict]:
+    """Fin de la collecte : choisit les articles du jour (rapide, sans voix). Jamais d'exception."""
+    r = reglages(cfg)
+    if not r.get("actif", True) or not r.get("jour", True):
+        return []
+    try:
+        if base is None:
+            from .pipeline import charger
+            base = charger()
+        return enregistrer_selection(cfg, base)
+    except Exception as ex:
+        log.warning("Audio du jour : sélection impossible (%s)", ex)
+        return []
+
+
+def envoyes_du_jour(jour: dt.date) -> list[str] | None:
+    """Articles réellement notifiés ce jour-là (dans l'ordre d'envoi), ou None s'il n'y a pas eu d'envoi."""
+    from . import notifications
+    etat = notifications._etat()
+    if etat.get("dernier_envoi") != jour.isoformat():
+        return None
+    d = etat.get("envoi_du_jour") or {}
+    if d.get("jour") == jour.isoformat() and d.get("ids"):
+        return list(d["ids"])
+    # envoi antérieur à l'enregistrement de la liste : les articles marqués envoyés ce jour-là
+    ids = [k for k, v in (etat.get("envoyes") or {}).items() if v == jour.isoformat()]
+    return ids or None
+
+
+def articles_du_jour(cfg: dict, base, jour: dt.date) -> tuple[list[dict], str]:
+    """Les articles de l'audio du jour, et d'où vient la liste : notifications déjà envoyées
+    aujourd'hui (collecte en retard), sinon sélection de la nuit, sinon nouvelle sélection."""
+    par_id = {a["id"]: a for a in base.articles}
+    ids = envoyes_du_jour(jour)
+    if ids:
+        return [par_id[i] for i in ids if i in par_id], "notifications déjà envoyées aujourd'hui"
+    ids = selection_enregistree(jour)
+    if ids:
+        return [par_id[i] for i in ids if i in par_id], "sélection de la nuit"
+    return enregistrer_selection(cfg, base, jour), "nouvelle sélection"
+
+
 def selection_enregistree(jour: dt.date) -> list[str] | None:
     """Identifiants choisis la nuit pour ce jour-là, ou None (pas de sélection, ou d'un autre jour)."""
     f = _fichier_selection()
@@ -337,30 +379,32 @@ def script_secours(articles: list[dict], jour: dt.date) -> str:
     return "\n\n".join(morceaux_txt)
 
 
-def script_ia(cfg: dict, articles: list[dict], jour: dt.date, client=None) -> str | None:
-    """Texte parlé écrit par l'IA des fiches (mêmes fournisseurs, quotas et repli) ; None si elle échoue."""
+def script_ia(cfg: dict, articles: list[dict], jour: dt.date, client=None) -> tuple[str | None, str]:
+    """Texte parlé écrit par l'IA des fiches (mêmes fournisseurs, quotas et repli).
+    Renvoie (texte, origine) ; texte = None si l'IA n'a pas pu l'écrire, origine dit alors pourquoi."""
     from .resume_ia import ChaineLLM, _extraire_json
     ia = cfg.get("ia") or {}
     if not ia.get("actif", True) and client is None:
-        return None
+        return None, "IA désactivée (ia.actif: false)"
     try:
         client = client or ChaineLLM(ia)
-        if client is not None and not getattr(client, "cle", "x") and "localhost" not in getattr(client, "url", ""):
-            return None
+        if not getattr(client, "cle", "x") and "localhost" not in getattr(client, "url", ""):
+            return None, "aucune clé d'IA disponible"
         systeme = CONSIGNES_SCRIPT.format(profil=(ia.get("profil_lecteur") or "psychologue clinicien.").strip(),
                                           date=date_parlee(jour))
         texte = "\n\n".join(_fiche_pour_script(i, a) for i, a in enumerate(articles, 1))
         contenu, modele = client.completer(systeme, texte)
+    except Exception as ex:
+        return None, f"IA en échec : {ex}"
+    try:
         script = str(_extraire_json(contenu).get("script") or "").strip()
     except Exception as ex:
-        log.warning("Audio du jour : script de l'IA en échec (%s), script de secours", ex)
-        return None
+        return None, f"réponse de {modele} illisible ({ex})"
     script = re.sub(r"[*#_`]+", "", script)                     # pas de markdown lu à voix haute
-    if len(script.split()) < 40 * len(articles):
-        log.warning("Audio du jour : script de l'IA trop court (%d mots), script de secours", len(script.split()))
-        return None
-    log.info("Audio du jour : script écrit par %s (%d mots)", modele, len(script.split()))
-    return script
+    mots = len(script.split())
+    if mots < 40 * len(articles):
+        return None, f"réponse de {modele} trop courte ({mots} mots, {40 * len(articles)} au moins)"
+    return script, f"écrit par {modele}"
 
 
 def generer_jour(cfg: dict, base=None, client=None, jour: dt.date | None = None) -> dict | None:
@@ -374,7 +418,8 @@ def generer_jour(cfg: dict, base=None, client=None, jour: dt.date | None = None)
             from .pipeline import charger
             base = charger()
         jour = jour or jour_local(cfg)
-        articles = enregistrer_selection(cfg, base, jour)
+        articles, source = articles_du_jour(cfg, base, jour)
+        log.info("Audio du jour : %d articles (%s)", len(articles), source)
         if not articles:
             return None
         cle = f"jour:{jour.isoformat()}"
@@ -387,7 +432,12 @@ def generer_jour(cfg: dict, base=None, client=None, jour: dt.date | None = None)
         if v and v.get("empreinte") == e and (DOSSIER / nom).exists():
             log.info("Audio du jour : déjà fait, mêmes articles")
             return v
-        script = script_ia(cfg, articles, jour, client) or script_secours(articles, jour)
+        script, origine = script_ia(cfg, articles, jour, client)
+        if script:
+            log.info("Audio du jour : texte IA (%s, %d mots)", origine, len(script.split()))
+        else:
+            script = script_secours(articles, jour)
+            log.warning("Audio du jour : texte de secours (%s), %d mots", origine, len(script.split()))
         donnees = synthetiser(script, r["voix"])
         if len(donnees) < 1000:
             raise RuntimeError("réponse vide du service de voix")
@@ -395,7 +445,8 @@ def generer_jour(cfg: dict, base=None, client=None, jour: dt.date | None = None)
         titres = [(a.get("fiche") or {}).get("titre_court") or a.get("titre", "") for a in articles]
         v = {"fichier": nom, "jour": jour.isoformat(), "empreinte": e, "octets": len(donnees),
              "duree": round(len(donnees) / OCTETS_PAR_SECONDE), "ids": [a["id"] for a in articles],
-             "titres": titres, "mots": len(script.split())}
+             "titres": titres, "mots": len(script.split()),
+             "texte": ("IA, " if origine.startswith("écrit par") else "secours, ") + origine, "source": source}
         manifeste[cle] = v
         purger(manifeste, r)
         (DOSSIER / MANIFESTE).write_text(json.dumps(manifeste, ensure_ascii=False, indent=1), encoding="utf-8")

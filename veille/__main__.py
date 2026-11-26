@@ -1,10 +1,10 @@
 """Ligne de commande.
 
-    python -m veille tout        # collecte + fiches IA + site (ce que fait GitHub chaque jour)
+    python -m veille tout        # collecte + fiches IA + site (ce que fait GitHub chaque jour, puis audio --jour)
     python -m veille collecter   # seulement la collecte
     python -m veille resumer     # seulement les fiches IA
     python -m veille audio       # seulement les MP3 des fiches (edge-tts, dossier audio/)
-    python -m veille audio --jour  # idem, plus l'audio du jour (fait chaque nuit par « tout »)
+    python -m veille audio --jour  # idem, plus l'audio du jour (chaque nuit, après « tout »)
     python -m veille site        # seulement le site (dossier site/)
     python -m veille notifier    # notifications du matin (ntfy) ; --essai : affiche sans envoyer
     python -m veille tester-ia   # vérifie que chaque fournisseur IA répond (OpenRouter, Gemini, Mistral)
@@ -58,12 +58,17 @@ def main():
     if args.action == "tout":
         sante.RELEVE.enregistrer()
         sante.verifier(cfg)
-    if args.action in ("tout", "audio"):
+    if args.action == "tout":
+        # les MP3 sont faits ensuite, dans une étape à part (python -m veille audio --jour) : une panne
+        # ou une lenteur de la voix ne retarde jamais la collecte. On choisit ici seulement les
+        # articles du jour (rapide), enregistrés avec la base pour la notification du matin.
+        from . import audio
+        audio.preparer_selection(cfg)
+    if args.action == "audio":
         from . import audio
         audio.generer(cfg)                    # n'échoue jamais : au pire, pas de MP3 aujourd'hui
-    if args.action == "tout" or (args.action == "audio" and args.jour):
-        from . import audio
-        audio.generer_jour(cfg)               # audio du jour : les articles de la notification du matin
+        if args.jour:
+            audio.generer_jour(cfg)           # audio du jour : les articles de la notification du matin
     if args.action in ("tout", "site"):
         site.construire(cfg, inline=args.inline)
     if args.action == "tester-ia":
