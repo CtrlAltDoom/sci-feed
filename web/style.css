@@ -206,3 +206,40 @@ details p { margin: 6px 0; }
 .carte.replie .meta > * { flex: none; }
 .carte.replie .meta > .m-revue { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .carte.replie .type-court { max-width: 45%; overflow: hidden; text-overflow: ellipsis; }
+
+/* fond d'écran personnalisé (Personnaliser > Fond d'écran) : le thème sombre est forcé par app.js */
+#fond-ecran { display: none; }
+html.fond-actif #fond-ecran { display: block; position: fixed; inset: 0; z-index: -1;
+  background: #0b0e0d center / cover no-repeat; }
+html.fond-actif #fond-ecran::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,var(--voile, .35)); }
+html.fond-actif body { background: transparent; }
+html.fond-actif .entete { background: rgba(18,22,21,.9); }
+html.fond-actif .carte { background: rgba(27,33,31,.9); }
+.perso-fond { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+.fond-option { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: .75rem; color: var(--doux);
+  background: none; border: 0; padding: 0; cursor: pointer; }
+.fond-vignette { width: 64px; height: 84px; border-radius: 10px; border: 2px solid var(--ligne);
+  background: var(--fond) center / cover no-repeat; }
+.fond-option[aria-checked="true"] { color: var(--texte); font-weight: 600; }
+.fond-option[aria-checked="true"] .fond-vignette { border-color: var(--accent); }
+.perso-voile { display: flex; align-items: center; gap: 8px; font-size: .78rem; color: var(--doux); margin: 4px 0 8px; }
+#fond-options[hidden] { display: none; }
+.perso-voile input { flex: 1; accent-color: var(--accent); }
+.perso-sousmenu { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px 12px;
+  border: 1px solid var(--ligne); border-radius: 12px; background: var(--fond); cursor: pointer; text-align: left; }
+.perso-sousmenu span { color: var(--doux); font-size: .85rem; }
+.perso-sousmenu span::after { content: " ›"; font-size: 1.1rem; }
+#fond-dialogue .perso-tete { justify-content: flex-start; gap: 12px; }
+.fond-pilule { border: 1px solid var(--ligne); background: var(--fond); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-size: .85rem; }
+.fond-pilule[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: #0d1211; font-weight: 600; }
+
+/* style « verre dépoli » (liquid glass) : seulement avec un fond, sinon il n'y a rien à voir à travers */
+html.verre .entete { background: rgba(14,18,30,.55); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  border-bottom-color: rgba(255,255,255,.08); }
+html.verre .carte { background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 8px 24px rgba(0,0,0,.35); }
+html.verre .perso { background: rgba(24,28,40,.8); -webkit-backdrop-filter: blur(22px) saturate(160%); backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255,255,255,.14); }
+html.verre .perso-tete { background: rgb(30,34,48); }
+html.verre .icone:not([aria-expanded="true"]):not([aria-pressed="true"]) { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); }

@@ -299,6 +299,41 @@ class TestSite(unittest.TestCase):
         lien = p.locator(".carte", has_text="Alexithymia").locator("a", has_text="Chercher une version")
         self.assertIn("scholar.google.com/scholar?q=Alexithymia%20and%20interoception", lien.get_attribute("href"))
 
+    def test_fond_ecran(self):
+        """Photo choisie dans Personnaliser : gardée sur l'appareil, thème sombre forcé, cartes lisibles."""
+        p = self.page
+        clair = p.evaluate("getComputedStyle(document.body).color")
+        p.click("#perso-ouvrir")
+        p.click("#fond-ouvrir")                                                    # sous-menu
+        png = Path(self.tmp) / "fond.png"
+        if not png.exists():
+            import base64
+            png.write_bytes(base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="))
+        p.set_input_files("#fond-fichier", str(png))
+        p.wait_for_function("document.documentElement.classList.contains('fond-actif')")
+        self.assertIn("enregistrée", p.inner_text("#fond-message"))
+        self.assertNotEqual(p.evaluate("getComputedStyle(document.body).color"), clair)    # thème sombre forcé
+        self.assertIn("rgba", p.evaluate("getComputedStyle(document.querySelector('.carte')).backgroundColor"))
+        p.fill("#fond-voile", "60")
+        p.dispatch_event("#fond-voile", "input")
+        p.reload()                                                                  # gardée après rechargement
+        p.wait_for_function("document.documentElement.classList.contains('fond-actif')")
+        self.assertEqual(p.evaluate("getComputedStyle(document.getElementById('fond-ecran')).getPropertyValue('--voile')").strip(), "0.60")
+        self.assertNotIn("fond", json.dumps(p.evaluate("JSON.parse(localStorage.getItem('veille-etat-v1') || '{}')")))  # pas synchronisé
+        self.assertTrue(p.evaluate("document.documentElement.classList.contains('verre')"))   # verre dépoli par défaut
+        p.click("#perso-ouvrir")
+        self.assertIn("Ma photo", p.inner_text("#fond-resume"))
+        p.click("#fond-ouvrir")
+        p.click("[data-style='classique']")
+        self.assertFalse(p.evaluate("document.documentElement.classList.contains('verre')"))
+        p.click("[data-fond='bleu-nuit']")                                         # image fournie avec le site
+        self.assertIn("fond-bleu-nuit.webp", p.evaluate("document.getElementById('fond-ecran').style.backgroundImage"))
+        self.assertEqual(p.evaluate("fetch('fond-bleu-nuit.webp').then((r) => r.status)"), 200)
+        p.click("[data-fond='aucun']")
+        self.assertFalse(p.evaluate("document.documentElement.classList.contains('fond-actif')"))
+        self.assertEqual(p.evaluate("getComputedStyle(document.body).color"), clair)
+        self.assertEqual(self.erreurs, [])
+
     def test_hors_connexion(self):
         p = self.page
         p.wait_for_function("navigator.serviceWorker && navigator.serviceWorker.controller !== null")

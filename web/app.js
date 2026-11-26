@@ -833,6 +833,145 @@
     });
   }
 
+  // ---------- fond d'écran (réglage de cet appareil seulement, jamais synchronisé) ----------
+  // Choix et voile dans localStorage ; la photo de l'utilisateur (déjà réduite) dans IndexedDB.
+  // Un fond actif force le thème sombre : les règles « prefers-color-scheme: dark » de style.css
+  // sont recopiées sous html.fond-actif (une seule source de couleurs).
+  const fond = (() => {
+    const CLE_FOND = "veille-fond-v1";
+    const INTEGRES = [{ id: "bleu-nuit", nom: "Bleu nuit", url: "fond-bleu-nuit.webp" }];   // fournies avec le site
+    let cfg = { choix: "aucun", voile: 20, style: "verre" };
+    try { Object.assign(cfg, JSON.parse(localStorage.getItem(CLE_FOND) || "{}")); } catch (e) { }
+    const garder = () => { try { localStorage.setItem(CLE_FOND, JSON.stringify(cfg)); } catch (e) { } };
+    let urlPhoto = null, aPhoto = false;
+
+    const base = () => new Promise((ok, ko) => {
+      if (!window.indexedDB) return ko(new Error("indexedDB"));
+      const r = indexedDB.open("veille-fond", 1);
+      r.onupgradeneeded = () => r.result.createObjectStore("images");
+      r.onsuccess = () => ok(r.result); r.onerror = () => ko(r.error);
+    });
+    const idb = (mode, f) => base().then((db) => new Promise((ok, ko) => {
+      const t = db.transaction("images", mode), req = f(t.objectStore("images"));
+      t.oncomplete = () => ok(req && req.result); t.onerror = () => ko(t.error);
+    }));
+    const lirePhoto = () => idb("readonly", (s) => s.get("photo"));
+    const ecrirePhoto = (blob) => idb("readwrite", (s) => s.put(blob, "photo"));
+    const effacerPhoto = () => idb("readwrite", (s) => s.delete("photo"));
+
+    // copie des règles sombres sous html.fond-actif (fait une fois)
+    let sombrePret = false;
+    const preparerSombre = () => {
+      if (sombrePret) return; sombrePret = true;
+      const regles = [];
+      const prefixer = (sel) => sel.split(",").map((x) => {
+        x = x.trim();
+        if (x === ":root" || x === "html") return "html.fond-actif";
+        return "html.fond-actif " + x.replace(/^:root\s+/, "");
+      }).join(", ");
+      for (const feuille of document.styleSheets) {
+        let liste; try { liste = feuille.cssRules; } catch (e) { continue; }
+        for (const r of liste) {
+          if (!r.media || !/prefers-color-scheme:\s*dark/.test(r.media.mediaText)) continue;
+          for (const s of r.cssRules) if (s.selectorText) regles.push(`${prefixer(s.selectorText)} { ${s.style.cssText} }`);
+        }
+      }
+      const el = document.createElement("style"); el.id = "fond-sombre"; el.textContent = regles.join("\n");
+      document.head.appendChild(el);
+    };
+
+    const url = () => {
+      if (cfg.choix === "photo") return urlPhoto;
+      const i = INTEGRES.find((x) => x.id === cfg.choix);
+      return i ? i.url : null;
+    };
+    const appliquer = () => {
+      const u = url(), el = $("fond-ecran");
+      if (u) preparerSombre();
+      document.documentElement.classList.toggle("fond-actif", !!u);
+      document.documentElement.classList.toggle("verre", !!u && cfg.style === "verre");
+      if (el) { el.style.backgroundImage = u ? `url("${u}")` : ""; el.style.setProperty("--voile", (cfg.voile / 100).toFixed(2)); }
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) { if (!meta.dataset.origine) meta.dataset.origine = meta.content; meta.content = u ? "#0b0e0d" : meta.dataset.origine; }
+    };
+    const choisir = (c) => { cfg.choix = c; garder(); appliquer(); afficher(); };
+
+    const afficher = () => {
+      const boite = $("fond-choix"); if (!boite) return;
+      const opts = [{ id: "aucun", nom: "Aucun" }].concat(INTEGRES, aPhoto ? [{ id: "photo", nom: "Ma photo" }] : []);
+      boite.innerHTML = opts.map((o) => {
+        const u = o.id === "photo" ? urlPhoto : o.url;
+        return `<button type="button" class="fond-option" role="radio" aria-checked="${cfg.choix === o.id}" data-fond="${esc(o.id)}">` +
+          `<span class="fond-vignette"${u ? ` style="background-image:url('${esc(u)}')"` : ""}></span>${esc(o.nom)}</button>`;
+      }).join("") + (aPhoto ? `<button type="button" class="lien" id="fond-oublier">Supprimer ma photo</button>` : "");
+      $("fond-voile").value = cfg.voile;
+      $("fond-voile-val").textContent = cfg.voile + " %";
+      $("fond-options").hidden = !url();
+      document.querySelectorAll("#fond-style [data-style]").forEach((b) => b.setAttribute("aria-checked", b.dataset.style === cfg.style));
+      const actuel = opts.find((o) => o.id === cfg.choix);
+      $("fond-resume").textContent = actuel ? actuel.nom : "Aucun";
+    };
+
+    // photo réduite (1600 px au plus grand côté) et compressée, pour un chargement rapide
+    const reduire = (fichier) => createImageBitmap(fichier).then((img) => {
+      const k = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      const essai = (type, q) => new Promise((ok) => c.toBlob(ok, type, q));
+      return essai("image/webp", 0.8).then((b) => (b && b.type === "image/webp" ? b : essai("image/jpeg", 0.82)));
+    });
+    const poserPhoto = (blob) => {
+      if (urlPhoto) URL.revokeObjectURL(urlPhoto);
+      urlPhoto = blob ? URL.createObjectURL(blob) : null; aPhoto = !!blob;
+    };
+
+    const demarrer = () => {
+      if (cfg.choix === "photo") {
+        lirePhoto().then((b) => { poserPhoto(b || null); if (!b) cfg.choix = "aucun"; appliquer(); afficher(); })
+          .catch(() => { cfg.choix = "aucun"; appliquer(); });
+      } else {
+        appliquer();
+        lirePhoto().then((b) => { if (b) { poserPhoto(b); afficher(); } }).catch(() => { });
+      }
+      const boite = $("fond-choix"); if (!boite) return;
+      afficher();
+      boite.addEventListener("click", (e) => {
+        if (e.target.id === "fond-oublier") {
+          effacerPhoto().catch(() => { }).then(() => { poserPhoto(null); if (cfg.choix === "photo") cfg.choix = "aucun"; garder(); appliquer(); afficher(); });
+          return;
+        }
+        const b = e.target.closest("[data-fond]"); if (b) choisir(b.dataset.fond);
+      });
+      $("fond-style").addEventListener("click", (e) => {
+        const b = e.target.closest("[data-style]"); if (b) { cfg.style = b.dataset.style; garder(); appliquer(); afficher(); }
+      });
+      // vrai sous-menu : les réglages se ferment, et reviennent (au même endroit) en quittant le sous-menu
+      $("fond-ouvrir").addEventListener("click", () => {
+        $("fond-message").textContent = ""; afficher(); $("perso").close(); $("fond-dialogue").showModal();
+      });
+      $("fond-dialogue").addEventListener("close", () => {
+        $("perso").showModal(); $("fond-ouvrir").scrollIntoView({ block: "center" }); $("fond-ouvrir").focus();
+      });
+      $("fond-dialogue").addEventListener("click", (e) => {     // toucher en dehors : retour aux réglages
+        if (e.target !== $("fond-dialogue")) return;
+        const r = $("fond-dialogue").getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) $("fond-dialogue").close();
+      });
+      $("fond-voile").addEventListener("input", (e) => { cfg.voile = +e.target.value; garder(); appliquer(); $("fond-voile-val").textContent = cfg.voile + " %"; });
+      $("fond-fichier").addEventListener("change", (e) => {
+        const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+        $("fond-message").textContent = "Préparation de l'image…";
+        reduire(f).then((blob) => ecrirePhoto(blob).then(() => {
+          poserPhoto(blob); $("fond-message").textContent = `Photo enregistrée sur cet appareil (${Math.round(blob.size / 1024)} Ko).`;
+          choisir("photo");
+        })).catch(() => { $("fond-message").textContent = "Impossible de lire ou d'enregistrer cette image."; });
+      });
+    };
+    return { demarrer };
+  })();
+  fond.demarrer();
+
   // ---------- événements ----------
   function brancher() {
     $("titre").textContent = DATA.meta.titre || "Veille scientifique";

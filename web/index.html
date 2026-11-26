@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="fond-ecran" aria-hidden="true"></div>
 <header class="entete">
   <div class="barre">
     <div class="marque">
@@ -96,6 +97,8 @@
   <p class="perso-aide">Raccourci : le texte affiché sur la puce et les fiches (ex. « Anx »). Laisser vide = nom par défaut. Décocher = puce masquée.</p>
   <div id="perso-puces"></div>
   <p><button class="lien" id="perso-reinit" type="button">Remettre les noms et puces par défaut</button></p>
+  <h3>Apparence</h3>
+  <button class="perso-sousmenu" id="fond-ouvrir" type="button">Fond d'écran <span id="fond-resume"></span></button>
   <h3>Accès à mon établissement</h3>
   <p class="perso-aide">Ajoute sur chaque fiche un lien qui ouvre l'article via votre établissement (OpenAthens, proxy de bibliothèque). Vous vous identifiez vous-même, comme d'habitude : rien n'est automatisé ni publié.</p>
   <div class="perso-acces">
@@ -133,6 +136,28 @@
     <label class="icone">Importer… <input type="file" id="perso-import" accept="application/json,.json" hidden></label>
   </p>
   <p class="perso-aide" id="perso-message"></p>
+</dialog>
+
+<dialog class="perso" id="fond-dialogue">
+  <form method="dialog" class="perso-tete">
+    <button class="icone" value="retour" aria-label="Retour aux réglages">‹ Retour</button>
+    <h2>Fond d'écran</h2>
+  </form>
+  <p class="perso-aide">Le thème sombre est utilisé dès qu'un fond est choisi, pour que le texte reste lisible. Votre photo reste sur cet appareil : elle n'est ni synchronisée ni envoyée.</p>
+  <div class="perso-fond" id="fond-choix" role="radiogroup" aria-label="Fond d'écran"></div>
+  <p class="perso-actions">
+    <label class="icone">Choisir une photo… <input type="file" id="fond-fichier" accept="image/*" hidden></label>
+  </p>
+  <div id="fond-options">
+    <label class="perso-voile">Assombrir l'image <input type="range" id="fond-voile" min="0" max="85" step="5"> <span id="fond-voile-val"></span></label>
+    <h3>Style des cartes</h3>
+    <div class="perso-fond" id="fond-style" role="radiogroup" aria-label="Style des cartes">
+      <button type="button" class="fond-pilule" role="radio" data-style="classique">Classique</button>
+      <button type="button" class="fond-pilule" role="radio" data-style="verre">Verre dépoli</button>
+    </div>
+    <p class="perso-aide">« Verre dépoli » : cartes translucides et floutées qui laissent deviner l'image. Plus joli, un peu plus gourmand sur un téléphone ancien.</p>
+  </div>
+  <p class="perso-aide" id="fond-message"></p>
 </dialog>
 
 <main>
