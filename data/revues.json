@@ -9249,5 +9249,16 @@
 "domaine": "Tourism, Leisure and Hospitality Management",
 "articles_par_an": 48,
 "maj": "2026-11-25"
+},
+"S28092622": {
+"nom": "Digestion",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 3.45,
+"h_index": 128,
+"editeur": "Karger Publishers",
+"domaine": "Gastro-entérologie",
+"articles_par_an": 105,
+"maj": "2026-11-26"
 }
 }
