@@ -84,6 +84,39 @@ class Reponse:
         pass
 
 
+class FauxGitHub:
+    """API des gists simulée : gist de l'appli « abc » et gist de secours des favoris."""
+    def __init__(self):
+        self.synchro, self.gists, self.contenu, self.panne, self.creations, self.public = None, {}, None, False, 0, None
+
+    def copie(self):
+        g = next(iter(self.gists.values()))
+        return json.loads(g["scifeed-favoris-secours.json"]["content"])["favoris"]
+
+    def get(self, url, headers=None, params=None, **kw):
+        if self.panne:
+            raise core.requests.ConnectionError("hors ligne")
+        if url.endswith("/gists/abc"):
+            return Reponse({"files": {"veille-synchro.json": {"content": json.dumps(self.synchro)}}})
+        if url.endswith("/gists"):
+            page = (params or {}).get("page", 1)
+            return Reponse([{"id": i, "files": f} for i, f in self.gists.items()] if page == 1 else [])
+        g = self.gists[url.rsplit("/", 1)[-1]]
+        if self.contenu is not None:
+            return Reponse({"files": {"scifeed-favoris-secours.json": {"content": self.contenu}}})
+        return Reponse({"files": g})
+
+    def patch(self, url, headers=None, json=None, **kw):
+        self.gists[url.rsplit("/", 1)[-1]].update(json["files"])
+        return Reponse({"id": url.rsplit("/", 1)[-1]})
+
+    def post(self, url, headers=None, json=None, **kw):
+        self.creations += 1
+        self.public = json.get("public")
+        self.gists[f"g{self.creations}"] = dict(json["files"])
+        return Reponse({"id": f"g{self.creations}"})
+
+
 def faux_get(self, url, params=None, **kw):
     if "unpaywall" in url:
         if url.endswith("inconnu"):
@@ -401,58 +434,51 @@ class TestVeille(unittest.TestCase):
             self.assertEqual(ids(pipeline.purger(base, limite)), ["a0", "a1", "a2", "a3"])
 
     def test_copie_des_favoris(self):
-        """Les favoris survivent même si le gist est vidé, supprimé du secret ou illisible."""
+        """Les favoris survivent même si le gist de l'appli est vidé, son secret supprimé, ou la
+        base abîmée : copie de secours dans un gist secret à part (rien dans le dépôt)."""
         vieux, limite = "2026-01-01", "2026-06-01"
         def base_neuve():
             return core.Base([dict(core.nouvel_article(titre=f"Article {i}", url=f"https://exemple.org/{i}"),
                                    id=f"a{i}", ajoute_le=vieux if i < 3 else AUJ) for i in range(4)])
         ids = lambda b: sorted(a["id"] for a in b.articles)
-        def avec_gist(synchro):
-            contenu = {"files": {"veille-synchro.json": {"content": json.dumps(synchro)}}}
-            return (mock.patch.dict("os.environ", {"SYNC_GIST_ID": "abc"}),
-                    mock.patch.object(notifications.requests, "get", lambda *a, **k: Reponse(contenu)))
-        copie = lambda: json.loads((self.tmp / "favoris.json").read_text(encoding="utf-8"))["favoris"]
-        # 1. le gist dit : a1 favori -> copie créée, avec l'article complet
-        e, g = avec_gist({"favoris": {"a1": 1}, "horo": {"favoris|a1": 5}})
-        with e, g:
-            self.assertEqual(ids(pipeline.purger(base_neuve(), limite)), ["a1", "a3"])
-        self.assertEqual(list(copie()), ["a1"])
-        self.assertEqual(copie()["a1"]["article"]["titre"], "Article 1")
+        gh = FauxGitHub()
+        def purge(synchro, base=None, limite=limite, jeton="j"):
+            gh.synchro = synchro
+            env = {"SYNC_GIST_ID": "abc" if synchro is not None else "", "GIST_TOKEN": jeton}
+            with mock.patch.dict("os.environ", env), mock.patch.object(core.requests, "get", gh.get), \
+                 mock.patch.object(core.requests, "patch", gh.patch), mock.patch.object(core.requests, "post", gh.post):
+                return ids(pipeline.purger(base or base_neuve(), limite))
+        # 1. a1 favori dans l'appli -> gist de secours créé (secret), avec l'article complet
+        self.assertEqual(purge({"favoris": {"a1": 1}, "horo": {"favoris|a1": 5}}), ["a1", "a3"])
+        self.assertEqual(list(gh.copie()), ["a1"])
+        self.assertEqual(gh.copie()["a1"]["article"]["titre"], "Article 1")
+        self.assertFalse(gh.public)
+        self.assertFalse((self.tmp / "favoris.json").exists())          # rien dans le dépôt
         # 2. le secret SYNC_GIST_ID a disparu : la copie suffit à garder a1
-        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": ""}):
-            self.assertEqual(ids(pipeline.purger(base_neuve(), limite)), ["a1", "a3"])
-        # 3. le gist est vidé par accident (plus aucun favori, ou fichier absent) : a1 reste gardé
+        self.assertEqual(purge(None), ["a1", "a3"])
+        # 3. l'appli a été vidée par accident (plus aucun favori, ou fichier absent) : rien effacé
         for synchro in ({"favoris": {}, "horo": {"favoris|a1": 9}}, {}):
-            e, g = avec_gist(synchro)
-            with e, g:
-                self.assertEqual(ids(pipeline.purger(base_neuve(), limite)), ["a1", "a3"])
-        self.assertEqual(list(copie()), ["a1"])
+            self.assertEqual(purge(synchro), ["a0", "a1", "a2", "a3"])
+        self.assertEqual(list(gh.copie()), ["a1"])
         # 4. a1 a disparu de la base (fichier abîmé, mauvaise fusion…) : il est remis depuis la copie
-        base = core.Base([a for a in base_neuve().articles if a["id"] != "a1"])
-        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": ""}):
-            self.assertEqual(ids(pipeline.purger(base, limite)), ["a1", "a3"])
-        # 5. copie illisible : on n'efface rien du tout
-        (self.tmp / "favoris.json").write_text("{abîmé", encoding="utf-8")
-        with mock.patch.dict("os.environ", {"SYNC_GIST_ID": ""}):
-            self.assertEqual(ids(pipeline.purger(base_neuve(), limite)), ["a0", "a1", "a2", "a3"])
-        (self.tmp / "favoris.json").unlink()
-        # 6. retrait explicite dans l'appli (a1 retiré, daté ; a2 toujours favori) : a1 sort de la copie
-        e, g = avec_gist({"favoris": {"a1": 1}, "horo": {"favoris|a1": 5}})
-        with e, g:
-            pipeline.purger(base_neuve(), limite)
-        e, g = avec_gist({"favoris": {"a2": 1}, "horo": {"favoris|a1": 9, "favoris|a2": 9}})
-        with e, g:
-            self.assertEqual(ids(pipeline.purger(base_neuve(), limite)), ["a2", "a3"])
-        self.assertEqual(list(copie()), ["a2"])
-        # 7. gist au contenu inattendu (liste) : la collecte ne plante pas, et rien n'est effacé
-        e, g = avec_gist(["n'importe quoi"])
-        with e, g:
-            self.assertEqual(ids(pipeline.purger(base_neuve(), limite)), ["a0", "a1", "a2", "a3"])
+        self.assertEqual(purge(None, core.Base([a for a in base_neuve().articles if a["id"] != "a1"])), ["a1", "a3"])
+        # 5. copie de secours illisible (abîmée, ou GitHub en panne) : on n'efface rien du tout
+        gh.contenu = "{abîmé"
+        self.assertEqual(purge(None), ["a0", "a1", "a2", "a3"])
+        gh.contenu, gh.panne = None, True
+        self.assertEqual(purge(None), ["a0", "a1", "a2", "a3"])
+        gh.panne = False
+        # 6. retrait explicite et daté dans l'appli (a2 reste favori) : a1 sort de la copie
+        self.assertEqual(purge({"favoris": {"a2": 1}, "horo": {"favoris|a1": 9, "favoris|a2": 9}}), ["a2", "a3"])
+        self.assertEqual(list(gh.copie()), ["a2"])
+        self.assertEqual(gh.creations, 1)                                # le même gist est réutilisé
+        # 7. état de l'appli au contenu inattendu (liste) : la collecte ne plante pas, rien n'est effacé
+        self.assertEqual(purge(["n'importe quoi"]), ["a0", "a1", "a2", "a3"])
         # 8. rien d'ancien à purger : la copie est quand même tenue à jour (nouveau favori a3)
-        e, g = avec_gist({"favoris": {"a2": 1, "a3": 1}})
-        with e, g:
-            pipeline.purger(core.Base([a for a in base_neuve().articles if a["id"] != "a0"]), "2000-01-01")
-        self.assertEqual(sorted(copie()), ["a2", "a3"])
+        purge({"favoris": {"a2": 1, "a3": 1}}, core.Base([a for a in base_neuve().articles if a["id"] != "a0"]), "2000-01-01")
+        self.assertEqual(sorted(gh.copie()), ["a2", "a3"])
+        # 9. sans GIST_TOKEN : pas de copie, les favoris de l'appli protègent quand même
+        self.assertEqual(purge({"favoris": {"a1": 1}}, jeton=""), ["a1", "a3"])
 
     def test_favori_retracte(self):
         from veille import retractions

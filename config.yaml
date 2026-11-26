@@ -9,7 +9,7 @@ contact_email: ""   # demandé par PubMed / OpenAlex ; laissé vide ici, fourni 
 collecte:
   jours_initiaux: 21        # 1er lancement : combien de jours en arrière
   jours_glissants: 4        # lancements suivants : fenêtre qui se chevauche (les doublons sont fusionnés)
-  conserver_jours: 180      # au-delà, les articles sont supprimés de la base, sauf vos favoris (gist SYNC_GIST_ID + copie data/favoris.json)
+  conserver_jours: 180      # au-delà, les articles sont supprimés de la base, sauf vos favoris (gist SYNC_GIST_ID + copie de secours si GIST_TOKEN)
   max_par_requete: 150      # sécurité : nombre max de résultats par thème et par source
   exclure:                  # articles écartés si ces mots apparaissent dans le titre (laisser vide = rien d'exclu)
     - "in vitro"            # les études animales sont gardées et signalées par l'étiquette rouge « Étude animale »

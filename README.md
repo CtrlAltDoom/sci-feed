@@ -82,6 +82,8 @@ Réglages dans la section `notifications` de `config.yaml` : nombre, format (une
 
 **Résumé de la semaine** : le dimanche matin, une notification de plus (sans bandeau) liste les 10 articles les plus marquants des 7 derniers jours. Réglages dans `notifications.hebdo`.
 
+**Favoris jamais effacés** : la base efface les articles de plus de `conserver_jours` (180 jours), sauf vos favoris (secret `SYNC_GIST_ID`). Au moindre doute (gist injoignable, appli sans aucun favori), rien n'est effacé ce jour-là. Copie de secours facultative : créez un jeton GitHub (classique) avec le seul droit « gist » et mettez-le dans le secret `GIST_TOKEN`. Chaque nuit, vos favoris, avec leur fiche complète, sont alors recopiés dans un gist secret à part (« scifeed-favoris-secours.json », créé automatiquement), jamais dans le dépôt public. Un favori disparu de la base y est remis depuis cette copie.
+
 **Favoris rétractés** : chaque jour, vos favoris sont revérifiés (OpenAlex, qui reprend la base Retraction Watch). Si l'un d'eux est rétracté, il est marqué « RÉTRACTÉ » dans l'appli et une notification vous prévient. Nécessite le secret `SYNC_GIST_ID`.
 
 **Alertes de santé** : sur le même canal, une notification « ⚠️ SciFeed » prévient si une source est en panne plusieurs jours de suite, si l'IA ne rédige plus de fiches, si plus aucun article n'arrive, si la tâche quotidienne n'a pas tourné ou a échoué. Une notification « ✅ » suit quand tout est réparé. Réglages dans la section `sante`.
