@@ -35,7 +35,7 @@ Dans l'ordre, du plus utile au moins urgent :
 
 ## 2. Fiches IA
 - ✅ Ordre de passage : articles du jour d'abord, puis les plus pertinents (thèmes prioritaires, étiquettes), études animales en dernier
-- ✅ Rattrapage du stock initial : chaque soir à 20 h 17 (21 h 17 en été), 40 min de fiches seulement (sans collecte ni notification), tant qu'il reste des articles sans fiche ; s'arrête tout seul (`ia.rattrapage.auto: false` pour le couper)
+- ✅ Rattrapage du stock initial : chaque après-midi à 14 h 17 (15 h 17 en été), 40 min de fiches seulement (sans collecte ni notification), tant qu'il reste des articles sans fiche ; s'arrête tout seul (`ia.rattrapage.auto: false` pour le couper)
 - 💡 Laisser l'IA proposer des étiquettes, en complément des mots-clés
 
 ## 3. Étiquettes et tri

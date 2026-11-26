@@ -425,7 +425,7 @@ ia:
   pause_secondes: 4              # limites gratuites : 20 requêtes/minute (OpenRouter), 1/seconde (Mistral)
   duree_max_minutes: 30          # on s'arrête à temps (le workflow est coupé à 45 min)
   json_strict: true              # demande une réponse en JSON strict (repli automatique si refusé)
-  # Rattrapage des fiches (chaque soir à 20 h 17 à Paris l'hiver, 21 h 17 l'été, si auto ; ou à la
+  # Rattrapage des fiches (chaque après-midi à 14 h 17 à Paris l'hiver, 15 h 17 l'été, si auto ; ou à la
   # main : Actions > Veille quotidienne > rattrapage) : fiches seulement, sans collecte.
   # Durée limitée pour ne pas bloquer la file de la collecte ; ce qui est fait est enregistré.
   # Quota : celui de Gemini ne se renouvelle qu'à 9 h à Paris, la collecte de la nuit utilise donc
@@ -435,7 +435,7 @@ ia:
   # OpenRouter se renouvelle à minuit UTC, avant la collecte. Articles de la nuit restés sans
   # fiche faute de quota : repris au rattrapage suivant.
   rattrapage:
-    auto: true                   # rattrapage automatique chaque soir tant qu'il reste des articles sans fiche ; mettre false pour l'arrêter
+    auto: true                   # rattrapage automatique chaque après-midi tant qu'il reste des articles sans fiche ; mettre false pour l'arrêter
     duree_max_minutes: 40
     max_requetes: 600
     modeles_reserves: ["gemini-4-hydrogen", "gemini-3.8-flash", "gemini-3.6-flash"]   # laissés à la collecte de la nuit

@@ -105,7 +105,7 @@ Le code accepte n'importe quelle API « compatible OpenAI ». Il suffit de modif
 
 Plusieurs abstracts sont envoyés par requête (`articles_par_requete: 5`). Avec 50 requêtes par jour, on obtient jusqu'à environ 200 à 250 fiches quotidiennes. Les articles en surplus sont traités au passage suivant.
 
-**Rattrapage automatique** : chaque soir à 20 h 17 (21 h 17 en été), tant qu'il reste des articles sans fiche, une tâche rédige des fiches pendant 40 min (sans collecte ni notification), puis s'arrête d'elle-même quand il n'y a plus de retard. Elle laisse à la collecte de la nuit les modèles Gemini à petit quota (`ia.rattrapage.modeles_reserves`), dont le quota ne se renouvelle qu'à 9 h ; si GitHub la lance après minuit, elle ne fait rien. Pour la couper : `ia.rattrapage.auto: false` dans `config.yaml`.
+**Rattrapage automatique** : chaque après-midi à 14 h 17 (15 h 17 en été), tant qu'il reste des articles sans fiche, une tâche rédige des fiches pendant 40 min (sans collecte ni notification), puis s'arrête d'elle-même quand il n'y a plus de retard. Elle laisse à la collecte de la nuit les modèles Gemini à petit quota (`ia.rattrapage.modeles_reserves`), dont le quota ne se renouvelle qu'à 9 h ; si GitHub la lance après minuit, elle ne fait rien. Pour la couper : `ia.rattrapage.auto: false` dans `config.yaml`.
 
 **Clés facultatives**, à ajouter aussi en secrets : `NCBI_API_KEY` (compte NCBI gratuit, rend PubMed plus rapide) et `OPENALEX_API_KEY`.
 

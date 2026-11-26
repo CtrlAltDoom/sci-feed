@@ -7,10 +7,11 @@ on:
     # retard, voire saute des créneaux. Le premier qui tourne fait la collecte (comptée pour le jour
     # de Paris) ; les suivants voient qu'elle est faite et s'arrêtent en quelques secondes.
     - cron: "23 0-10 * * *"
-    # Le soir (20 h 17 à Paris en hiver, 21 h 17 en été) : rattrapage des fiches IA, sans collecte,
+    # L'après-midi (14 h 17 à Paris en hiver, 15 h 17 en été ; GitHub le lance souvent des heures plus tard,
+    # d'où ce créneau tôt) : rattrapage des fiches IA, sans collecte,
     # seulement s'il reste des articles sans fiche (ia.rattrapage.auto dans config.yaml).
-    # Un run du soir que GitHub ferait partir après minuit UTC ne fait rien (créneaux de la nuit).
-    - cron: "17 19 * * *"
+    # Un run de rattrapage que GitHub ferait partir après minuit UTC ne fait rien (créneaux de la nuit).
+    - cron: "17 13 * * *"
   workflow_dispatch:          # bouton "Run workflow" pour lancer à la main
     inputs:
       si_pas_fait:
@@ -25,9 +26,9 @@ on:
     branches: [main]
     paths: ["config.yaml", "requirements.txt", "web/**", "veille/**", "tests/**", ".github/workflows/veille.yml", ".github/pousser-data.sh"]
 
-# nom du run du soir : notifications.yml le reconnaît et ne s'enchaîne pas derrière
+# nom du run de rattrapage : notifications.yml le reconnaît et ne s'enchaîne pas derrière
 # (vide = nom habituel : titre du commit, ou nom du workflow)
-run-name: ${{ github.event.schedule == '17 19 * * *' && 'Rattrapage automatique des fiches IA' || '' }}
+run-name: ${{ github.event.schedule == '17 13 * * *' && 'Rattrapage automatique des fiches IA' || '' }}
 
 permissions:
   contents: write
@@ -41,7 +42,7 @@ concurrency:
 jobs:
   veille:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ (inputs.rattrapage || github.event.schedule == '17 19 * * *') && 85 || 65 }}   # dont 15 min au plus pour l'audio
+    timeout-minutes: ${{ (inputs.rattrapage || github.event.schedule == '17 13 * * *') && 85 || 65 }}   # dont 15 min au plus pour l'audio
     environment:
       name: github-pages
       url: ${{ steps.deploiement.outputs.page_url }}
@@ -59,23 +60,23 @@ jobs:
       # Le rattrapage des fiches IA ne fait pas de collecte : il n'est jamais bloqué par cette garde.
       - name: Collecte du jour déjà faite ?
         id: garde
-        if: (github.event_name == 'schedule' && github.event.schedule != '17 19 * * *') || (inputs.si_pas_fait == true && inputs.rattrapage != true)
+        if: (github.event_name == 'schedule' && github.event.schedule != '17 13 * * *') || (inputs.si_pas_fait == true && inputs.rattrapage != true)
         run: |
           python -m veille deja_collecte >> "$GITHUB_OUTPUT"
           tail -n 1 "$GITHUB_OUTPUT"
 
-      # Créneau du soir : rattrapage des fiches IA seulement s'il en reste (reste=0 : tout est sauté).
-      # Run du soir parti très en retard (entre 0 h et 12 h UTC) : rien, pour ne jamais occuper la
+      # Créneau de rattrapage : rattrapage des fiches IA seulement s'il en reste (reste=0 : tout est sauté).
+      # Run de rattrapage parti très en retard (entre 0 h et 12 h UTC) : rien, pour ne jamais occuper la
       # file « veille » pendant les créneaux de collecte de la nuit et du matin.
       # Les étapes suivantes testent « rien != 'oui' » (comme la garde : une sortie absente, autres
       # déclenchements, vaut null, et null != '0' serait faux pour GitHub, d'où ce oui/non).
       - name: Reste-t-il des fiches IA à rattraper ?
         id: reste
-        if: github.event.schedule == '17 19 * * *'
+        if: github.event.schedule == '17 13 * * *'
         run: |
           heure=$(date -u +%H)
           if [ "$((10#$heure))" -lt 12 ]; then
-            echo "Run du soir parti à ${heure} h UTC : trop tard, place à la collecte de la nuit"
+            echo "Run de rattrapage parti à ${heure} h UTC : trop tard, place à la collecte de la nuit"
             echo "rien=oui" >> "$GITHUB_OUTPUT"; exit 0
           fi
           ligne=$(python -m veille reste_rattrapage)
@@ -119,7 +120,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
             python -m veille site          # simple changement de config/apparence : pas de collecte
-          elif [ "${{ inputs.rattrapage }}" = "true" ] || [ "${{ github.event.schedule }}" = "17 19 * * *" ]; then
+          elif [ "${{ inputs.rattrapage }}" = "true" ] || [ "${{ github.event.schedule }}" = "17 13 * * *" ]; then
             python -m veille resumer --rattrapage   # durée limitée : ia.rattrapage dans config.yaml
             python -m veille site
           else
@@ -146,7 +147,7 @@ jobs:
           SYNC_GIST_ID: ${{ secrets.SYNC_GIST_ID }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          if [ "${{ inputs.rattrapage }}" = "true" ] || [ "${{ github.event.schedule }}" = "17 19 * * *" ]; then
+          if [ "${{ inputs.rattrapage }}" = "true" ] || [ "${{ github.event.schedule }}" = "17 13 * * *" ]; then
             python -m veille audio           # le soir : MP3 des nouvelles fiches (l'audio du jour est fait la nuit)
           else
             python -m veille audio --jour
