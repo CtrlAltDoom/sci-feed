@@ -167,6 +167,9 @@ def collecter(cfg: dict) -> int:
     recul = c.get("jours_glissants", 4) if etat.get("derniere_collecte") else c.get("jours_initiaux", 21)
     depuis = jour - dt.timedelta(days=recul)
     themes = cfg.get("themes", [])
+    from . import notifications, sujets   # import local : notifications dépend de pipeline
+    if notifications.gist_configure():    # sujets ajoutés dans l'appli (gist de synchronisation)
+        themes = sujets.ajouter_aux_themes(cfg, notifications.etat_appli())
     log.info("Collecte depuis le %s (%d thèmes)", depuis, len(themes))
 
     recus = []
@@ -181,7 +184,7 @@ def collecter(cfg: dict) -> int:
                 sante.noter_source(nom, echec=True)
                 continue
             sante.noter_source(nom, recus=len(lot))
-            if nom in FILTRE_LOCAL:
+            if nom in FILTRE_LOCAL or th.get("perso"):   # sujets de l'appli : mêmes règles que dans l'appli
                 # recherche plein texte trop large côté serveur : on revérifie les mots-clés du thème
                 lot = [a for a in lot if themes_correspondants(a, [th])]
                 log.info("    après filtrage local : %d", len(lot))

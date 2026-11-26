@@ -7,7 +7,10 @@ API = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 
 
 def requete(groupes, depuis, jusqu_a, preprints=True):
-    q = " AND ".join("(" + " OR ".join(f'TITLE_ABS:"{t}"' for t in g) + ")" for g in groupes)
+    # « mot* » (troncature, sujets ajoutés dans l'appli) : joker hors guillemets pour un mot seul
+    terme = lambda t: (f"TITLE_ABS:{t}" if t.endswith("*") and " " not in t and "-" not in t
+                       else f'TITLE_ABS:"{t.rstrip("*")}"')
+    q = " AND ".join("(" + " OR ".join(terme(t) for t in g) + ")" for g in groupes)
     q += f" AND FIRST_PDATE:[{depuis.isoformat()} TO {jusqu_a.isoformat()}]"
     if not preprints:
         q += " AND NOT SRC:PPR"

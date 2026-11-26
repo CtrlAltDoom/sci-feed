@@ -12,7 +12,8 @@ CHAMPS = ("id,doi,display_name,publication_date,abstract_inverted_index,authorsh
 
 def requete(groupes):
     # les virgules sont interdites dans un filtre OpenAlex
-    return " AND ".join("(" + " OR ".join(f'"{t.replace(",", " ")}"' for t in g) + ")"
+    # pas de joker chez OpenAlex : « mot* » est cherché sans l'astérisque (puis revérifié localement)
+    return " AND ".join("(" + " OR ".join(f'"{t.replace(",", " ").rstrip("*")}"' for t in g) + ")"
                         for g in groupes)
 
 

@@ -304,6 +304,7 @@ class TestSite(unittest.TestCase):
         p = self.page
         clair = p.evaluate("getComputedStyle(document.body).color")
         p.click("#perso-ouvrir")
+        p.click("#sec-apparence > summary")                                        # rubrique repliée
         p.click("#fond-ouvrir")                                                    # sous-menu
         png = Path(self.tmp) / "fond.png"
         if not png.exists():
@@ -322,7 +323,8 @@ class TestSite(unittest.TestCase):
         self.assertNotIn("fond", json.dumps(p.evaluate("JSON.parse(localStorage.getItem('veille-etat-v1') || '{}')")))  # pas synchronisé
         self.assertTrue(p.evaluate("document.documentElement.classList.contains('verre')"))   # verre dépoli par défaut
         p.click("#perso-ouvrir")
-        self.assertIn("Ma photo", p.inner_text("#fond-resume"))
+        self.assertIn("Ma photo", p.inner_text("#apparence-resume"))              # visible rubrique repliée
+        p.click("#sec-apparence > summary")
         p.click("#fond-ouvrir")
         p.click("[data-style='classique']")
         self.assertFalse(p.evaluate("document.documentElement.classList.contains('verre')"))
@@ -333,6 +335,65 @@ class TestSite(unittest.TestCase):
         self.assertFalse(p.evaluate("document.documentElement.classList.contains('fond-actif')"))
         self.assertEqual(p.evaluate("getComputedStyle(document.body).color"), clair)
         self.assertEqual(self.erreurs, [])
+
+    def test_reglages_repliables(self):
+        """Réglages : rubriques repliées (vue d'ensemble), plus d'accès établissement / proxy."""
+        p = self.page
+        p.click("#perso-ouvrir")
+        sections = p.locator("#perso details.perso-section")
+        self.assertGreaterEqual(sections.count(), 4)
+        self.assertEqual(p.locator("#perso details.perso-section[open]").count(), 0)
+        self.assertTrue(p.locator("#sync-jeton").is_hidden())
+        self.assertIn("non configurée", p.inner_text("#sync-resume"))
+        self.assertIn("Aucun", p.inner_text("#apparence-resume"))
+        p.click("#sec-sync > summary")
+        self.assertTrue(p.locator("#sync-jeton").is_visible())
+        self.assertEqual(p.locator("#acces-nom, #acces-domaine, #acces-prefixe").count(), 0)
+        texte = p.inner_text("#perso")
+        self.assertNotIn("OpenAthens", texte)
+        self.assertNotIn("établissement", texte)
+        p.keyboard.press("Escape")
+        self.assertNotIn("établissement", p.inner_text("#liste"))
+
+    def test_mes_sujets(self):
+        """Ajouter un sujet depuis Filtres, le voir filtrer (abstracts compris), le modifier, le supprimer."""
+        p = self.page
+        p.click("#btn-filtres")
+        p.click("#chips-bascule")                                                # Tout afficher
+        p.click('[data-act="ajouter-sujet"]')
+        p.fill("#sujet-nom", "Intéro")
+        p.fill("#sujet-mots", "interoceptive accuracy, zygomorph*")              # 2e mot : seulement dans un abstract
+        p.wait_for_function("/2 articles/.test(document.getElementById('sujet-apercu').textContent)")
+        self.assertIn("seulement les articles déjà collectés", p.inner_text("#sujet-collecte"))   # pas de synchro ici
+        p.click("#sujet-enregistrer")
+        p.wait_for_function("document.querySelectorAll('.carte').length === 2")  # nouveau sujet sélectionné d'emblée
+        puce = p.locator('#themes .chip[data-id="m_intero"]')
+        self.assertEqual(puce.get_attribute("aria-pressed"), "true")
+        self.assertIn("Intéro", p.locator(".carte .tags").first.text_content())   # étiquette sur les cartes
+        garde = p.evaluate("JSON.parse(localStorage.getItem('veille-etat-v1'))")
+        self.assertIn("m_intero", garde["sujets"])
+        self.assertIn("zygomorph*", json.loads(garde["sujets"]["m_intero"])["mots"])
+        # mode « Modifier » : masquer une puce de collecte, puis ouvrir et supprimer le sujet
+        p.click('[data-act="gerer"]')
+        p.click('#themes .chip[data-id="hypnose"]')
+        self.assertIn("cachee", p.locator('#themes .chip[data-id="hypnose"]').get_attribute("class"))
+        p.click('#themes .chip[data-id="hypnose"]')                              # remise
+        self.assertNotIn("cachee", p.locator('#themes .chip[data-id="hypnose"]').get_attribute("class"))
+        p.click('#themes .chip[data-id="m_intero"]')
+        self.assertEqual(p.input_value("#sujet-mots"), "interoceptive accuracy, zygomorph*")
+        p.click("#sujet-supprimer")
+        p.wait_for_function("document.querySelectorAll('.carte').length === 3")
+        self.assertEqual(p.locator('#themes .chip[data-id="m_intero"]').count(), 0)
+        # aussi depuis les réglages
+        p.click("#perso-ouvrir")
+        p.click("#sec-sujets > summary")
+        p.click("#sujet-ajouter")
+        p.fill("#sujet-nom", "ARFID bis")
+        p.fill("#sujet-mots", "avoidant restrictive")
+        p.click("#sujet-enregistrer")
+        p.wait_for_function("document.getElementById('perso').open")             # retour aux réglages
+        self.assertIn("ARFID bis", p.inner_text("#perso-puces"))
+        self.assertIn("1 à moi", p.inner_text("#sujets-resume"))
 
     def test_hors_connexion(self):
         p = self.page

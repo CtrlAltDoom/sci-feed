@@ -57,6 +57,8 @@ Tout se règle dans **`config.yaml`**. Sur GitHub, ouvrez le fichier, cliquez su
 - **E-mail de contact** (demandé poliment par PubMed et OpenAlex) : mettez-le dans le secret `CONTACT_EMAIL` plutôt que dans `config.yaml`, pour qu'il ne soit pas public.
 
 **Dans l'appli elle-même** (Filtres → Personnaliser), chaque lecteur peut, pour lui seul : donner un raccourci à chaque puce (« Anx »), masquer les puces qu'il n'utilise pas, et exporter/importer ses lus, favoris et réglages pour passer d'un appareil à l'autre.
+
+**Ajouter ses propres sujets** (Filtres → Tout afficher → « ＋ Ajouter un sujet », ou Réglages → Sujets) : un nom et quelques mots-clés en anglais (`mot*` pour toutes les fins de mot). Le sujet filtre tout de suite les articles déjà collectés (titre, abstract, mots-clés). Si l'appareil est synchronisé avec le gist de la collecte (secret `SYNC_GIST_ID`), la collecte de la nuit cherche aussi ces mots-clés dans PubMed, Europe PMC, OpenAlex et ClinicalTrials.gov (`veille/sujets.py` ; 12 sujets et 25 mots-clés par sujet au plus). « ✎ Modifier les sujets » masque ou remet une puce, et modifie ou supprime un sujet.
 - **Revues** : ajoutez une ligne `nom` + `url` dans `sources.rss.flux`. Pour trouver l'URL, cherchez l'icône RSS sur le site de la revue.
 - **Flux non filtrés** (blogs, actualités) : utilisez `sources.rss.flux_libres`.
 - **Profil du lecteur** : `ia.profil_lecteur` sert à noter la pertinence pour vous.

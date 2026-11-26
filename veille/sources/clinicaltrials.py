@@ -12,7 +12,7 @@ ALLOCATION = {"RANDOMIZED": "randomisé", "NON_RANDOMIZED": "non randomisé", "N
 
 
 def requete(groupes):
-    return " AND ".join("(" + " OR ".join(f'"{t}"' for t in g) + ")" for g in groupes)
+    return " AND ".join("(" + " OR ".join(f'"{t.rstrip("*")}"' for t in g) + ")" for g in groupes)
 
 
 def collecter(cfg, http, theme, depuis, jusqu_a):

@@ -17,8 +17,9 @@
   // ---------- état local (lus, favoris, masqués, filtres) ----------
   const CLE = "veille-etat-v1";
   // alias : raccourcis personnels des puces ("t:sii" / "e:anx_dep" -> "Anx") ; cachees : puces masquées
+  // sujets : sujets de recherche ajoutés par le lecteur ("m_fibro" -> '{"nom":…,"mots":[…],"titre":false}')
   let etat = { lus: {}, favoris: {}, masques: {}, themes: [], etiquettes: [], chipsOuverts: false, panneauOuvert: false,
-    alias: {}, cachees: {}, reglages: {}, horo: {}, vue: "tous", type: "", niveau: "0", revue: "0", tri: "pourmoi", triV: 2 };
+    alias: {}, cachees: {}, reglages: {}, sujets: {}, horo: {}, vue: "tous", type: "", niveau: "0", revue: "0", tri: "pourmoi", triV: 2 };
   try {
     const garde = JSON.parse(localStorage.getItem(CLE) || "{}");
     if (!garde.triV) delete garde.tri;      // nouveau tri par défaut « Pour moi » (une seule fois)
@@ -155,7 +156,7 @@
   function chercherDansAbstracts() {
     if (rechercheAbstracts || !DATA.articles.some(sansDetails)) return;
     rechercheAbstracts = chargerDetails(DATA.articles).then(
-      () => { rechercheAbstracts = null; if ($("recherche").value.trim()) rafraichir(true); },
+      () => { rechercheAbstracts = null; if ($("recherche").value.trim() || mesSujets().length) rafraichir(true); },
       () => { rechercheAbstracts = null; });
   }
   let nomsThemes = {}, famThemes = {}, nomsEtiq = {}, famEtiq = {};
@@ -164,7 +165,49 @@
   const calculerNoms = () => {
     nomsThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, libelle("t", t)]));
     nomsEtiq = Object.fromEntries(DATA.meta.etiquettes.map((t) => [t.id, libelle("e", t)]));
+    mesSujets().forEach((m) => { nomsThemes[m.id] = m.nom; famThemes[m.id] = "perso"; });
   };
+
+  // ---------- sujets ajoutés par le lecteur ----------
+  // Filtre local immédiat (mots-clés cherchés dans titre, abstract, mots-clés de l'article), et, si
+  // l'appareil est synchronisé, la collecte de la nuit les cherche aussi dans les sources (veille/sujets.py).
+  const MAX_SUJETS = 12, MAX_MOTS = 25;
+  // même règle que veille/core.py : espaces et tirets interchangeables, « mot* » = troncature
+  const motif = (terme) => {
+    terme = terme.toLowerCase().trim();
+    const tronque = terme.endsWith("*");
+    const morceaux = terme.replace(/\*+$/, "").split(/[\s\-‐–]+/).filter(Boolean)
+      .map((m) => m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    return new RegExp("(?<![a-z0-9])" + morceaux.join("[\\s\\-‐–]*") + (tronque ? "" : "(?![a-z0-9])"));
+  };
+  const decouperMots = (texte) => [...new Set(String(texte || "").split(/[,;\n]+/).map((m) => m.trim()).filter((m) => m.replace(/\*/g, "").length >= 3))];
+  let cacheSujets = { cle: null, liste: [] };
+  function mesSujets() {
+    const cle = JSON.stringify(etat.sujets || {});
+    if (cacheSujets.cle === cle) return cacheSujets.liste;
+    const liste = [];
+    Object.entries(etat.sujets || {}).forEach(([id, v]) => {
+      let d; try { d = typeof v === "string" ? JSON.parse(v) : v; } catch (e) { return; }
+      if (!d || !d.nom || !Array.isArray(d.mots) || !d.mots.length) return;
+      liste.push({ id, nom: String(d.nom), mots: d.mots.map(String), titre: !!d.titre, cree: d.cree || 0,
+        motifs: d.mots.map((m) => { try { return motif(String(m)); } catch (e) { return null; } }).filter(Boolean) });
+    });
+    liste.sort((x, y) => x.cree - y.cree || x.nom.localeCompare(y.nom));
+    cacheSujets = { cle, liste };
+    return liste;
+  }
+  const texteArticle = (a) => ((a.titre || "") + " " + (a.resume || a.extrait || "") + " " + (a.mots_cles || []).join(" ")).toLowerCase();
+  const correspond = (m, a, texte) => (a.themes || []).includes(m.id) ||
+    m.motifs.some((r) => r.test(m.titre ? (a.titre || "").toLowerCase() : texte));
+  // thèmes de l'article : ceux de la collecte + les sujets personnels qui lui correspondent
+  function themesDe(a) {
+    const ms = mesSujets();
+    if (!ms.length) return a.themes || [];
+    const texte = texteArticle(a);
+    const ids = (a.themes || []).filter((t) => !t.startsWith("m_"));
+    ms.forEach((m) => { if (correspond(m, a, texte)) ids.push(m.id); });
+    return ids;
+  }
   const ORDRE_FAMILLES = ["sujet", "mecanisme", "approche", "animal", ""];
   const NOM_FAMILLE = { sujet: "Sujets psy", mecanisme: "Corps & mécanismes", approche: "Approches", animal: "Signalement", "": "Autres" };
   let affiches = PAR_PAGE;
@@ -248,7 +291,7 @@
     const mots = q ? q.split(/\s+/) : [];
     const niv = parseInt(etat.niveau, 10) || 0;
     const nivRevue = parseInt(etat.revue, 10) || 0;
-    if (mots.length) chercherDansAbstracts();
+    if (mots.length || etat.themes.some((t) => t.startsWith("m_"))) chercherDansAbstracts();
     let liste = DATA.articles.filter((a) => {
       const masque = !!etat.masques[a.id];
       if (etat.vue === "masques") { if (!masque) return false; } else if (masque) return false;
@@ -256,7 +299,7 @@
       if (etat.vue === "nouveaux" && !estNouveau(a)) return false;
       if (etat.vue === "favoris" && !etat.favoris[a.id]) return false;
       // OU à l'intérieur des thèmes, OU à l'intérieur des étiquettes, ET entre les deux
-      if (etat.themes.length && !(a.themes || []).some((t) => etat.themes.includes(t))) return false;
+      if (etat.themes.length && !themesDe(a).some((t) => etat.themes.includes(t))) return false;
       if (etat.etiquettes.length && !(a.etiquettes || []).some((t) => etat.etiquettes.includes(t))) return false;
       switch (etat.type) {
         case "synthese": if (!estSynthese(a)) return false; break;
@@ -287,19 +330,6 @@
       liste.sort((x, y) => recent(y).localeCompare(recent(x)));
     }
     return liste;
-  }
-
-  // ---------- accès institutionnel (OpenAthens, EZproxy…) ----------
-  // Préfixe propre à chaque lecteur : l'article s'ouvre via son établissement, où il s'identifie lui-même.
-  function adresseInstitution(prefixe, url) {
-    if (!prefixe || !url) return "";
-    return prefixe.includes("{url}") ? prefixe.replace("{url}", encodeURIComponent(url)) : prefixe + encodeURIComponent(url);
-  }
-  function lienInstitution(a) {
-    const r = etat.reglages || {};
-    const cible = a.doi ? `https://doi.org/${a.doi}` : (a.essai_registre || a.preprint ? "" : a.url);
-    const href = adresseInstitution(r.prefixe_acces, cible);
-    return href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(r.nom_acces || "Via mon établissement")} ↗</a>` : "";
   }
 
   // ---------- écoute ----------
@@ -497,7 +527,7 @@
         `<p class="attente">${apercu ? "Fiche IA en attente (prochaine mise à jour)" : "Pas d'abstract disponible"}</p>`;
     }
 
-    const tags = (a.themes || []).map((t) => `<span class="tag f-${esc(famThemes[t] || "")}">${esc(nomsThemes[t] || t)}</span>`)
+    const tags = themesDe(a).filter((t) => nomsThemes[t]).map((t) => `<span class="tag f-${esc(famThemes[t] || "")}">${esc(nomsThemes[t])}</span>`)
       .concat((a.etiquettes || []).filter((t) => t !== "animal" && nomsEtiq[t])
         .map((t) => `<span class="tag f-${esc(famEtiq[t] || "")}">${esc(nomsEtiq[t])}</span>`)).join("");
     const fav = !!etat.favoris[a.id], lu = !!etat.lus[a.id], masque = !!etat.masques[a.id];
@@ -522,7 +552,6 @@
         <button data-act="masquer">${masque ? "Réafficher" : "Pas intéressé"}</button>
         ${a.url_libre ? `<a href="${esc(a.url_libre)}" target="_blank" rel="noopener">Texte libre ↗</a>` : ""}
         ${!a.url_libre && !a.essai_registre ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(a.titre)}" target="_blank" rel="noopener" title="Google Scholar trouve souvent une version déposée par les auteurs">Chercher une version ↗</a>` : ""}
-        ${lienInstitution(a)}
         ${a.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${esc(a.pmid)}/" target="_blank" rel="noopener">PubMed ↗</a>` : ""}
       </div></div></article>`;
   }
@@ -579,43 +608,56 @@
 
   // ---------- puces de thèmes / étiquettes ----------
   // Repliées : 2 lignes (filtres actifs en premier) + bouton « +N ».
-  // Dépliées : toutes, rangées par famille de couleur.
+  // Dépliées : toutes, rangées par famille de couleur, plus « Mes sujets » (ajout) et le mode
+  // « Modifier » : toucher une puce la masque (ou la remet), toucher un sujet personnel l'ouvre.
+  let gestionPuces = false;
   function afficherThemes() {
     const cT = {}, cE = {};
     const vueFav = etat.vue === "favoris";   // en vue favoris, les compteurs comptent les favoris
     DATA.articles.forEach((a) => {
       if (vueFav ? !etat.favoris[a.id] : (etat.masques[a.id] || etat.lus[a.id])) return;
-      (a.themes || []).forEach((t) => { cT[t] = (cT[t] || 0) + 1; });
+      themesDe(a).forEach((t) => { cT[t] = (cT[t] || 0) + 1; });
       (a.etiquettes || []).forEach((t) => { cE[t] = (cE[t] || 0) + 1; });
     });
+    const gestion = gestionPuces && etat.chipsOuverts;
     const puce = (genre, t, n) => {
       const actif = (genre === "t" ? etat.themes : etat.etiquettes).includes(t.id);
-      return { actif, html: `<button class="chip f-${esc(t.famille || "")}" data-genre="${genre}" data-id="${esc(t.id)}" ` +
-        `title="${esc(t.nom)}" aria-pressed="${actif}">${esc(libelle(genre, t))}${n ? `<span class="n">${n}</span>` : ""}</button>` };
+      const cachee = !!etat.cachees[genre + ":" + t.id], perso = t.id.startsWith("m_");
+      const titre = gestion ? (perso ? "Modifier ou supprimer ce sujet" : cachee ? "Remettre cette puce" : "Masquer cette puce") : t.nom;
+      return { actif, cachee, html: `<button class="chip f-${esc(t.famille || "")}${cachee ? " cachee" : ""}${gestion ? (perso ? " a-modifier" : " a-masquer") : ""}" ` +
+        `data-genre="${genre}" data-id="${esc(t.id)}" title="${esc(titre)}" aria-pressed="${gestion ? false : actif}">` +
+        `${esc(libelle(genre, t))}${n && !gestion ? `<span class="n">${n}</span>` : ""}</button>` };
     };
-    const visible = (genre) => (t) => !etat.cachees[genre + ":" + t.id];
-    const themes = DATA.meta.themes.filter(visible("t")).map((t) => puce("t", t, cT[t.id]));
-    const etiqs = DATA.meta.etiquettes.filter(visible("e")).map((t) => Object.assign(puce("e", t, cE[t.id]), { famille: t.famille || "" }));
+    const garder = (p) => gestion || !p.cachee;
+    const persos = mesSujets().map((m) => puce("t", { id: m.id, nom: m.nom, court: m.nom, famille: "perso" }, cT[m.id]));
+    const themes = DATA.meta.themes.map((t) => puce("t", t, cT[t.id])).filter(garder);
+    const etiqs = DATA.meta.etiquettes.map((t) => Object.assign(puce("e", t, cE[t.id]), { famille: t.famille || "" })).filter(garder);
     const aucun = !etat.themes.length && !etat.etiquettes.length;
     const tous = `<button class="chip" data-genre="" aria-pressed="${aucun}">Tous</button>`;
     const bascule = `<button class="bascule" id="chips-bascule" aria-expanded="${etat.chipsOuverts}"></button>`;
     let html;
     if (etat.chipsOuverts) {
-      const groupe = (titre, liste, fam) => liste.length ? `<div class="groupe"><span class="groupe-titre${fam != null ? " f-" + fam : ""}">${esc(titre)}</span>` +
-        liste.map((p) => p.html).join("") + `</div>` : "";
-      html = `<div class="groupe">${tous}</div>` + groupe("Thèmes de collecte", themes) +
+      const groupe = (titre, liste, fam, fin = "") => liste.length || fin ? `<div class="groupe"><span class="groupe-titre${fam != null ? " f-" + fam : ""}">${esc(titre)}</span>` +
+        liste.map((p) => p.html).join("") + fin + `</div>` : "";
+      const ajout = mesSujets().length < MAX_SUJETS ? `<button class="bascule ajout" data-act="ajouter-sujet" type="button">＋ Ajouter un sujet</button>` : "";
+      html = (gestion ? `<p class="aide-gestion">Touchez une puce pour la masquer ou la remettre, ou un de vos sujets pour le modifier ou le supprimer.</p>`
+        : `<div class="groupe">${tous}</div>`) +
+        groupe("Mes sujets", persos, "perso", ajout) +
+        groupe("Thèmes de collecte", themes) +
         ORDRE_FAMILLES.map((f) => groupe(NOM_FAMILLE[f], etiqs.filter((p) => p.famille === f), f)).join("") +
-        `<div class="groupe">${bascule}</div>`;
+        `<div class="groupe">${gestion ? "" : bascule}<button class="bascule" data-act="gerer" type="button" aria-pressed="${gestion}">` +
+        `${gestion ? "✓ Terminé" : "✎ Modifier les sujets"}</button></div>`;
     } else {
       // 2 lignes qui défilent horizontalement ; « Tous » et le bouton restent en 1re colonne,
       // les filtres actifs viennent juste après
-      const toutes = themes.concat(etiqs.sort((x, y) => ORDRE_FAMILLES.indexOf(x.famille) - ORDRE_FAMILLES.indexOf(y.famille)));
+      const toutes = persos.concat(themes, etiqs.sort((x, y) => ORDRE_FAMILLES.indexOf(x.famille) - ORDRE_FAMILLES.indexOf(y.famille)));
       html = tous + bascule + toutes.filter((p) => p.actif).concat(toutes.filter((p) => !p.actif)).map((p) => p.html).join("");
     }
     const nav = $("themes");
     nav.classList.toggle("ouvert", etat.chipsOuverts);
+    nav.classList.toggle("gestion", gestion);
     nav.innerHTML = html;
-    $("chips-bascule").textContent = etat.chipsOuverts ? "Réduire ▴" : "Tout afficher ▾";
+    if ($("chips-bascule")) $("chips-bascule").textContent = etat.chipsOuverts ? "Réduire ▴" : "Tout afficher ▾";
   }
 
   // bouton ★ : bascule la vue « Favoris » ; les puces de thèmes / étiquettes filtrent ensuite les favoris
@@ -710,8 +752,22 @@
         <input type="text" data-alias="${esc(cle)}" value="${esc(etat.alias[cle] || "")}" placeholder="${esc(t.court || t.nom)}" maxlength="30">
       </div>`;
     };
-    $("perso-puces").innerHTML = `<p class="perso-groupe">Thèmes de collecte</p>` + DATA.meta.themes.map((t) => ligne("t", t)).join("") +
+    const ms = mesSujets();
+    $("perso-puces").innerHTML = (ms.length ? `<p class="perso-groupe">Mes sujets</p>` + ms.map((m) => `<div class="perso-ligne perso-mien f-perso">
+        <span class="perso-nom" title="${esc(m.mots.join(", "))}">${esc(m.nom)} <small>${esc(m.mots.slice(0, 3).join(", "))}${m.mots.length > 3 ? "…" : ""}</small></span>
+        <button class="lien" type="button" data-modifier="${esc(m.id)}">Modifier</button></div>`).join("") : "") +
+      `<p class="perso-groupe">Thèmes de collecte</p>` + DATA.meta.themes.map((t) => ligne("t", t)).join("") +
       `<p class="perso-groupe">Étiquettes</p>` + DATA.meta.etiquettes.map((t) => ligne("e", t)).join("");
+    $("sujet-ajouter").hidden = ms.length >= MAX_SUJETS;
+    majResumes();
+  }
+  // ce qu'on voit sur chaque rubrique repliée des réglages
+  function majResumes() {
+    const n = mesSujets().length, c = Object.keys(etat.cachees).filter((k) => etat.cachees[k]).length;
+    $("sujets-resume").textContent = [n ? `${n} à moi` : "", c ? `${c} masquée${c > 1 ? "s" : ""}` : ""].filter(Boolean).join(" · ");
+    $("apparence-resume").textContent = $("fond-resume").textContent ? "Fond : " + $("fond-resume").textContent : "";
+    $("sync-resume").textContent = sync.actif() ? (sync.ok() ? "✓ connectée" : "connectée") : "non configurée";
+    $("sync-resume").className = "sec-resume" + (sync.actif() && sync.ok() ? " ok" : "");
   }
 
   function majApresPerso() {
@@ -725,7 +781,7 @@
   // Chaque changement (lu, favori, masqué, raccourci, puce masquée) est daté dans etat.horo["categorie|cle"].
   // À la fusion, pour chaque élément, la version la plus récente gagne : retirer un favori sur le
   // téléphone le retire aussi sur le PC. Sans date des deux côtés (anciennes données) : union.
-  const PARTAGES = ["lus", "favoris", "masques", "alias", "cachees", "reglages"];
+  const PARTAGES = ["lus", "favoris", "masques", "alias", "cachees", "reglages", "sujets"];
 
   function fusionner(autre) {
     const horoA = autre.horo || {};
@@ -767,29 +823,9 @@
       $("sync-off").hidden = sync.actif(); $("sync-on").hidden = !sync.actif();
       $("sync-statut").textContent = (sync.ok() ? "✓ " : "") + sync.message();
       $("sync-statut").className = sync.ok() ? "ok" : "";
+      majResumes();
     };
-    // accès institutionnel
-    const OA = "https://go.openathens.net/redirector/";
-    const majAcces = () => {
-      const r = etat.reglages, p = r.prefixe_acces || "";
-      $("acces-nom").value = r.nom_acces || "";
-      $("acces-domaine").value = p.startsWith(OA) ? p.slice(OA.length).split("?")[0] : "";
-      $("acces-prefixe").value = p.startsWith(OA) ? "" : p;
-      const exemple = DATA.articles.find((a) => (a.doi || "").startsWith("10.1016/"));   // un article Elsevier de la base
-      const essai = exemple && adresseInstitution(p, `https://doi.org/${exemple.doi}`);
-      $("acces-test").innerHTML = essai ? `Lien actif. <a href="${esc(essai)}" target="_blank" rel="noopener">Tester sur un article Elsevier ↗</a>` : "";
-    };
-    const changerAcces = (prefixe) => { poser("reglages", "prefixe_acces", prefixe); enregistrer(); rafraichir(true); majAcces(); };
-    $("acces-nom").addEventListener("change", (e) => { poser("reglages", "nom_acces", e.target.value.trim()); enregistrer(); rafraichir(true); });
-    $("acces-domaine").addEventListener("change", (e) => {
-      const d = e.target.value.trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "");
-      changerAcces(d ? `${OA}${d}?url={url}` : "");
-    });
-    $("acces-prefixe").addEventListener("change", (e) => {
-      const p = e.target.value.trim();
-      changerAcces(/^https:\/\//.test(p) ? p : "");
-    });
-    $("perso-ouvrir").addEventListener("click", () => { afficherPerso(); majSync(); majAcces(); $("perso-message").textContent = ""; $("perso").showModal(); });
+    $("perso-ouvrir").addEventListener("click", () => { afficherPerso(); majSync(); $("perso-message").textContent = ""; $("perso").showModal(); });
     // un clic (ou un toucher) en dehors de la fenêtre la ferme ; Échap aussi (natif)
     $("perso").addEventListener("click", (e) => {
       if (e.target !== $("perso")) return;
@@ -820,6 +856,10 @@
       Object.keys(etat.cachees).forEach((c) => poser("cachees", c, 0));
       majApresPerso(); afficherPerso();
     });
+    $("perso-puces").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-modifier]"); if (b) sujetDialogue.ouvrir(b.dataset.modifier, true);
+    });
+    $("sujet-ajouter").addEventListener("click", () => sujetDialogue.ouvrir(null, true));
     $("perso-export").addEventListener("click", exporterEtat);
     $("perso-import").addEventListener("change", (e) => {
       const f = e.target.files[0]; if (!f) return;
@@ -832,6 +872,77 @@
       e.target.value = "";
     });
   }
+
+  // ---------- fenêtre « Nouveau sujet » / « Modifier le sujet » ----------
+  const sujetDialogue = (() => {
+    let id = null, depuisReglages = false, minuterie;
+    const dlg = () => $("sujet-dialogue");
+    const lire = () => ({ nom: $("sujet-nom").value.trim().slice(0, 30), mots: decouperMots($("sujet-mots").value).slice(0, MAX_MOTS),
+      titre: $("sujet-titre-seul").checked });
+    const apercu = () => {
+      const d = lire();
+      if (!d.mots.length) { $("sujet-apercu").textContent = "Ajoutez au moins un mot-clé (3 lettres ou plus)."; return; }
+      const m = { id: id || "m_apercu", mots: d.mots, titre: d.titre, motifs: d.mots.map(motif) };
+      const n = DATA.articles.filter((a) => correspond(m, a, texteArticle(a))).length;
+      const attente = DATA.articles.some(sansDetails);
+      $("sujet-apercu").textContent = `${n} article${n > 1 ? "s" : ""} déjà dans SciFeed ${n > 1 ? "correspondent" : "correspond"}` +
+        (attente && !d.titre ? " (recherche dans les abstracts en cours…)" : ".");
+      if (attente && !d.titre) chargerDetails(DATA.articles).then(() => { if (dlg().open) apercu(); }, () => { });
+    };
+    const texteCollecte = () => sync.actif()
+      ? "Appareil synchronisé : le sujet filtre tout de suite les articles déjà collectés, et la collecte de la nuit cherchera aussi ces mots-clés dans PubMed, Europe PMC et OpenAlex pour ajouter de nouveaux articles."
+      : "Sans synchronisation, le sujet filtre seulement les articles déjà collectés. Connectez la synchronisation (Réglages) pour que la collecte de la nuit cherche aussi de nouveaux articles sur ce sujet.";
+    function ouvrir(cle, reglages) {
+      const m = cle && mesSujets().find((x) => x.id === cle);
+      id = m ? m.id : null; depuisReglages = !!reglages;
+      $("sujet-titre").textContent = m ? "Modifier le sujet" : "Nouveau sujet";
+      $("sujet-nom").value = m ? m.nom : "";
+      $("sujet-mots").value = m ? m.mots.join(", ") : "";
+      $("sujet-titre-seul").checked = m ? m.titre : false;
+      $("sujet-supprimer").hidden = !m;
+      $("sujet-message").textContent = "";
+      $("sujet-collecte").textContent = texteCollecte();
+      apercu();
+      if (depuisReglages) $("perso").close();
+      dlg().showModal();
+      if (!m) $("sujet-nom").focus();
+    }
+    const fini = () => { calculerNoms(); enregistrer(); rafraichir(); if (depuisReglages) afficherPerso(); dlg().close(); };
+    function enregistrer_() {
+      const d = lire();
+      if (!d.nom) { $("sujet-message").textContent = "Donnez un nom à la puce."; $("sujet-nom").focus(); return; }
+      if (!d.mots.length) { $("sujet-message").textContent = "Ajoutez au moins un mot-clé (3 lettres ou plus)."; $("sujet-mots").focus(); return; }
+      let nouvel = id;
+      if (!nouvel) {
+        const base = "m_" + (d.nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "").slice(0, 20) || "sujet");
+        nouvel = base; let i = 2;
+        while (etat.sujets[nouvel]) nouvel = base + "_" + i++;
+      }
+      const avant = mesSujets().find((x) => x.id === nouvel);
+      poser("sujets", nouvel, JSON.stringify({ nom: d.nom, mots: d.mots, titre: d.titre || undefined, cree: avant ? avant.cree : Date.now() }));
+      if (!id && !etat.themes.includes(nouvel)) etat.themes = [nouvel];      // nouveau sujet : on l'affiche tout de suite
+      fini();
+    }
+    function supprimer() {
+      if (!id) return;
+      poser("sujets", id, "");
+      etat.themes = etat.themes.filter((t) => t !== id);
+      fini();
+    }
+    function brancher_() {
+      $("sujet-enregistrer").addEventListener("click", enregistrer_);
+      $("sujet-supprimer").addEventListener("click", supprimer);
+      ["sujet-mots", "sujet-titre-seul"].forEach((k) => $(k).addEventListener("input", () => { clearTimeout(minuterie); minuterie = setTimeout(apercu, 250); }));
+      $("sujet-nom").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("sujet-mots").focus(); } });
+      dlg().addEventListener("close", () => { if (depuisReglages) { depuisReglages = false; $("perso").showModal(); } });
+      dlg().addEventListener("click", (e) => {     // toucher en dehors : fermer
+        if (e.target !== dlg()) return;
+        const r = dlg().getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dlg().close();
+      });
+    }
+    return { ouvrir, brancher: brancher_ };
+  })();
 
   // ---------- fond d'écran (réglage de cet appareil seulement, jamais synchronisé) ----------
   // Choix et voile dans localStorage ; la photo de l'utilisateur (déjà réduite) dans IndexedDB.
@@ -982,16 +1093,19 @@
         d.toLocaleString("fr-FR", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }));
     }
     DATA.meta.etiquettes = DATA.meta.etiquettes || [];
+    // les sujets personnels (m_…) sont décrits par l'appli, pas par le site
+    DATA.meta.themes = (DATA.meta.themes || []).filter((t) => !String(t.id).startsWith("m_"));
     Object.assign(NOM_FAMILLE, DATA.meta.familles || {});
     // noms courts (ou raccourcis personnels) sur les cartes aussi ; le nom complet est dans l'infobulle des puces
-    calculerNoms();
     famThemes = Object.fromEntries(DATA.meta.themes.map((t) => [t.id, t.famille || ""]));
     famEtiq = Object.fromEntries(DATA.meta.etiquettes.map((t) => [t.id, t.famille || ""]));
+    calculerNoms();
     alerteVeille();
     noterVisite();
     listeFlux();
     audioDuJour();
     brancherPerso();
+    sujetDialogue.brancher();
     etat.themes = (etat.themes || []).filter((t) => nomsThemes[t]);
     etat.etiquettes = (etat.etiquettes || []).filter((t) => nomsEtiq[t]);
     ["vue", "type", "niveau", "revue", "tri"].forEach((k) => {
@@ -1024,9 +1138,18 @@
     });
     $("recherche").addEventListener("input", () => { clearTimeout(minuterie); minuterie = setTimeout(() => rafraichir(), 200); });
     $("themes").addEventListener("click", (e) => {
-      if (e.target.closest(".bascule")) { etat.chipsOuverts = !etat.chipsOuverts; enregistrer(); afficherThemes(); return; }
+      const act = e.target.closest("[data-act]");
+      if (act && act.dataset.act === "ajouter-sujet") { sujetDialogue.ouvrir(null, false); return; }
+      if (act && act.dataset.act === "gerer") { gestionPuces = !gestionPuces; afficherThemes(); return; }
+      if (e.target.closest(".bascule")) { etat.chipsOuverts = !etat.chipsOuverts; gestionPuces = false; enregistrer(); afficherThemes(); return; }
       const b = e.target.closest(".chip"); if (!b) return;
       const genre = b.dataset.genre, id = b.dataset.id;
+      if (gestionPuces && etat.chipsOuverts && genre) {
+        if (id.startsWith("m_")) { sujetDialogue.ouvrir(id, false); return; }
+        const cle = genre + ":" + id;
+        poser("cachees", cle, etat.cachees[cle] ? 0 : 1);
+        majApresPerso(); return;
+      }
       if (!genre) { etat.themes = []; etat.etiquettes = []; }
       else {
         const cle = genre === "t" ? "themes" : "etiquettes";

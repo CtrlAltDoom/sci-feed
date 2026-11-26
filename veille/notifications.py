@@ -368,7 +368,7 @@ def notifier(cfg: dict, essai: bool = False, forcer: bool = False, client=None,
         return len(messages)
     envoyer(cfg, messages)
     for a, _, _ in choix:
-        etat.setdefault("envoyes", {})[a["id"]] = aujourd_hui().isoformat()
+        etat.setdefault("envoyes", {})[a["id"]] = maintenant.date().isoformat()
     etat["dernier_envoi"] = maintenant.date().isoformat()
     # liste envoyée ce jour-là : l'audio du jour en parle si la collecte arrive après les notifications
     etat["envoi_du_jour"] = {"jour": maintenant.date().isoformat(), "ids": [a["id"] for a, _, _ in choix]}
