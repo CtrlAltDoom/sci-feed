@@ -1383,7 +1383,10 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"titre_court": "Microbiote-intestin-cerveau, digestif et anxiété",
+"conclusion_simple": "L’axe microbiote-intestin-cerveau relie troubles digestifs fonctionnels et anxiété/dépression ; l’efficacité clinique reste à tester."
+},
 "revue_oa": "S2484704948"
 },
 {
@@ -1653,7 +1656,10 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"titre_court": "Pleine conscience trauma en santé communautaire",
+"conclusion_simple": "Service de pleine conscience adapté au trauma : faisable et utile en santé communautaire, mais à confirmer par des études contrôlées."
+},
 "revue_oa": "S4386621993"
 },
 {
@@ -1777,7 +1783,10 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"titre_court": "Modèle culturel de méditation et autorégulation",
+"conclusion_simple": "Piste théorique : une méditation culturellement située pourrait soutenir la régulation corporelle, sans données cliniques."
+},
 "revue_oa": "S9692511"
 },
 {
@@ -2169,7 +2178,10 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"titre_court": "Intéroception et détresse chez polyconsommateurs",
+"conclusion_simple": "Chez les polyconsommateurs, l’alexithymie expliquerait le lien entre faible intéroception et détresse ; piste à confirmer."
+},
 "revue_oa": "S7407062479"
 },
 {
