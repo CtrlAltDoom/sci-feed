@@ -33,7 +33,40 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Étude multicentrique montre gastroparésie associée à RS, belching et brûlures, avec des rapports de cotes significatifs en population tertiaire",
+"type_etude": "cohorte",
+"design": [
+"multicentrique",
+"rétrospective"
+],
+"population": "1074 patients adultes TGBI",
+"intervention": null,
+"resultats_cles": [
+"RS OR 4.13 [2.35-7.27]",
+"belching OR 5.68 [3.16-10.22]",
+"heartburn OR 2.94 [1.76-4.93]"
+],
+"conclusion": "Gastroparésie significativement associée à RS, belching et brûlures en soins tertiaires, avec implications thérapeutiques",
+"limites": [
+"rétrospective",
+"sélection tertiaire"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Pertinence élevée pour troubles fonctionnels gastro-psychologie",
+"mots_cles_fr": [
+"gastroparésie",
+"RS",
+"belching",
+"heartburn"
+],
+"titre_court": "Gastroparésie RS belching étude multicentrique",
+"conclusion_simple": "Gastroparésie significativement liée à RS, belching et brûlures en pratique tertiaire, à prendre en compte en clinique",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -69,7 +102,41 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Chez les sujets âgés anxiodépressifs, 27 ECR montrent que plusieurs interventions psychosociales, dont la TCC, réduisent dépression et anxiété.",
+"type_etude": "revue systématique",
+"design": [
+"27 ECR",
+"synthèse narrative",
+"sans méta-analyse"
+],
+"population": "27 ECR chez sujets âgés avec dépression/anxiété",
+"intervention": "11 types d'interventions psychosociales vs contrôle/autres ; TCC, activation comportementale, réminiscence",
+"resultats_cles": [
+"27 ECR inclus ; 11 types d'interventions psychosociales.",
+"Tous efficaces sur symptômes dépressifs ; 6 sur anxiété ; 5 sur bien-être/QdV.",
+"TCC, activation comportementale et réminiscence les plus évaluées."
+],
+"conclusion": "Les interventions psychosociales réduisent dépression/anxiété et améliorent le bien-être, mais doivent être adaptées aux contextes locaux.",
+"limites": [
+"Hétérogénéité des interventions et mesures.",
+"Pas de méta-analyse faute de données numériques."
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "TCC et activation comportementale chez sujets âgés anxiodépressifs",
+"mots_cles_fr": [
+"interventions psychosociales",
+"dépression",
+"anxiété",
+"sujets âgés"
+],
+"titre_court": "Psychosocial et anxiodépression du sujet âgé",
+"conclusion_simple": "Chez les sujets âgés anxiodépressifs, la TCC et d'autres interventions psychosociales réduisent les symptômes, avec des effets variables.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -165,7 +232,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Revue systématique theorise la nursing émotionnelle TCM pour améliorer efficacité pharmacologique et émotions post-chirurgie GI",
+"type_etude": "revue narrative",
+"design": [
+"systematique",
+"théorique"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"optimisation efficacité pharmacologique",
+"réduction anxiété et dépression",
+"amélioration circulation qi-blood"
+],
+"conclusion": "La nursing émotionnelle TCM synergise efficacité pharmacologique et gestion des émotions négatives chez patients âgés post-chirurgie GI, selon preuves théoriques et cliniques limitées",
+"limites": [
+"revue narrative sans méta-analyse",
+"preuves théoriques limitées"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intérêt théorique pour régulation émotionnelle en GI",
+"mots_cles_fr": [
+"TCM",
+"nursing émotionnel",
+"âgés",
+"chirurgie GI"
+],
+"titre_court": "Nursing émotionnel TCM post-chirurgie GI",
+"conclusion_simple": "La nursing émotionnelle TCM peut soutenir récupération et gestion émotions post-chirurgie GI, à confirmer par essais cliniques",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S91520407"
 },
 {
@@ -197,7 +297,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Chez 130 appendicectomies, médecine intégrée chinoise-occidentale plus parcours infirmier associée à récupération plus rapide et moins de complications.",
+"type_etude": "essai non randomisé",
+"design": [
+"rétrospective",
+"monocentrique",
+"deux groupes"
+],
+"population": "130 patients opérés d'appendicite aiguë (60 contrôle, 70 intervention)",
+"intervention": "Médecine intégrée chinoise-occidentale + parcours infirmier vs soins routiniers",
+"resultats_cles": [
+"Récupération digestive et marche plus rapides ; hospitalisation plus courte.",
+"Scores douleur, dépression, anxiété et sommeil meilleurs.",
+"Complications 7,14 % vs 20,00 %."
+],
+"conclusion": "L'association médecine intégrée et parcours infirmier présente des avantages pour les patients appendicectomisés.",
+"limites": [
+"Rétrospective monocentrique.",
+"Groupes non randomisés."
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Anxiété et dépression postopératoires en chirurgie digestive",
+"mots_cles_fr": [
+"appendicite",
+"médecine intégrative",
+"anxiété",
+"récupération"
+],
+"titre_court": "Médecine intégrée et nursing en appendicite",
+"conclusion_simple": "Après appendicectomie, une prise en charge intégrée médico-infirmière semble améliorer récupération et anxiété, mais reste rétrospective.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S91520407"
 },
 {
@@ -228,7 +362,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Chez 77 chirurgies colorectales, un bundle ERAS réduit les réadmissions à 30 jours et accélère la récupération versus soins conventionnels.",
+"type_etude": "essai non randomisé",
+"design": [
+"rétrospective",
+"monocentrique",
+"deux groupes"
+],
+"population": "77 patients opérés d'un cancer colorectal par laparoscopie (38 contrôle, 39 intervention)",
+"intervention": "Bundle périopératoire ERAS vs soins conventionnels",
+"resultats_cles": [
+"Réadmission 30 j : 5,1 % vs 23,7 % (p=0,024).",
+"Reprise marche, gaz, selles et fonction digestive plus rapide (p<0,001).",
+"Douleur, fonction, satisfaction et QdV meilleures."
+],
+"conclusion": "Le bundle ERAS réduit les réadmissions à 30 jours et améliore récupération, douleur, fonction et QdV.",
+"limites": [
+"Rétrospective monocentrique.",
+"Petit effectif (n=77)."
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Chirurgie colorectale, peu lié à la pratique psy",
+"mots_cles_fr": [
+"ERAS",
+"chirurgie colorectale",
+"réadmission",
+"récupération"
+],
+"titre_court": "ERAS et réadmission après chirurgie colorectale",
+"conclusion_simple": "Un parcours ERAS périopératoire semble réduire les réadmissions après chirurgie colorectale, mais l'étude rétrospective reste limitée.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S91520407"
 },
 {
@@ -261,7 +429,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Chez 182 résections colorectales, préhabilitation ERAS via application réduit fragilité à 6 mois et accélère récupération ; ECR monocentrique.",
+"type_etude": "essai randomisé",
+"design": [
+"monocentrique",
+"évaluateur en aveugle",
+"2 bras parallèles"
+],
+"population": "182 patients opérés d'un cancer colorectal par laparoscopie (91/91)",
+"intervention": "Préhabilitation ERAS via application (exercice, nutrition, psychologie, télésuivi) vs ERAS conventionnel",
+"resultats_cles": [
+"Fragilité à 6 mois : 9,89 % vs 20,88 % (RR 0,47 ; IC95 0,23-0,99).",
+"Récupération digestive et mobilité plus rapides ; hospitalisation plus courte.",
+"Complications 2,20 % vs 9,89 % (Fisher p=0,058)."
+],
+"conclusion": "La préhabilitation ERAS réduit fragilité, accélère récupération et améliore QdV, à confirmer en multicentrique.",
+"limites": [
+"Monocentrique.",
+"Confirmation multicentrique nécessaire."
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Préhabilitation psychologique périopératoire en chirurgie digestive",
+"mots_cles_fr": [
+"préhabilitation",
+"ERAS",
+"fragilité",
+"chirurgie colorectale"
+],
+"titre_court": "Préhabilitation ERAS en chirurgie colorectale",
+"conclusion_simple": "Une préhabilitation ERAS via application semble réduire la fragilité après chirurgie colorectale, mais doit être confirmée en multicentrique.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S91520407"
 },
 {
@@ -290,7 +492,39 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Les symptômes de globus et de dysphagie fonctionnelle se chevauchent, s'associant à une altération de la qualité de vie et à des comportements ARFID.",
+"type_etude": "transversale",
+"design": [
+"enquête en population générale"
+],
+"population": "4002 adultes du Royaume-Uni et des États-Unis",
+"intervention": "Questionnaires en ligne évaluant les troubles œsophagiens fonctionnels, l'ARFID et la santé somatique/mentale",
+"resultats_cles": [
+"Prévalence : globus seul (4,8 %), dysphagie fonctionnelle seule (3,1 %), chevauchement (3,2 %)",
+"Tous les groupes symptomatiques présentent plus de comportements ARFID et de symptômes somatiques que les contrôles",
+"Le chevauchement des symptômes aggrave la santé physique, tandis que la dysphagie seule pèse plus sur la santé mentale"
+],
+"conclusion": "Le chevauchement du globus et de la dysphagie soutient un modèle biopsychosocial nécessitant une prise en charge pluridisciplinaire.",
+"limites": [
+"Données déclaratives",
+"Enquête par internet"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Directement lié à la psychogastroentérologie, aux troubles œsophagiens fonctionnels et à l'ARFID.",
+"mots_cles_fr": [
+"globus",
+"dysphagie fonctionnelle",
+"ARFID",
+"symptômes somatiques"
+],
+"titre_court": "Globus, dysphagie fonctionnelle et ARFID en population",
+"conclusion_simple": "Le globus et la dysphagie fonctionnelle, souvent intriqués, altèrent la santé physique et psychique et s'associent à l'ARFID.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-27"
 },
@@ -323,7 +557,40 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Local clonal spread of Septoria cannabis with genotype persistence across years and regions, highlighting need for overwintering and dispersal mechanisms.",
+"type_etude": "autre",
+"design": [
+"GBS",
+"clonality cutoff",
+"longitudinal"
+],
+"population": "180 isolates",
+"intervention": null,
+"resultats_cles": [
+"3 clonal groups represent 65% of isolates",
+"Higher similarity within locations than between",
+"Genotypes persist across years and states"
+],
+"conclusion": "Genotypes persist across years and regions, indicating need to study overwintering and dispersal for cultivar resistance.",
+"limites": [
+"Limited to three U.S. states",
+"Clonality analysis may mask true diversity"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Étude non clinique, peu pertinente pour la pratique psychogastroentérologique.",
+"mots_cles_fr": [
+"Septoria cannabis",
+"clonalité",
+"diversité génétique"
+],
+"titre_court": "Diversité génétique de Septoria dans le chanvre US",
+"conclusion_simple": "Les génotypes de Septoria persistent dans le temps et l'espace, soulignant l'importance d'étudier l'hivernage et la dispersion pour développer des variétés résistantes.",
+"modele": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-27"
 },
@@ -467,7 +734,41 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Cadre computationnel priorise oligomères plastiques et additifs selon risque d'altération cognitive, PBT prioritaire",
+"type_etude": "expérimentale",
+"design": [
+"computationnel",
+"docking moléculaire",
+"simulations"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"PBT score maximal",
+"7 polymères classés high-priority",
+"interactions via liaisons H-bond et hydrophobe"
+],
+"conclusion": "Cadre computationnel identifie PBT et structures polymériques à haut risque d'interaction avec cibles altération cognitive, appelant validation expérimentale",
+"limites": [
+"étude computationnelle uniquement",
+"pas de validation expérimentale"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Lien gut-brain lointain, peu pertinent pratique clinique",
+"mots_cles_fr": [
+"microplastiques",
+"altération cognitive",
+"PBT",
+"docking moléculaire"
+],
+"titre_court": "Interactions microplastiques additifs cibles cognitive",
+"conclusion_simple": "Cadre computationnel priorise PBT et structures polymériques comme risques potentiels d'altération cognitive, à valider expérimentalement",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-27"
 },
@@ -568,7 +869,39 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Les inhibiteurs de la recapture de la sérotonine pourraient exercer des effets anti-inflammatoires et anti-néoplasiques dans le cancer colorectal.",
+"type_etude": "revue narrative",
+"design": [
+"synthèse bibliographique"
+],
+"population": "Patients atteints de cancer colorectal (données précliniques et cliniques)",
+"intervention": "Utilisation d'ISRS (fluoxétine, sertraline)",
+"resultats_cles": [
+"Effets immunomodulateurs par suppression de l'IL-6 et du TNF-alpha",
+"Réduction de la signalisation inflammatoire chronique et déplétion de la sérotonine plaquettaire dans les modèles précliniques",
+"Manque cruel de validation clinique prospective"
+],
+"conclusion": "Des essais cliniques contrôlés sont nécessaires pour évaluer l'impact oncologique potentiel des ISRS dans le cancer colorectal.",
+"limites": [
+"Revue narrative",
+"Données principalement précliniques"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Lien très indirect avec la pratique clinique en psychogastroentérologie.",
+"mots_cles_fr": [
+"ISRS",
+"cancer colorectal",
+"inflammation",
+"sérotonine"
+],
+"titre_court": "ISRS et cancer colorectal : mécanismes et perspectives",
+"conclusion_simple": "Les ISRS montrent des effets anti-inflammatoires précliniques intéressants, mais l'impact clinique en oncologie reste à prouver.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-27"
 },
@@ -712,7 +1045,40 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "1 phrase (max 25 words) : Revue systématique 13 études DMHIs jeunes urgences, 1495 patients, 1048 DMHI, 413 caregivers, 250 soignants.",
+"type_etude": "revue systématique",
+"design": [
+"mixed methods",
+"MMAT",
+"acute"
+],
+"population": "1495 patients CYP + 413 caregivers + 250 soignants",
+"intervention": "DMHIs: télépsychiatry, téléphone, SMS, informatisé",
+"resultats_cles": [
+"13 études, 1495 patients, 1048 recevant DMHI, 413 caregivers, 250 soignants",
+"DMHIs acceptables: télépsychiatry, appels suivis structurés",
+"Feasibility/appropriateness variables selon design et contexte utilisateur"
+],
+"conclusion": "conclusion des auteurs en 1 phrase : DMHIs prometteuses pour besoins santé mentale CYP en urgence, mais études plus diverses nécessaires.",
+"limites": [
+"1 étude sans effectif soignants",
+"variables de design et contexte"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "intérêt DMHIs pour santé mentale, mais pratique gastro-entérologie",
+"mots_cles_fr": [
+"télépsychiatry",
+"SMS",
+"urgence"
+],
+"titre_court": "Interventions numériques santé mentale jeunes urgences",
+"conclusion_simple": "UNE phrase de 140 caractères max : DMHIs prometteuses pour santé mentale CYP en urgence, mais besoin d'études plus diverses pour améliorer pertinence et faisabilité.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S2764449704",
 "libre_verifie": "2026-11-27"
 },
@@ -835,7 +1201,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "1 phrase (max 25 words) : Étude prospective 229 patients ballonnements/distension, questionnaire Mayo, résultats SIBO traitement.",
+"type_etude": "essai non randomisé",
+"design": [
+"prospective",
+"SIBO"
+],
+"population": "229 patients ballonnements/distension",
+"intervention": "Mayo Bloating Questionnaire, traitement SIBO",
+"resultats_cles": [
+"229 patients, scores pré-test supérieurs en gastroparésie (n=25 p=0.0006), dyspepsie fonctionnelle (n=11 p=0.0099), intolérance fructose (n=4 p=0.0396)",
+"Patients SIBO scores diminués après traitement (p=1.01e-5), compliance 97%",
+"Questionnaire facile à utiliser, fiable pour pratique et recherche"
+],
+"conclusion": "conclusion des auteurs en 1 phrase : Mayo Bloating Questionnaire efficace pour évaluer réponse traitement ballonnements/distension SIBO, fiable pratique recherche.",
+"limites": [
+"étude préprint",
+"sous-groupes petits"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "pertinent troubles digestifs fonctionnels, SIBO, questionnaire qualité vie",
+"mots_cles_fr": [
+"ballonnements",
+"SIBO",
+"questionnaire"
+],
+"titre_court": "Ballonnements/distension questionnaire Mayo",
+"conclusion_simple": "UNE phrase de 140 caractères max : Questionnaire Mayo Bloating fiable pour évaluer réponse traitement ballonnements/distension SIBO, utile pratique et recherche.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306525896"
 },
 {
@@ -875,7 +1273,41 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Le régime cétogène atténue l'hyperalgésie et la sensibilisation centrale dans un modèle murin de migraine chronique via l'axe intestin-cerveau.",
+"type_etude": "expérimentale",
+"design": [
+"modèle animal",
+"séquençage 16S",
+"transcriptomique"
+],
+"population": "souris mâles (effectif non précisé dans l'abstract)",
+"intervention": "régime cétogène et inductions répétées de nitroglycérine (modèle de migraine chronique)",
+"resultats_cles": [
+"Réduction de l'hyperalgésie et de l'activation microgliale dans le noyau trigéminal caudal.",
+"Correction de la dysbiose induite par la nitroglycérine (diminution de Ligilactobacillus, enrichissement en Akkermansia muciniphila).",
+"Atténuation de l'hyperexcitabilité neuronale et de l'ocytocine aberrante dans le noyau paraventriculaire hypothalamique."
+],
+"conclusion": "Le régime cétogène atténue la sensibilisation centrale dans la migraine chronique, potentiellement par modulation du microbiote et de l'axe intestin-cerveau.",
+"limites": [
+"étude préclinique sur modèle animal",
+"mécanismes causaux directs non prouvés"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Illustration intéressante de l'axe intestin-cerveau et de l'impact métabolique sur la douleur.",
+"mots_cles_fr": [
+"régime cétogène",
+"axe intestin-cerveau",
+"migraine chronique",
+"microbiote"
+],
+"titre_court": "Régime cétogène et migraine chronique chez la souris",
+"conclusion_simple": "Un régime cétogène réduit l'hyperexcitabilité liée à la migraine chez la souris, en lien avec une modulation du microbiote.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -952,7 +1384,39 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Les enregistrements corticaux (SMA) présentent une information spectrale plus riche que les sites sous-corticaux (VC/VS) chez des patients TOC sous DBS.",
+"type_etude": "transversale",
+"design": [
+"analyse de signaux électrophys",
+"suivi longitudinal"
+],
+"population": "2 patients souffrant de TOC sévère réfractaire",
+"intervention": "stimulation cérébrale profonde (DBS) ciblant VC/VS et l'aire motrice supplémentaire (SMA)",
+"resultats_cles": [
+"L'activité spectrale corticale (SMA) montre une entropie (contenu informationnel) significativement plus élevée.",
+"Les interactions cortico-sous-corticales sont fortement associées à l'évolution des symptômes au fil du traitement."
+],
+"conclusion": "L'enregistrement de l'activité corticale apporte des informations pertinentes pour prédire l'évolution des symptômes de TOC sous DBS.",
+"limites": [
+"effectif extrêmement réduit (2 patients)",
+"étude ancillaire pilote"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Trop éloigné de la pratique en psychogastroentérologie (neurochirurgie des TOC).",
+"mots_cles_fr": [
+"TOC",
+"stimulation cérébrale profonde",
+"cortex",
+"électrophysiologie"
+],
+"titre_court": "Enregistrements corticaux et DBS dans les TOC",
+"conclusion_simple": "Chez deux patients TOC, l'activité corticale enregistrée lors de la DBS corrèle avec l'évolution clinique, ouvrant la voie à une stimulation adaptative.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -994,7 +1458,40 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "La modulation allostérique positive des récepteurs M4 réduit les comportements répétitifs chez les souris mâles SAPAP3-/- de manière sexe-dépendante.",
+"type_etude": "expérimentale",
+"design": [
+"modèle animal",
+"en aveugle"
+],
+"population": "Souris SAPAP3-/- mâles et femelles",
+"intervention": "Administration du modulateur M4 VU0467154 (0.1-3 mg/kg)",
+"resultats_cles": [
+"Réduction du toilettage excessif chez les mâles par le VU'154.",
+"Absence d'effet similaire chez les femelles.",
+"Suppression des comportements actifs à forte dose indépendamment du sexe."
+],
+"conclusion": "La potentialisation des récepteurs M4 réduit sélectivement le toilettage excessif chez les mâles SAPAP3-/-, révélant une réponse sexe-dépendante.",
+"limites": [
+"Modèle murin (généralisabilité limitée aux TOC humains)",
+"Dimorphisme sexuel complexe"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Intéressant pour les TOC, mais étude animale préclinique.",
+"mots_cles_fr": [
+"TOC",
+"récepteurs M4",
+"souris SAPAP3",
+"comportement répétitif"
+],
+"titre_court": "Récepteurs M4 et comportements répétitifs murins",
+"conclusion_simple": "Étude préclinique sur les TOC montrant une action sur les comportements répétitifs, sans application clinique directe.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -1036,7 +1533,40 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Essai RCT KD sur enfants ASD montre amélioration symptômes core et changements microbiota, inflammation, métabolomique et MRS, mais adhérence difficile",
+"type_etude": "essai randomisé",
+"design": [
+"randomisé",
+"contrôlé"
+],
+"population": "47 enfants ASD KD + 30 contrôle",
+"intervention": "régime cétogène 3 mois vs contrôle",
+"resultats_cles": [
+"amélioration symptômes core ASD",
+"changements microbiota Parabacteroides/Butyricicoccus/Veillonella",
+"MRS phosphocreatine et myo-inositol"
+],
+"conclusion": "KD améliore symptômes core ASD et modulate gut-brain axis (microbiote inflammation MRS), mais adhérence difficile et corrélations non causales",
+"limites": [
+"adhérence KD difficile",
+"pas de multi-omics contrôle"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intérêt gut-brain axis, régime cétogène en pratique",
+"mots_cles_fr": [
+"régime cétogène",
+"ASD",
+"gut-brain axis",
+"multi-omics"
+],
+"titre_court": "Régime cétogène ASD: symptômes core et gut-brain axis",
+"conclusion_simple": "KD améliore symptômes core ASD et modulate gut-brain axis (microbiote inflammation MRS), mais adhérence limitée et besoin d'études longitudinales",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S108301449",
 "libre_verifie": "2026-11-27"
 },
@@ -1078,7 +1608,41 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Cohorte UK Biobank: apport modéré en biotine associé à risque moindre dépression/anxiété; mécanismes hippocampaux et microbiote chez la souris.",
+"type_etude": "cohorte",
+"design": [
+"prospective",
+"neuroimagerie",
+"expérimentation animale"
+],
+"population": "UK Biobank, grande cohorte prospective (n non précisé dans l'abstract)",
+"intervention": "apport alimentaire en biotine (quartiles) vs quartile le plus bas; intervention biotine 9 semaines chez la souris",
+"resultats_cles": [
+"Quartile 2: -15% risque trouble dépressif majeur vs Q1",
+"Quartile 3: -14% risque trouble anxieux vs Q1",
+"Risque minimal à 40-50 μg/jour; association positive avec anisotropie fractionnelle cingulum-hippocampe"
+],
+"conclusion": "L'apport en biotine est associé à une meilleure santé mentale, avec des mécanismes potentiels via l'hippocampe et l'axe intestin-cerveau.",
+"limites": [
+"Étude observationnelle (lien de causalité non établi)",
+"Résultats murins non directement transposables à l'humain"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "axe intestin-cerveau, biotine, santé mentale, microbiote",
+"mots_cles_fr": [
+"biotine",
+"santé mentale",
+"axe intestin-cerveau",
+"cohorte prospective"
+],
+"titre_court": "Apport en biotine et santé mentale: cohorte UK Biobank",
+"conclusion_simple": "Un apport modéré en biotine (40-50 μg/jour) est associé à un risque réduit de dépression et d'anxiété, avec des pistes mécanistiques impliquant l'hippocampe et le microbiote intestinal.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S71149355",
 "libre_verifie": "2026-11-27"
 },
@@ -1117,7 +1681,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Neuromodulation sacrée S3: réduction massive de la douleur pelvienne chronique réfractaire à l'endométriose à 12 mois (cohorte sans contrôle).",
+"type_etude": "cohorte",
+"design": [
+"prospective",
+"multicentrique",
+"single-arm"
+],
+"population": "55 femmes (25-55 ans) avec endométriose confirmée et douleur pelvienne chronique réfractaire",
+"intervention": "stimulation test S3 quadripolaire puis générateur d'impulsions implantable si réponse ≥50%",
+"resultats_cles": [
+"81,8% ont répondu au test et complété 12 mois",
+"VAS: 8,8 → 1,8 (Δ -7,0, IC95% -7,5 à -6,5, d=4,2)",
+"Réponse marquée (≥70%) chez 66,7%, amélioration PCS, symptômes vésico-sphinctériens, SF-36, antalgiques de secours 100%→26,7%"
+],
+"conclusion": "La neuromodulation sacrée S3 est associée à des réductions importantes et durables de la douleur et amélioration de la qualité de vie à 12 mois, profil de sécurité favorable; essais randomisés contrôlés par sham nécessaires.",
+"limites": [
+"Absence de groupe contrôle (biais de sélection, effet placebo)",
+"Échantillon sélectionné, non randomisé"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "neuromodulation, douleur pelvienne chronique, sensibilisation centrale",
+"mots_cles_fr": [
+"neuromodulation sacrée",
+"endométriose",
+"douleur pelvienne chronique",
+"sensibilisation centrale"
+],
+"titre_court": "Neuromodulation sacrée pour douleur pelvienne endométriose",
+"conclusion_simple": "La neuromodulation sacrée S3 réduit fortement la douleur pelvienne chronique réfractaire à 12 mois, mais l'absence de groupe contrôle empêche d'affirmer l'efficacité causale.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -1308,7 +1906,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Fiche patient sur l’endométriose : aucun signe isolé ne confirme le diagnostic, confusion possible avec le SII.",
+"type_etude": "revue narrative",
+"design": [
+"revue narrative",
+"recherche décrite",
+"35 sources"
+],
+"population": null,
+"intervention": "Fiche d’information patient sur douleurs pelviennes et endométriose ; pas de comparateur",
+"resultats_cles": [
+"Aucun signe isolé ne confirme l’endométriose.",
+"Diagnostic souvent retardé ; confusion avec le syndrome de l’intestin irritable.",
+"Intensité douloureuse peu corrélée à l’étendue de la maladie."
+],
+"conclusion": "Information générale ne remplaçant pas une consultation médicale.",
+"limites": [
+"Non systématique",
+"Pas de recommandation médicamenteuse"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Différentiel douleurs pelviennes et SII",
+"mots_cles_fr": [
+"endométriose",
+"douleur pelvienne",
+"SII",
+"information patient"
+],
+"titre_court": "Endométriose et douleurs pelviennes",
+"conclusion_simple": "Fiche patient utile pour évoquer l’endométriose devant des douleurs pelviennes, mais elle ne remplace pas une évaluation médicale.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -1341,7 +1973,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Chapitre théorique proposant Hadabes (probiotiques, berberine, celecoxib) pour troubles digestifs du sujet âgé, sans données cliniques.",
+"type_etude": "autre",
+"design": [
+"chapitre théorique"
+],
+"population": "Personnes âgées avec constipation fonctionnelle, troubles hépatiques ou colite",
+"intervention": "Hadabes (probiotiques + berberine + celecoxib) ; pas de comparateur",
+"resultats_cles": [
+"Mécanismes supposés : motilité, inflammation, stéatose hépatique.",
+"Aucun résultat clinique rapporté.",
+"Pistes de thérapies personnalisées."
+],
+"conclusion": "Comprendre ces voies pourrait guider des traitements personnalisés.",
+"limites": [
+"Aucune donnée empirique",
+"Traitement hypothétique"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Hypothèse pharmacologique, peu applicable",
+"mots_cles_fr": [
+"constipation fonctionnelle",
+"personnes âgées",
+"probiotiques",
+"colite"
+],
+"titre_court": "Hadabes et troubles digestifs du sujet âgé",
+"conclusion_simple": "Chapitre théorique sur une association non validée ; aucune donnée clinique ne permet de la recommander en pratique.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306463409",
 "libre_verifie": "2026-11-27"
 },
@@ -1454,7 +2118,39 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Protocole de revue systématique évaluant l'efficacité de la berbérine dans la maladie d'Alzheimer, recentré sur la cognition et l'axe intestin-cerveau.",
+"type_etude": "protocole",
+"design": [
+"revue systématique",
+"méta-analyse préclinique"
+],
+"population": "modèles animaux de la maladie d'Alzheimer",
+"intervention": "administration de berbérine comparée à un contrôle",
+"resultats_cles": [
+"Ajustement des critères de jugement primaires vers la fonction cognitive en raison de l'hétérogénéité des données intestinales initiales.",
+"Maintien du microbiote intestinal et des marqueurs inflammatoires comme critères secondaires."
+],
+"conclusion": "Ce protocole détaille la méthodologie pour évaluer les effets de la berbérine sur la cognition et l'axe intestin-cerveau dans l'Alzheimer préclinique.",
+"limites": [
+"protocole d'étude",
+"absence de résultats définitifs à ce stade"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Aborde l'axe intestin-cerveau et la neuro-inflammation via des composés pharmacologiques.",
+"mots_cles_fr": [
+"berbérine",
+"maladie d'Alzheimer",
+"axe intestin-cerveau",
+"revue systématique"
+],
+"titre_court": "Protocole : Berbérine et Alzheimer préclinique",
+"conclusion_simple": "Ce protocole vise à synthétiser les données précliniques sur l'effet de la berbérine sur la cognition et le microbiote.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -1493,7 +2189,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Intervention infirmière Five A's (8 sem): amélioration significative connaissances, pratiques, attitudes, stress maternel et QV enfant cœliaque (pré-post sans contrôle).",
+"type_etude": "essai non randomisé",
+"design": [
+"quasi-expérimental",
+"pré-post",
+"sans groupe contrôle"
+],
+"population": "61 paires mère-enfant (maladie cœliaque) recrutées dans 3 hôpitaux à Djeddah",
+"intervention": "intervention comportementale infirmière 8 semaines basée sur modèle Five A's",
+"resultats_cles": [
+"Connaissances maternelles: 9,7→16,0; auto-soins: 32,5→53,0; attitudes régime sans gluten: 22,8→26,4",
+"Stress maternel: 45,7→27,2; QV enfant: 26,7→45,4 (tous p<0,001)",
+"Corrélations: connaissances/pratiques/attitudes positives liées à QV enfant et stress maternel négatif"
+],
+"conclusion": "L'intervention Five A's est associée à des améliorations significatives pré-post sur tous les critères; soutien infirmier comportemental structuré prometteur pour soins centrés famille; études contrôlées nécessaires.",
+"limites": [
+"Absence de groupe contrôle (inférence causale limitée)",
+"Petit échantillon, suivi court (1 mois post-intervention), auto-questionnaires"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "maladie cœliaque, stress parental, adhésion régime, qualité de vie enfant",
+"mots_cles_fr": [
+"maladie cœliaque",
+"intervention comportementale",
+"stress maternel",
+"qualité de vie"
+],
+"titre_court": "Intervention infirmière pour mères d'enfants cœliaques",
+"conclusion_simple": "Une intervention comportementale brève améliore les connaissances, le stress maternel et la qualité de vie de l'enfant cœliaque, mais l'absence de groupe contrôle empêche d'affirmer l'efficacité.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S2595931848"
 },
 {
@@ -1523,7 +2253,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Une pratique quotidienne de mantra sonore réduit le stress perçu et améliore divers indicateurs de bien-être physique et mental.",
+"type_etude": "essai non randomisé",
+"design": [
+"étude pilote pré-post",
+"sans groupe contrôle"
+],
+"population": "35 adultes (30-45 ans) stressés, présentant des comorbidités (hypertension, diabète, anxiété, constipation)",
+"intervention": "Chant quotidien d'un mantra individualisé (Jeeva mantra) pendant 20 minutes durant 48 jours",
+"resultats_cles": [
+"Baisse significative du stress perçu (PSS-10 de 30,8 à 7,5, p < 0,001)",
+"Amélioration de la tension artérielle et de la glycémie chez les patients concernés",
+"Soulagement de la constipation chez 3 des 7 patients concernés (42,9 %)"
+],
+"conclusion": "La pratique quotidienne du Jeeva mantra est associée à une réduction du stress et à des améliorations cliniques, nécessitant des ECR.",
+"limites": [
+"Absence de groupe contrôle",
+"Faible effectif"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "faible",
+"pertinence": 3,
+"pertinence_raison": "Approche psychocorporelle innovante incluant des mesures sur les plaintes intestinales (constipation).",
+"mots_cles_fr": [
+"gestion du stress",
+"méditation",
+"vibration sonore",
+"fonction intestinale"
+],
+"titre_court": "Effet d'un mantra individualisé sur le stress et le bien-être",
+"conclusion_simple": "Cette étude pilote ouverte suggère qu'une pratique sonore quotidienne réduit le stress et améliore divers symptômes, mais des essais contrôlés sont requis.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -1559,7 +2322,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Revue systématique de 11 ECR : stratégies multimodales périopératoires améliorent douleur, opioïdes, nausées et récupération digestive/pulmonaire.",
+"type_etude": "revue systématique",
+"design": [
+"11 ECR",
+"revue systématique",
+"Risque de biais Cochrane"
+],
+"population": "Patients chirurgicaux à haut risque (11 ECR)",
+"intervention": "ERAS, analgésie multimodale, épargne/absence d’opioïdes, analgésie régionale, préhabilitation respiratoire, fluides guidés",
+"resultats_cles": [
+"Amélioration douleur, moins d’opioïdes, moins de nausées/vomissements.",
+"Meilleure récupération digestive/pulmonaire, mobilisation et qualité de récupération.",
+"Absence d’opioïdes et fluides guidés non constamment supérieurs ; hétérogénéité limite le pooling."
+],
+"conclusion": "Privilégier une prise en charge multimodale individualisée ; essais multicentriques nécessaires.",
+"limites": [
+"Hétérogénéité des procédures et interventions",
+"Synthèse qualitative sans méta-analyse"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Périopératoire, peu central en psychogastro",
+"mots_cles_fr": [
+"réhabilitation améliorée",
+"analgésie multimodale",
+"périopératoire",
+"opioïdes"
+],
+"titre_court": "Récupération périopératoire multimodale",
+"conclusion_simple": "Les stratégies multimodales améliorent la récupération périopératoire, mais l’hétérogénéité empêche de définir une intervention unique.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S2738950867"
 },
 {
@@ -1620,7 +2417,32 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "1 phrase (max 25 words) : Étude visant à comparer les potentiels cardiaques entre schizophrénie et témoins au repos.",
+"type_etude": "essai non randomisé",
+"design": [
+"EEG",
+"groupe"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [],
+"conclusion": "conclusion des auteurs en 1 phrase : L'étude vise à investiguer le traitement interoceptif au repos et à identifier des marqueurs physiologiques de son altération en schizophrénie.",
+"limites": [],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "intérêt interoception pour troubles fonctionnels, population schizophénie",
+"mots_cles_fr": [
+"schizophrénie",
+"interoception",
+"EEG"
+],
+"titre_court": "Potentiels cardiaques EEG schizophrénie",
+"conclusion_simple": "UNE phrase de 140 caractères max : Étude préliminaire visant à explorer l'interoception cardio-respiratoire au repos en schizophrénie.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S7407050956"
 },
 {
@@ -1688,7 +2510,29 @@
 "alexithymie"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "1 phrase (max 25 words) : Archives de manuscrits originaux sur l'épistémologie, la résonance et la vérité, accompagnant trois publications consolidées.",
+"type_etude": "autre",
+"design": [],
+"population": null,
+"intervention": null,
+"resultats_cles": [],
+"conclusion": "conclusion des auteurs en 1 phrase : Cette recherche archive préserve douze manuscrits originaux sur l'épistémologie, la résonance et la vérité, accompagnant trois publications consolidées.",
+"limites": [],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "pas de lien direct avec la pratique clinique en gastro-entérologie",
+"mots_cles_fr": [
+"interoception",
+"épistémologie",
+"archive"
+],
+"titre_court": "Archives manuscrits épistémologie résonance 2026",
+"conclusion_simple": "UNE phrase de 140 caractères max : Cette archive préserve des manuscrits originaux sur l'épistémologie, la résonance et la vérité, accompagnant trois publications consolidées.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306400562"
 },
 {
@@ -1822,7 +2666,40 @@
 "hypnose"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Revue théorique : l’exposition continue aux médias créerait un état quasi hypnotique chez l’enfant, nécessitant médiation parentale.",
+"type_etude": "revue narrative",
+"design": [
+"revue bibliographique",
+"documentaire"
+],
+"population": "Enfants exposés aux médias numériques",
+"intervention": "Exposition aux médias ; médiation parentale/éducative",
+"resultats_cles": [
+"Stimulation sensorielle constante assimilée à un état hypnotique.",
+"Impact sur développement cognitif, social et émotionnel.",
+"Médiation critique nécessaire."
+],
+"conclusion": "L’hypnose médiatique est un phénomène réel et préoccupant.",
+"limites": [
+"Pas de données empiriques originales",
+"Métaphore non clinique"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Métaphore sans lien avec hypnose clinique",
+"mots_cles_fr": [
+"médias",
+"développement de l'enfant",
+"hypnose technologique",
+"médiation"
+],
+"titre_court": "Médias et développement de l’enfant",
+"conclusion_simple": "Revue théorique sur l’exposition aux écrans ; elle ne documente pas d’effet clinique direct ni de lien avec l’hypnose thérapeutique.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306489615",
 "libre_verifie": "2026-11-27"
 },
@@ -1921,7 +2798,41 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Protocole préenregistré d’une méta-analyse sur mindfulness et dépression chez adolescents asiatiques/minoritaires ; résultats non disponibles.",
+"type_etude": "protocole",
+"design": [
+"protocole préenregistré",
+"méta-analyse",
+"modérateurs"
+],
+"population": "Adolescents de 10-19 ans, populations asiatiques et minoritaires",
+"intervention": "Interventions basées sur la mindfulness",
+"resultats_cles": [
+"Objectif : effet poolé sur symptômes dépressifs.",
+"Test des modérateurs : adaptation culturelle, dose, facilitateur.",
+"Aucun résultat rapporté."
+],
+"conclusion": "Le protocole vise à estimer l’effet et ses modérateurs.",
+"limites": [
+"Aucun résultat disponible",
+"Protocole seulement"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Protocole sans résultats cliniques",
+"mots_cles_fr": [
+"mindfulness",
+"adolescents",
+"dépression",
+"adaptation culturelle"
+],
+"titre_court": "Mindfulness et dépression chez adolescents",
+"conclusion_simple": "Protocole de méta-analyse ; aucune conclusion pratique ne peut être tirée avant publication des résultats.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S7407050956"
 },
 {
@@ -1953,7 +2864,39 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "La biosenseurs calciques chez le poisson-zèbre permettent de cribler des molécules pour supprimer l'hyperexcitabilité neuronale in vivo.",
+"type_etude": "expérimentale",
+"design": [
+"in vivo",
+"haut débit"
+],
+"population": "8725 larves de poisson-zèbre",
+"intervention": "1292 composés pharmacologiques testés",
+"resultats_cles": [
+"8725 larves analysées avec le senseur CaMPARI.",
+"Identification de modulateurs des canaux Kv7 efficaces contre l'hyperexcitabilité.",
+"Des molécules approuvées (amitriptyline, clomipramine) suppriment l'excitabilité."
+],
+"conclusion": "L'expression neuronale de CaMPARI chez le poisson-zèbre est un outil puissant pour identifier des médicaments anti-hyperexcitabilité.",
+"limites": [
+"Absence de validation clinique directe chez l'humain dans cet article"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Recherche fondamentale préclinique, hors champ direct de la psychogastroentérologie.",
+"mots_cles_fr": [
+"poisson-zèbre",
+"hyperexcitabilité",
+"criblage",
+"neuropharmacologie"
+],
+"titre_court": "Ciblage de l'activité cérébrale chez le poisson-zèbre",
+"conclusion_simple": "Étude fondamentale sur modèle animal, sans application clinique immédiate pour la pratique en psychogastroentérologie.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S180465690"
 },
 {
@@ -1989,7 +2932,39 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Une analyse pharmacologique in silico propose de réduire un traitement glutamatergique oral complexe à 4 composants clés (CGR-Lite).",
+"type_etude": "autre",
+"design": [
+"modélisation informatique",
+"analyse in silico"
+],
+"population": "données bioinformatiques (ChEMBL, Open Targets, STRING)",
+"intervention": "analyse d'ablations et de pharmacocinétique sur un régime glutamatergique à 12 composants",
+"resultats_cles": [
+"Dextrométhorphane, bupropion, piracetam et Sceletium obtiennent les meilleurs scores pharmacocinétiques.",
+"Le sous-ensemble réduit (CGR-Lite) est identifié pour des tests computationnels ultérieurs."
+],
+"conclusion": "Quatre composants d'un régime glutamatergique ont été isolés pour une évaluation conjointe, sans preuve clinique d'efficacité à ce stade.",
+"limites": [
+"approche purement informatique et théorique",
+"absence de validation clinique ou in vivo"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Modélisation pharmacologique moléculaire sans lien direct avec la psychogastroentérologie.",
+"mots_cles_fr": [
+"pharmacologie",
+"glutamate",
+"modélisation",
+"psychopharmacologie"
+],
+"titre_court": "Optimisation in silico d'un régime glutamatergique",
+"conclusion_simple": "Une modélisation informatique permet de simplifier un cocktail pharmacologique glutamatergique, restant à valider cliniquement.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4377196282"
 },
 {
@@ -2022,7 +2997,40 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Étude rétrospective: peu d’anomalies QTc, mais ECG manquants et pertinence clinique incertaine.",
+"type_etude": "transversale",
+"design": [
+"rétrospective",
+"dossiers"
+],
+"population": "214 adolescents diversifiés en genre sous leuprolide + autre médicament QTc; ECG disponibles n=76",
+"intervention": "Leuprolide acétate + au moins un autre médicament allongeant QTc; comparateur absent",
+"resultats_cles": [
+"3/76 ECG anormaux, 9/76 limites, 64/76 normaux",
+"Avec références récentes: 1/76 >99e percentile, 6/76 limites",
+"108/214 sans ECG disponible"
+],
+"conclusion": "La majorité des ECG étaient normaux, mais un suivi cardiaque standardisé est nécessaire.",
+"limites": [
+"ECG manquants chez 108/214",
+"rétrospectif, pas de comparateur"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Sujet cardiologique pédiatrique, sans lien avec pratique psychogastroentérologique.",
+"mots_cles_fr": [
+"QTc",
+"leuprolide",
+"adolescents",
+"genre"
+],
+"titre_court": "Anomalies QTc chez adolescents sous leuprolide",
+"conclusion_simple": "Peu d’anomalies QTc observées, mais suivi cardiaque à standardiser; intérêt psychogastroentérologique faible.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S87934238",
 "libre_verifie": "2026-11-27"
 },
@@ -2054,7 +3062,41 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Commentaire critique: fiabilité inter-évaluateurs diagnostics psychiatriques sur vignettes faible (α=0,48) et biaisée par surreprésentation troubles schizophréniques.",
+"type_etude": "revue narrative",
+"design": [
+"commentaire",
+"analyse secondaire",
+"non original"
+],
+"population": "1038 médecins psychiatres, 1902 évaluations de 9 vignettes (étude Boberg et al.)",
+"intervention": "aucune (commentaire sur étude existante)",
+"resultats_cles": [
+"α Krippendorff=0,48 (accord faible), concordance pondérée 66% avec diagnostics de référence",
+"Fiabilité plus faible pour spectre schizophrénie (44% des vignettes vs ~10% en pratique)",
+"Composition des vignettes non représentative: pas de troubles addictifs, démence, TSPT, TDAH"
+],
+"conclusion": "La fiabilité diagnostique globale estimée sur vignettes enrichies en cas difficiles ne reflète ni la pratique courante ni les domaines diagnostiques séparément.",
+"limites": [
+"Pas une étude originale, pas de nouvelles données",
+"Critique méthodologique d'une seule étude"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "fiabilité diagnostique, psychiatrie générale, non gastro",
+"mots_cles_fr": [
+"fiabilité diagnostique",
+"psychiatrie",
+"vignettes cliniques",
+"schizophrénie"
+],
+"titre_court": "Commentaire: fiabilité diagnostics psychiatriques",
+"conclusion_simple": "La fiabilité inter-évaluateurs des diagnostics psychiatriques sur vignettes écrites est faible et biaisée par la surreprésentation des troubles du spectre schizophrénique.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S92766711"
 },
 {
@@ -2083,7 +3125,40 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Analyse juridique brésilienne sans portée clinique psychogastroentérologique.",
+"type_etude": "qualitative",
+"design": [
+"qualitatif",
+"documentaire"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Base large et taxation à destination réduiraient cumulativité",
+"Transition temporaire maintient complexité et coûts d’adaptation",
+"Effectivité dépend de régulation uniforme et coopération fédérative"
+],
+"conclusion": "La simplification est possible mais dépend de la régulation uniforme et de la coopération fédérative.",
+"limites": [
+"qualitatif documentaire",
+"pas de données cliniques"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Fiscalité brésilienne, aucun rapport avec psychogastroentérologie.",
+"mots_cles_fr": [
+"réforme fiscale",
+"Brésil",
+"IBS",
+"CBS"
+],
+"titre_court": "Réforme fiscale brésilienne et consommation",
+"conclusion_simple": "Sujet fiscal brésilien, sans conclusion applicable à la pratique psychogastroentérologique.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-27"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-27"
 },
@@ -2118,7 +3193,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative: probiotiques efficaces pour diarrhée antibiotiques, C. difficile, rectocolite hémorragique; preuves émergentes pour SII, constipation; spécificité de souche cruciale.",
+"type_etude": "revue narrative",
+"design": [
+"revue narrative",
+"non systématique",
+"basée sur ECR, méta-analyses, "
+],
+"population": "non applicable (revue)",
+"intervention": "probiotiques (souches, doses, maladies spécifiques)",
+"resultats_cles": [
+"Bénéfice fort: prévention diarrhée antibiotiques, infection C. difficile enfant, maintien rémission rectocolite hémorragique",
+"Preuves émergentes: SII, constipation chronique, intolérance lactose, infections respiratoires/génito-urinaires (qualité variable)",
+"Pas de soutien: maladie de Crohn, SIBO, RGO, prévention diarrhée du voyageur"
+],
+"conclusion": "L'efficacité des probiotiques est hautement spécifique de souche, dose et pathologie; essais futurs bien conçus, souche-spécifiques nécessaires pour recommandations précises.",
+"limites": [
+"Revue narrative (pas de recherche systématique, risque de biais de sélection)",
+"Hétérogénéité des souches, doses, études"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "probiotiques, SII, constipation, microbiote, recommandations cliniques",
+"mots_cles_fr": [
+"probiotiques",
+"syndrome intestin irritable",
+"microbiote",
+"recommandations"
+],
+"titre_court": "Probiotiques: preuves cliniques et recommandations",
+"conclusion_simple": "Certaines souches probiotiques sont efficaces pour la diarrhée associée aux antibiotiques, l'infection à C. difficile et la rectocolite hémorragique; des preuves émergentes soutiennent leur usage dans",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S157208032"
 },
 {
@@ -2286,7 +3395,41 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Une application numérique basée sur l'ACT montre une faisabilité et une acceptabilité satisfaisantes dans la prise en charge de la douleur chronique en soins primaires.",
+"type_etude": "essai randomisé",
+"design": [
+"deux bras",
+"parallèle",
+"multicentrique"
+],
+"population": "92 adultes souffrant de douleur chronique non cancéreuse en soins primaires",
+"intervention": "Application numérique 'Salty' délivrant un programme ACT de 3 mois + soins habituels, versus soins habituels seuls",
+"resultats_cles": [
+"Taux de rétention à 6 mois de 77.6% (intervention) et 69.8% (contrôle).",
+"74.3% des utilisateurs ont trouvé l'application facile à utiliser.",
+"Réduction non significative de l'interférence de la douleur en faveur de l'intervention."
+],
+"conclusion": "L'intervention numérique est faisable et bien acceptée, nécessitant un essai d'efficacité de plus grande envergure.",
+"limites": [
+"Effets cliniques non significatifs",
+"Taille d'échantillon limitée"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "correcte",
+"pertinence": 4,
+"pertinence_raison": "Intéressant pour l'auto-prise en charge, la TCC/ACT et la douleur chronique.",
+"mots_cles_fr": [
+"douleur chronique",
+"ACT",
+"e-santé",
+"soins primaires"
+],
+"titre_court": "Appli ACT pour douleur chronique en soins primaires",
+"conclusion_simple": "L'application numérique basée sur l'ACT est faisable et bien acceptée, avec des tendances encourageantes sur la douleur, à confirmer.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-27"
 },
@@ -2356,7 +3499,40 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Le probiotique Lacticaseibacillus casei IMV B-7280 atténue les altérations neurodégénératives précoces et les troubles cognitifs liés à l'âge chez la souris.",
+"type_etude": "expérimentale",
+"design": [
+"contrôlé",
+"comparaison d'âges"
+],
+"population": "Souris jeunes et adultes (effectif non précisé dans l'abstract)",
+"intervention": "Supplémentation par Lacticaseibacillus casei IMV B-7280 vs groupe contrôle",
+"resultats_cles": [
+"Amélioration de la motivation exploratoire et de la mémoire de reconnaissance chez les souris adultes.",
+"Atténuation de la condensation neuronale et préservation de la cytoarchitecture corticale et hippocampique.",
+"Réduction de l'expansion astrogliale dans les régions vulnérables."
+],
+"conclusion": "L. casei IMV B-7280 atténue les changements neurodégénératifs liés à l'âge et le déclin cognitif via l'axe intestin-cerveau.",
+"limites": [
+"Étude animale (souris)",
+"Mécanismes précis non directement mesurés"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Lien microbiote-cerveau, mais modèle murin non directement transposable à la clinique humaine.",
+"mots_cles_fr": [
+"axe intestin-cerveau",
+"probiotiques",
+"vieillissement cérébral",
+"neuroprotection"
+],
+"titre_court": "Probiotiques et neuroprotection chez la souris âgée",
+"conclusion_simple": "Ce probiotique réduit le déclin cognitif chez la souris âgée, suggérant un effet potentiel de l'axe intestin-cerveau à explorer chez l'humain.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4210226105"
 },
 {
@@ -2389,7 +3565,40 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "L'ajout d'un microbiote de colite ulcéreuse à un modèle de colite murine modifie l'expression colique des gènes de la mécanosensation et de la nociception.",
+"type_etude": "expérimentale",
+"design": [
+"modèle animal",
+"séquençage ARN"
+],
+"population": "souris femelles BALB/c (n=3 à 4 par groupe)",
+"intervention": "colite DSS, transplantation fécale (FMT) de colite ulcéreuse ou combinaison (COMB)",
+"resultats_cles": [
+"Surexpression de Piezo1 et Piezo2 (canaux mécanosensibles) dans les groupes FMT et COMB.",
+"Hausse des gènes de canaux sodiques (Scn9a, Scn11a) et modulateurs de la douleur (opioïdes, cannabinoïdes) en condition COMB.",
+"Altération concomitante des gènes de barrière intestinale (Muc2, Cldn3, Ocln)."
+],
+"conclusion": "L'apport de microbiote dysbiotique de colite ulcéreuse impacte le profil transcriptionnel colique des voies sensorielles et de la barrière.",
+"limites": [
+"modèle animal préclinique",
+"effectifs par groupe très faibles"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Explore les liens microbiote, hypersensibilité viscérale et signalisation nociceptive.",
+"mots_cles_fr": [
+"microbiote",
+"hypersensibilité viscérale",
+"canaux ioniques",
+"colite ulcéreuse"
+],
+"titre_court": "Microbiote de colite ulcéreuse et nociception colique",
+"conclusion_simple": "Chez la souris, un microbiote de colite modifie l'expression des gènes liés à la douleur intestinale, ouvrant des pistes mécanistiques.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -2426,7 +3635,39 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Protocole d'étude randomisée évaluant si un module de départ personnalisé du Protocole Unifié (UP) améliore la réponse thérapeutique précoce.",
+"type_etude": "protocole",
+"design": [
+"essai randomisé",
+"prénregistré",
+"application mobile"
+],
+"population": "100 participants présentant des symptômes anxieux et/ou dépressifs élevés",
+"intervention": "Module de départ personnalisé basé sur les forces vs module introductif standard de l'UP via application mobile",
+"resultats_cles": [
+"Étude en cours / protocole décrit (pas de résultats d'efficacité disponibles).",
+"Utilisation de modèles multiniveaux pour analyser les changements de symptômes, d'affect et d'estime de soi."
+],
+"conclusion": "Ce protocole vise à déterminer si la personnalisation du module initial de l'UP améliore l'efficacité précoce du traitement.",
+"limites": [
+"Protocole de recherche (pas encore de résultats cliniques)"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Intéressant pour la personnalisation des TCC transdiagnostiques (anxiété, dépression).",
+"mots_cles_fr": [
+"protocole unifié",
+"personnalisation",
+"TCC",
+"transdiagnostique"
+],
+"titre_court": "Personnalisation des TCC transdiagnostiques (protocole)",
+"conclusion_simple": "Ce protocole teste l'intérêt de personnaliser le point de départ des TCC transdiagnostiques pour optimiser l'efficacité thérapeutique.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306401127"
 },
 {
@@ -2459,7 +3700,38 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative sur la physiopathologie et thérapies émergentes de la fistule périnéale de Crohn.",
+"type_etude": "revue narrative",
+"design": [
+"synthèse narrative"
+],
+"population": "Patients atteints de fistule périnéale de Crohn",
+"intervention": "Aucune (revue des thérapies actuelles et expérimentales)",
+"resultats_cles": [
+"Pathogenèse multifactorielle : génétique, microbiote, inflammation, cicatrisation altérée",
+"Thérapies actuelles : rémission durable rare, >90% chirurgies répétées",
+"Pistes : cellules souches mésenchymateuses, greffe de graisse autologue, PRP"
+],
+"conclusion": "La prise en charge future nécessitera l'intégration des connaissances mécanistiques pour des stratégies individualisées par phase pathophysiologique.",
+"limites": [
+"Revue narrative sans méthodologie systématique",
+"Pas d'analyse quantitative des thérapies émergentes"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Intérêt limité pour troubles fonctionnels",
+"mots_cles_fr": [
+"Maladie de Crohn",
+"Fistule périnéale",
+"Thérapies régénératives"
+],
+"titre_court": "Fistule périnéale de Crohn : physiopathologie et thérapies",
+"conclusion_simple": "Revue descriptive sans niveau de preuve ; les thérapies régénératives restent expérimentales.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S176681491"
 },
 {
@@ -2497,7 +3769,41 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Étude d'IRMf au repos chez 20 TOC vs 36 témoins : connectivité postcentrale altérée liée aux troubles exécutifs.",
+"type_etude": "cas-témoins",
+"design": [
+"IRMf repos",
+"neuropsychologie",
+"analyse MVPA"
+],
+"population": "20 patients TOC, 36 témoins sains",
+"intervention": "Aucune (imagerie et tests cognitifs)",
+"resultats_cles": [
+"Performances visuospatiales et vitesse de traitement réduites chez TOC",
+"Connectivité anormale postcentral gyrus-hippocampe/aMTG/sLOC/FP/SFG/thalamus",
+"Corrélations entre connectivité anormale et scores exécutifs"
+],
+"conclusion": "Les réseaux centrés sur le postcentral gyrus contribueraient à la dysfonction exécutive dans le TOC.",
+"limites": [
+"Effectif faible",
+"Transversal, pas de causalité"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "TOC et dysfonction exécutive ciblés",
+"mots_cles_fr": [
+"TOC",
+"Connectivité fonctionnelle",
+"Dysfonction exécutive",
+"Neuroimagerie"
+],
+"titre_court": "Connectivité cérébrale au repos et TOC : étude cas-témoins",
+"conclusion_simple": "Petite étude d'imagerie suggérant un rôle du gyrus postcentral dans les troubles exécutifs du TOC ; à répliquer.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S4210222969",
 "libre_verifie": "2026-11-27"
 },
@@ -2572,7 +3878,40 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "L'extrait d'anthocyanes de Lycium ruthenicum induit des changements fécaux, microbiens et hippocampiques chez la souris 5xFAD, sans effet causal prouvé.",
+"type_etude": "expérimentale",
+"design": [
+"modèle animal",
+"multi-omiques"
+],
+"population": "Souris mâles 5xFAD (modèle de la maladie d'Alzheimer)",
+"intervention": "Extrait d'anthocyanes de Lycium ruthenicum (Lr) vs véhicule contrôle",
+"resultats_cles": [
+"Modification de l'abondance de certains genres microbiens (Enterococcus, Akkermansia, etc.).",
+"196 gènes hippocampiques différentiellement exprimés (régulation de Bace2 et du CMH-II).",
+"Pas d'association significative confirmée après correction statistique."
+],
+"conclusion": "L'exposition aux anthocyanes modifie le microbiote et la transcription hippocampique, mais n'établit pas d'effet de modification de la maladie.",
+"limites": [
+"Étude animale",
+"Corrélations non significatives après correction multiple"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Étude fondamentale sur modèle animal éloignée de la pratique psychologique.",
+"mots_cles_fr": [
+"microbiote",
+"anthocyanes",
+"hippocampe",
+"multi-omiques"
+],
+"titre_court": "Anthocyanes et modifications omiques chez la souris",
+"conclusion_simple": "L'effet de ces extraits végétaux sur le microbiote et le cerveau reste exploratoire et non démontré cliniquement.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S62841813"
 },
 {
@@ -2672,7 +4011,40 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Essai randomisé exploratoire: aucun bénéfice détectable du prébriefing pleine conscience sur stress/anxiété.",
+"type_etude": "essai randomisé",
+"design": [
+"randomisé",
+"exploratoire"
+],
+"population": "14 étudiants infirmiers",
+"intervention": "Prébriefing Mastering Mindset vs prébriefing traditionnel actif",
+"resultats_cles": [
+"Pas de bénéfice statistiquement détectable sur anxiété état",
+"Pas de différence sur fréquence cardiaque",
+"Pas de différence sur température centrale estimée"
+],
+"conclusion": "Le prébriefing pleine conscience n’a pas montré de bénéfice détectable sur l’anxiété ou la physiologie.",
+"limites": [
+"effectif très faible",
+"exploratoire, pas de bénéfice détecté"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Stress étudiant infirmier, peu transposable aux patients digestifs.",
+"mots_cles_fr": [
+"pleine conscience",
+"stress",
+"simulation",
+"infirmiers"
+],
+"titre_court": "Prébriefing pleine conscience et stress infirmier",
+"conclusion_simple": "Chez de jeunes infirmiers, aucune preuve de bénéfice; à ne pas transposer cliniquement.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S101949793"
 },
 {
@@ -2709,7 +4081,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "L'analyse transcriptomique unitaire chez le poisson zèbre montre que la déficience en bmp6 altère la trajectoire des ostéoblastes.",
+"type_etude": "expérimentale",
+"design": [
+"transcriptomique single-cell",
+"comparaison KO"
+],
+"population": "Poissons zèbres (sauvages et mutants bmp6-knockout)",
+"intervention": "Comparaison tissulaire entre poissons sauvages et mutants bmp6-knockout",
+"resultats_cles": [
+"Proportion d'ostéoblastes plus faible chez les mutants.",
+"Présence d'une population runx2+/ctsk+ spécifique aux caractéristiques ostéoclastiques.",
+"Communication cellulaire altérée (LAMININE, LAMC1, DAG1)."
+],
+"conclusion": "La déficience en bmp6 modifie les populations cellulaires et la régulation du développement osseux intermusculaire.",
+"limites": [
+"Étude sur modèle aquatique (poisson zèbre)"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Modèle biologique animal sans rapport direct avec les troubles digestifs humains.",
+"mots_cles_fr": [
+"transcriptomique single-cell",
+"développement osseux",
+"poisson zèbre",
+"bmp6"
+],
+"titre_court": "Transcriptomique de l'os intermusculaire chez le zèbre",
+"conclusion_simple": "Étude fondamentale sur le développement osseux chez le poisson zèbre, sans application clinique directe en gastroentérologie.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4210168508"
 },
 {
@@ -2879,7 +4283,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Les nanoparticules de Cistanche deserticola (CELNs) soulagent la constipation chez la souris via la mitophagie (PINK1) et le microbiote.",
+"type_etude": "expérimentale",
+"design": [
+"modèle animal induit",
+"souris KO PINK1"
+],
+"population": "Souris (modèle induit par lopéramide et souris PINK1-/-)",
+"intervention": "CELNs (nanoparticules) vs souris constipées non traitées",
+"resultats_cles": [
+"Amélioration de la défection, de l'humidité fécale et du transit intestinal.",
+"Activation de la mitophagie médiée par PINK1/Parkin et réduction de l'apoptose des cellules de Cajal.",
+"Reconstitution du microbiote intestinal (enrichissement d'Alistipes et Bacteroides)."
+],
+"conclusion": "Les CELNs allègent la constipation via un axe PINK1-mitophagie et un remodelage du microbiote.",
+"limites": [
+"Étude préclinique sur modèle animal"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intéressant pour la physiopathologie de la constipation et le rôle des cellules de Cajal, mais préclinique.",
+"mots_cles_fr": [
+"constipation",
+"mitophagie",
+"microbiote",
+"cellules de Cajal"
+],
+"titre_court": "Nanoparticules et constipation chez la souris",
+"conclusion_simple": "Chez la souris, ces nanoparticules améliorent le transit et la motilité colique en agissant sur les mitochondries et le microbiote.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S2484704948"
 },
 {
@@ -3120,7 +4556,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Revue systématique: pentoxifylline sans avantage significatif, preuves très incertaines.",
+"type_etude": "méta-analyse",
+"design": [
+"PRISMA",
+"méta-analyse réseau",
+"RoB2"
+],
+"population": "14 études, patients avec fibrose buccale sous-muqueuse",
+"intervention": "Pentoxifylline vs corticoïdes, hyaluronidase, spiruline, multivitamines, antioxydants",
+"resultats_cles": [
+"Pas d’efficacité statistiquement significative vs comparateurs",
+"Effets indésirables légers dose-dépendants: gastrite, dyspepsie, vomissements, anxiété, tremblement",
+"Certitude faible à très faible"
+],
+"conclusion": "Aucun avantage statistiquement significatif de la pentoxifylline; preuves de certitude faible à très faible.",
+"limites": [
+"comparaisons imprécises",
+"certitude faible à très faible"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Fibrose buccale, traitement médical, hors champ psychothérapeutique.",
+"mots_cles_fr": [
+"pentoxifylline",
+"fibrose buccale",
+"revue systématique",
+"effets indésirables"
+],
+"titre_court": "Pentoxifylline dans la fibrose buccale",
+"conclusion_simple": "Preuves insuffisantes pour privilégier la pentoxifylline; intérêt psychogastroentérologique limité.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S2739445098"
 },
 {
@@ -3162,7 +4632,39 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Revue mécanistique sur la motilité du greffon intestinal, sans application psychothérapeutique.",
+"type_etude": "revue narrative",
+"design": [
+"revue"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Dénervation extrinsèque et réinnervation du greffon",
+"Ischémie-reperfusion et altérations des cellules de Cajal",
+"Gestion post-opératoire: immunosuppression, nutrition, complications"
+],
+"conclusion": "La récupération de la motilité dépend de mécanismes neuronaux, hormonaux et cellulaires complexes.",
+"limites": [
+"revue narrative",
+"pas de données cliniques originales"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Transplantation intestinale, mécanismes digestifs non psychothérapeutiques.",
+"mots_cles_fr": [
+"transplantation intestinale",
+"motilité",
+"greffon",
+"péristaltisme"
+],
+"titre_court": "Motilité du greffon intestinal transplanté",
+"conclusion_simple": "Revue utile pour comprendre la motilité digestive, sans application psychothérapeutique directe.",
+"modele": "baidu/ernie-5.5-flash-preview:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S2739445098"
 },
 {
@@ -3238,7 +4740,38 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "La distention abdominale touche 14,5 % d’enfants latino-américains, surtout les filles et adolescents, et persiste après exclusion des troubles Rome IV.",
+"type_etude": "transversale",
+"design": [
+"questionnaire",
+"logistic regression",
+"exclusion criteria"
+],
+"population": "10,089 children and adolescents (5–18 ans) de Colombie, Équateur, Mexique",
+"intervention": null,
+"resultats_cles": [
+"14,5 % prévalence totale",
+"femmes plus touchées (17,6 % vs 10,5 %)",
+"prévalence croissante avec l’âge (8,3 % à 16,2 %)"
+],
+"conclusion": "La distention abdominale est fréquente chez les enfants latino-américains, surtout les filles et adolescents, et persiste après exclusion des troubles Rome IV.",
+"limites": [],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Donne une prévalence de distention abdominale chez l'enfant, utile en gastroentérologie fonctionnelle.",
+"mots_cles_fr": [
+"distention abdominale",
+"prévalence",
+"enfants",
+"femmes"
+],
+"titre_court": "Prévalence de la distention chez l'enfant",
+"conclusion_simple": "Cette prévalence chez filles et adolescents justifie d'évaluer la distention abdominale.",
+"modele": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "",
 "libre_verifie": "2026-11-27"
 },
@@ -3579,7 +5112,40 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "L'analyse du recrutement d'un essai sur la psilocybine montre un taux d'exclusion élevé (80,6 %), principalement dû à l'absence de critères stricts de résistance au traitement.",
+"type_etude": "transversale",
+"design": [
+"analyse descriptive",
+"données de screening"
+],
+"population": "67 candidats présélectionnés pour un essai clinique sur la dépression résistante",
+"intervention": null,
+"resultats_cles": [
+"54 candidats sur 67 exclus (80,6 %)",
+"Premier motif d'exclusion : absence de dépression résistante ou autre diagnostic (50,0 %)",
+"Autres motifs : âge hors critères (18,5 %), idées suicidaires (13,0 %)"
+],
+"conclusion": "L'hétérogénéité diagnostique des candidats souligne l'écart entre la population d'essai ciblée et les patients réels en recherche de soins.",
+"limites": [
+"Étude monocentrique",
+"Effectif restreint"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "correcte",
+"pertinence": 1,
+"pertinence_raison": "Faible lien direct avec la psychogastroentérologie.",
+"mots_cles_fr": [
+"essais cliniques",
+"psychédéliques",
+"dépression résistante",
+"validité externe"
+],
+"titre_court": "Sélection et hétérogénéité dans un essai sur la psilocybine",
+"conclusion_simple": "Les essais sur les psychédéliques incluent une population très sélectionnée, éloignée des patients tout-venant.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4210194710"
 },
 {
@@ -3612,7 +5178,37 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Le couplage environnemental‑neurobiologique distingue réponses adaptatives des réponses pathologiques persistantes.",
+"type_etude": "revue narrative",
+"design": [
+"narrative review"
+],
+"population": null,
+"intervention": null,
+"resultats_cles": [
+"Réponses adaptatives suivent les conditions et s’ajustent",
+"Réponses persistantes ou amplifiées par feedback sont pathologiques",
+"Candidats indicateurs et prédictions testables pour évaluation et soins"
+],
+"conclusion": "The account brings the organism-environment relation into judgments of pathology, without implying that all distress is environmentally driven.",
+"limites": [
+"hypothèses non validées empiriquement"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intérêt général pour les mécanismes de détresse, peu ciblé à la gastroentérologie",
+"mots_cles_fr": [
+"mal-être",
+"environnement",
+"neurobiologie"
+],
+"titre_court": "Mécanismes neurobiologiques du mal-être clinique",
+"conclusion_simple": "Comprendre les mécanismes neurobiologiques de l'affectif aide à juger le pathologique, mais le mal-être n'est pas toujours lié à l'environnement.",
+"modele": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S122317144"
 },
 {
@@ -3893,7 +5489,41 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Étude préclinique + données humaines : stress → Alistipes putredinis → IAA → métastase sein ; baicaline inhibe cette voie.",
+"type_etude": "expérimentale",
+"design": [
+"modèle murin",
+"transplantation fécale",
+"données patients"
+],
+"population": "Souris 4T1 + patientes cancer sein métastatique + dépression sévère",
+"intervention": "Stress chronique vs baicaline ; inhibiteur AhR ; transplantation microbiote",
+"resultats_cles": [
+"Stress favorise métastase via A. putredinis et IAA (métabolite tryptophane)",
+"IAA active AhR → stress oxydatif → migration cellulaire",
+"Baicaline réduit A. putredinis, IAA, augmente CD8+ cytotoxiques, inhibe métastase"
+],
+"conclusion": "Le stress remodelle le microbiote pour favoriser la métastase via l'axe A. putredinis-IAA-AhR ; la baicaline inverse ce processus.",
+"limites": [
+"Principalement modèle animal",
+"Données humaines corrélationnelles seulement"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Cancer sein, non troubles digestifs fonctionnels",
+"mots_cles_fr": [
+"Microbiote",
+"Stress",
+"Métastase",
+"Baicaline"
+],
+"titre_court": "Stress, microbiote et métastase du cancer du sein : rôle de la baicali",
+"conclusion_simple": "Données précliniques solides mais translation humaine préliminaire ; pas d'application clinique directe en psychogastroentérologie.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S3004984423"
 },
 {
@@ -3932,7 +5562,38 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "1 phrase (max 25 words) : Étude transversale 95 MDD + 51 HC examine LPS et cytokines selon gravité et médication.",
+"type_etude": "transversale",
+"design": [
+"transversale"
+],
+"population": "95 patients MDD + 51 HC",
+"intervention": "LPS, cytokines, ajustement médication",
+"resultats_cles": [
+"LPS élevée MDD léger-moderate après ajustement âge/sex/IMC/tabac/médication",
+"TNF-α élevée tous niveaux gravité, prédictrice MDD sévère AUC 0.677",
+"Modèle LPS+TNF-α+IL-10 AUC 0.778 MDD, 0.818 léger-moderate"
+],
+"conclusion": "conclusion des auteurs en 1 phrase : MDD léger-moderate liée à LPS (inflammation gut), MDD sévère liée à TNF-α; biomarqueurs aident sous-typage et stratégies ciblées.",
+"limites": [
+"transversale",
+"ajustements résiduels"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "lien inflammation gut-MDD pertinent pour troubles digestifs fonctionnels",
+"mots_cles_fr": [
+"LPS",
+"TNF-α",
+"MDD"
+],
+"titre_court": "LPS et cytokines en dépression majeure",
+"conclusion_simple": "UNE phrase de 140 caractères max : MDD léger-moderate associée à LPS (inflammation gut), MDD sévère à TNF-α; biomarqueurs aident sous-typage thérapeutique.",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S4210224676"
 },
 {
@@ -4003,7 +5664,40 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "La religiosité est plus élevée dans le TOC et corrélée spécifiquement aux croyances sur l'importance et le contrôle des pensées.",
+"type_etude": "transversale",
+"design": [
+"comparaison avec groupe contrô",
+"ajustement sociodémographique"
+],
+"population": "169 participants : 93 patients avec TOC primaire et 76 contrôles sains",
+"intervention": "Évaluation par échelles (MRS, OBQ-44, PI-WSUR)",
+"resultats_cles": [
+"Scores de religiosité significativement plus élevés dans le groupe TOC (p < 0,001, d = 0,60)",
+"Corrélation spécifique avec la sous-échelle OBQ Importance/Contrôle des pensées (rho = 0,381)",
+"Pas d'association globale avec la sévérité des symptômes du TOC"
+],
+"conclusion": "La motivation religieuse interagit avec le TOC principalement au niveau de l'évaluation cognitive des pensées.",
+"limites": [
+"Étude transversale",
+"Échantillon turc (généralisabilité culturelle)"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intéressant pour comprendre les croyances obsessionnelles et le contrôle de la pensée (TOC).",
+"mots_cles_fr": [
+"TOC",
+"religiosité",
+"croyances obsessionnelles",
+"cognition"
+],
+"titre_court": "Religiosité et croyances obsessionnelles dans le TOC",
+"conclusion_simple": "La religiosité est liée aux croyances dysfonctionnelles de contrôle des pensées dans le TOC, sans aggraver globalement les symptômes.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S94610253"
 },
 {
@@ -4041,7 +5735,38 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Essai RCT français évaluant l'utilité coût-efficacité d'un programme CBT structuré sur les AVHs en schizophrénie, avec suivi à 12 mois",
+"type_etude": "protocole",
+"design": [
+"randomisé",
+"contrôlé",
+"évaluateur aveugle"
+],
+"population": "240 patients schizophrénie, AVHs 3 mois",
+"intervention": "CBT + TAU vs TAU",
+"resultats_cles": [
+"ratio coût par QALY à 12 mois",
+"réduction symptômes AVH vs TAU",
+"évaluateurs indépendants aveugles à 12 mois"
+],
+"conclusion": "Premier essai RCT français évaluant l'utilité coût-efficacité du CBT sur les AVHs en schizophrénie, avec potentiel d'intégration standard",
+"limites": [],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Approches CBT peu liées à la pratique gastro-psychologique",
+"mots_cles_fr": [
+"schizophrénie",
+"AVH",
+"CBT",
+"coût-efficacité"
+],
+"titre_court": "Coût-efficacité du CBT sur les AVHs en schizophrénie",
+"conclusion_simple": "Premier essai français évaluant le CBT coût-efficacité sur AVHs schizophrénie, à confirmer par résultats cliniques",
+"modele": "nvidia/nemotron-3.5-lightning:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S94610253"
 },
 {
@@ -4072,7 +5797,40 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Série de 4 cas d'exstrophie cloacale : ostéotomie pelvienne précoce associée à meilleurs résultats rénaux/orthopédiques.",
+"type_etude": "étude de cas",
+"design": [
+"rétrospective",
+"monocentrique",
+"suivi 24 mois"
+],
+"population": "4 nouveau-nés exstrophie cloacale (2013-2024)",
+"intervention": "Réparation étagée avec ostéotomie précoce (n=2) vs différée (n=2)",
+"resultats_cles": [
+"Ostéotomie précoce : meilleure fonction rénale, régression RUV, orthopédie",
+"3/4 continence diurne, 1/4 nocturne partielle",
+"Un cas syndrome grêle court : nutrition parentérale, sepsis, retard croissance"
+],
+"conclusion": "Approche multidisciplinaire essentielle ; ostéotomie précoce montre tendances favorables mais effectif trop faible pour conclusions.",
+"limites": [
+"n=4 seulement",
+"Rétrospectif, non randomisé"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Pathologie congénitale pédiatrique, hors champ",
+"mots_cles_fr": [
+"Exstrophie cloacale",
+"Chirurgie pédiatrique",
+"Reconstruction"
+],
+"titre_court": "Exstrophie cloacale : prise en charge chirurgicale 4 cas",
+"conclusion_simple": "Série de cas trop petite pour guider la pratique ; illustre complexité multidisciplinaire.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S134535697"
 },
 {
@@ -4108,7 +5866,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Étude pilote n=6 en isolation 120j : régime riche fibres + arabinogalactane/lactoferrine augmente Bifidobacterium et prévient symptômes GI.",
+"type_etude": "essai non randomisé",
+"design": [
+"pré-post",
+"pilote",
+"isolat 120j"
+],
+"population": "6 volontaires sains (4F, 2H, 26-37 ans) en isolation hermétique",
+"intervention": "Diète cosmonautes + arabinogalactane 5g/j + lactoferrine 10mg Fe/j (60 premiers jours)",
+"resultats_cles": [
+"Bifidobacterium normalisé chez tous à J30",
+"Effet préventif sur symptômes digestifs fonctionnels",
+"Méthode culture uniquement"
+],
+"conclusion": "La modification diététique avec prébiotiques optimise le microbiote et prévient la dysbiose en conditions extrêmes.",
+"limites": [
+"Effectif très faible (n=6)",
+"Pas de groupe contrôle"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Microbiote, prébiotiques, symptômes GI fonctionnels",
+"mots_cles_fr": [
+"Microbiote",
+"Prébiotiques",
+"Isolation",
+"Troubles digestifs fonctionnels"
+],
+"titre_court": "Régime prébiotique en isolation : microbiote et symptômes GI",
+"conclusion_simple": "Données préliminaires suggérant un bénéfice des prébiotiques sur le microbiote et symptômes digestifs en conditions extrêmes ; à confirmer.",
+"modele": "nvidia/nemotron-3-ultra-550b-a55b:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S2764808868",
 "libre_verifie": "2026-11-27"
 },
@@ -4143,7 +5935,41 @@
 "sii"
 ],
 "ajoute_le": "2026-11-27",
-"fiche": null,
+"fiche": {
+"verdict": "Revue des sources, réglementation et méthodes analytiques des laxatifs anthracéniques dans les compléments ; risque de surdosage et besoin de contrôle qualité.",
+"type_etude": "revue narrative",
+"design": [
+"revue rétrospective",
+"analyse de marché",
+"méthodes analytiques"
+],
+"population": null,
+"intervention": "HAD laxatifs dans compléments alimentaires ; cadre réglementaire et méthodes analytiques",
+"resultats_cles": [
+"HAD largement utilisés pour constipation fonctionnelle.",
+"Dosages en compléments souvent proches des médicaments.",
+"Surconsommation prolongée : atonie colique, mélanose coli, hypokaliémie, etc."
+],
+"conclusion": "Les auteurs concluent à la nécessité de contrôler la qualité des compléments contenant des HAD laxatifs et de développer de nouvelles méthodes analytiques.",
+"limites": [
+"Revue narrative rétrospective.",
+"Pas d'évaluation clinique originale."
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Sécurité des laxatifs utilisés en constipation fonctionnelle",
+"mots_cles_fr": [
+"laxatifs anthracéniques",
+"compléments alimentaires",
+"constipation fonctionnelle",
+"contrôle qualité"
+],
+"titre_court": "Laxatifs anthracéniques en compléments",
+"conclusion_simple": "Les laxatifs anthracéniques en compléments peuvent exposer aux mêmes risques que les médicaments ; leur contrôle qualité est nécessaire.",
+"modele": "particle-ai/particle-1:free",
+"date": "2026-11-27"
+},
 "revue_oa": "S2764808868",
 "libre_verifie": "2026-11-27"
 },
@@ -58899,7 +60725,39 @@
 "sii"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Des préparations de Roseburia faecis réduisent l'hyperactivité colique dans un modèle animal d'IBS, avec des effets plus marqués chez les femelles.",
+"type_etude": "expérimentale",
+"design": [
+"modèle animal",
+"comparaison selon le sexe"
+],
+"population": "rats Wistar de 7 semaines (mâles et femelles)",
+"intervention": "Roseburia faecis vivant ou tué par la chaleur dans un modèle d'IBS induit par stress",
+"resultats_cles": [
+"Réduction des selles fécales (FPO) par les deux préparations chez les deux sexes.",
+"Diminution de l'infiltration des mastocytes et des gènes protéases (Prss1/2) chez les femelles sous forme vivante."
+],
+"conclusion": "Roseburia faecis atténue les symptômes de type IBS chez le rat, avec une modulation spécifique liée au sexe.",
+"limites": [
+"étude animale",
+"transposabilité à l'humain à démontrer"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "correcte",
+"pertinence": 4,
+"pertinence_raison": "En lien direct avec le microbiote et l'hypersensibilité viscérale dans le syndrome de l'intestin irritable.",
+"mots_cles_fr": [
+"intestin irritable",
+"microbiote",
+"mastocytes",
+"sexe"
+],
+"titre_court": "Roseburia faecis et modèle animal d'IBS",
+"conclusion_simple": "Le microbiote (Roseburia faecis) module l'inflammation et l'hypersensibilité de type IBS chez l'animal, de façon sexuée.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S202381698"
 },
 {
@@ -59973,7 +61831,38 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Une revue systématique évalue l'intelligence artificielle et les outils numériques pour la détection de la dermatite de contact.",
+"type_etude": "revue systématique",
+"design": [
+"recherche bibliographique",
+"évaluation de modèles et dispo"
+],
+"population": "43 études incluses",
+"intervention": "outils numériques et IA (réseaux de neurones convolutifs)",
+"resultats_cles": [
+"Sensibilité médiane de 0,84 et spécificité de 0,97 pour l'ensemble des outils.",
+"31 modèles algorithmiques et 12 dispositifs pratiques analysés."
+],
+"conclusion": "Les outils numériques et l'IA offrent de bonnes performances pour détecter la dermatite de contact.",
+"limites": [
+"hétérogénéité des algorithmes",
+"majorité de modèles non testés en pratique réelle"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Hors champ de la psychogastroentérologie.",
+"mots_cles_fr": [
+"intelligence artificielle",
+"dermatite",
+"dépistage numérique"
+],
+"titre_court": "Outils numériques et IA pour la dermatite",
+"conclusion_simple": "Les algorithmes d'IA montrent une forte spécificité dans la détection numérique de la dermatite.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S19710621",
 "libre_verifie": "2026-11-20"
 },
@@ -60088,7 +61977,38 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Les ondes de choc focalisées améliorent la réparation histologique de lésions ostéochondrales chez le porcelet.",
+"type_etude": "expérimentale",
+"design": [
+"contre animal contrôle",
+"en l'absence d'aveugle mention"
+],
+"population": "sept porcs immatures de 6 semaines (lésions bilatérales)",
+"intervention": "application unique d'ondes de choc focalisées sur le genou droit, genou gauche témoin",
+"resultats_cles": [
+"Score histologique de Niederauer supérieur dans le groupe traité (14 vs 13, p = 0,042).",
+"Hausse des cellules SOX9-positives et de l'aggrécane dans le groupe traité."
+],
+"conclusion": "Une application d'ondes de choc améliore la réparation tissulaire ostéochondrale précoce chez le porc immature.",
+"limites": [
+"effectif très réduit",
+"suivi court (6 semaines)"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "faible",
+"pertinence": 1,
+"pertinence_raison": "Domaine de la chirurgie orthopédique pédiatrique, sans lien avec la gastroentérologie.",
+"mots_cles_fr": [
+"ondes de choc",
+"cartilage",
+"réparation tissulaire"
+],
+"titre_court": "Ondes de choc et défauts ostéochondrales chez le porc",
+"conclusion_simple": "Les ondes de choc stimuleraient la régénération cartilagineuse précoce dans un modèle animal.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4210197731",
 "libre_verifie": "2026-11-20"
 },
@@ -60317,7 +62237,36 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Revue narrative proposant des recommandations nutritionnelles pratiques pour gérer les effets secondaires gastro-intestinaux des agonistes du récepteur du GLP-1 et GIP/GLP-1.",
+"type_etude": "revue narrative",
+"design": [],
+"population": null,
+"intervention": "Stratégies nutritionnelles pour la gestion des effets secondaires gastro-intestinaux des agonistes GLP-1 et GIP/GLP-1.",
+"resultats_cles": [
+"Effets secondaires fréquents (nausées, vomissements, constipation, diarrhée, ballonnements) altérant l'adhésion.",
+"Recommandations symptomatiques couvrant la répartition des repas, lipides, fibres, hydratation et mode de vie."
+],
+"conclusion": "Une approche nutritionnelle structurée et personnalisée améliore la tolérance et l'observance des traitements par incrétines.",
+"limites": [
+"Données nutritionnelles initialement fragmentaires",
+"Nature narrative de la revue"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Utile pour les patients obèses traités par incrétines présentant des troubles digestifs.",
+"mots_cles_fr": [
+"GLP-1",
+"effets secondaires gastro-intestinaux",
+"nutrition",
+"observance"
+],
+"titre_court": "Nutrition et effets digestifs des agonistes GLP-1",
+"conclusion_simple": "Des conseils nutritionnels adaptés aident à mieux tolérer les traitements par analogues du GLP-1.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S6309402219"
 },
 {
@@ -60352,7 +62301,37 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Étude psychométrique montrant que le questionnaire The Spider possède une bonne fidélité test-retest et consistance interne chez les hyperlaxes.",
+"type_etude": "validation psychométrique",
+"design": [
+"longitudinale"
+],
+"population": "617 participants âgés de 13 à 65 ans avec HSD, hEDS ou hypermobilité symptomatique",
+"intervention": "Évaluation de la fidélité et cohérence interne du questionnaire The Spider via deux enquêtes en ligne (1-2 semaines d'intervalle).",
+"resultats_cles": [
+"Fidélité test-retest bonne à excellente (ICC 0,79 à 0,92).",
+"Consistance interne acceptable pour 7 domaines et le score total (alpha de Cronbach 0,70 à 0,91)."
+],
+"conclusion": "Le questionnaire The Spider démontre une bonne fidélité pour la mesure répétée des symptômes multisystémiques de l'hypermobilité.",
+"limites": [
+"Recrutement via réseaux sociaux (auto-sélection)"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Évaluation des symptômes multiples incluant le versant digestif et anxio-dépressif.",
+"mots_cles_fr": [
+"hypermobilité",
+"questionnaire The Spider",
+"fidélité",
+"symptômes multisystémiques"
+],
+"titre_court": "Validation du questionnaire The Spider en hypermobilité",
+"conclusion_simple": "Le questionnaire The Spider est un outil fiable pour évaluer les symptômes multiples des patients hyperlaxes.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306525896"
 },
 {
@@ -61556,7 +63535,39 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Cette étude longitudinale analyse la distinction conceptuelle entre perfectionnisme et excellencisme sur la santé mentale.",
+"type_etude": "protocole",
+"design": [
+"analyse secondaire",
+"longitudinal 4 semaines"
+],
+"population": "données de validation de l'échelle SCOPE (Müller et al.)",
+"intervention": "mesure du perfectionnisme, de l'excellencisme, de l'estime de soi et des symptômes psychologiques",
+"resultats_cles": [
+"Réplication du modèle de distinction entre perfectionnisme et excellencisme (MEP).",
+"Évaluation de leur impact respectif sur l'anxiété, la dépression et les TOC."
+],
+"conclusion": "Étude visant à clarifier l'impact différencié du perfectionnisme et de l'excellencisme sur la détresse psychologique.",
+"limites": [
+"abstract descriptif sans résultats chiffrés",
+"suivi court de 4 semaines"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 3,
+"pertinence_raison": "Intéressant pour comprendre la vulnérabilité psychologique (TOC, anxiété) et la rigidité mentale.",
+"mots_cles_fr": [
+"perfectionnisme",
+"excellencisme",
+"santé mentale",
+"TOC"
+],
+"titre_court": "Perfectionnisme versus excellencisme et clinique",
+"conclusion_simple": "Distinguer perfectionnisme et excellencisme aide à mieux évaluer les risques pour la santé mentale.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S7407050956"
 },
 {
@@ -64884,7 +66895,37 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Supplément méthodologique d'une méta-analyse sur les interventions psychologiques dans la dépression subseuillée, sans données cliniques directes.",
+"type_etude": "revue systématique",
+"design": [
+"méta-analyse en données indivi",
+"bayésienne"
+],
+"population": null,
+"intervention": "Interventions psychologiques vs contrôle inactif",
+"resultats_cles": [
+"Fournit les documents et analyses complémentaires d'une IPD-MA.",
+"Détaille les critères de recherche et les modérateurs."
+],
+"conclusion": "Matériel supplémentaire pour l'évaluation des interventions psychologiques dans la dépression subseuillée.",
+"limites": [
+"Matériel de suppléments sans résultats autonomes"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Matériel méthodologique brut sans résultats cliniques exploitables pour la pratique.",
+"mots_cles_fr": [
+"dépression subseuillée",
+"méta-analyse",
+"données individuelles"
+],
+"titre_court": "Supplément méta-analyse dépression subseuillée",
+"conclusion_simple": "Ce document ne contient que le matériel supplémentaire d'une méta-analyse, sans données cliniques directes.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S7407052453"
 },
 {
@@ -80917,7 +82958,40 @@
 "psychogastro"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "La connectivité fonctionnelle du tronc cérébral au repos corrèle avec l'âge, l'humeur et la cognition, et est modifiable par les probiotiques.",
+"type_etude": "essai randomisé",
+"design": [
+"randomisé",
+"en double aveugle",
+"contre placebo"
+],
+"population": "83 adultes âgés de 60 à 80 ans (55 femmes, 28 hommes)",
+"intervention": "Supplémentation de 6 semaines en Lacticaseibacillus rhamnosus HN001 vs placebo",
+"resultats_cles": [
+"Corrélations entre connectivité du tronc cérébral (locus coeruleus, PAG) et stress, humeur et cognition.",
+",Modifications de la connectivité fonctionnelle (notamment locus coeruleus) après l'intervention probiotique."
+],
+"conclusion": "La connectivité fonctionnelle tronc cérébral-cortex corrèle avec le vieillissement et l'axe intestin-cerveau, et est modifiable par les probiotiques.",
+"limites": [
+"Échantillon limité à des adultes âgés",
+"Spécificité des souches probiotiques"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Axe intestin-cerveau, microbiote et régulation autonome : cœur de la psychogastroentérologie.",
+"mots_cles_fr": [
+"axe intestin-cerveau",
+"probiotiques",
+"tronc cérébral",
+"IRM fonctionnelle"
+],
+"titre_court": "Axe intestin-cerveau et probiotiques chez les seniors",
+"conclusion_simple": "Suggère que les probiotiques peuvent influencer la connectivité cérébrale liée au stress et à l'humeur via l'axe intestin-cerveau.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S3005729997"
 },
 {
@@ -81079,7 +83153,40 @@
 "hypnose"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "L'imagerie optique temporelle permet d'analyser les dynamiques cérébrales et systémiques pendant l'hypnose, nécessitant de dissocier les signaux du scalp.",
+"type_etude": "expérimentale",
+"design": [
+"cohorte",
+"exploratoire"
+],
+"population": "Participants humains (26 et 49 selon les cohortes, plus 3 en exploration)",
+"intervention": "Séances d'hypnose et tâches auditives avec surveillance optique (TD-DOT, NIRS)",
+"resultats_cles": [
+"Diminution de la variabilité de l'oxyhémoglobine à basse fréquence lors de l'hypnose (-21.8%, P = 0.0067).",
+"Nécessité de contrôler les artéfacts du scalp (canaux courts).",
+"Fluctuations de la fréquence cardiaque modifiées pendant l'induction hypnotique."
+],
+"conclusion": "Les données soutiennent une surveillance optique rigoureuse pendant l'hypnose, bien que les effets spécifiques nécessitent une validation.",
+"limites": [
+"Faible effectif pour la session exploratoire",
+"Méthodologie en développement"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "non évaluable",
+"pertinence": 4,
+"pertinence_raison": "Étudie les mécanismes physiologiques de l'hypnose, utile pour l'hypnothérapie.",
+"mots_cles_fr": [
+"hypnose",
+"imagerie optique",
+"mécanismes neuro-vasculaires",
+"physiologie"
+],
+"titre_court": "Mécanismes physiologiques de l'hypnose par imagerie optique",
+"conclusion_simple": "Valide des outils de mesure pour étudier l'hypnose, montrant des variations vasculaires et cardiaques spécifiques.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S6309402219"
 },
 {
@@ -84270,7 +86377,41 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Une intervention de couple pour le TDAH adulte n'améliore pas la qualité relationnelle comparativement à une liste d'attente.",
+"type_etude": "essai randomisé",
+"design": [
+"randomisé",
+"contrôlé par liste d'attente",
+"intention de traiter"
+],
+"population": "80 couples (160 participants) concernés par le TDAH",
+"intervention": "Programme d'intervention de couple ciblant le TDAH vs liste d'attente",
+"resultats_cles": [
+"Absence de différence significative sur la qualité relationnelle (QDR-36).",
+"Pas d'effet sur le stress, la dépression, l'anxiété ou la qualité de vie liée au TDAH.",
+"Effet inattendu favorable à la liste d'attente concernant les symptômes TDAH (ASRS)."
+],
+"conclusion": "L'intervention de couple n'a pas montré de supériorité sur la qualité relationnelle par rapport à la liste d'attente.",
+"limites": [
+"Groupe contrôle sur liste d'attente",
+"Effets inattendus sur les symptômes de TDAH"
+],
+"niveau_preuve": 4,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Concerne le TDAH et les thérapies de couple, éloigné de la gastroentérologie fonctionnelle.",
+"mots_cles_fr": [
+"TDAH",
+"thérapie de couple",
+"relation",
+"essai contrôlé"
+],
+"titre_court": "Intervention de couple pour le TDAH",
+"conclusion_simple": "Une intervention spécifique de couple pour le TDAH ne s'avère pas supérieure à une liste d'attente sur la qualité relationnelle.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S94622921",
 "libre_verifie": "2026-11-20"
 },
@@ -84379,7 +86520,39 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "La TCC à distance est efficace pour les TOC, avec de grands effets intra-groupe maintenus au suivi, mais reste inférieure au présentiel.",
+"type_etude": "méta-analyse",
+"design": [
+"revue systématique"
+],
+"population": "1897 patients (23 études, âges 11-41 ans)",
+"intervention": "TCC à distance (comparée à des groupes contrôles actifs/passifs et au présentiel)",
+"resultats_cles": [
+"Effet intra-groupe pré-post élevé (g = 1.13, IC 95% [0.95, 1.30])",
+"Effet inter-groupe post-traitement en faveur du soin à distance vs contrôle (g = 0.43)",
+"Supériorité du présentiel par rapport au format à distance en post-traitement (g = -0.32)"
+],
+"conclusion": "Les traitements à distance pour les TOC sont efficaces et offrent un potentiel pour les soins stepped care.",
+"limites": [
+"Hétérogénéité des populations",
+"Nombre d'études limité pour certains suivis"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Utile pour comprendre l'efficacité des thérapies en ligne, bien que hors TCC/hypnose digestive.",
+"mots_cles_fr": [
+"TOC",
+"TCC",
+"télé-santé",
+"méta-analyse"
+],
+"titre_court": "Efficacité de la TCC à distance dans les TOC",
+"conclusion_simple": "La TCC en ligne réduit les TOC mais le présentiel reste plus efficace post-traitement.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S110204754"
 },
 {
@@ -95262,7 +97435,37 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "L'efficacité et la sécurité de la rTMS chez l'adolescent dépressif manquent de preuves solides pour justifier des directives spécifiques.",
+"type_etude": "revue narrative",
+"design": [
+"synthèse de la littérature"
+],
+"population": "Adolescents avec trouble dépressif majeur (TDM)",
+"intervention": "rTMS vs groupes contrôles ou sham",
+"resultats_cles": [
+"Amélioration des symptômes dépressifs dans certains ECR et méta-analyses.",
+"Effets indésirables principalement légers et bien tolérés."
+],
+"conclusion": "Les preuves actuelles ne soutiennent pas de directives spécifiques pour la rTMS chez l'adolescent en raison d'hétérogénéité.",
+"limites": [
+"populations hétérogènes",
+"suivi insuffisant"
+],
+"niveau_preuve": 1,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Concerne la rTMS en psychiatrie de l'adolescent, hors champ direct de la psychogastroentérologie.",
+"mots_cles_fr": [
+"rTMS",
+"dépression",
+"adolescents"
+],
+"titre_court": "rTMS et dépression chez l'adolescent",
+"conclusion_simple": "La rTMS chez l'adolescent dépressif manque de preuves à long terme pour recommander des directives cliniques.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S7407060681"
 },
 {
@@ -96793,7 +98996,38 @@
 "psychotherapies"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Une revue systématique identifie un manque de recherche sur l'implémentation clinique des psychothérapies assistées par enthéogènes.",
+"type_etude": "revue systématique",
+"design": [
+"recherche bibliographique",
+"PRISMA 2020"
+],
+"population": "20 études incluses sur 2406 identifiées",
+"intervention": "implémentation des psychothérapies assistées par psychédéliques",
+"resultats_cles": [
+"15 études sur 20 sont des enquêtes transversales ou des entretiens qualitatifs.",
+"Manque criant de données sur le passage des milieux académiques vers la clinique réelle."
+],
+"conclusion": "Il existe un besoin urgent de recherche sur les meilleures pratiques d'implémentation clinique des psychothérapies psychédéliques.",
+"limites": [
+"hétérogénéité des études",
+"focus majoritaire sur la perspective organisationnelle"
+],
+"niveau_preuve": 5,
+"qualite_methodo": "non évaluable",
+"pertinence": 2,
+"pertinence_raison": "Éloigné de la pratique quotidienne en gastroentérologie, mais utile pour l'innovation thérapeutique.",
+"mots_cles_fr": [
+"psychédéliques",
+"implémentation",
+"psychothérapie"
+],
+"titre_court": "Revue sur l'implémentation des psychothérapies psychédéliques",
+"conclusion_simple": "La recherche sur l'intégration des thérapies psychédéliques en pratique clinique réelle reste encore très lacunaire.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4387284413"
 },
 {
@@ -100494,7 +102728,38 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "L'étude IBD-PODCAST montre qu'un contrôle suboptimal des MICI altère lourdement la qualité de vie, aggravée par l'urgence fécale et la fatigue.",
+"type_etude": "transversale",
+"design": [
+"multicentrique",
+"descriptif"
+],
+"population": "2185 patients atteints de maladies inflammatoires chroniques de l'intestin (MICI)",
+"intervention": "Évaluation transversale de la charge symptomatique et de la qualité de vie",
+"resultats_cles": [
+"Contrôle suboptimal chez 52.2% des Crohn et 44.3% des RCH.",
+"Urgence fécale rapportée par 43.5% des patients, impactant fortement la qualité de vie."
+],
+"conclusion": "Une prise en charge multidisciplinaire est cruciale pour cibler la qualité de vie, la fatigue et l'urgence fécale dans les MICI.",
+"limites": [
+"design transversal"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 5,
+"pertinence_raison": "Données cruciales sur l'urgence fécale et la fatigue en psychogastroentérologie (MICI).",
+"mots_cles_fr": [
+"MICI",
+"qualité de vie",
+"urgence fécale",
+"fatigue"
+],
+"titre_court": "Impact des MICI sur la qualité de vie (IBD-PODCAST)",
+"conclusion_simple": "L'urgence fécale et la fatigue altèrent massivement la qualité de vie dans les MICI, justifiant une approche globale.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -100530,7 +102795,39 @@
 "psy_digestif"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Les obstacles au dépistage du cancer chez les patients bipolaires incluent l'anxiété, la peur et l'inconfort organisationnel.",
+"type_etude": "qualitative",
+"design": [
+"entretiens semi-structurés",
+"analyse thématique déductive"
+],
+"population": "27 personnes vivant avec un trouble bipolaire",
+"intervention": "Entretiens sur le dépistage des cancers (cervical, sein, colorectal)",
+"resultats_cles": [
+"Barrières psychologiques : anxiété, peur, oubli.",
+"Barrières systémiques : convocations inadaptées, inconfort en salle d'attente."
+],
+"conclusion": "Un soutien sur mesure et des options de dépistage multiples amélioreraient la participation des patients bipolaires.",
+"limites": [
+"échantillon régional",
+"biais de déclaration"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "correcte",
+"pertinence": 2,
+"pertinence_raison": "Aborde l'anxiété face aux examens médicaux, mais centré sur le trouble bipolaire et l'oncologie.",
+"mots_cles_fr": [
+"trouble bipolaire",
+"dépistage cancer",
+"anxiété",
+"barrières"
+],
+"titre_court": "Dépistage du cancer et trouble bipolaire",
+"conclusion_simple": "L'anxiété et l'inconfort organisationnel freinent le dépistage du cancer chez les patients bipolaires.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": ""
 },
 {
@@ -101536,7 +103833,38 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Chez les survivants de trauma avec TOC, l'Y-BOCS-II met en évidence un modèle à 3 facteurs dominé par l'exactitude et la prévention.",
+"type_etude": "transversale",
+"design": [
+"analyse factorielle"
+],
+"population": "258 individus exposés à un traumatisme avec TOC",
+"intervention": "Passation de l'Y-BOCS-II-SR-SC",
+"resultats_cles": [
+"Modèle à 3 facteurs validé : Saving, Exactness/Prevention, Cleaning.",
+"Symptômes d'exactitude/prévention endossés par 91% de l'échantillon."
+],
+"conclusion": "L'étude soutient le lien entre symétrie/exactitude et prévention du harm chez les survivants de traumatismes avec TOC.",
+"limites": [
+"auto-évaluation",
+"échantillon clinique ciblé"
+],
+"niveau_preuve": 2,
+"qualite_methodo": "correcte",
+"pertinence": 3,
+"pertinence_raison": "Intéressant pour la compréhension des TOC et de l'hypervigilance/trauma, bien que hors TGI.",
+"mots_cles_fr": [
+"TOC",
+"traumatisme",
+"analyse factorielle",
+"Y-BOCS-II"
+],
+"titre_court": "Structure factorielle du TOC post-traumatique",
+"conclusion_simple": "Chez les patients traumatisés avec TOC, les symptômes d'exactitude et de prévention du préjudice sont prédominants.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S156364528",
 "libre_verifie": "2026-11-20"
 },
@@ -101672,7 +104000,40 @@
 "arfid_toc"
 ],
 "ajoute_le": "2026-11-18",
-"fiche": null,
+"fiche": {
+"verdict": "Une analyse de classes latentes sur 5817 jeunes autistes non verbaux identifie des sous-groupes cliniques distincts associant compétences et comorbidités.",
+"type_etude": "transversale",
+"design": [
+"analyse de classes latentes",
+"multicentrique",
+"cohorte nationale"
+],
+"population": "5817 jeunes autistes minimalement parlants (5-17 ans)",
+"intervention": null,
+"resultats_cles": [
+"Identification de 3 sous-groupes chez l'enfant et 2 chez l'adolescent selon les compétences.",
+"Les groupes plus faibles ont plus de comorbidités (épilepsie, troubles du sommeil, TCA, TOC) et reçoivent plus d'interventions."
+],
+"conclusion": "Les jeunes autistes minimalement parlants présentent une hétérogénéité clinique significative en termes de développement, de comorbidités et de recours aux soins.",
+"limites": [
+"Questionnaires rapportés par les aidants (biais de rappel)",
+"Nécessite une réplication dans une cohorte indépendante"
+],
+"niveau_preuve": 3,
+"qualite_methodo": "non évaluable",
+"pertinence": 1,
+"pertinence_raison": "Hors champ direct de la psychogastroentérologie (population TSA spécifique).",
+"mots_cles_fr": [
+"autisme",
+"sous-groupes",
+"comorbidités",
+"hétérogénéité"
+],
+"titre_court": "Sous-groupes développementaux et autisme non verbal",
+"conclusion_simple": "L'autisme non verbal présente des profils cliniques très hétérogènes corrélés à des comorbidités somatiques et psychiatriques.",
+"modele": "gemini-3.5-flash-lite",
+"date": "2026-11-27"
+},
 "revue_oa": "S4306525896"
 },
 {
