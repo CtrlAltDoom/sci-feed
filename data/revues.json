@@ -9535,5 +9535,181 @@
 "domaine": "Plant Science",
 "articles_par_an": 340,
 "maj": "2026-11-27"
+},
+"S2898612692": {
+"nom": "Heliyon",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 7.15,
+"h_index": 246,
+"editeur": "Elsevier BV",
+"domaine": "Plant Science",
+"articles_par_an": 17541,
+"maj": "2026-11-28"
+},
+"S4306462985": {
+"nom": "CABI eBooks",
+"type": "ebook platform",
+"doaj": false,
+"citations_2ans": 0.51,
+"h_index": 162,
+"editeur": "",
+"domaine": "Tourism, Leisure and Hospitality Management",
+"articles_par_an": 1143,
+"maj": "2026-11-28"
+},
+"S131562361": {
+"nom": "AINS - Anästhesiologie · Intensivmedizin · Notfallmedizin · Schmerztherapie",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 0.25,
+"h_index": 40,
+"editeur": "Georg Thieme Verlag",
+"domaine": "Douleur",
+"articles_par_an": 144,
+"maj": "2026-11-28"
+},
+"S121125331": {
+"nom": "Cancer Investigation",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 2.19,
+"h_index": 118,
+"editeur": "Taylor & Francis",
+"domaine": "Cancer Research",
+"articles_par_an": 92,
+"maj": "2026-11-28"
+},
+"S4210212248": {
+"nom": "International Journal of Latest Technology in Engineering Management & Applied Science",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 0.84,
+"h_index": 15,
+"editeur": "RSIS International",
+"domaine": "Organizational Behavior and Human Resource Management",
+"articles_par_an": 1913,
+"maj": "2026-11-28"
+},
+"S2754457614": {
+"nom": "International Journal of Women s Health",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 4.03,
+"h_index": 110,
+"editeur": "Dove Medical Press",
+"domaine": "Gynécologie",
+"articles_par_an": 803,
+"maj": "2026-11-28"
+},
+"S175683280": {
+"nom": "International Journal of Mental Health Nursing",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 5.12,
+"h_index": 124,
+"editeur": "Wiley",
+"domaine": "Psychologie clinique",
+"articles_par_an": 247,
+"maj": "2026-11-28"
+},
+"S4210235363": {
+"nom": "Brain Communications",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 4.81,
+"h_index": 72,
+"editeur": "Oxford University Press",
+"domaine": "Psychiatrie",
+"articles_par_an": 514,
+"maj": "2026-11-28"
+},
+"S125615467": {
+"nom": "Frontline Gastroenterology",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 1.23,
+"h_index": 55,
+"editeur": "BMJ",
+"domaine": "Gastro-entérologie",
+"articles_par_an": 324,
+"maj": "2026-11-28"
+},
+"S658968": {
+"nom": "Allergy Asthma and Clinical Immunology",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 3.67,
+"h_index": 82,
+"editeur": "BioMed Central",
+"domaine": "Pulmonary and Respiratory Medicine",
+"articles_par_an": 107,
+"maj": "2026-11-28"
+},
+"S4306513901": {
+"nom": "International Journal of AYUSH",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 0.45,
+"h_index": 6,
+"editeur": "",
+"domaine": "Médecines complémentaires",
+"articles_par_an": 393,
+"maj": "2026-11-28"
+},
+"S7407066309": {
+"nom": "Актуальные проблемы педагогики и психологии. Научный рецензируемый электронный журнал (сетовое издание) 16+",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 0.06,
+"h_index": 4,
+"editeur": "",
+"domaine": "Physical Therapy, Sports Therapy and Rehabilitation",
+"articles_par_an": 104,
+"maj": "2026-11-28"
+},
+"S4210179267": {
+"nom": "Actualidades en Psicología",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 2.18,
+"h_index": 33,
+"editeur": "University of Costa Rica",
+"domaine": "Management Science and Operations Research",
+"articles_par_an": 67,
+"maj": "2026-11-28"
+},
+"S7407066836": {
+"nom": "RAIS Journal for Social Sciences",
+"type": "journal",
+"doaj": false,
+"citations_2ans": 0.62,
+"h_index": 8,
+"editeur": "",
+"domaine": "Religious studies",
+"articles_par_an": 65,
+"maj": "2026-11-28"
+},
+"S4210195341": {
+"nom": "Journal of Participatory Medicine",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 2.48,
+"h_index": 23,
+"editeur": "JMIR Publications",
+"domaine": "General Health Professions",
+"articles_par_an": 59,
+"maj": "2026-11-28"
+},
+"S2737169211": {
+"nom": "Revista Portuguesa de Investigação Comportamental e Social",
+"type": "journal",
+"doaj": true,
+"citations_2ans": 2.35,
+"h_index": 16,
+"editeur": "Instituto Superior Miguel Torga",
+"domaine": "Psychologie cognitive",
+"articles_par_an": 23,
+"maj": "2026-11-28"
 }
 }
